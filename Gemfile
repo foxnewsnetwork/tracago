@@ -2,15 +2,13 @@ source 'https://rubygems.org'
 
 gem 'spree', '2.2.0.beta', :path => File.expand_path("../../spree", __FILE__)
 gem 'spree_gateway', '2.1.0.beta', :path => File.expand_path("../../spree_gateway", __FILE__)
-gem 'spree_auth_devise', '2.2.0', :path => File.expand_path("../../spree_auth_devise", __FILE__)
 gem 'unicorn', '~>4.6.3'
 gem "haml", "~> 4.0.0"
 gem "haml-rails", "~>0.4"
-
+gem 'devise', '~> 3.0.1'
 group :development do
   gem "rspec", '~>2.13.0'
   gem 'rspec-rails', '~>2.13.0'
-  gem 'faker', "~>1.1.2"
   gem 'annotate', ">=2.5.0.pre1"
   gem 'simplecov', "~>0.7.1"
 end
