@@ -7,6 +7,7 @@ gem "haml", "~> 4.0.0"
 gem "haml-rails", "~>0.4"
 gem 'devise', '~> 3.0.1'
 group :development do
+  gem 'ffaker'
   gem "rspec", '~>2.13.0'
   gem 'rspec-rails', '~>2.13.0'
   gem 'annotate', ">=2.5.0.pre1"
@@ -21,6 +22,7 @@ gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

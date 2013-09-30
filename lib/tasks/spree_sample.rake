@@ -2,25 +2,12 @@ namespace :spree_sample do
 
   desc "Unseeds the stuff loaded into the database with rake spree_sample:load"
   task :unload => :environment do
-    tables = [
-      "payment_methods", 
-      "shipping_categories", 
-      "shipping_methods", 
-      "tax_categories",
-      "tax_rates",
-      "users",
-      "shops",
-      "products",
-      "taxonomies",
-      "taxons",
-      "option_values",
-      "option_types",
-      "addresses",
-      "variants",
-      "stock_quantities"
-    ].map { |name| "spree_#{name}" }
+    tables = ActiveRecord::Base.connection.tables.reject do |table|
+      table =~ /(migrations|countries|roles|states|zones)/
+    end
 
     tables.each do |table|
+      puts "Clearing out #{table}..."
       ActiveRecord::Base.connection.execute "delete from #{table}"
     end
   end

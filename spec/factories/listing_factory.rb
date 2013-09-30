@@ -6,10 +6,16 @@ module ChineseFactory
       end
 
       def mock
-        belongs_to(Shop.mock).belongs_to(Stockpile.mock).belongs_to(Address.mock).create
+        new.create
       end
     end
     attr_accessor :shop, :stockpile, :address
+
+    def initialize
+      @shop = Shop.mock
+      @stockpile = Stockpile.mock
+      @address = Address.mock
+    end
 
     def belongs_to(thing)
       tap do |factory|

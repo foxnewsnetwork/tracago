@@ -19,7 +19,7 @@ module ChineseFactory
     def attributes
       {
         name: Faker::Company.name,
-        owner: user
+        user: user
       }
     end
 

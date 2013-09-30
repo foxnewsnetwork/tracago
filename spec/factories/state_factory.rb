@@ -19,8 +19,8 @@ module ChineseFactory
 
     def attributes
       { 
-        name: Faker::Address.state,
-        abbr: Faker::Address.state_abbr,
+        name: Faker::AddressUS.state,
+        abbr: Faker::AddressUS.state_abbr,
         country: country
       }
     end

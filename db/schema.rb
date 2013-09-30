@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925185123) do
+ActiveRecord::Schema.define(version: 20130926183506) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -609,6 +609,7 @@ ActiveRecord::Schema.define(version: 20130925185123) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "notes"
   end
 
   create_table "spree_stockpiles_taxons", force: true do |t|
@@ -716,6 +717,7 @@ ActiveRecord::Schema.define(version: 20130925185123) do
     t.string   "openid_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password"
   end
 
   add_index "spree_users", ["authentication_token"], name: "index_spree_users_on_authentication_token", unique: true, using: :btree

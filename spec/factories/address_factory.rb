@@ -27,7 +27,7 @@ module ChineseFactory
         :address2 => Faker::Address.secondary_address,
         :city => Faker::Address.city,
         :state => state,
-        :zipcode => Faker::Address.zip,
+        :zipcode => Faker::AddressUS.zip_code,
         :country => country,
         :phone => Faker::PhoneNumber.phone_number
       }
