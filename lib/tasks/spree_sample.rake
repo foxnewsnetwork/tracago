@@ -1,3 +1,4 @@
+require 'fileutils'
 namespace :spree_sample do
 
   desc "Unseeds the stuff loaded into the database with rake spree_sample:load"
@@ -12,9 +13,16 @@ namespace :spree_sample do
     end
   end
 
+  desc "cleans out the assets loaded by the sample thing"
+  task :remove_images => :environment do
+    dir = Rails.root.join("public", "spree")
+    FileUtils.rmdir dir if Dir.exists? dir
+  end
+
   desc "Unloads and loads the seeds"
   task :reload => :environment do
     Rake::Task['spree_sample:unload'].invoke
+    Rake::Task['spree_sample:remove_images'].invoke
     Rake::Task['spree_sample:load'].invoke
   end
 end
