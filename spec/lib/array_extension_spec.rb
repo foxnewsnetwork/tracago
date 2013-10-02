@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Array do
+  describe "#rand" do
+    before do
+      @array = [1,2,3,4,5,6,7]
+    end
+    it "should give me an element that is within the array" do
+      10.times { @array.should include @array.random }
+    end
+  end
   describe "#uniq_merge" do
     before do
       @array = []

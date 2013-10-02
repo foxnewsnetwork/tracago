@@ -6,10 +6,15 @@ module ChineseFactory
     end
 
     def self.mock
-      belongs_to(Country.mock).belongs_to(State.mock).create
+      new.create
     end
 
     attr_accessor :state, :country
+
+    def initialize
+      @state = State.mock
+      @country = Country.mock
+    end
 
     def belongs_to(thing)
       tap do |factory|

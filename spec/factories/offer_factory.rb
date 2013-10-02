@@ -29,7 +29,7 @@ module ChineseFactory
         address: address,
         listing: listing,
         usd_per_pound: rand(1234),
-        terms: ::Spree::Offer::Terms.rand,
+        shipping_terms: ::Spree::Offer::Terms.random,
         containers: rand(234)
       }
     end

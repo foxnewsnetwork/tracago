@@ -18,6 +18,26 @@ describe Spree::Stockpile do
       [@evil_option_type.option_values, @okay_option_type.option_values].map { |a| a.sort { |a,b| a.id <=> b.id } }
     end
 
+    it "should have some option values" do
+      @evil_option_type.option_values.count.should > 0
+      @evil_option_type.option_values.each do |ov|
+        ov.should be_a Spree::OptionValue
+      end
+    end
+
+    it "should have stacked some option_values onto the stockpile" do
+      @stockpile.option_values.count.should > 0
+      @stockpile.option_values.each do |ov|
+        ov.should be_a Spree::OptionValue
+      end
+    end
+
+    it "should be an array of option values" do
+      stockpile.properties.each do |ps|
+        ps.should be_a Array
+      end
+    end
+
     it "should organize the properties by option_types and present them as 2d arrays" do
       actual.should eq expected
     end
