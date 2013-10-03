@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe Array do
+  describe "#filter_map" do
+    before do
+      @array = (0..10).to_a
+    end
+    let(:expected) do
+      ['fizz',1,2,'fizz','buzz',5,'fizz',7,'buzz','fizz',10]
+    end
+    let(:actual) do
+      @array.filter_map do |value|
+        value.is_a?(Integer) && (value%3).zero?
+      end.call { 'fizz' }.filter_map do |value|
+        value.is_a?(Integer) && (value%4).zero?
+      end.call { 'buzz' }
+    end
+    it "should properly filter and map the short array into a fizzbuzz array" do
+      actual.should eq expected
+    end
+  end
   describe "#rand" do
     before do
       @array = [1,2,3,4,5,6,7]

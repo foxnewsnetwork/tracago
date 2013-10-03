@@ -8,6 +8,7 @@ module ChineseFactory
 
     def attributes
       {
+        name: Faker::Address.country,
         iso_name: Faker::Address.country,
         iso: Faker::AddressUS.state_abbr,
         iso3: Faker::Address.country.slice(0,3).upcase,
@@ -17,7 +18,7 @@ module ChineseFactory
     end
 
     def create
-      ::Spree::Country.create attributes
+      ::Spree::Country.create! attributes
     end
   end
 end
