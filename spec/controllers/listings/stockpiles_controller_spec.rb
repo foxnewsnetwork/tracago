@@ -9,6 +9,10 @@ describe Spree::Listings::StockpilesController do
     end
   end
 
+  describe "#create - fail" do
+
+  end
+
   describe "#create" do
     let(:create) { -> { spree_post :create, listing_id: @listing.id, stockpile: @stockpile } }
     before do

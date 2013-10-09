@@ -31,6 +31,10 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::ControllerRequests, :type => :controller
   config.include Warden::Test::ControllerHelpers, type: :controller
 
+  # Controller macros for sessions
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

@@ -3,9 +3,17 @@ require 'spec_helper'
 describe Spree::ListingsController do
 
   describe "#new" do
-    it "should render the page as requested" do
+    it "should redirect to the related stockpile page" do
       spree_get :new
       response.response_code.should eq 200
+    end
+  end
+
+  describe "#show" do
+    let(:listing) { ChineseFactory::Listing.mock }
+    it "should merely redirect to the respective stockpile path" do
+      spree_get :show, id: listing.id
+      response.should redirect_to Spree.r.stockpile_path listing.stockpile
     end
   end
 
@@ -39,5 +47,31 @@ describe Spree::ListingsController do
       listing.should be_a Spree::Listing
     end
 
+    context "logged in without shop" do
+      login_user
+      it "should create a listing that is effectively the same as one an anonymouse user would" do
+        create.call
+        listing.should be_require_shop
+        listing.should be_require_stockpile
+        listing.should_not be_complete
+        listing.should be_a Spree::Listing
+      end
+    end
+
+    context "logged in with shop" do
+      login_shop
+      let(:current_user) { controller.send :current_user }
+      it "should still have a real user as the current_user" do
+        current_user.should be_a Spree::User
+      end
+      it "should create a listing which is already connected to the user's shop" do
+        create.call
+        listing.should_not be_require_shop
+        listing.should be_require_stockpile
+        listing.should_not be_complete
+        listing.should be_a Spree::Listing
+      end
+    end
   end
+
 end
