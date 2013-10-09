@@ -6,6 +6,7 @@ gem 'unicorn', '~>4.6.3'
 gem "haml", "~> 4.0.0"
 gem "haml-rails", "~>0.4"
 gem 'devise', '~> 3.0.1'
+gem 'functional_support', '>=0.0.5', :path => File.expand_path("../../functional_support", __FILE__)
 group :development do
   gem 'ffaker'
   gem "rspec", '~>2.13.0'
