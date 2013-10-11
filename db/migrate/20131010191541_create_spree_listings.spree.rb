@@ -2,8 +2,8 @@
 class CreateSpreeListings < ActiveRecord::Migration
   def change
     create_table :spree_listings do |t|
-      t.integer :stockpile_id
-      t.integer :shop_id
+      t.integer :stockpile_id, :null => false
+      t.references :shop
       t.integer :days_to_refresh
       t.datetime :available_on
       t.datetime :expires_on
@@ -11,6 +11,6 @@ class CreateSpreeListings < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :spree_listings, [:shop_id]
+    add_index :spree_listings, [:stockpile_id], :unique => true
   end
 end

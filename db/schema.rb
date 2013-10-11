@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130926183506) do
+ActiveRecord::Schema.define(version: 20131010191551) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20130926183506) do
   add_index "spree_line_items", ["variant_id"], name: "index_spree_line_items_on_variant_id", using: :btree
 
   create_table "spree_listings", force: true do |t|
-    t.integer  "stockpile_id"
+    t.integer  "stockpile_id",    null: false
     t.integer  "shop_id"
     t.integer  "days_to_refresh"
     t.datetime "available_on"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20130926183506) do
     t.datetime "updated_at"
   end
 
-  add_index "spree_listings", ["shop_id"], name: "index_spree_listings_on_shop_id", using: :btree
+  add_index "spree_listings", ["stockpile_id"], name: "index_spree_listings_on_stockpile_id", unique: true, using: :btree
 
   create_table "spree_log_entries", force: true do |t|
     t.integer  "source_id"
@@ -282,6 +282,24 @@ ActiveRecord::Schema.define(version: 20130926183506) do
   add_index "spree_orders", ["number"], name: "index_spree_orders_on_number", using: :btree
   add_index "spree_orders", ["user_id"], name: "index_spree_orders_on_user_id", using: :btree
 
+  create_table "spree_origin_products", force: true do |t|
+    t.string   "permalink",    null: false
+    t.string   "presentation", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_origin_products", ["permalink"], name: "index_spree_origin_products_on_permalink", unique: true, using: :btree
+
+  create_table "spree_origin_products_stockpiles", force: true do |t|
+    t.integer "origin_product_id", null: false
+    t.integer "stockpile_id",      null: false
+  end
+
+  add_index "spree_origin_products_stockpiles", ["origin_product_id", "stockpile_id"], name: "indx_ops_opid_sid", unique: true, using: :btree
+  add_index "spree_origin_products_stockpiles", ["stockpile_id"], name: "index_spree_origin_products_stockpiles_on_stockpile_id", using: :btree
+
   create_table "spree_payment_methods", force: true do |t|
     t.string   "type"
     t.string   "name"
@@ -364,7 +382,6 @@ ActiveRecord::Schema.define(version: 20130926183506) do
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on", using: :btree
   add_index "spree_products", ["deleted_at"], name: "index_spree_products_on_deleted_at", using: :btree
   add_index "spree_products", ["name"], name: "index_spree_products_on_name", using: :btree
-  add_index "spree_products", ["permalink"], name: "index_spree_products_on_permalink", using: :btree
   add_index "spree_products", ["permalink"], name: "permalink_idx_unique", unique: true, using: :btree
 
   create_table "spree_products_promotion_rules", id: false, force: true do |t|
@@ -693,6 +710,7 @@ ActiveRecord::Schema.define(version: 20130926183506) do
 
   create_table "spree_users", force: true do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password"
     t.string   "password_salt"
     t.string   "login"
     t.integer  "ship_address_id"
@@ -717,7 +735,6 @@ ActiveRecord::Schema.define(version: 20130926183506) do
     t.string   "openid_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password"
   end
 
   add_index "spree_users", ["authentication_token"], name: "index_spree_users_on_authentication_token", unique: true, using: :btree

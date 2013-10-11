@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table(:spree_users) do |t|
       ## Database authenticatable
       t.string :email,              :null => false, :default => ""
+      t.string :encrypted_password
       t.string :password_salt
       t.string     :login
       t.references :ship_address
