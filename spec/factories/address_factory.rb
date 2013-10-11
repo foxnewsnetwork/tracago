@@ -9,6 +9,10 @@ module ChineseFactory
       new.create
     end
 
+    def self.attributes
+      new.attributes
+    end
+
     attr_accessor :state, :country
 
     def initialize
