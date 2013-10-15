@@ -28,7 +28,7 @@ describe Spree::Stockpiles::AddressesController do
   end
 
   describe "#create" do
-    let(:spree_create) { -> { spree_post :create, stockpile_id: @stockpile.id, address: @address } }
+    let(:spree_create) { -> { spree_post :create, stockpile_id: @stockpile.id, address_form_helper: @address } }
     context 'redirect' do
       before do
         @listing = ChineseFactory::Listing.mock
@@ -94,7 +94,7 @@ describe Spree::Stockpiles::AddressesController do
       end
       it "should redirect back to this very page" do
         spree_create.call
-        response.should redirect_to Spree.r.new_stockpile_address_path(@stockpile, address_params)
+        response.should render_template("new")
       end
       it "should feature the correct flash message" do
         spree_create.call
