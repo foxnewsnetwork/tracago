@@ -53,6 +53,7 @@ PATH
     spree_frontend (2.2.0.beta)
       bootstrap-sass (~> 2.3.2.1)
       canonical-rails
+      decent_exposure (~> 2.3.0)
       haml (~> 4.0.3)
       jquery-rails (~> 3.0.0)
       sass-rails (>= 3.2)
@@ -142,6 +143,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     colorize (0.6.0)
+    decent_exposure (2.3.0)
     deface (1.0.0.rc4)
       colorize (>= 0.5.8)
       nokogiri (~> 1.6.0)

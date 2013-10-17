@@ -28,6 +28,7 @@ module ChineseFactory
     def create
       ::Spree::Listing.create! attributes
     end
+    alias_method :mock, :create
 
     def attributes
       {

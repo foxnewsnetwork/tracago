@@ -1,6 +1,21 @@
 require 'spec_helper'
 
 describe Spree::Stockpile do
+  describe "::completed" do
+    before do
+      @stockpiles = (0..9).map { ChineseFactory::Listing.mock }.map(&:stockpile)
+      @shitty_stockpiles = [ChineseFactory::Stockpile.mock]
+      Spree::Stockpile.create material_id: 2, pounds_on_hand: 232454
+    end
+    let(:stockpiles) { Spree::Stockpile.completed }
+    it "should provide me with stockpiles that are considered completed" do
+      stockpiles.each do |stockpile|
+        stockpile.listing.should be_present
+        stockpile.should_not be_require_shop
+        stockpile.should_not be_require_address
+      end
+    end
+  end
   describe "#properties" do
     before do
       @evil_option_type = ChineseFactory::OptionType.mock
