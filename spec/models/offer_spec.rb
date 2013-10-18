@@ -10,7 +10,7 @@ describe Spree::Offer do
       completed.count.should eq 10
       completed.each do |offer|
         offer.listing.should be_a Spree::Listing
-        offer.user.should be_a Spree::User
+        offer.shop.should be_a Spree::Shop
         offer.address.should be_a Spree::Address
       end
     end

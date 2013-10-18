@@ -1,6 +1,35 @@
 require 'fileutils'
 namespace :spree_sample do
 
+  desc "Drops the database, deletes all the migrations and the schema, kills all the image assets, then reloads the migrations from spree, migrates them, seeds the database, then finishes with preparing the test database. Use this only during development."
+  task :rebuild_database => :environment do
+    puts "Preparing to drop the database..."
+    Rake::Task['db:drop'].invoke
+    puts "Success!"
+    puts "Preparing to remove image assets..."
+    Rake::Task['spree_sample:remove_images'].invoke
+    puts "Success!"
+    puts "Preparing to reinstall migrations..."
+    Rake::Task['spree:reinstall:migrations'].invoke
+    puts "Success!"
+    puts "Preparing to recreate the database..."
+    Rake::Task['db:create'].invoke
+    puts 'Success!'
+    puts "Preparing to migrate the database..."
+    Rake::Task['db:migrate'].invoke
+    puts "Success!"
+    puts "Preparing to seed the database"
+    Rake::Task['db:seed'].invoke
+    puts "Success!"
+    puts "Preparing to load the sample dataset..."
+    Rake::Task['spree_sample:load'].invoke
+    puts "Success!"
+    puts "Preparing the test database..."
+    Rake::Task['db:test:prepare'].invoke
+    puts "Success!"
+  end
+
+
   desc "Unseeds the stuff loaded into the database with rake spree_sample:load"
   task :unload => :environment do
     tables = ActiveRecord::Base.connection.tables.reject do |table|
@@ -16,7 +45,12 @@ namespace :spree_sample do
   desc "cleans out the assets loaded by the sample thing"
   task :remove_images => :environment do
     dir = Rails.root.join("public", "spree")
-    FileUtils.rmdir dir if Dir.exists? dir
+    if Dir.exists? dir
+      FileUtils.rmdir dir 
+      puts "removed #{dir}"
+    else
+      puts "failed to remove"
+    end
   end
 
   desc "Unloads and loads the seeds"

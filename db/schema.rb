@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010191551) do
+ActiveRecord::Schema.define(version: 20131018201104) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20131010191551) do
     t.string   "type"
     t.integer  "calculable_id"
     t.string   "calculable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spree_comments", force: true do |t|
+    t.integer  "offer_id"
+    t.integer  "shop_id"
+    t.text     "content",    null: false
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -172,7 +181,7 @@ ActiveRecord::Schema.define(version: 20131010191551) do
   add_index "spree_line_items", ["variant_id"], name: "index_spree_line_items_on_variant_id", using: :btree
 
   create_table "spree_listings", force: true do |t|
-    t.integer  "stockpile_id",    null: false
+    t.integer  "stockpile_id",          null: false
     t.integer  "shop_id"
     t.integer  "days_to_refresh"
     t.datetime "available_on"
@@ -180,6 +189,7 @@ ActiveRecord::Schema.define(version: 20131010191551) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "packing_weight_pounds"
   end
 
   add_index "spree_listings", ["stockpile_id"], name: "index_spree_listings_on_stockpile_id", unique: true, using: :btree
@@ -204,18 +214,22 @@ ActiveRecord::Schema.define(version: 20131010191551) do
   add_index "spree_materials", ["permalink"], name: "index_spree_materials_on_permalink", unique: true, using: :btree
 
   create_table "spree_offers", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "shop_id"
     t.integer  "listing_id"
     t.integer  "address_id"
-    t.decimal  "usd_per_pound",  precision: 10, scale: 5, default: 0.0,       null: false
-    t.integer  "containers"
-    t.string   "shipping_terms",                          default: "EXWORKS", null: false
+    t.decimal  "usd_per_pound",           precision: 10, scale: 5, default: 0.0,         null: false
+    t.integer  "loads"
+    t.string   "shipping_terms",                                   default: "EXWORKS",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
+    t.datetime "expires_at"
+    t.string   "transport_method",                                 default: "CONTAINER", null: false
+    t.integer  "minimum_pounds_per_load"
   end
 
   add_index "spree_offers", ["listing_id"], name: "index_spree_offers_on_listing_id", using: :btree
-  add_index "spree_offers", ["user_id"], name: "index_spree_offers_on_user_id", using: :btree
+  add_index "spree_offers", ["shop_id"], name: "index_spree_offers_on_shop_id", using: :btree
 
   create_table "spree_option_types", force: true do |t|
     t.string   "name",         limit: 100

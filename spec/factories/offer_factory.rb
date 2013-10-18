@@ -1,19 +1,25 @@
 module ChineseFactory
   class Offer
-    attr_accessor :user, :listing, :address
+    attr_accessor :shop, :listing, :address
     class << self
       def belongs_to(thing)
         new.belongs_to thing
       end
 
       def mock
-        belongs_to(Address.mock).belongs_to(User.mock).belongs_to(Listing.mock).create
+        new.mock
       end
+    end
+
+    def initialize
+      @shop = Shop.mock
+      @listing = Listing.mock
+      @address = Address.mock
     end
 
     def belongs_to(thing)
       tap do |factory|
-        factory.user = thing if thing.is_a? ::Spree::User
+        factory.shop = thing if thing.is_a? ::Spree::Shop
         factory.listing = thing if thing.is_a? ::Spree::Listing
         factory.address = thing if thing.is_a? ::Spree::Address
       end
@@ -22,15 +28,16 @@ module ChineseFactory
     def create
       ::Spree::Offer.create! attributes
     end
+    alias_method :mock, :create
 
     def attributes
       {
-        user: user,
+        shop: shop,
         address: address,
         listing: listing,
         usd_per_pound: rand(1234),
         shipping_terms: ::Spree::Offer::Terms.random,
-        containers: rand(234)
+        loads: rand(234)
       }
     end
 
