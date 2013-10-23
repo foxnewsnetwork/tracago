@@ -18,7 +18,7 @@ module ChineseFactory
 
     def attributes
       {
-        name: Faker::Company.name,
+        name: Faker::Company.name + Time.now.to_f.to_s,
         user: user
       }
     end
