@@ -57,10 +57,12 @@ describe Spree::OffersController do
   end
 
   describe "#update" do
-    let(:spree_update) { -> {spree_put :update, id: @offer.id, offer: @params } }
+    let(:spree_update) { -> {spree_put :update, id: @offer.id, offer_edit_form: @params } }
     let(:current_user) { controller.send :current_user }
     let(:current_shop) { current_user.shop }
     context 'success' do
+      let(:offer) { @offer.reload }
+      let(:offer_edit_helper) { controller.send :_offer_edit_helper }
       login_shop
       before do
         @offer = ChineseFactory::Offer.belongs_to(current_shop).mock
@@ -82,13 +84,31 @@ describe Spree::OffersController do
         @offer.should be_a Spree::Offer
         @offer.id.should be_present
       end
-      Spree::Offers::ParamsProcessor::OfferFields.each do |key|
-        it "should change the attribute under the key #{key}" do
-          change_checker = -> { @offer.reload.send(key).to_s }
-          spree_update.call
-          change_checker.call.should eq @params[key].to_s
-        end
+      it "should change the attribute under the key minimum_pounds_per_load" do
+        spree_update.call
+        @offer.reload.minimum_pounds_per_load.should eq @params[:minimum_pounds_per_load]
       end
+
+      it "should change the attribute under the key transport_method" do
+        spree_update.call
+        offer.transport_method.should eq @params[:transport_method]
+      end
+
+      it "should change the attribute under the key usd_per_pound" do
+        spree_update.call
+        offer.usd_per_pound.should eq @params[:usd_per_pound]
+      end
+
+      it "should change the attribute under the key shipping_terms" do
+        spree_update.call
+        offer.shipping_terms.should eq @params[:shipping_terms]
+      end
+
+      it "should change the attribute under the key expires_at" do
+        spree_update.call
+        offer.expires_at.to_s.should eq @params[:expires_at].to_s
+      end
+
       it "should properly have changed the address" do
         change_checker = -> { @offer.reload.address.reload }
         spree_update.should change(change_checker, :call)
@@ -135,7 +155,7 @@ describe Spree::OffersController do
       end
       it "should present a resonable flash" do
         spree_update.call
-        flash[:error].should =~ /wrong/
+        flash[:error].should =~ /can/
       end
     end
     context 'redirect login' do

@@ -6,6 +6,68 @@ describe Spree::Offers::EditFormHelper do
     it_should_behave_like "ActiveModel"
   end
 
+  context "access" do
+    before do
+      @params = {
+        minimum_pounds_per_load: rand(3454),
+        transport_method: Spree::Offer::TransportMethods.random,
+        usd_per_pound: (rand(544) / 1000.to_f),
+        shipping_terms: Spree::Offer::Terms.random,
+        expires_at: rand(42422).days.from_now,
+        address1: Faker::AddressUS.street_address,
+        address2: Faker::AddressUS.secondary_address,
+        city: Faker::AddressUS.city,
+        zipcode: Faker::AddressUS.zip_code,
+        country: ChineseFactory::Country.mock.id,
+        state: ChineseFactory::State.mock.id
+      }
+    end
+    it "should properly access with the accessor minimum_pounds_per_load" do
+      helper.minimum_pounds_per_load.should eq @params[:minimum_pounds_per_load]
+    end
+
+    it "should properly access with the accessor transport_method" do
+      helper.transport_method.should eq @params[:transport_method]
+    end
+
+    it "should properly access with the accessor usd_per_pound" do
+      helper.usd_per_pound.should eq @params[:usd_per_pound]
+    end
+
+    it "should properly access with the accessor shipping_terms" do
+      helper.shipping_terms.should eq @params[:shipping_terms]
+    end
+
+    it "should properly access with the accessor expires_at" do
+      helper.expires_at.should eq @params[:expires_at]
+    end
+
+    it "should properly access with the accessor address1" do
+      helper.address1.should eq @params[:address1]
+    end
+
+    it "should properly access with the accessor address2" do
+      helper.address2.should eq @params[:address2]
+    end
+
+    it "should properly access with the accessor city" do
+      helper.city.should eq @params[:city]
+    end
+
+    it "should properly access with the accessor zipcode" do
+      helper.zipcode.should eq @params[:zipcode]
+    end
+
+    it "should properly access with the accessor country" do
+      helper.country.should eq @params[:country]
+    end
+
+    it "should properly access with the accessor state" do
+      helper.state.should eq @params[:state]
+    end
+
+  end
+
   describe "#offer_params" do
     let(:params) { helper.offer_params }
     before do
