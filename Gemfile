@@ -8,7 +8,7 @@ gem "haml-rails", "~>0.4"
 gem 'devise', '~> 3.0.1'
 gem 'functional_support', '>=0.0.5', :path => File.expand_path("../../functional_support", __FILE__)
 group :development do
-  gem 'ffaker'
+  gem 'ffaker', ">=1.20.0"
   gem "rspec", '~>2.13.0'
   gem 'rspec-rails', '~>2.13.0'
   gem 'annotate', ">=2.5.0.pre1"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018201104) do
+ActiveRecord::Schema.define(version: 20131026012535) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -137,6 +137,16 @@ ActiveRecord::Schema.define(version: 20131018201104) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "spree_finalizations", force: true do |t|
+    t.integer  "offer_id"
+    t.datetime "expires_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_finalizations", ["offer_id"], name: "index_spree_finalizations_on_offer_id", using: :btree
 
   create_table "spree_gateways", force: true do |t|
     t.string   "type"
@@ -486,6 +496,53 @@ ActiveRecord::Schema.define(version: 20131018201104) do
 
   add_index "spree_roles_users", ["role_id"], name: "index_spree_roles_users_on_role_id", using: :btree
   add_index "spree_roles_users", ["user_id"], name: "index_spree_roles_users_on_user_id", using: :btree
+
+  create_table "spree_service_contracts", force: true do |t|
+    t.integer "finalization_id"
+    t.integer "shop_id"
+    t.integer "serviceable_id"
+    t.string  "serviceable_type"
+  end
+
+  add_index "spree_service_contracts", ["finalization_id"], name: "index_spree_service_contracts_on_finalization_id", using: :btree
+  add_index "spree_service_contracts", ["serviceable_id", "serviceable_type"], name: "idx_contracts_sid_stype", using: :btree
+  add_index "spree_service_contracts", ["shop_id"], name: "index_spree_service_contracts_on_shop_id", using: :btree
+
+  create_table "spree_serviceables_ships", force: true do |t|
+    t.string   "origination_port_code",                                      null: false
+    t.string   "origination_terminal",                                       null: false
+    t.string   "destination_port_code",                                      null: false
+    t.string   "destination_terminal",                                       null: false
+    t.string   "carrier_name",                                               null: false
+    t.string   "vessel_id",                                                  null: false
+    t.datetime "depart_at",                                                  null: false
+    t.datetime "arrive_at",                                                  null: false
+    t.datetime "cutoff_at",                                                  null: false
+    t.datetime "pull_at",                                                    null: false
+    t.datetime "return_at"
+    t.datetime "lategate_at"
+    t.integer  "containers",                                     default: 1, null: false
+    t.decimal  "usd_price",             precision: 10, scale: 2
+    t.string   "contact_name",                                               null: false
+    t.string   "contact_email",                                              null: false
+    t.string   "contact_phone",                                              null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_serviceables_ships", ["destination_port_code"], name: "ship_serve_idx_dpc", using: :btree
+  add_index "spree_serviceables_ships", ["origination_port_code"], name: "ship_serve_idx_opc", using: :btree
+
+  create_table "spree_serviceables_trucks", force: true do |t|
+    t.integer  "origination_id"
+    t.integer  "destination_id"
+    t.datetime "pickup_at"
+    t.datetime "arrive_at"
+    t.decimal  "usd_price",      precision: 10, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spree_shipments", force: true do |t|
     t.string   "tracking"
