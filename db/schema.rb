@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026012535) do
+ActiveRecord::Schema.define(version: 20131028231749) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -507,6 +507,24 @@ ActiveRecord::Schema.define(version: 20131026012535) do
   add_index "spree_service_contracts", ["finalization_id"], name: "index_spree_service_contracts_on_finalization_id", using: :btree
   add_index "spree_service_contracts", ["serviceable_id", "serviceable_type"], name: "idx_contracts_sid_stype", using: :btree
   add_index "spree_service_contracts", ["shop_id"], name: "index_spree_service_contracts_on_shop_id", using: :btree
+
+  create_table "spree_service_demands", force: true do |t|
+    t.integer "finalization_id"
+    t.integer "serviceable_id"
+    t.string  "serviceable_type"
+  end
+
+  add_index "spree_service_demands", ["finalization_id"], name: "index_spree_service_demands_on_finalization_id", using: :btree
+  add_index "spree_service_demands", ["serviceable_id", "serviceable_type"], name: "idx_demands_sid_and_stype", using: :btree
+
+  create_table "spree_service_supplies", force: true do |t|
+    t.integer "shop_id"
+    t.integer "serviceable_id"
+    t.string  "serviceable_type"
+  end
+
+  add_index "spree_service_supplies", ["serviceable_id", "serviceable_type"], name: "idx_supplies_sid_and_stype", using: :btree
+  add_index "spree_service_supplies", ["shop_id"], name: "index_spree_service_supplies_on_shop_id", using: :btree
 
   create_table "spree_serviceables_ships", force: true do |t|
     t.string   "origination_port_code",                                      null: false

@@ -96,7 +96,7 @@ describe Spree::OffersController do
 
       it "should change the attribute under the key usd_per_pound" do
         spree_update.call
-        offer.usd_per_pound.should eq @params[:usd_per_pound]
+        offer.usd_per_pound.to_f.should eq @params[:usd_per_pound].to_f
       end
 
       it "should change the attribute under the key shipping_terms" do
