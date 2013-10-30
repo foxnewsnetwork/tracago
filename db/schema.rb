@@ -528,22 +528,22 @@ ActiveRecord::Schema.define(version: 20131028231749) do
 
   create_table "spree_serviceables_ships", force: true do |t|
     t.string   "origination_port_code",                                      null: false
-    t.string   "origination_terminal",                                       null: false
+    t.string   "origination_terminal"
     t.string   "destination_port_code",                                      null: false
-    t.string   "destination_terminal",                                       null: false
-    t.string   "carrier_name",                                               null: false
-    t.string   "vessel_id",                                                  null: false
-    t.datetime "depart_at",                                                  null: false
-    t.datetime "arrive_at",                                                  null: false
-    t.datetime "cutoff_at",                                                  null: false
-    t.datetime "pull_at",                                                    null: false
+    t.string   "destination_terminal"
+    t.string   "carrier_name"
+    t.string   "vessel_id"
+    t.datetime "depart_at"
+    t.datetime "arrive_at"
+    t.datetime "cutoff_at"
+    t.datetime "pull_at"
     t.datetime "return_at"
     t.datetime "lategate_at"
     t.integer  "containers",                                     default: 1, null: false
     t.decimal  "usd_price",             precision: 10, scale: 2
-    t.string   "contact_name",                                               null: false
-    t.string   "contact_email",                                              null: false
-    t.string   "contact_phone",                                              null: false
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "contact_phone"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
