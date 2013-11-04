@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131028231749) do
+ActiveRecord::Schema.define(version: 20131101195530) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -497,6 +497,15 @@ ActiveRecord::Schema.define(version: 20131028231749) do
   add_index "spree_roles_users", ["role_id"], name: "index_spree_roles_users_on_role_id", using: :btree
   add_index "spree_roles_users", ["user_id"], name: "index_spree_roles_users_on_user_id", using: :btree
 
+  create_table "spree_seaports", force: true do |t|
+    t.string  "port_code",  null: false
+    t.string  "port_name"
+    t.integer "address_id"
+  end
+
+  add_index "spree_seaports", ["address_id"], name: "index_spree_seaports_on_address_id", using: :btree
+  add_index "spree_seaports", ["port_code"], name: "index_spree_seaports_on_port_code", unique: true, using: :btree
+
   create_table "spree_service_contracts", force: true do |t|
     t.integer "finalization_id"
     t.integer "shop_id"
@@ -527,10 +536,10 @@ ActiveRecord::Schema.define(version: 20131028231749) do
   add_index "spree_service_supplies", ["shop_id"], name: "index_spree_service_supplies_on_shop_id", using: :btree
 
   create_table "spree_serviceables_ships", force: true do |t|
-    t.string   "origination_port_code",                                      null: false
-    t.string   "origination_terminal"
-    t.string   "destination_port_code",                                      null: false
-    t.string   "destination_terminal"
+    t.integer  "start_port_id",                                             null: false
+    t.string   "start_terminal_code"
+    t.integer  "finish_port_id",                                            null: false
+    t.string   "finish_terminal_code"
     t.string   "carrier_name"
     t.string   "vessel_id"
     t.datetime "depart_at"
@@ -539,8 +548,8 @@ ActiveRecord::Schema.define(version: 20131028231749) do
     t.datetime "pull_at"
     t.datetime "return_at"
     t.datetime "lategate_at"
-    t.integer  "containers",                                     default: 1, null: false
-    t.decimal  "usd_price",             precision: 10, scale: 2
+    t.integer  "containers",                                    default: 1, null: false
+    t.decimal  "usd_price",            precision: 10, scale: 2
     t.string   "contact_name"
     t.string   "contact_email"
     t.string   "contact_phone"
@@ -549,8 +558,8 @@ ActiveRecord::Schema.define(version: 20131028231749) do
     t.datetime "updated_at"
   end
 
-  add_index "spree_serviceables_ships", ["destination_port_code"], name: "ship_serve_idx_dpc", using: :btree
-  add_index "spree_serviceables_ships", ["origination_port_code"], name: "ship_serve_idx_opc", using: :btree
+  add_index "spree_serviceables_ships", ["finish_port_id"], name: "index_spree_serviceables_ships_on_finish_port_id", using: :btree
+  add_index "spree_serviceables_ships", ["start_port_id"], name: "index_spree_serviceables_ships_on_start_port_id", using: :btree
 
   create_table "spree_serviceables_trucks", force: true do |t|
     t.integer  "origination_id"

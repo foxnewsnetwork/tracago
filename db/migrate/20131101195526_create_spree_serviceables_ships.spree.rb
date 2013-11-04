@@ -2,10 +2,10 @@
 class CreateSpreeServiceablesShips < ActiveRecord::Migration
   def change
     create_table :spree_serviceables_ships do |t|
-      t.string :origination_port_code, null: false
-      t.string :origination_terminal 
-      t.string :destination_port_code, null: false
-      t.string :destination_terminal
+      t.references :start_port, null: false, index: true
+      t.string :start_terminal_code
+      t.references :finish_port, null: false, index: true
+      t.string :finish_terminal_code
       t.string :carrier_name
       t.string :vessel_id
       t.datetime :depart_at
@@ -22,7 +22,5 @@ class CreateSpreeServiceablesShips < ActiveRecord::Migration
       t.datetime :deleted_at
       t.timestamps
     end
-    add_index :spree_serviceables_ships, [:origination_port_code], name: 'ship_serve_idx_opc'
-    add_index :spree_serviceables_ships, [:destination_port_code], name: 'ship_serve_idx_dpc'
   end
 end

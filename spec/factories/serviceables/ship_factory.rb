@@ -1,10 +1,17 @@
 class ChineseFactory::Serviceables::Ship < ChineseFactory::Base
+  attr_accessor :start_port, :finish_port
+
+  def initialize
+    @start_port = ChineseFactory::Seaport.mock
+    @finish_port = ChineseFactory::Seaport.mock
+  end
+
   def attributes
     {
-      origination_port_code: "USLAX",
-      origination_terminal: "1",
-      destination_port_code: "CNSHA",
-      destination_terminal: "2",
+      start_port: start_port,
+      start_terminal_code: "1",
+      finish_port: finish_port,
+      finish_terminal_code: "2",
       carrier_name: Faker::Company.name,
       vessel_id: Faker::Name.first_name,
       depart_at: 10.days.from_now,

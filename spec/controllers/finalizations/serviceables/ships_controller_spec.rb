@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Spree::Finalizations::Serviceables::ShipsController do
   before do
     @finalization = ChineseFactory::Finalization.mock
+    @start_port = ChineseFactory::Seaport.mock
+    @finish_port = ChineseFactory::Seaport.mock
   end
   describe '#new' do
     let(:spree_new) { spree_get :new, finalization_id: @finalization.id }
@@ -40,8 +42,10 @@ describe Spree::Finalizations::Serviceables::ShipsController do
         @offer = ChineseFactory::Offer.belongs_to(buyer).mock
         @finalization = ChineseFactory::Finalization.belongs_to(@offer).mock
         @params = {
-          origination_port_code: "USLAX",
-          destination_port_code: "CNSHA",
+          start_port: @start_port.port_code,
+          start_terminal_code: '1a',
+          finish_port: @finish_port.port_code,
+          finish_terminal_code: '3c',
           carrier_name: "Maersk",
           depart_at: 10.days.from_now,
           arrive_at: 5.days.from_now,
@@ -67,8 +71,10 @@ describe Spree::Finalizations::Serviceables::ShipsController do
         @offer = ChineseFactory::Offer.belongs_to(buyer).mock
         @finalization = ChineseFactory::Finalization.belongs_to(@offer).mock
         @params = {
-          origination_port_code: "USLAX",
-          destination_port_code: "CNSHA",
+          start_port: @start_port.port_code,
+          start_terminal_code: '1a',
+          finish_port: @finish_port.port_code,
+          finish_terminal_code: '3c',
           carrier_name: "Maersk",
           depart_at: 10.days.from_now,
           arrive_at: 40.days.from_now,
