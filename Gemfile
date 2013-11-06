@@ -13,6 +13,8 @@ group :development do
   gem 'rspec-rails', '~>2.13.0'
   gem 'annotate', ">=2.5.0.pre1"
   gem 'simplecov', "~>0.7.1"
+  gem 'capybara', '~>2.1.0'
+  gem 'selenium-webdriver', "~> 2.37.0"
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
