@@ -22,8 +22,10 @@ describe Spree::ListingsController do
   end
 
   describe "#create" do
-    let(:create) { -> { spree_post :create, listing_form_helper: @params } }
+    let(:create) { -> { spree_post :create, listing: @params } }
     before do
+      @state = ChineseFactory::State.mock
+      @country = @state.country
       @params = {
         material: ChineseFactory::Material.mock.id,
         pounds_on_hand: rand(234584),
@@ -32,7 +34,13 @@ describe Spree::ListingsController do
         origin_products: [ChineseFactory::OriginProduct.mock.presentation].join(","),
         notes: Faker::Lorem.paragraph,
         available_on: rand(1).days.from_now,
-        expires_on: rand(245).days.from_now
+        expires_on: rand(245).days.from_now,
+        address1: Faker::Address.street_address,
+        address2: Faker::Address.secondary_address,
+        city: Faker::AddressUS.city,
+        zipcode: 90210,
+        state: @state.id,
+        country: @country.id
       }
     end
     context "failure - missing material" do
@@ -113,7 +121,6 @@ describe Spree::ListingsController do
         it "should still require a shop, but not require a stockpile" do
           listing.should_not be_complete
           listing.should be_require_shop
-          listing.should be_require_address
         end 
       end
     end
@@ -144,9 +151,7 @@ describe Spree::ListingsController do
           listing.stockpile.should eq stockpile
         end
         it "should still no longer require a shop and only require an address" do
-          listing.should_not be_complete
-          listing.should_not be_require_shop
-          listing.should be_require_address
+          listing.should be_complete
         end 
         it "should have a stockpile with the proper material" do
           stockpile.material.id.should eq @params[:material]
