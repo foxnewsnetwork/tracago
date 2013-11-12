@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101195530) do
+ActiveRecord::Schema.define(version: 20131108224457) do
 
   create_table "spree_activators", force: true do |t|
     t.string   "description"
@@ -137,6 +137,19 @@ ActiveRecord::Schema.define(version: 20131101195530) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "spree_dispute_negotiations", force: true do |t|
+    t.integer  "shop_id"
+    t.integer  "post_transaction_id"
+    t.integer  "amount"
+    t.text     "comment"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_dispute_negotiations", ["post_transaction_id"], name: "index_spree_dispute_negotiations_on_post_transaction_id", using: :btree
+  add_index "spree_dispute_negotiations", ["shop_id"], name: "index_spree_dispute_negotiations_on_shop_id", using: :btree
 
   create_table "spree_finalizations", force: true do |t|
     t.integer  "offer_id"
@@ -354,6 +367,16 @@ ActiveRecord::Schema.define(version: 20131101195530) do
 
   add_index "spree_payments", ["order_id"], name: "index_spree_payments_on_order_id", using: :btree
 
+  create_table "spree_post_transactions", force: true do |t|
+    t.integer  "finalization_id"
+    t.datetime "closed_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_post_transactions", ["finalization_id"], name: "index_spree_post_transactions_on_finalization_id", using: :btree
+
   create_table "spree_preferences", force: true do |t|
     t.text     "value"
     t.string   "key"
@@ -474,6 +497,24 @@ ActiveRecord::Schema.define(version: 20131101195530) do
     t.datetime "updated_at"
   end
 
+  create_table "spree_ratings", force: true do |t|
+    t.integer  "trustworthiness", null: false
+    t.integer  "simplicity",      null: false
+    t.integer  "agreeability",    null: false
+    t.text     "notes"
+    t.integer  "shop_id"
+    t.integer  "reviewer_id"
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_ratings", ["reviewable_id", "reviewable_type"], name: "index_spree_ratings_on_reviewable_id_and_reviewable_type", using: :btree
+  add_index "spree_ratings", ["reviewer_id"], name: "index_spree_ratings_on_reviewer_id", using: :btree
+  add_index "spree_ratings", ["shop_id"], name: "index_spree_ratings_on_shop_id", using: :btree
+
   create_table "spree_return_authorizations", force: true do |t|
     t.string   "number"
     t.string   "state"
@@ -534,6 +575,28 @@ ActiveRecord::Schema.define(version: 20131101195530) do
 
   add_index "spree_service_supplies", ["serviceable_id", "serviceable_type"], name: "idx_supplies_sid_and_stype", using: :btree
   add_index "spree_service_supplies", ["shop_id"], name: "index_spree_service_supplies_on_shop_id", using: :btree
+
+  create_table "spree_serviceables_escrows", force: true do |t|
+    t.datetime "buyer_paid_at"
+    t.datetime "buyer_received_at"
+    t.datetime "seller_shipped_at"
+    t.datetime "seller_paid_at"
+    t.string   "external_id"
+    t.string   "external_type"
+    t.integer  "payment_amount",    null: false
+    t.datetime "cancelled_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spree_serviceables_inspections", force: true do |t|
+    t.datetime "inspected_at"
+    t.decimal  "usd_price",    precision: 10, scale: 0
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spree_serviceables_ships", force: true do |t|
     t.integer  "start_port_id",                                             null: false
