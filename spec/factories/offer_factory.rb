@@ -35,9 +35,9 @@ module ChineseFactory
         shop: shop,
         address: address,
         listing: listing,
-        usd_per_pound: rand(1234),
+        usd_per_pound: rand(1234) + 1,
         shipping_terms: ::Spree::Offer::Terms.random,
-        loads: rand(234)
+        loads: rand(234) + 1
       }
     end
 

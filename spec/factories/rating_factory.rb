@@ -3,8 +3,9 @@ class ChineseFactory::Rating < ChineseFactory::Base
 
   def belongs_to(thing)
     tap do |f|
-      f.reviewed = thing.is_a? Spree::Shop
-      f.reviewable = thing.is_a? Spree::Reviewable
+      f.reviewed = thing if thing.is_a? Spree::Shop
+      f.reviewable = thing if thing.is_a? Spree::Finalization
+      f.reviewable = thing if thing.is_a? Spree::PostTransaction
     end
   end
 
