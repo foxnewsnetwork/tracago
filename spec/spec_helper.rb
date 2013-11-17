@@ -20,7 +20,6 @@ Dir[Rails.root.join("spec/factories/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
-require 'spree/testing_support/controller_requests'
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -29,7 +28,8 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  config.include Spree::TestingSupport::ControllerRequests, :type => :controller
+  config.fail_fast = true
+  config.include LegacyControllerAlias, type: :controller
   config.include Warden::Test::ControllerHelpers, type: :controller
 
   # Controller macros for sessions

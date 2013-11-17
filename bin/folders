@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+folder = ARGV.first
+
+Dir[File.join(folder, '**','*')].each do |f|
+  puts f if Dir.exist? f
+end

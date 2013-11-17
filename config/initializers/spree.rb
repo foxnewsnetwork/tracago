@@ -5,10 +5,42 @@
 #
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
-Spree.config do |config|
-  # Example:
-  # Uncomment to override the default site name.
-  # config.site_name = "Spree Demo Site"
+# Spree.config do |config|
+#   # Example:
+#   # Uncomment to override the default site name.
+#   # config.site_name = "Spree Demo Site"
+# end
+
+# Spree.user_class = "Spree::User"
+module Spree
+  Config = { address_requires_state: true }
+  class << self
+    def r
+      @_route_debugger ||= Spree::RouteDebugger.new
+    end
+
+    def t(*args)
+      I18n.t *args
+    end
+  end
+
+  class RouteDebugger
+    include Rails.application.routes.url_helpers
+    # include Spree::Core::Engine.routes.url_helpers
+  end
 end
 
-Spree.user_class = "Spree::User"
+class ActiveRecord::Base
+  class << self
+    
+    def compute_table_name_with_spree
+      prefixes = self.to_s.split("::")
+      if 1 == prefixes.count 
+        compute_table_name_without_spree
+      else
+        prefixes.map(&:underscore).join("_").pluralize
+      end
+    end
+    alias_method_chain :compute_table_name, :spree
+  end
+end
