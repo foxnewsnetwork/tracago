@@ -1,0 +1,11 @@
+%ul
+  %li= link_to t(:materials), listings_path
+  %li= link_to t(:services), "#not_implemented"
+  %li= link_to t(:help), "#not_implemented"
+  - if user_signed_in?
+    %li= link_to t(:my_company), shop_path(current_shop)
+    %li= link_to t(:my_account), user_path(current_user)
+    %li= link_to t(:logout), destroy_user_session(current_user), method: :delete
+  - else
+    %li= link_to t(:login), login_path(back: request.fullpath)
+    %li= link_to t(:signup), signup_path(back: request.fullpath)

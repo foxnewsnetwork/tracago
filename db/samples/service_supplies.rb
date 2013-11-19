@@ -5,7 +5,7 @@ Spree::Sample.load_sample("inspections")
 Spree::Sample.load_sample("escrows")
 
 def _services
-  @services ||= Spree::Serviceable.all
+  @services ||= Spree::Serviceable.all_services
 end
 
 def random_service

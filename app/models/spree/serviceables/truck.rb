@@ -6,4 +6,8 @@ class Spree::Serviceables::Truck < Spree::Serviceable
 
   belongs_to :destination,
     class_name: 'Spree::Address'
+
+  def summary
+    "#{origination.permalink_name} to #{destination.permalink_name}"
+  end
 end

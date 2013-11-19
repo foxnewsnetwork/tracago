@@ -1,0 +1,12 @@
+%article
+  - service_link = service_demand_path service if service.is_a? Spree::ServiceDemand
+  - service_link = service_supply_path service if service.is_a? Spree::ServiceSupply
+  = link_to service_link do
+    %figure
+      %i{ :class => service.name }
+    %figure
+      %h3= service.name
+      %small
+        = "--"
+        = service.summary
+

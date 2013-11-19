@@ -1,0 +1,16 @@
+= content_for :sidebar do
+  %ul
+    %li.active
+      = link_to t(:material_listings), listings_path
+      = render partial: 'spree/home/sidebar/listings'
+    %li= link_to t(:service_listings), services_path
+
+#latest-listings
+  %h2= t(:latest_listings)
+  %small= link_to t(:see_more), listings_path
+  = render partial: 'stockpile', collection: @stockpiles
+
+#latest-services
+  %h2= t(:latest_services)
+  %small= link_to t(:see_more), services_path
+  = render partial: 'service', collection: @services

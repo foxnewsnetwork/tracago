@@ -1,0 +1,5 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:by_classification), listings_path(q: "material")
+    %li= link_to t(:by_location), listings_path(q: "location")
+    %li= link_to t(:by_company), listings_path(q: "company")

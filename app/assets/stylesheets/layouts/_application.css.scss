@@ -1,0 +1,31 @@
+@import 'shared/header';
+@import 'shared/navigation';
+@import 'shared/flash';
+@import 'shared/sidebar';
+@import 'shared/main';
+
+body {
+  @extend .container;
+
+  header {
+    @include shared-header;
+  }
+  nav {
+    @include shared-navigation;
+  }
+  section#flash {
+    @include shared-flash;
+  }
+  main {
+    @extend .row;
+
+    section#side-content {
+      @include shared-sidebar;
+    }
+
+    section#main-content {
+      @include shared-main;
+    }
+
+  }
+}

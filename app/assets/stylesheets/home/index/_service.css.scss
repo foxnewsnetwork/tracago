@@ -1,0 +1,30 @@
+@mixin home-index-service {
+  @extend .row;
+  article {
+    @extend .col-lg-12;
+    a {
+      @extend .thumbnail;
+      @extend .row;
+      i {
+        @extend .fa;
+        @extend .fa-3x;
+      }
+      i[class*=truck] {
+        @extend .fa-truck;
+      }
+      i[class*=ship] {
+        @extend .fa-anchor;
+      }
+      figure:first-child {
+        @extend .col-lg-2;
+      }
+      figure:last-child {
+        @extend .col-lg-10;
+        h3 {
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+%article
+  = link_to stockpile_path(stockpile) do
+    %figure= image_tag stockpile.default_image.thumbnail_url
+    %figure
+      %h3= stockpile.name
+      %small
+        = "--"
+        = stockpile.shop.name
+      %small
+        = "--"
+        = stockpile.address.permalink_name

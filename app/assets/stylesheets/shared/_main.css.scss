@@ -1,0 +1,10 @@
+@import 'home/index';
+
+@mixin shared-main {
+  @extend .col-lg-10;
+  h2 {
+    margin-top: 10px;
+    font-size: 22px;
+  }
+  @include home-index;
+}

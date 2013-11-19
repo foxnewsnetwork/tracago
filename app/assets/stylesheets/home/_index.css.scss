@@ -1,0 +1,16 @@
+@import 'home/index/stockpile';
+@import 'home/index/service';
+
+@mixin home-index {
+  #latest-listings {
+    @include home-index-stockpile;
+  }
+  #latest-services {
+    @include home-index-service;
+    
+  }
+  #various-charts {
+    @extend .row;
+    
+  }
+}

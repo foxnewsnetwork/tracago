@@ -4,6 +4,8 @@ class CreateSpreeServiceDemands < ActiveRecord::Migration
     create_table :spree_service_demands do |t|
       t.references :finalization, index: true
       t.references :serviceable, index: false, polymorphic: true
+      t.datetime :fulfilled_at
+      t.timestamps
     end
     add_index :spree_service_demands, 
       [:serviceable_id, :serviceable_type],

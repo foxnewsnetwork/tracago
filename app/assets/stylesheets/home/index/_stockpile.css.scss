@@ -1,0 +1,28 @@
+@mixin home-index-stockpile {
+  @extend .row;
+  article {
+    @extend .col-lg-12;
+    a {
+      @extend .thumbnail;
+      @extend .row;
+    }
+    img {
+      @extend .img-rounded;
+    }
+    figure {
+      &:first-child {
+        @extend .col-lg-2;
+      }
+      &:last-child {
+        @extend .col-lg-10;
+        h3 {
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+      }
+    }
+    small {
+      display: inline-block;
+    }
+  }
+}

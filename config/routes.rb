@@ -1,6 +1,11 @@
 Tracago::Application.routes.draw do
 
-  root :to => 'home#index'
+  root :to => 'spree/home#index'
+
+  resources :searches, only: [:index]
+  resources :services, only: [:index]
+  resources :service_demands, only: [:show]
+  resources :service_supplies, only: [:show]
 
   resources :users, only: [:show], controller: 'spree/users' do
     resources :preferences, only: [:index], controller: 'spree/users/preferences'

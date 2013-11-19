@@ -9,6 +9,8 @@ gem 'devise', '~> 3.0.1'
 gem 'functional_support', '>=0.0.5', :path => File.expand_path("../../functional_support", __FILE__)
 gem 'paranoia', '~> 2.0'
 gem "kaminari", "~> 0.14.1"
+gem "paperclip", "~> 3.5.2"
+gem "font-awesome-sass", "~> 4.0.2"
 group :development do
   gem 'ffaker', ">=1.20.0"
   gem "rspec", '~>2.13.0'

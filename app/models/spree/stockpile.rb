@@ -48,9 +48,15 @@ module Spree
       -> { joins(:listing).where("#{Spree::Listing.table_name}.shop_id is not null") }
     scope :completed,
       -> { has_material.has_address.has_shop }
+    scope :latest_completed,
+      -> { completed.order "created_at desc" }
 
     def owner
       shop.try(:user)
+    end
+
+    def default_image
+      images.first
     end
 
     def completed?

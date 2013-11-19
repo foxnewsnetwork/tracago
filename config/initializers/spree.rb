@@ -13,7 +13,14 @@
 
 # Spree.user_class = "Spree::User"
 module Spree
-  Config = { address_requires_state: true }
+  Config = { 
+    address_requires_state: true,
+    attachment_styles: "{\"mini\":\"48x48>\",\"small\":\"100x100>\",\"product\":\"240x240>\",\"large\":\"600x600>\"}",
+    attachment_path: ":rails_root/public/spree/products/:id/:style/:basename.:extension",
+    attachment_url: "/spree/products/:id/:style/:basename.:extension",
+    attachment_default_url: "/spree/products/:id/:style/:basename.:extension",
+    attachment_default_style: "product"
+  }
   class << self
     def r
       @_route_debugger ||= Spree::RouteDebugger.new

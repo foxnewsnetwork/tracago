@@ -1,0 +1,8 @@
+@mixin shared-navigation {
+  @extend .row;
+  ul {
+    @extend .col-lg-8;
+    @extend .nav;
+    @extend .nav-pills;
+  }
+}

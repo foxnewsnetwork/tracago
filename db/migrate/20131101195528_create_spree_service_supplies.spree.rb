@@ -4,6 +4,7 @@ class CreateSpreeServiceSupplies < ActiveRecord::Migration
     create_table :spree_service_supplies do |t|
       t.references :shop, index: true
       t.references :serviceable, index: false, polymorphic: true
+      t.timestamps
     end
     add_index :spree_service_supplies, 
       [:serviceable_id, :serviceable_type],

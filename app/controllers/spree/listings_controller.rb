@@ -13,7 +13,15 @@ class Spree::ListingsController < Spree::StoreController
     _get_out_of_here!
   end
 
+  def index
+    _listings
+  end
+
   private
+
+  def _listings
+    @listings ||= Spree::Listing.all
+  end
 
   def _create_listing!
     @listing ||= _listing_maker.create! _listing_params if _valid?

@@ -1,0 +1,14 @@
+@mixin shared-sidebar {
+  @extend .col-lg-2;
+
+  .active > a {
+    font-weight: bold;
+  }
+  ul {
+    @extend .nav;
+    li ul {
+      margin-left: 10px;
+      font-size: 12px;
+    }
+  }
+}

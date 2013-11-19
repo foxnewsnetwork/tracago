@@ -1,0 +1,31 @@
+!!! 5
+/ [if lt IE 7 ]
+  %html.ie.ie6{ lang: I18n.locale }
+/ [if IE 7 ]
+  %html.ie.ie7{ lang: I18n.locale }
+/ [if IE 8 ]
+  %html.ie.ie8{ lang: I18n.locale }
+/ [if IE 9 ]
+  %html.ie.ie9{ lang: I18n.locale }
+/ [if gt IE 9]
+  %html{ lang: I18n.locale }
+
+%head
+  = render partial: 'spree/shared/head'
+%body
+  %header
+    = render partial: 'spree/shared/header'
+  %nav
+    = yield :topbar
+  %section#flash
+    = render partial: 'spree/shared/flash', collection: flash.to_a
+  %main
+    %section#side-content
+      = yield :sidebar
+    %section#main-content
+      = yield
+  %footer
+    = render partial: 'spree/shared/footer'
+  %section#misc-invisible-crap
+    = render partial: 'spree/shared/invisible'
+      

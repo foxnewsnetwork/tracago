@@ -1,6 +1,6 @@
 module Spree
   class Image < Asset
-    validates_attachment_presence :attachment
+    self.table_name = 'spree_assets'
     validate :no_attachment_errors
 
     has_attached_file :attachment,
@@ -14,9 +14,6 @@ module Spree
     # we need to look at the write-queue for images which have not been saved yet
     after_post_process :find_dimensions
 
-    include Spree::Core::S3Support
-    supports_s3 :attachment
-
     Spree::Image.attachment_definitions[:attachment][:styles] = ActiveSupport::JSON.decode(Spree::Config[:attachment_styles]).symbolize_keys!
     Spree::Image.attachment_definitions[:attachment][:path] = Spree::Config[:attachment_path]
     Spree::Image.attachment_definitions[:attachment][:url] = Spree::Config[:attachment_url]
@@ -26,6 +23,14 @@ module Spree
     #used by admin products autocomplete
     def mini_url
       attachment.url(:mini, false)
+    end
+
+    def default_url
+      attachment.url(:product)
+    end
+
+    def thumbnail_url
+      attachment.url(:small)
     end
 
     def find_dimensions

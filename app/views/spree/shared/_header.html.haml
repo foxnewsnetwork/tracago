@@ -1,0 +1,32 @@
+#header-logo
+  = link_to root_path do
+    %figure
+    %span Company Name
+
+#header-sessions
+  - if user_signed_in?
+    = link_to shop_path current_shop do
+      %figure
+        %i{ :class => "shop" }
+      %h6= t(:my_company)
+    = link_to user_path current_user do
+      %figure
+        %i{ :class => "user" }
+      %h6= t(:my_account)
+  - else
+    = link_to login_path(back: request.fullpath) do
+      %figure
+        %i{ :class => "login" }
+      %h6= t(:login)
+    = link_to signup_path(back: request.fullpath) do
+      %figure
+        %i{ :class => "signup" }
+      %h6= t(:signup)
+
+#header-search
+  = form_for :searches, url: searches_path, method: :get do |f|
+    %article
+      = f.search_field :query
+      %span
+        = button_tag do
+          %i{ :class => "search" }

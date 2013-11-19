@@ -12,4 +12,8 @@ class Spree::Serviceables::Ship < Spree::Serviceable
     foreign_key: 'finish_port_id'  
   belongs_to :finish_port,
     class_name: 'Spree::Seaport'
+
+  def summary
+    "#{origination.summary} to #{destination.summary} on #{carrier_name}"
+  end
 end

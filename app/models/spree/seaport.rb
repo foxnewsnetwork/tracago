@@ -7,5 +7,9 @@ module Spree
     has_many :departures,
       class_name: 'Spree::Serviceables::Ship',
       foreign_key: :start_port_id
+
+    def summary
+      "#{port_name} #{address.try :permalink_name}"
+    end
   end
 end

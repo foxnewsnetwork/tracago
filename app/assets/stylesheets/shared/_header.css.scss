@@ -1,0 +1,67 @@
+@mixin shared-header {
+  @extend .row;
+  @extend .page-header;
+  
+  #header-logo {
+    @extend .col-lg-6;
+    span {
+      font-size: 24px;
+    }
+  }
+  #header-sessions {
+    i {
+      @extend .fa;
+      @extend .fa-2x;
+    }
+    i[class*=user] {
+      @extend .fa-wrench-square;
+    }
+    i[class*=company] {
+      @extend .fa-users;
+    }
+    i[class*=login] {
+      @extend .fa-user;
+    }
+    i[class*=signup] {
+      @extend .fa-pencil-square;
+    }
+    a {
+      @extend .col-lg-1;
+      @extend .thumbnail;
+      text-align: center;
+      &:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+  #header-search {
+    @extend .col-lg-4;
+    margin-left: -5px;
+    text-align: right;
+    form {
+      @extend .form-inline;
+      @extend .row;
+      article {
+        @extend .col-xs-10;
+        @extend .col-xs-offset-2;
+        @extend .input-group;
+        input {
+          @extend .form-control;
+          @extend .input-lg;
+        }
+        span {
+          @extend .input-group-btn;
+          button {
+            @extend .btn;
+            @extend .btn-lg;
+            @extend .btn-default;
+          }
+        }
+        i[class*=search] {
+          @extend .fa;
+          @extend .fa-search;
+        }
+      }
+    }
+  }
+}
