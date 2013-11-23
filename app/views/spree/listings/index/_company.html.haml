@@ -1,0 +1,6 @@
+%ul
+  - handler.shops.each do |shop|
+    %li
+      - path = listings_path(cat: "company", key: { shop: shop.permalink })
+      = link_to shop.short_name, path
+      %span.badge= shop.listings.count

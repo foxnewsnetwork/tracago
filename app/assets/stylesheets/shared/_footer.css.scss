@@ -1,0 +1,9 @@
+@mixin shared-footer {
+  @extend .row;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  margin-top: 50px;
+  border-top: 1px solid #e5e5e5;
+
+  
+}

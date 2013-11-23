@@ -1,4 +1,5 @@
 @import 'home/index';
+@import 'listings/index';
 
 @mixin shared-main {
   @extend .col-lg-10;
@@ -7,4 +8,5 @@
     font-size: 22px;
   }
   @include home-index;
+  @include listings-index;
 }

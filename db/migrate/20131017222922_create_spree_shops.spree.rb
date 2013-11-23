@@ -6,10 +6,10 @@ class CreateSpreeShops < ActiveRecord::Migration
       t.datetime :deleted_at
       t.string :email
       t.integer :address_id
-      t.string :name, :null => false
-
+      t.string :name, null: false
+      t.string :permalink, null: false
       t.timestamps
     end
-    add_index :spree_shops, [:name], :unique => true
+    add_index :spree_shops, [:permalink], :unique => true
   end
 end

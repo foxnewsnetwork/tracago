@@ -1,0 +1,9 @@
+@mixin listings-index-material {
+  @extend .row;
+
+  article {
+    @extend .col-lg-1;
+    text-align: center;
+    @extend .thumbnail;
+  }
+}

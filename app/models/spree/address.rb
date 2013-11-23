@@ -1,13 +1,36 @@
 module Spree
   class Address < ActiveRecord::Base
-    belongs_to :country, class_name: "Spree::Country"
-    belongs_to :state, class_name: "Spree::State"
+    belongs_to :city,
+      class_name: 'Spree::City',
+      foreign_key: 'city_permalink',
+      primary_key: 'permalink'
+    
+    has_one :state,
+      class_name: 'Spree::State',
+      through: :city
 
-    validates :address1, :city, :country, presence: true
+    has_one :country,
+      class_name: 'Spree::Country',
+      through: :state  
+
+    validates :address1, :city, presence: true
     validates_with Spree::Addresses::Validator
 
     alias_attribute :first_name, :firstname
     alias_attribute :last_name, :lastname
+
+    has_many :stockpiles,
+      class_name: 'Spree::Stockpile'
+
+    has_many :listings,
+      through: :stockpiles,
+      class_name: 'Spree::Listing'
+
+    scope :distinct_cities,
+      -> { select "distinct city_permalink" }
+
+    delegate :permalink_name,
+      to: :city
 
     CoreAttributes = [:address1, :address2, :city, :state, :country]
     class << self
@@ -24,6 +47,10 @@ module Spree
         Hash[a]
       end
 
+      def city_options_arrays
+        distinct_cities.map(&:city)
+      end
+
       def find_roughly_or_create_by(params)
         find_or_create_by roughup_params params
       end
@@ -38,14 +65,6 @@ module Spree
     # def editable?
     #   new_record? || (shipments.empty? && checkouts.empty?)
     # end
-
-    def inspect
-      [address1, address2, city, state.try(:name), country.iso].reject(&:blank?).map(&:upcase).join " "
-    end
-
-    def permalink_name
-      "#{state.try(:name) || country.iso} - #{city}".strip.downcase
-    end
 
     def full_name
       "#{firstname} #{lastname}".strip

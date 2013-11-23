@@ -1,0 +1,8 @@
+- actives ||= []
+- active = actives.pop
+%ul
+  %li.active
+    = link_to t(:material_listings), listings_path
+    = render partial: 'spree/shared/sidebar/listings', locals: { active: active }
+  %li
+    = link_to t(:service_listings), services_path

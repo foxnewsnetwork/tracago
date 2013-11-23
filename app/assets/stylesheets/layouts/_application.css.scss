@@ -3,6 +3,7 @@
 @import 'shared/flash';
 @import 'shared/sidebar';
 @import 'shared/main';
+@import 'shared/footer';
 
 body {
   @extend .container;
@@ -26,6 +27,8 @@ body {
     section#main-content {
       @include shared-main;
     }
-
+  }
+  footer {
+    @include shared-footer;
   }
 }

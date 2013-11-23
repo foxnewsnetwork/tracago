@@ -1,0 +1,12 @@
+@mixin listings-index-company {
+  @extend .row;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  ul {
+    @extend .list-group;
+    li {
+      @extend .list-group-item;
+      @extend .col-lg-2;
+    }
+  }
+}

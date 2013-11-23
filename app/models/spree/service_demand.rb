@@ -7,7 +7,7 @@ module Spree
       :summary,
       to: :serviceable
 
-    scope :unfulfilled
+    scope :unfulfilled,
       -> { where "fulfilled_at is null" }
 
     class << self

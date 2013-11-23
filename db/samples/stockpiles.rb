@@ -2,7 +2,7 @@ Spree::Sample.load_sample("materials")
 Spree::Sample.load_sample("addresses")
 Spree::Sample.load_sample("option_values")
 Spree::Sample.load_sample("origin_products")
-shop_address = Spree::Address.find_by_nickname! "Admin Shop"
+shop_address = Spree::Address.find_by_fullname! "Admin Shop"
 packages = Spree::OptionType.find_by_presentation!("Packaging").option_values
 proccesses = Spree::OptionType.find_by_presentation!("Process State").option_values
 origins = Spree::OriginProduct.all

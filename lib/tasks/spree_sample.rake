@@ -17,7 +17,7 @@ Migrations have been run. Please run "rake spree_sample:load" by itself now.
       }
       exit(1)
     end
-
+    require Rails.root.join "lib", "spree", "sample_engine"
     Spree::SampleEngine.load_samples
   end
 
@@ -53,7 +53,7 @@ Migrations have been run. Please run "rake spree_sample:load" by itself now.
   desc "Unseeds the stuff loaded into the database with rake spree_sample:load"
   task :unload => :environment do
     tables = ActiveRecord::Base.connection.tables.reject do |table|
-      table =~ /(migrations|countries|roles|states|zones)/
+      table =~ /(migrations|roles|zones)/
     end
 
     tables.each do |table|

@@ -1,9 +1,5 @@
 = content_for :sidebar do
-  %ul
-    %li.active
-      = link_to t(:material_listings), listings_path
-      = render partial: 'spree/home/sidebar/listings'
-    %li= link_to t(:service_listings), services_path
+  = render partial: 'spree/shared/sidebar', locals: { actives: ["materials"] }
 
 #latest-listings
   %h2= t(:latest_listings)

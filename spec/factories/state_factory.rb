@@ -1,5 +1,5 @@
 module ChineseFactory
-  class State
+  class State < Base
     class << self
       def mock
         belongs_to(Country.mock).create
@@ -19,14 +19,11 @@ module ChineseFactory
 
     def attributes
       { 
-        name: Faker::AddressUS.state,
+        romanized_name: Faker::AddressUS.state,
         abbr: Faker::AddressUS.state_abbr,
         country: country
       }
     end
 
-    def create
-      ::Spree::State.create! attributes
-    end
   end
 end

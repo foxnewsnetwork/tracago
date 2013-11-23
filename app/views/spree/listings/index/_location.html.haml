@@ -1,0 +1,17 @@
+= form_for handler, url: listings_path, method: :get do |f|
+  %fieldset
+    = hidden_field_tag :cat, :location
+    %figure
+      - os = options_for_select(handler.country_options_arrays)
+      = f.select :country, os, include_blank: true
+    - if handler.show_state?
+      %figure
+        - os = options_for_select(handler.state_options_arrays)
+        = f.select :state, os, include_blank: true
+    - if handler.show_city?
+      %figure
+        - os = options_for_select(handler.city_options_arrays)
+        = f.select :city, os, include_blank: true
+    %figure
+      = button_tag do
+        %i{ :class => "search" }  

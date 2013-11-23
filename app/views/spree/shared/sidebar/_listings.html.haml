@@ -1,0 +1,9 @@
+- active ||= ""
+- active_generator = -> (key) { active == key ? "active" : "inactive" }
+%ul
+  %li{ :class => active_generator.call("material") }
+    = link_to t(:by_classification), listings_path(cat: "material")
+  %li{ :class => active_generator.call("location") }
+    = link_to t(:by_location), listings_path(cat: "location")
+  %li{ :class => active_generator.call("company") }
+    = link_to t(:by_company), listings_path(cat: "company")

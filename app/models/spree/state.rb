@@ -1,52 +1,66 @@
-module Spree
-  class State < ActiveRecord::Base
-    belongs_to :country, class_name: 'Spree::Country'
+class Spree::State < ActiveRecord::Base
+  include ::Spree::Optionable
+  extend ::Spree::Normalizable
+  belongs_to :country, 
+    class_name: 'Spree::Country',
+    foreign_key: 'country_permalink',
+    primary_key: 'permalink'
 
-    validates :country, :name, presence: true
+  validates :country, presence: true
 
-    class << self
-      def normalize(whatever)
-        return whatever if whatever.is_a? self.class
-        return find_all_by_name_or_abbr(whatever.to_s).first || find_by_id(whatever.to_i)
-      end
+  has_many :cities,
+    class_name: 'Spree::City'
 
-      def normalize!(whatever)
-        normalize(whatever) || find(whatever)
-      end
+  has_many :addresses,
+    class_name: 'Spree::Address',
+    through: :cities
 
-      def find_all_by_name_or_abbr(name_or_abbr)
-        where('name = ? OR abbr = ?', name_or_abbr, name_or_abbr)
-      end
+  has_many :stockpiles,
+    class_name: 'Spree::Stockpile',
+    through: :cities
 
-      def select_options_arrays
-        @options_arrays ||= select("distinct name, id").map(&:select_options_array).sort
-      end
+  has_many :listings,
+    class_name: 'Spree::Listing',
+    through: :cities
 
-      def all_names
-        @_everybody ||= select("distinct name").map(&:name).sort.uniq
-      end
+  before_validation :_enforce_permalink
 
-      # table of { country.id => [ state.id , state.name ] }, arrays sorted by name
-      # blank is added elsewhere, if needed
-      def states_group_by_country_id
-        state_info = Hash.new { |h, k| h[k] = [] }
-        self.order('name ASC').each { |state|
-          state_info[state.country_id.to_s].push [state.id, state.name]
-        }
-        state_info
-      end
+  class << self
+
+    def all_names
+      @_everybody ||= select("distinct romanized_name").map(&:name).sort.uniq
     end
 
-    def select_options_array
-      [name, id]
+    # table of { country.id => [ state.id , state.name ] }, arrays sorted by name
+    # blank is added elsewhere, if needed
+    def states_group_by_country_id
+      state_info = Hash.new { |h, k| h[k] = [] }
+      self.order('name ASC').each { |state|
+        state_info[state.country_id.to_s].push [state.id, state.name]
+      }
+      state_info
     end
+  end
 
-    def <=>(other)
-      name <=> other.name
-    end
+  def <=>(other)
+    name <=> other.name
+  end
 
-    def to_s
-      name
-    end
+  def to_s
+    name
+  end
+
+  def name
+    romanized_name
+  end
+
+  private
+
+  def _enforce_permalink
+    self.permalink = [country.permalink, _stripped_romanized_name].join("-")
+  end
+
+  def _stripped_romanized_name
+    romanized_name.downcase.split("").select { |l| /[a-z]/ =~ l }.join
   end
 end

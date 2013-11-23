@@ -1,0 +1,16 @@
+@import 'listings/index/material';
+@import 'listings/index/location';
+@import 'listings/index/company';
+@import 'home/index/stockpile';
+
+@mixin listings-index {
+  #listing-classifications {
+    @include listings-index-material;
+    @include listings-index-location;
+    @include listings-index-company;
+  }
+
+  #listings {
+    @include home-index-stockpile;
+  }
+}

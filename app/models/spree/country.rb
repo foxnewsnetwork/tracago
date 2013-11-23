@@ -1,49 +1,51 @@
-module Spree
-  class Country < ActiveRecord::Base
-    has_many :states, -> { order('name ASC') }
+class Spree::Country < ActiveRecord::Base
+  include ::Spree::Optionable
+  extend ::Spree::Normalizable
+  has_many :states, -> { order('name ASC') }
 
-    validates :name, :iso_name, presence: true
+  validates :romanized_name, :permalink, presence: true
+  has_many :states,
+    class_name: 'Spree::State',
+    primary_key: 'permalink',
+    foreign_key: 'country_permalink'
+  has_many :cities,
+    class_name: 'Spree::City',
+    through: :states
+  has_many :addresses,
+    class_name: 'Spree::Address',
+    through: :states
+  has_many :stockpiles,
+    through: :states,
+    class_name: 'Spree::Stockpile'
+  has_many :listings,
+    through: :states,
+    class_name: 'Spree::Listing'
 
-    class << self
-      def normalize(whatever)
-        return whatever if whatever.is_a? self.class
-        return find_all_by_name_or_iso_name(whatever.to_s).first || find_by_id(whatever.to_i)
-      end
+  before_validation :_enforce_permalink
+    
+  class << self
 
-      def normalize!(whatever)
-        normalize(whatever) || find(whatever)
-      end
-
-
-      def find_all_by_name_or_iso_name(name)
-        where('name = ? OR iso_name = ?', name, name)
-      end
-
-      def select_options_arrays
-        @options_arrays ||= select("distinct name, id").map(&:select_options_array).sort
-      end
-
-      def all_names
-        @_everybody ||= select("distinct name").map(&:name).sort.uniq.unshift "United States"
-      end
-
-      def states_required_by_country_id
-        states_required = Hash.new(true)
-        all.each { |country| states_required[country.id.to_s]= country.states_required }
-        states_required
-      end
+    def all_names
+      @_everybody ||= select("distinct romanized_name").map(&:romanized_name).sort.uniq.unshift "United States"
     end
 
-    def select_options_array
-      [name, id]
-    end
+  end
 
-    def <=>(other)
-      name <=> other.name
-    end
+  def <=>(other)
+    romanized_name <=> other.romanized_name
+  end
 
-    def to_s
-      name
-    end
+  def to_s
+    romanized_name
+  end
+
+  def name
+    romanized_name
+  end
+
+  private
+
+  def _enforce_permalink
+    self.permalink = romanized_name.downcase.split('').select { |l| /[a-z]/ =~ l }.downcase
   end
 end

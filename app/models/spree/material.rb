@@ -2,6 +2,9 @@ module Spree
   class Material < ActiveRecord::Base
     acts_as_paranoid
     has_many :stockpiles, class_name: 'Spree::Stockpile'
+    has_many :listings,
+      through: :stockpiles,
+      class_name: 'Spree::Listing'
     has_many :images, 
       -> { order(:position) }, 
       as: :viewable, 
@@ -33,6 +36,10 @@ module Spree
         find_by_name(id_name_permalink) || 
         find_by_id(id_name_permalink)
       end
+    end
+
+    def thumbnail
+      images.first.try(:attachment).try(:url, :mini)
     end
 
     def to_options_array

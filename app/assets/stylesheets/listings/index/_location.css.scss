@@ -1,0 +1,27 @@
+@mixin listings-index-location {
+  @extend .row;
+  form {
+    fieldset {
+      @extend .col-lg-12;
+      padding-left: 0px;
+    }
+
+    select {
+      @extend .form-control;
+    }
+  
+    figure {
+      display: inline-block;    
+      i[class*=search] {
+        @extend .fa;
+        @extend .fa-search;
+      }
+  
+      button {
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .btn-sm;
+      }
+    }
+  }
+}

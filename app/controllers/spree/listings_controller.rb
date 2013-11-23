@@ -20,7 +20,15 @@ class Spree::ListingsController < Spree::StoreController
   private
 
   def _listings
-    @listings ||= Spree::Listing.all
+    @listings ||= _query_handler.listings
+  end
+
+  def _query_handler
+    @query_handler ||= Spree::Listings::QueryHandler.new _query_params
+  end
+
+  def _query_params
+    params.permit(*Spree::Listings::QueryHandler::Fields).merge key: params[:key]
   end
 
   def _create_listing!

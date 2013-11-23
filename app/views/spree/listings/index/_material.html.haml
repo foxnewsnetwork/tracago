@@ -1,0 +1,5 @@
+%article
+  = link_to listings_path(cat: "material", key: material.permalink) do
+    %figure
+      = image_tag material.thumbnail
+    %small= material.name

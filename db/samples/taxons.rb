@@ -1,5 +1,4 @@
 Spree::Sample.load_sample("taxonomies")
-Spree::Sample.load_sample("products")
 Spree::Sample.load_sample("stockpiles")
 Spree::Sample.load_sample("listings")
 
