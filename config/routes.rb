@@ -58,7 +58,7 @@ Tracago::Application.routes.draw do
       only: [:new, :create], 
       controller: 'spree/listings/shops'
     resources :offers, 
-      only: [:create, :index], 
+      only: [:create, :index, :new], 
       controller: 'spree/listings/offers'
     resources :stockpiles, 
       only: [:new, :create], 

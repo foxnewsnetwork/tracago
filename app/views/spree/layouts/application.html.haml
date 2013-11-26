@@ -20,7 +20,7 @@
   %section#flash
     = render partial: 'spree/shared/flash', collection: flash.to_a
   %main
-    %section#side-content
+    %section#side-content{ data: { spy: :affix, offset: { top: 100 } } }
       = yield :sidebar
     %section#main-content
       = yield

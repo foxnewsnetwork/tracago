@@ -35,7 +35,8 @@ module Spree
       :available_on, 
       :expires_on, 
       :seller_offer, 
-      :offers, 
+      :offers,
+      :latest_best_and_most_dangerous_offers,
       :to => :listing
 
     validates :pounds_on_hand, numericality: { greater_than_or_equal_to: 0 }, presence: true

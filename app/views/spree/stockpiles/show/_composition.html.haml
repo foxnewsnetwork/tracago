@@ -1,0 +1,6 @@
+%dl
+  %dt= t(:plastic_type)
+  %dd= stockpile.material.name
+  - stockpile.option_values.each do |ov|
+    %dt= t(ov.option_type.name.underscore)
+    %dd= ov.presentation

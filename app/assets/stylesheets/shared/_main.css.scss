@@ -1,12 +1,14 @@
 @import 'home/index';
 @import 'listings/index';
+@import 'stockpiles/show';
 
 @mixin shared-main {
-  @extend .col-lg-10;
+  @extend .col-lg-9;
   h2 {
     margin-top: 10px;
     font-size: 22px;
   }
   @include home-index;
   @include listings-index;
+  @include stockpiles-show;
 }

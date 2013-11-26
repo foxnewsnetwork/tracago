@@ -1,0 +1,14 @@
+@mixin stockpiles-show-actions {
+  @extend .row;
+  section {
+    @extend .col-lg-12;
+    padding-left: 0px;
+    padding-right: 0px;
+    a {
+      @extend .btn;
+      @extend .btn-lg;
+      @extend .btn-primary;
+      @extend .btn-block;
+    }
+  }
+}

@@ -25,6 +25,10 @@ module Spree
       attachment.url(:mini, false)
     end
 
+    def large_url
+      attachment.url(:large)
+    end
+
     def default_url
       attachment.url(:product)
     end

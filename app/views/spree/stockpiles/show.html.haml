@@ -1,0 +1,38 @@
+= content_for :sidebar do
+  = render partial: 'spree/stockpiles/show/sidebar'
+
+#stockpile-description
+  %h2= @stockpile.name
+  %p= @stockpile.full_description
+
+#images-and-thumbnails
+  %h2= t(:images)
+  = render partial: 'spree/stockpiles/show/image', collection: @stockpile.images
+
+#stockpile-properties
+  %h2= t(:properties)
+  = render partial: 'spree/stockpiles/show/composition', locals: { stockpile: @stockpile }
+  = render partial: 'spree/stockpiles/show/location', locals: { address: @stockpile.address }
+
+#seller-details
+  %h2= t(:seller_information)
+  = render partial: 'spree/stockpiles/show/shop', locals: { shop: @stockpile.shop }
+
+#offers-stats
+  %h2= t(:offer_statistics)
+  %section
+    = link_to shop_offers_path(@stockpile.shop) do
+      = t(:total_offers)
+      = @stockpile.offers.count
+    - offers = @stockpile.latest_best_and_most_dangerous_offers
+    = render partial: 'spree/stockpiles/show/offer', collection: offers
+
+#offer-actions
+  - if current_shop == @stockpile.shop
+    %h2= t(:executive_actions)
+    %section
+      = link_to t(:edit_listing), edit_listing_path(@stockpile.listing)
+  - else
+    %h2= t(:offer_actions)
+    %section
+      = link_to t(:make_offer), new_listing_offer_path(@stockpile.listing)

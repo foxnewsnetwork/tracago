@@ -1,0 +1,32 @@
+@import 'stockpiles/show/actions';
+@import 'stockpiles/show/description';
+@import 'stockpiles/show/images_and_thumbnails';
+@import 'stockpiles/show/properties';
+@import 'stockpiles/show/stats';
+@import 'stockpiles/show/seller_details';
+
+@mixin stockpiles-show {
+  #images-and-thumbnails {
+    @include stockpiles-show-images-and-thumbnails;
+  }
+
+  #stockpile-description {
+    @include stockpiles-show-description;
+  }
+
+  #stockpile-properties {
+    @include stockpiles-show-properties
+  }
+
+  #seller-details {
+    @include stockpiles-show-seller-details;
+  }
+
+  #offers-stats {
+    @include stockpiles-show-stats;
+  }
+
+  #offer-actions {
+    @include stockpiles-show-actions;
+  }
+}

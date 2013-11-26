@@ -1,0 +1,7 @@
+@mixin stockpiles-show-description {
+  @extend .row;
+  margin-bottom: 10px;
+  p {
+    margin-bottom: 0px;
+  }
+}

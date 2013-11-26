@@ -14,6 +14,15 @@ module Spree
     has_many :offers, 
       -> { completed },
       class_name: 'Spree::Offer'
+    has_many :latest_offers,
+      -> { order 'created_at desc' },
+      class_name: 'Spree::Offer'
+    has_many :best_offers,
+      -> { order 'usd_per_pound desc' },
+      class_name: 'Spree::Offer'
+    has_many :dangerous_offers,
+      -> { where('expires_at > ?', Time.now).order('expires_at desc') },
+      class_name: 'Spree::Offer'
     has_many :images,
       through: :stockpile,
       class_name: 'Spree::Image'
@@ -22,6 +31,16 @@ module Spree
       :pounds_on_hand,
       :require_address?, 
       to: :stockpile
+
+    def latest_best_and_most_dangerous_offers
+      [latest_offers, best_offers, dangerous_offers].map do |offers|
+        offers.first
+      end.flatten.tap do |array|
+        array[0].metadata = :latest
+        array[1].metadata = :best
+        array[2].metadata = :dangerous
+      end
+    end
 
     def latest_offer
       offers.order("created_at desc").first

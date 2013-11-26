@@ -66,8 +66,14 @@ module Spree
     scope :completed,
       -> { destined.possessed.relevant.fresh }
 
+    attr_accessor :metadata
+    
     def total_usd
       reasonable_load_count * usd_per_pound * PoundsPerContainer
+    end
+
+    def shop_name
+      shop.try(:name)
     end
 
     def fresh_finalization

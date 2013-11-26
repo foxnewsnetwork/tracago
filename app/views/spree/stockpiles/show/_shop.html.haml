@@ -1,0 +1,12 @@
+%dl
+  %dt= t(:seller)
+  %dd= link_to shop.name, shop_path(shop)
+  %dt= t(:ratings)
+  %dd
+    = link_to shop_ratings_path shop do
+      = shop.rating_stars
+      = shop.rating_score
+
+%dl
+  %dt= t(:contact_email)
+  %dd= shop.email

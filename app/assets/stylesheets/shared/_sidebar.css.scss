@@ -1,6 +1,5 @@
 @mixin shared-sidebar {
-  @extend .col-lg-2;
-
+  @extend .col-lg-3;
   .active > a {
     font-weight: bold;
   }

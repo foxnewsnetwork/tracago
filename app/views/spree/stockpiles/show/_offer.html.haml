@@ -1,0 +1,19 @@
+%article
+  = link_to offer_path(offer) do
+    %h4
+      %i{ :class => offer.metadata }
+      = offer.to_summary
+      = "--"
+      = offer.shop_name
+      = "--"
+      = t(offer.metadata)
+    %dl.price-and-terms
+      %dt= t(:price_per_pound)
+      %dd= offer.usd_per_pound
+      %dt= t(:terms)
+      %dd= offer.shipping_summary
+    %dl.creation-dates
+      %dt= t(:offer_made_on)
+      %dd= offer.created_at.to_s(:db)
+      %dt= t(:offer_expires_on)
+      %dd= offer.expires_at.to_s(:db)

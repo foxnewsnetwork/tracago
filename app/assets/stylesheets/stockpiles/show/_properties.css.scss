@@ -1,0 +1,8 @@
+@mixin stockpiles-show-properties {
+  @extend .row;
+  margin-bottom: 10px;
+  dl {
+    @extend .dl-horizontal;
+    @extend .col-lg-6;
+  }
+}

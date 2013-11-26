@@ -1,0 +1,11 @@
+@mixin stockpiles-show-images-and-thumbnails {
+  @extend .row;
+  margin-bottom: 10px;
+  figure {
+    @extend .col-lg-2;
+    padding-left: 0px;
+    img { 
+      @extend .img-thumbnail;
+    }
+  }
+}

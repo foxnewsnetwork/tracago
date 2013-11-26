@@ -43,6 +43,11 @@ class Spree::Country < ActiveRecord::Base
     romanized_name
   end
 
+  def presentation
+    return local_presentation if local_presentation.present?
+    romanized_name
+  end
+
   private
 
   def _enforce_permalink

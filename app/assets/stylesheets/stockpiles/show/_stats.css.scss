@@ -1,0 +1,40 @@
+@mixin stockpiles-show-stats {
+  @extend .row;
+  margin-bottom: 10px;
+  section {
+    i {
+      @extend .fa;
+    }
+    i[class*=latest] {
+      @extend .fa-calendar;
+    }
+    i[class*=best] {
+      @extend .fa-money;
+    }
+    i[class*=dangerous] {
+      @extend .fa-clock-o;
+    }
+    article {
+      @extend .row;
+      @extend .list-group;
+      margin-left: 0px;
+      margin-right: 0px;
+      a {
+        @extend .list-group-item;
+        @extend .col-lg-12;
+
+      }
+      h4 {
+        border-bottom: 1px solid #e5e5e5;
+      }
+      dl.price-and-terms {
+        padding-left: 0px;
+        padding-right: 30px;
+      }
+      dl {
+        @extend .dl-horizontal;
+        @extend .col-lg-6;
+      }
+    }
+  }
+}
