@@ -7,7 +7,7 @@
 
 #images-and-thumbnails
   %h2= t(:images)
-  = render partial: 'spree/stockpiles/show/image', collection: @stockpile.images
+  = render partial: 'spree/stockpiles/show/images', locals: { stockpile: @stockpile }
 
 #stockpile-properties
   %h2= t(:properties)

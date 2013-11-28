@@ -18,6 +18,10 @@ module Spree
       dependent: :destroy, 
       class_name: "Spree::Image"
 
+    has_many :tags,
+      through: :images,
+      class_name: 'Spree::Tag'
+
     has_many :variant_images, 
       -> { order(:position) }, 
       as: :viewable, 
@@ -51,6 +55,14 @@ module Spree
       -> { has_material.has_address.has_shop }
     scope :latest_completed,
       -> { completed.order "created_at desc" }
+
+    def image_tag_hash
+      images.inject({}) do |hash, image|
+        hash[image.main_tag_name] ||= []
+        hash[image.main_tag_name].push image
+        hash
+      end
+    end
 
     def owner
       shop.try(:user)

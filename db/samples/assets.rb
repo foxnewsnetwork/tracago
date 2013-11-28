@@ -12,7 +12,8 @@ end
 Spree::Stockpile.all.each do |stockpile|
   main_img = image(stockpile.image_name)
   if main_img
-    stockpile.images.create! :attachment =>  main_img
+    pic = stockpile.images.create! :attachment =>  main_img
+    pic.tag! Spree::Tag.standard_image_tags.random
   else
     puts "#{image_path stockpile.image_name} failed to load..."
   end

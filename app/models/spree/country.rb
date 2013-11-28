@@ -51,6 +51,6 @@ class Spree::Country < ActiveRecord::Base
   private
 
   def _enforce_permalink
-    self.permalink = romanized_name.downcase.split('').select { |l| /[a-z]/ =~ l }.downcase
+    self.permalink = romanized_name.downcase.split('').select { |l| /[a-z]/ =~ l }.join
   end
 end

@@ -1,0 +1,15 @@
+- activate_class = -> (images) { 'disabled' if images.count < 4 }
+- stockpile.image_tag_hash.each do |key, images|
+  %section
+    - disable = activate_class.(images)
+    %nav
+      - link = stockpile_path(stockpile, key: key, s: params[:s].to_i - 4)
+      = link_to link, :class => disable do
+        %i.up
+        = t(:prev)
+      - link = stockpile_path(stockpile, key: key, s: params[:s].to_i + 4)
+      = link_to link, :class => disable do
+        %i.down
+        = t(:next)
+    - shown_images = images[params[:s].to_i..-1].take(4)
+    = render partial: 'spree/stockpiles/show/image', collection: shown_images

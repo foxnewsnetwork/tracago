@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121003652) do
+ActiveRecord::Schema.define(version: 20131127200239) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"
@@ -336,11 +336,12 @@ ActiveRecord::Schema.define(version: 20131121003652) do
     t.string   "email"
     t.integer  "address_id"
     t.string   "name",       null: false
+    t.string   "permalink",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "spree_shops", ["name"], name: "index_spree_shops_on_name", unique: true, using: :btree
+  add_index "spree_shops", ["permalink"], name: "index_spree_shops_on_permalink", unique: true, using: :btree
 
   create_table "spree_states", force: true do |t|
     t.string   "romanized_name"
@@ -371,6 +372,21 @@ ActiveRecord::Schema.define(version: 20131121003652) do
 
   add_index "spree_stockpiles_taxons", ["stockpile_id"], name: "index_spree_stockpiles_taxons_on_stockpile_id", using: :btree
   add_index "spree_stockpiles_taxons", ["taxon_id"], name: "index_spree_stockpiles_taxons_on_taxon_id", using: :btree
+
+  create_table "spree_tags", force: true do |t|
+    t.string   "permalink",    null: false
+    t.string   "presentation", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spree_tags_images", force: true do |t|
+    t.integer "tag_id"
+    t.integer "image_id"
+  end
+
+  add_index "spree_tags_images", ["image_id"], name: "index_spree_tags_images_on_image_id", using: :btree
+  add_index "spree_tags_images", ["tag_id", "image_id"], name: "idx_on_tags_images_tag_image", unique: true, using: :btree
 
   create_table "spree_taxonomies", force: true do |t|
     t.string   "name",       null: false
