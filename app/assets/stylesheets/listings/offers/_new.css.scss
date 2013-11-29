@@ -1,0 +1,26 @@
+@mixin listings-offers-new {
+  @extend .row;
+  form {
+    @extend .form-horizontal;
+    @extend .col-lg-12;
+    article {
+      @extend .row;
+      fieldset {
+        @extend .col-lg-6;
+        @extend .form-group;
+        label {
+          @extend .control-label;
+        }
+        input {
+          @extend .form-control;
+        }
+        select {
+          @extend .form-control;
+        }
+      }
+      p {
+        @extend .col-lg-6;
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:shipping_terms), '#shipping_terms'
+    %li= link_to t(:shipping_destination), '#shipping_destination'
+    %li= link_to t(:price_and_quantity), '#price_and_quantity'
+    %li= link_to t(:actions), '#actions'
+
+= form_for @form_helper, url: @form_helper.to_partial_path do |f|
+  %article#shipping_terms
+    %legend= t(:shipping_terms)
+    %fieldset
+      = f.select :shipping_terms, options_for_select(Spree::Offer::Terms)
+    %p= Faker::Lorem.paragraph 2
+  %article#shipping_destination
+    %legend= t(:shipping_destination)
+    %fieldset
+      = f.label :country, t(:destination_country)
+      = f.text_field :country
+    
+      = f.label :state, t(:state_or_province)
+      = f.text_field :state
+    
+      = f.label :city, t(:destination_city)
+      = f.text_field :city
+    
+      = f.label :address1, t(:street_address)
+      = f.text_field :address1
+    %p= Faker::Lorem.paragraph 2
+  %article#price_and_quantity
+    %legend= t(:price_and_quantity)
+    %fieldset
+      = f.label :usd_per_pound, t(:price_per_pound)
+      = f.number_field :usd_per_pound
+    
+      = f.label :loads, t(:containers)
+      = f.number_field :loads
+    
+      = f.label :minimum_pounds_per_load, t(:loading_weight)
+      = f.number_field :minimum_pounds_per_load
+    %p= Faker::Lorem.paragraph 2
+  %article#actions
+    %legend= t(:actions)
+    %fieldset
+      = f.submit "Create Offer", type: :submit
+    %fieldset
+      = f.submit "Reset", type: :reset

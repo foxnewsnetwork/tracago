@@ -12,7 +12,15 @@ class Spree::Listings::OffersController < Spree::StoreController
     return _error_step    if _offer.errors?
   end
 
+  def new
+    _form_helper
+  end
+
   private
+
+  def _form_helper
+    @form_helper ||= Spree::Listings::Offers::FormHelper.new _listing
+  end
 
   def _address_step
     _some_step { |*o| new_offer_address_path *o }

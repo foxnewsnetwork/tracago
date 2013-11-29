@@ -1,6 +1,7 @@
 @import 'home/index';
 @import 'listings/index';
 @import 'stockpiles/show';
+@import 'listings/offers/new';
 
 @mixin shared-main {
   @extend .col-lg-9;
@@ -11,4 +12,5 @@
   @include home-index;
   @include listings-index;
   @include stockpiles-show;
+  @include listings-offers-new;
 }
