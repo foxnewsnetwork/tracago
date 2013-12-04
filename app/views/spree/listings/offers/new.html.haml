@@ -41,6 +41,10 @@
   %article#actions
     %legend= t(:actions)
     %fieldset
-      = f.submit "Create Offer", type: :submit
+      = button_tag type: :submit do
+        %i.check
+        = "Create Offer"
     %fieldset
-      = f.submit "Reset", type: :reset
+      = button_tag type: :reset do
+        %i.x
+        = "Reset"

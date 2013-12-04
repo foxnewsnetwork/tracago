@@ -1,3 +1,10 @@
-.flash-{ :class => flash.first }
-  %i{ :class => flash.first }
-  %p= flash.last
+- msg_type = flash.first
+- if flash.last.is_a? String
+  - msgs = [flash.last]
+- if flash.last.is_a? Array
+  - msgs = flash.last
+
+- msgs.each do |msg|
+  .flash{ :class => msg_type }
+    %i{ :class => msg_type }
+    = msg

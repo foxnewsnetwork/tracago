@@ -15,13 +15,13 @@ module Spree
       -> { completed },
       class_name: 'Spree::Offer'
     has_many :latest_offers,
-      -> { order 'created_at desc' },
+      -> { completed.order 'created_at desc' },
       class_name: 'Spree::Offer'
     has_many :best_offers,
-      -> { order 'usd_per_pound desc' },
+      -> { completed.order 'usd_per_pound desc' },
       class_name: 'Spree::Offer'
     has_many :dangerous_offers,
-      -> { where('expires_at > ?', Time.now).order('expires_at desc') },
+      -> { completed.order('expires_at asc') },
       class_name: 'Spree::Offer'
     has_many :images,
       through: :stockpile,

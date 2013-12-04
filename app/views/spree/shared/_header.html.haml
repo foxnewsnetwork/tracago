@@ -3,24 +3,27 @@
     %figure
     %span Company Name
 
+- back_path = request.fullpath
+- if this_is_the_login_page? || this_is_the_signup_page?
+  - back_path = params[:back]
 #header-sessions
   - if user_signed_in?
     = link_to shop_path current_shop do
       %figure
-        %i{ :class => "shop" }
-      %h6= t(:my_company)
+        %i.shop
+      %h6= t(:my_shop)
     = link_to user_path current_user do
       %figure
-        %i{ :class => "user" }
+        %i.user
       %h6= t(:my_account)
   - else
-    = link_to login_path(back: request.fullpath) do
+    = link_to login_path(back: back_path) do
       %figure
-        %i{ :class => "login" }
+        %i.login
       %h6= t(:login)
-    = link_to signup_path(back: request.fullpath) do
+    = link_to signup_path(back: back_path) do
       %figure
-        %i{ :class => "signup" }
+        %i.signup
       %h6= t(:signup)
 
 #header-search

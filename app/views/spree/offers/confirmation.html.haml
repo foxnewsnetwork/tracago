@@ -1,0 +1,82 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:offering_party), '#offering_party'
+    %li= link_to t(:listing_party), '#listing_party'
+    %li= link_to t(:shipping_terms), '#shipping_terms'
+    %li= link_to t(:price_and_quantity), '#price_and_quantity'
+    %li= link_to t(:edit), edit_offer_path(@offer)
+
+%article#offering_party
+  %h2
+    = t(:offering_party)
+    = link_to edit_offer_path(@offer) do
+      %i.pencil
+      = t(:edit)
+  %dl
+    %dt= t(:your_company_name)
+    %dd= current_shop.name
+    %dt= t(:your_company_email)
+    %dd= current_shop.email
+
+%article#listing_party
+  %h2
+    = t(:listing_party)
+    = link_to edit_offer_path(@offer) do
+      %i.pencil
+      = t(:edit)
+  %dl
+    %dt= t(:listing_name)
+    %dd= @offer.listing.name
+    %dt= t(:listing_company)
+    %dd
+      = @offer.listing.shop.name
+      - if current_shop == @offer.listing.shop
+        = "--"
+        = t(:this_is_you!)
+    %dt= t(:company_email)
+    %dd= @offer.listing.shop.email
+
+%article#shipping_terms
+  %h2
+    = t(:shipping_terms)
+    = link_to edit_offer_path(@offer) do
+      %i.pencil
+      = t(:edit)
+  %dl
+    %dt= t(:terms)
+    %dd= @offer.shipping_terms
+    - if Spree::Offer::EXWORKS == @offer.shipping_terms
+      %dt= t(:pickup_location)
+    - else
+      %dt= t(:destination)
+    %dd= @offer.address.full_romanization
+    - unless Spree::Offer::EXWORKS == @offer.shipping_terms
+      %dt= t(:current_location)
+      %dd= @offer.listing.address.full_romanization
+
+%article#price_and_quantity
+  %h2
+    = t(:price_and_quantity)
+    = link_to edit_offer_path(@offer) do
+      %i.pencil
+      = t(:edit)
+  %dl
+    %dt= t(:price_per_pound)
+    %dd
+      %i.dollars
+      = @offer.usd_per_pound
+    %dt= t(:desired_loads)
+    %dd
+      = @offer.loads
+    %dt= t(:desired_minimum_weight)
+    %dd
+      = @offer.minimum_weight_presentation
+
+= form_for :confirmation, url: confirm_offer_path(@offer) do |f|
+  - if current_shop == @offer.listing.shop
+    .warning
+      = t(:heads_up)
+      = t(:you_are_making_an_offer_on_your_own_listing_for_some_reason)
+  = button_tag type: :submit do
+    %i.check
+    = t(:confirm)

@@ -66,8 +66,26 @@ module Spree
     scope :completed,
       -> { destined.possessed.relevant.fresh }
 
+    scope :aimless,
+      -> { where("address_id is null") }
+    scope :disowned,
+      -> { where("shop_id is null") }
+    scope :irrelevant,
+      -> { where("listing_id is null") }
+    scope :moldy,
+      -> { where("expires_at < ?", Time.now) }
+    scope :utter_crap,
+      -> { where("address_id is null or shop_id is null or listing_id is null or expires_at < ?", Time.now) }
     attr_accessor :metadata
     
+    def expires_at_as_date
+      expires_at.blank? ? I18n.t(:never) : expires_at.to_s(:db)
+    end
+
+    def minimum_weight_presentation
+      minimum_pounds_per_load.blank? ? I18n.t(:as_heavy_as_possible) : minimum_pounds_per_load.to_i
+    end
+
     def total_usd
       reasonable_load_count * usd_per_pound * PoundsPerContainer
     end
@@ -130,6 +148,14 @@ module Spree
 
     def requires_buyer?
       shop.blank?
+    end
+
+    def confirmed?
+      confirmed_at.present?
+    end
+
+    def confirm!
+      update! confirmed_at: DateTime.now
     end
 
     def complete?

@@ -42,6 +42,10 @@ class Spree::State < ActiveRecord::Base
     end
   end
 
+  def full_romanization
+    [romanized_name, country.romanized_name].join ", "
+  end
+
   def <=>(other)
     name <=> other.name
   end

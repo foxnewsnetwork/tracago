@@ -2,7 +2,12 @@ class Spree::OffersController < Spree::StoreController
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   include Spree::OffersHelper
   include Spree::UserFilterHelper
-  before_filter :filter_anonymous_users, :filter_incorrect_users, except: [:show]
+  before_filter :filter_anonymous_users, 
+    :filter_incorrect_users, 
+    only: [:edit, :update]
+  before_filter :filter_anonymous_users,
+    :_filter_confirmed_offers,
+    only: [:confirmation, :confirm]
   def show
     _offer
   end
@@ -17,7 +22,23 @@ class Spree::OffersController < Spree::StoreController
     render :edit
   end
 
+  def confirmation
+    _offer.update! shop: current_shop
+  end
+
+  def confirm
+    _offer.confirm!
+    redirect_to offer_path _offer
+  end
+
   private
+
+  def _filter_confirmed_offers
+    if _offer.confirmed?
+      flash[:error] = I18n.t(:already_confirmed)
+      redirect_to offer_path _offer
+    end
+  end
 
   def _correct_shop
     _offer.shop

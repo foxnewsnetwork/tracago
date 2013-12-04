@@ -9,7 +9,7 @@ module ChineseFactory
     def attributes
       {
         romanized_name: Faker::Address.country,
-        iso: Faker::AddressUS.state_abbr,
+        iso: Faker::Address.country.slice(0,2).upcase,
         iso3: Faker::Address.country.slice(0,3).upcase,
         numcode: rand(234)
       }

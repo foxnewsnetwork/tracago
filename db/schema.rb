@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127200239) do
+ActiveRecord::Schema.define(version: 20131204011343) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20131127200239) do
     t.datetime "expires_at"
     t.string   "transport_method",                                 default: "CONTAINER", null: false
     t.integer  "minimum_pounds_per_load"
+    t.datetime "confirmed_at"
   end
 
   add_index "spree_offers", ["listing_id"], name: "index_spree_offers_on_listing_id", using: :btree

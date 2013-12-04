@@ -28,7 +28,7 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  config.fail_fast = true
+  config.fail_fast = false
   config.include LegacyControllerAlias, type: :controller
   config.include Warden::Test::ControllerHelpers, type: :controller
 

@@ -14,9 +14,9 @@
       @extend .fa-2x;
     }
     i[class*=user] {
-      @extend .fa-wrench-square;
+      @extend .fa-wrench;
     }
-    i[class*=company] {
+    i[class*=shop] {
       @extend .fa-users;
     }
     i[class*=login] {

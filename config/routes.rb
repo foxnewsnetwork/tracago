@@ -65,6 +65,10 @@ Tracago::Application.routes.draw do
       controller: 'spree/listings/stockpiles'
   end
   resources :offers, only: [:show, :edit, :update, :destroy], controller: 'spree/offers' do
+    member do
+      get :confirmation
+      post :confirm
+    end
     resources :finalizations, 
       only: [:new, :create],
       controller: 'spree/offers/finalizations'

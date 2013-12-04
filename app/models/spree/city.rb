@@ -24,6 +24,9 @@ class Spree::City < ActiveRecord::Base
   before_validation :_create_permalink
   validates :permalink, uniqueness: true, presence: true
 
+  def full_romanization
+    [romanized_name, state.full_romanization].join ", "
+  end
 
   def permalink_name
     permalink.split("-").reverse.join(", ")

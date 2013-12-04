@@ -1,0 +1,11 @@
+// Endeavor to keep this file small!
+@mixin shared-important {
+  .field_with_errors {
+    label { 
+      color: #641b04 !important;
+    }
+    input {
+      border: 1px solid #641b04 !important;
+    }
+  }
+}

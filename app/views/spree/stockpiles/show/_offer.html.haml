@@ -16,4 +16,4 @@
       %dt= t(:offer_made_on)
       %dd= offer.created_at.to_s(:db)
       %dt= t(:offer_expires_on)
-      %dd= offer.expires_at.to_s(:db)
+      %dd= offer.expires_at_as_date

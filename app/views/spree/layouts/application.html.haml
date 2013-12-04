@@ -23,7 +23,7 @@
     %section#side-content{ data: { spy: :affix, offset: { top: 100 } } }
       = yield :sidebar
     %section#main-content
-      = yield
+      %div{ :id => main_content_div_id }= yield
   %footer
     = render partial: 'spree/shared/footer'
   %section#misc-invisible-crap

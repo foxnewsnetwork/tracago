@@ -7,9 +7,9 @@ class Spree::Listings::OffersController < Spree::StoreController
   end
 
   def create
-    return _address_step  if _offer.requires_destination?
-    return _user_step     if _offer.requires_buyer?
-    return _error_step    if _offer.errors?
+    return _error_step          unless _valid?
+    return _user_step           if _offer.requires_buyer?
+    return _confirmation_step
   end
 
   def new
@@ -18,28 +18,42 @@ class Spree::Listings::OffersController < Spree::StoreController
 
   private
 
+  def _valid?
+    _create_form_helper.valid? && _offer.valid?
+  end
+
   def _form_helper
     @form_helper ||= Spree::Listings::Offers::FormHelper.new _listing
   end
 
-  def _address_step
-    _some_step { |*o| new_offer_address_path *o }
+  def _create_form_helper
+    _form_helper.tap { |f| f.attributes = _offer_params }
+  end
+
+  def _confirmation_step
+    redirect_to confirmation_offer_path _offer
   end
 
   def _user_step
-    _some_step { |*o| new_offer_user_path *o }
+    flash[:notice] = t(:signin_to_finish_making_offer)
+    redirect_to login_path back: confirmation_offer_path(_offer)
   end
 
   def _error_step
-    _some_step { |*o| offer_path *o }
+    flash.now[:error] = _form_helper.errors.full_messages
+    render :new
   end
 
   def _some_step(&block)
-    redirect_to yield(_offer, _address_params)
+    redirect_to yield _offer
   end
 
   def _offer
-    @offer ||= _listing.offers.create _offer_params
+    @offer ||= _listing.offers.create! _processed_offer_params
+  end
+
+  def _processed_offer_params
+    _create_form_helper.offer_params
   end
 
   def _listing
@@ -47,13 +61,7 @@ class Spree::Listings::OffersController < Spree::StoreController
   end
 
   def _offer_params
-    vanilla_offer = params.require(:offer).permit(:containers, :shipping_terms, :usd_per_pound)
-    vanilla_offer.initializing_merge user: current_user
-    vanilla_offer.alter_key_from(:containers).to(:loads)
-  end
-
-  def _address_params
-    params.require(:offer).permit(:country, :state, :city)
+    params.require(:offers).permit *Spree::Listings::Offers::FormHelper::Fields
   end
 
 end

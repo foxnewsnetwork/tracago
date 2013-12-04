@@ -4,10 +4,10 @@
 @import 'shared/sidebar';
 @import 'shared/main';
 @import 'shared/footer';
-
+@import 'shared/important';
 body {
+  @include shared-important;
   @extend .container;
-
   header {
     @include shared-header;
   }

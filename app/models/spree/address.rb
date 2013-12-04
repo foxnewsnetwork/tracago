@@ -16,9 +16,6 @@ module Spree
     validates :address1, :city, presence: true
     validates_with Spree::Addresses::Validator
 
-    alias_attribute :first_name, :firstname
-    alias_attribute :last_name, :lastname
-
     has_many :stockpiles,
       class_name: 'Spree::Stockpile'
 
@@ -66,8 +63,8 @@ module Spree
     #   new_record? || (shipments.empty? && checkouts.empty?)
     # end
 
-    def full_name
-      "#{firstname} #{lastname}".strip
+    def full_romanization
+      [address1, address2, city.full_romanization].reject(&:blank?).join ", "
     end
 
     def state_text

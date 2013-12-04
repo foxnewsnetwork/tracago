@@ -22,5 +22,19 @@
         @extend .col-lg-6;
       }
     }
+    article#actions {
+      i {
+        @extend .fa;
+      }
+      i[class*=x] {
+        @extend .fa-times;
+      }
+      i[class*=check] {
+        @extend .fa-check;
+      }
+      button {
+        @extend .form-control;
+      }
+    }
   }
 }
