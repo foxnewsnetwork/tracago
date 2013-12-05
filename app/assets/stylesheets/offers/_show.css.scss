@@ -1,0 +1,87 @@
+@mixin offers-show {
+  @extend .row;
+
+  #offer-basic-information {
+    @extend .col-lg-6;
+  }
+  #offer-auxiliary-information {
+    @extend .col-lg-6;
+  }
+  #buyer-side-actions, #seller-side-actions {
+    @extend .col-lg-12;
+    section {
+      @extend .row;
+      padding-left: 15px;
+      a {
+        @extend .col-lg-2;
+        @extend .thumbnail;
+        text-align: center;
+        margin-right: 5px;
+        figure {
+          i {
+            @extend .fa;
+            @extend .fa-2x;
+            &.destroy {
+              @extend .fa-trash-o;
+            }
+            &.request {
+              @extend .fa-ticket;
+            }
+            &.accept {
+              @extend .fa-check;
+            }
+            &.counter {
+              @extend .fa-reply;
+            }
+            &.edit {
+              @extend .fa-pencil;
+            }
+            &.comment {
+              @extend .fa-comment-o;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #back-and-forth-dialogue {
+    @extend .col-lg-12;
+    ul {
+      list-style: none;
+      padding-left: 15px;
+      li {
+        @extend .row;
+        @extend .thumbnail;
+        figure {
+          @extend .col-lg-2;
+          text-align: center;
+          padding-top: 10px;
+          i {
+            @extend .fa;
+            @extend .fa-2x;
+            &.buyer {
+              @extend .fa-shopping-cart;
+            }
+            &.seller {
+              @extend .fa-building-o;
+            }
+          }
+        }
+        article {
+          @extend .col-lg-10;
+          h5 {
+            margin-top: 5px;
+            font-size: 18px;
+          }
+          p {
+            font-size: 16px;
+          }
+          h6 {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

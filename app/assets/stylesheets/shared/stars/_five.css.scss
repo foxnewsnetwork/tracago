@@ -1,0 +1,24 @@
+@mixin shared-stars-five {
+  .parentheses {
+    &:before {
+      content: "( "
+    }
+    &:after {
+      content: " )"
+    }
+  }
+  .five-stars {
+    i {
+      @extend .fa;
+      &.full-star {
+        @extend .fa-star;
+      }
+      &.half-star {
+        @extend .fa-star-half-full;
+      }
+      &.empty-star {
+        @extend .fa-star-o;
+      }
+    }
+  }
+}

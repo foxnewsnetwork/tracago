@@ -4,6 +4,7 @@
 @import 'listings/offers/new';
 @import 'users/sessions/new';
 @import 'offers/confirmation';
+@import 'offers/show';
 
 @mixin shared-main {
   @extend .col-lg-9;
@@ -28,5 +29,8 @@
   }
   #offers-confirmation {
     @include offers-confirmation
+  }
+  #offers-show {
+    @include offers-show;
   }
 }

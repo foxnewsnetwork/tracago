@@ -1,0 +1,99 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:back_to_listing), listing_path(@offer.listing)
+    %li= link_to t(:offer_basic_information), '#offer-basic-information'
+    %li= link_to t(:offer_auxiliary_information), '#offer-auxiliary-information'
+    - if correct_shop_session? @offer.buyer
+      %li= link_to t(:buyer_side_actions), '#buyer-side-actions'
+    - if correct_shop_session? @offer.seller
+      %li= link_to t(:seller_side_actions), '#seller-side-actions'
+    %li= link_to t(:back_and_forth_dialogue), '#back-and-forth-dialogue'
+
+#offer-basic-information
+  %h2= t(:offer_basic_information)
+  %dl
+    %dt= t(:shipping_terms)
+    %dd= @offer.shipping_terms
+    - if Spree::Offer::EXWORKS == @offer.shipping_terms
+      %dt= t(:pickup_location)
+      %dd= @offer.origination.full_romanization
+    - else
+      %dt= t(:shipping_destination)
+      %dd= @offer.destination.full_romanization
+    %dt= t(:price_per_pound)
+    %dd
+      %i.dollars
+      = @offer.usd_per_pound
+    %dt= t(:desired_loads)
+    %dd= @offer.loads
+    %dt= t(:minimum_weight)
+    %dd= @offer.minimum_weight_presentation
+    %dt= t(:offer_updated_at)
+    %dd= @offer.presentable_updated_at
+    %dt= t(:offer_expires_at)
+    %dd= @offer.presentable_expires_at
+
+#offer-auxiliary-information
+  %h2= t(:offer_auxiliary_information)
+  %dl
+    %dt= t(:made_the_offer)
+    %dd
+      = link_to @offer.buyer.name, shop_path(@offer.buyer)
+      = render 'spree/shared/stars/five', shop: @offer.buyer
+    %dt= t(:buyer_contact_email)
+    %dd= mail_to @offer.buyer.email
+    %dt= t(:received_the_offer)
+    %dd
+      = link_to @offer.seller.name, shop_path(@offer.seller)
+      = render 'spree/shared/stars/five', shop: @offer.seller
+    %dt= t(:seller_contact_email)
+    %dd= mail_to @offer.seller.email
+    %dt= t(:related_listing)
+    %dd= link_to @offer.listing.name, listing_path(@offer.listing)
+    %dt= t(:material_location)
+    %dd= @offer.listing.address.full_romanization
+
+- if correct_shop_session?(@offer.buyer)
+  #buyer-side-actions
+    %h2= t(:buyer_side_actions)
+    %section
+      = link_to edit_offer_path @offer do
+        %figure
+          %i.edit
+        %h6= t(:modify_offer)
+      - question = 'Are you sure you want to cancel your offer?'
+      = link_to offer_path(@offer), method: :delete, confirm: question do
+        %figure
+          %i.destroy
+        %h6= t(:cancel_offer)
+      = link_to new_offer_service_path(@offer) do
+        %figure
+          %i.request
+        %h6= t(:request_services)
+      = link_to new_offer_comment_path(@offer) do
+        %figure
+          %i.comment
+        %h6= t(:comment)
+
+- if correct_shop_session?(@offer.seller)
+  #seller-side-actions
+    %h2= t(:seller_side_actions)
+    %section
+      - question = "Please confirm accepting offer."
+      = link_to accept_offer_path(@offer), method: :post, confirm: question do
+        %figure
+          %i.accept
+        %h6= t(:accept_offer)
+      = link_to new_offer_counter_offer_path(@offer) do
+        %figure
+          %i.counter
+        %h6= t(:counter_offer)
+      = link_to new_offer_comment_path(@offer) do
+        %figure
+          %i.comment
+        %h6= t(:comment)
+
+#back-and-forth-dialogue
+  %h2= t(:back_and_forth_dialogue)
+  %ul
+    = render(partial: 'spree/offers/show/comment', collection: @offer.comments)

@@ -1,0 +1,17 @@
+%li
+  %figure
+    - if comment.by_buyer?
+      %i.buyer
+      %h6= t(:buyer)
+    - if comment.by_seller?
+      %i.seller
+      %h6= t(:seller)
+  %article
+    %h5= comment.subject
+    %p= comment.content
+    %h6
+      = t(:updated_at)
+      = comment.updated_at.to_formatted_s(:long)
+      
+
+

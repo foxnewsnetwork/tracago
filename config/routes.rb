@@ -68,18 +68,14 @@ Tracago::Application.routes.draw do
     member do
       get :confirmation
       post :confirm
+      post :accept
     end
+    resources :counter_offers, only: [:new], controller: 'spree/counter_offers'
+    resources :services, only: [:new], controller: 'spree/offers/services'
     resources :finalizations, 
       only: [:new, :create],
       controller: 'spree/offers/finalizations'
-    member do
-      get :counter
-    end
-    resources :comments, only: [:new, :create], controller: 'spree/offers/comments' do
-      collection do
-        get :demand
-      end
-    end
+    resources :comments, only: [:new, :create], controller: 'spree/offers/comments'
     resources :addresses, only: [:create, :new], controller: 'spree/offers/addresses'
   end
   resources :shops, only: [:show], controller: 'spree/shops' do

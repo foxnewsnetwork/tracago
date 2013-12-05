@@ -106,6 +106,10 @@ module Spree
       fresh_finalization.present?
     end
 
+    def presentable_updated_at
+      updated_at.to_formatted_s(:long)
+    end
+
     def presentable_expires_at
       expires_at.blank? ? Spree.t(:never) : expires_at.to_formatted_s(:long)
     end

@@ -5,6 +5,8 @@
 @import 'shared/main';
 @import 'shared/footer';
 @import 'shared/important';
+@import 'shared/stars/five';
+
 body {
   @include shared-important;
   @extend .container;
@@ -19,7 +21,7 @@ body {
   }
   main {
     @extend .row;
-
+    @include shared-stars-five;
     section#side-content {
       @include shared-sidebar;
     }

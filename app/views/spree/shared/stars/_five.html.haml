@@ -1,0 +1,15 @@
+- if shop.received_average_stars.present?
+  - star_count = shop.received_average_stars.round_to_nearest 0.5
+  = link_to shop_ratings_path shop do
+    %span.five-stars
+      - star_count.to_i.times do
+        %i.full-star
+      - if 0 < star_count - star_count.to_i
+        %i.half-star
+      - else
+        %i.empty-star
+      - (4 - star_count.to_i).times do
+        %i.empty-star
+
+- else
+  %span.parentheses= t(:no_ratings_yet)
