@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204011343) do
+ActiveRecord::Schema.define(version: 20131205202605) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"
@@ -444,11 +444,13 @@ ActiveRecord::Schema.define(version: 20131204011343) do
     t.string   "openid_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "shop_id"
   end
 
   add_index "spree_users", ["authentication_token"], name: "index_spree_users_on_authentication_token", unique: true, using: :btree
   add_index "spree_users", ["email"], name: "index_spree_users_on_email", unique: true, using: :btree
   add_index "spree_users", ["reset_password_token"], name: "index_spree_users_on_reset_password_token", unique: true, using: :btree
+  add_index "spree_users", ["shop_id"], name: "index_spree_users_on_shop_id", using: :btree
   add_index "spree_users", ["unlock_token"], name: "index_spree_users_on_unlock_token", unique: true, using: :btree
 
 end

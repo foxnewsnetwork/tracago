@@ -1,0 +1,37 @@
+@mixin users-registrations-new {
+  @extend .row;
+  form {
+    @extend .form-horizontal;
+    fieldset {
+      @extend .col-lg-6;
+      article {
+        @extend .form-group;
+        i {
+          @extend .fa;
+          &.signup {
+            @extend .fa-check;
+          }
+          &.reset {
+            @extend .fa-times;
+          }
+        }
+        button {
+          @extend .form-control;
+          @extend .btn-default;
+        }
+        input[type*=email], input[type*=password] {
+          @extend .form-control;
+        }
+      }
+    }
+    section {
+      @extend .col-lg-6;
+      i {
+        @extend .fa;
+        &.signup {
+          @extend .fa-pencil-square;
+        }
+      }
+    }
+  }
+}

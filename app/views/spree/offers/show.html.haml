@@ -80,7 +80,7 @@
     %h2= t(:seller_side_actions)
     %section
       - question = "Please confirm accepting offer."
-      = link_to accept_offer_path(@offer), method: :post, confirm: question do
+      = link_to new_offer_finalization_path(@offer) do
         %figure
           %i.accept
         %h6= t(:accept_offer)

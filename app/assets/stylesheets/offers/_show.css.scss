@@ -3,6 +3,12 @@
 
   #offer-basic-information {
     @extend .col-lg-6;
+    i {
+      @extend .fa;
+      &.dollars {
+        @extend .fa-usd;
+      }
+    }
   }
   #offer-auxiliary-information {
     @extend .col-lg-6;

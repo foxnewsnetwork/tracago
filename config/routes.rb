@@ -68,7 +68,6 @@ Tracago::Application.routes.draw do
     member do
       get :confirmation
       post :confirm
-      post :accept
     end
     resources :counter_offers, only: [:new], controller: 'spree/counter_offers'
     resources :services, only: [:new], controller: 'spree/offers/services'

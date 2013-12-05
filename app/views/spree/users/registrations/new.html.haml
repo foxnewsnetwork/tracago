@@ -1,0 +1,39 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:login), login_path(back: params[:back])
+    %li.active= link_to t(:signup), '#signup'
+
+= form_for :user, url: user_registration_path do |f|
+  %legend= t(:account_registration)
+  %fieldset
+    %article
+      = f.hidden_field :back, value: params[:back]
+      = f.label :email
+      = f.email_field :email
+
+      = f.label :password
+      = f.password_field :password
+
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+
+    %article
+      = button_tag type: :submit do
+        %i.signup
+        = t(:signup)
+
+      = button_tag type: :reset do
+        %i.reset
+        = t(:reset)
+  
+  %section
+    %p= Faker::Lorem.paragraph
+    - if params[:back].present?
+      %p
+        = t(:after_you_sign_up_redirecting_back_to)
+        = params[:back]
+    %p
+      = t(:no_account?)
+      = link_to login_path(back: params[:back]) do
+        %i.login
+        = t(:login)

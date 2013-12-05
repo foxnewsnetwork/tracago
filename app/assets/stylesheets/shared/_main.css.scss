@@ -5,6 +5,7 @@
 @import 'users/sessions/new';
 @import 'offers/confirmation';
 @import 'offers/show';
+@import 'users/registrations/new';
 
 @mixin shared-main {
   @extend .col-lg-9;
@@ -26,6 +27,9 @@
   }
   #users-sessions-new {
     @include users-sessions-new;
+  }
+  #users-registrations-new {
+    @include users-registrations-new;
   }
   #offers-confirmation {
     @include offers-confirmation

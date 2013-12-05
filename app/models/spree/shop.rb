@@ -1,6 +1,16 @@
 class Spree::Shop < ActiveRecord::Base
-  belongs_to :user, class_name: 'Spree::User'
-  belongs_to :address, class_name: 'Spree::Address'
+  belongs_to :user, 
+    class_name: 'Spree::User'
+  belongs_to :owner,
+    class_name: 'Spree::User',
+    foreign_key: 'user_id'
+  has_many :users,
+    class_name: 'Spree::User'
+  has_many :employees,
+    class_name: 'Spree::User',
+    foreign_key: 'user_id'
+  belongs_to :address, 
+    class_name: 'Spree::Address'
   has_many :listings, 
     class_name: 'Spree::Listing'
   has_many :stockpiles, 
@@ -37,6 +47,10 @@ class Spree::Shop < ActiveRecord::Base
         b.last <=> a.last
       end.map(&:first).take 9
       Spree::Shop.where(id: ids)
+    end
+
+    def crap_shop
+      @crap_shop ||= find_or_create_by name: 'Null Shop'
     end
   end
 

@@ -1,0 +1,12 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:my_shop), shop_path(@user.shop)
+    %li= link_to t(:preferences), user_preferences_path(@user)
+    %li= link_to t(:log_out), destroy_user_session_path, method: :delete
+
+%section
+  %h2= t(:shop_summary)
+%section
+  %h2= t(:preference_summary)
+%section
+  %h2= t(:account_summary)
