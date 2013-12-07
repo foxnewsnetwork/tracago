@@ -35,9 +35,11 @@ class Spree::User < ActiveRecord::Base
   end
 
   def my_default_shop
-    @my_default_shop ||= Spree::Shop.find_or_create_by name: "Default Null Shop of #{id}", 
-      email: email, 
-      user_id: id
+    @my_default_shop ||= Spree::Shop.find_by_user_id(id) ||
+      Spree::Shop.find_or_create_by(
+        name: "Default Null Shop of #{id}", 
+        email: email, 
+        user_id: id)
   end
 
   def shop_with_default_shop

@@ -28,7 +28,7 @@
       @extend .col-lg-6;
       i {
         @extend .fa;
-        &.signup {
+        &.signup, &.pencil {
           @extend .fa-pencil-square;
         }
       }

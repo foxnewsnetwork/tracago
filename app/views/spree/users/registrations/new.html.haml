@@ -33,7 +33,7 @@
         = t(:after_you_sign_up_redirecting_back_to)
         = params[:back]
     %p
-      = t(:no_account?)
+      = t(:already_have_account?)
       = link_to login_path(back: params[:back]) do
         %i.login
         = t(:login)

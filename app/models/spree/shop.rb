@@ -8,7 +8,7 @@ class Spree::Shop < ActiveRecord::Base
     class_name: 'Spree::User'
   has_many :employees,
     class_name: 'Spree::User',
-    foreign_key: 'user_id'
+    foreign_key: 'shop_id'
   belongs_to :address, 
     class_name: 'Spree::Address'
   has_many :listings, 

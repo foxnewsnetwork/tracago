@@ -1,0 +1,47 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:back_to_offer), offer_path(@offer)
+    %li= link_to t(:offer_summary), '#offer-summary'
+    %li= link_to t(:accept_offer), '#finalization-form'
+
+#offer-summary
+  %h2= t(:offer_summary)
+  %dl
+    %dt= t(:offered_by)
+    %dd
+      = link_to @offer.buyer.name, shop_path(@offer.buyer)
+      = render 'spree/shared/stars/five', shop: @offer.buyer
+    %dt= t(:shipping_terms)
+    %dd= @offer.shipping_terms
+    - if Spree::Offer::EXWORKS == @offer.shipping_terms
+      %dt= t(:pickup_location)
+      %dd= @offer.origination.full_romanization
+    - else
+      %dt= t(:shipping_destination)
+      %dd= @offer.destination.full_romanization
+  %dl
+    %dt= t(:price_per_pound)
+    %dd
+      %i.dollars
+      = @offer.usd_per_pound
+    %dt= t(:loads)
+    %dd= @offer.loads
+    %dt= t(:minimum_weight)
+    %dd= @offer.minimum_weight_presentation
+
+#finalization-form
+  = form_for :finalization, url: offer_finalizations_path(@offer) do |f|
+    %legend= t(:accept_offer_confirmation)
+    %fieldset
+      %article
+        = f.label :expires_at, t(:expiration_date)
+        = f.date_field :expires_at
+      %article
+        = button_tag type: :submit do
+          %i.check
+          = t(:confirm_acceptance)
+        = link_to offer_path(@offer) do
+          %i.cancel
+          = t(:go_back)
+    %section
+      %p= Faker::Lorem.paragraph

@@ -26,7 +26,21 @@ Tracago::Application.routes.draw do
       passwords: 'spree/users/devise/passwords'
     }
   
-  resources :finalizations, only: [:show], controller: 'spree/finalizations' do
+  resources :escrows, only: [:show, :edit], controller: 'spree/escrows' do
+    member do
+      get :close
+    end
+  end
+  resources :finalizations, only: [:edit, :show], controller: 'spree/finalizations' do
+    resources :ratings,
+      only: [:new, :create],
+      controller: 'spree/finalizations/ratings'
+    resources :comments,
+      only: [:new, :create],
+      controller: 'spree/finalizations/comments'
+    resources :escrows,
+      only: [:new, :create],
+      controller: 'spree/finalizations/escrows'
     resources :truck_demands, 
       only: [:new, :create], 
       controller: 'spree/finalizations/serviceables/trucks'

@@ -6,6 +6,8 @@
 @import 'offers/confirmation';
 @import 'offers/show';
 @import 'users/registrations/new';
+@import 'offers/finalizations/new';
+@import 'finalizations/show';
 
 @mixin shared-main {
   @extend .col-lg-9;
@@ -36,5 +38,11 @@
   }
   #offers-show {
     @include offers-show;
+  }
+  #offers-finalizations-new {
+    @include offers-finalizations-new;
+  }
+  #finalizations-show {
+    @include finalizations-show;
   }
 }

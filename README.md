@@ -14,3 +14,25 @@ International Trade Platform
 1.5. User show page
 2. Mail to Theron the garage door opener
 3. Enumerate out all the existing broken links on the site
+
+# Friday, December 6
+1. offers finalization new page
+2. finalization show page
+
+Work to be Done
+=
+* Company logo and name
+* Services index
+* Services supplies index
+* services demand index
+* services show
+* counter offer model
+* shop ratings index
+* shop show page
+* offers comment new page
+* offers counter new page
+* listing new page
+* post transaction new
+* escrow new
+* Email notifications
+* shop add user
