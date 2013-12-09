@@ -1,5 +1,7 @@
-- if shop.received_average_stars.present?
-  - star_count = shop.received_average_stars.round_to_nearest 0.5
+- stars_method ||= :received_average_stars
+- stars = shop.send stars_method
+- if stars.present?
+  - star_count = stars.round_to_nearest 0.5
   = link_to shop_ratings_path shop do
     %span.five-stars
       - star_count.to_i.times do

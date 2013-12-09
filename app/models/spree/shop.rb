@@ -16,6 +16,9 @@ class Spree::Shop < ActiveRecord::Base
   has_many :stockpiles, 
     class_name: 'Spree::Stockpile', 
     through: :listings
+  has_many :received_offers,
+    class_name: 'Spree::Offer',
+    through: :listings
   has_many :offers, 
     class_name: 'Spree::Offer'
   has_many :finalizations,
@@ -56,6 +59,18 @@ class Spree::Shop < ActiveRecord::Base
 
   def short_name
     name[0..11]
+  end
+
+  def top_finalizations(n=3)
+    finalizations.order("created_at desc").limit n
+  end
+
+  def top_given_offers(n=3)
+    offers.order("created_at desc").limit n
+  end
+
+  def top_received_offers(n=3)
+    received_offers.order("#{Spree::Offer.table_name}.created_at desc").limit(n)
   end
 
   def top_listings(n=5)

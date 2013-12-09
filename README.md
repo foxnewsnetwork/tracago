@@ -19,8 +19,18 @@ International Trade Platform
 1. offers finalization new page
 2. finalization show page
 
+# Monday, December 9
+1. shop show page
+
 Work to be Done
 =
+* finish finalization show page
+* rework serviceables models (it's unnecessarily difficult)
+* ship demand new
+* truck demand new
+* inspection demand new
+* escrow open
+* escrow close
 * Company logo and name
 * Services index
 * Services supplies index

@@ -1,0 +1,8 @@
+%li
+  = link_to listing_path(listing) do
+    %figure
+      = image_tag listing.default_image.thumbnail_url
+    %article
+      %h6= listing.name
+      %p= listing.address.full_romanization
+      %small= listing.created_at.to_formatted_s(:long)

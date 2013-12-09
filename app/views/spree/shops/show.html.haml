@@ -1,0 +1,72 @@
+= content_for :sidebar do
+  %ul
+    %li= link_to t(:ratings_summary), '#my-ratings'
+    %li= link_to t(:my_latest_listings), '#my-listings'
+    - if correct_shop_session? @shop
+      %li= link_to t(:actions), '#my-listing-actions'
+    %li= link_to t(:offers_i_made), '#my-offers'
+    %li= link_to t(:offers_made_to_me), '#their-offers'
+    %li= link_to t(:accepted_offers), '#my-finalizations'
+
+#my-ratings
+  %article
+    %h4
+      = t(:given_ratings)
+      %span.parentheses= link_to t(:see_more), given_shop_ratings_path(@shop)
+    %dl
+      %dt= t(:total_given_ratings)
+      %dd= @shop.given_ratings.count
+      %dt= t(:given_ratings_summary)
+      %dd= render 'spree/shared/stars/five', shop: @shop, stars_method: :given_average_stars
+  %article
+    %h4
+      = t(:received_ratings)
+      %span.parentheses= link_to t(:see_more), shop_ratings_path(@shop)
+    %dl
+      %dt= t(:total_received_ratings)
+      %dd= @shop.received_ratings.count
+      %dt= t(:received_ratings_summary)
+      %dd= render 'spree/shared/stars/five', shop: @shop, stars_method: :received_average_stars
+
+#my-listings
+  %h4
+    = t(:my_latest_listings)
+    %span.parentheses= link_to t(:see_more), shop_listings_path(@shop)
+  %ul= render partial: 'spree/shops/listing', collection: @shop.top_listings(3)
+  - if @shop.top_listings(3).empty?
+    %h6= t(:no_listings_yet)
+
+- if true # correct_shop_session? @shop
+  #my-listing-actions
+    %h4= t(:actions)
+    %ul
+      %li
+        = link_to new_listing_path do
+          %figure
+            %i.new-listing
+            %h6= t(:new_listing)
+
+#my-offers
+  %h4
+    = t(:offers_i_made)
+    %span.parentheses= link_to t(:see_more), shop_offers_path(@shop)
+  %ul= render partial: 'spree/shops/offer', collection: @shop.top_given_offers(3)
+  - if @shop.top_given_offers(3).empty?
+    %h6= t(:no_offers_yet)
+
+#their-offers
+  %h4
+    = t(:offers_received)
+    %span.parentheses= link_to t(:see_more), shop_offers_path(@shop)
+  %ul= render partial: 'spree/shops/offer', collection: @shop.top_received_offers(3)  
+  - if @shop.top_received_offers(3).empty?
+    %h6= t(:no_offers_yet)
+
+#my-finalizations
+  %h4
+    = t(:finalizations)
+    %span.parentheses= link_to t(:see_more), shop_finalizations_path(@shop)
+  %ul= render partial: 'spree/shops/finalization', collection: @shop.top_finalizations(3)
+  - if @shop.top_finalizations(3).empty?
+    %h6= t(:no_accepted_offers_yet)
+

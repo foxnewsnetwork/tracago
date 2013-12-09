@@ -14,6 +14,9 @@ module Spree
     has_many :offers, 
       -> { completed },
       class_name: 'Spree::Offer'
+    has_many :received_offers, 
+      -> { completed },
+      class_name: 'Spree::Offer'
     has_many :latest_offers,
       -> { completed.order 'created_at desc' },
       class_name: 'Spree::Offer'
@@ -28,6 +31,7 @@ module Spree
       class_name: 'Spree::Image'
 
     delegate :name,
+      :default_image,
       :pounds_on_hand,
       :require_address?, 
       to: :stockpile

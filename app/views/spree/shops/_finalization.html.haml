@@ -1,0 +1,9 @@
+%li
+  = link_to finalization_path(finalization) do
+    %h4
+      = finalization.offer.to_summary
+    %dl.creation-dates
+      %dt= t(:creation_date)
+      %dd= finalization.created_at.to_formatted_s(:long)
+      %dt= t(:expiration_date)
+      %dd= finalization.expires_at_as_date

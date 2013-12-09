@@ -8,6 +8,7 @@
 @import 'users/registrations/new';
 @import 'offers/finalizations/new';
 @import 'finalizations/show';
+@import 'shops/show';
 
 @mixin shared-main {
   @extend .col-lg-9;
@@ -44,5 +45,8 @@
   }
   #finalizations-show {
     @include finalizations-show;
+  }
+  #shops-show {
+    @include shops-show;
   }
 }

@@ -1,0 +1,88 @@
+@mixin shops-show {
+  @extend .row;
+  span.parentheses {
+    font-size: 12px;
+  }
+  #my-ratings {
+    article {
+      @extend .col-lg-6;
+    }
+  }
+
+  #my-listings {
+    @extend .col-lg-12;
+    ul {
+      list-style: none;
+      padding-left: 0px;
+      li {
+        @extend .row;
+        img {
+          @extend .thumbnail;
+        }
+        figure {
+          @extend .col-lg-2;
+        }
+        article {
+          @extend .col-lg-10;
+          h6 {
+            font-size: 16px;
+          }
+          p, small {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  #my-listing-actions {
+    @extend .col-lg-12;
+    ul {
+      @extend .row;
+      list-style: none;
+      padding-left: 15px;
+      li {
+        figure {
+          @extend .col-lg-2;
+          @extend .thumbnail;
+          text-align: center;
+          font-size: 18px;
+          i.new-listing {
+            @extend .fa;
+            @extend .fa-edit;
+          }
+        }
+      }
+    }
+  }
+
+  #my-offers, #their-offers, #my-finalizations {
+    @extend .col-lg-12;
+    ul {
+      @extend .row;
+      list-style: none;
+      padding-left: 15px;
+      li {
+        @extend .col-lg-12;
+        @extend .thumbnail;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        a {
+          @extend .row;
+          color: #555;
+          h4 {
+            @extend .col-lg-12;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            border-bottom: 1px solid #e5e5e5;
+          }
+          dl {
+            @extend .col-lg-6;
+            @extend .dl-horizontal;
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+}

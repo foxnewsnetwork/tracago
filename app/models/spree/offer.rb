@@ -55,24 +55,24 @@ class Spree::Offer < ActiveRecord::Base
   delegate :name, :to => :listing
 
   scope :destined,
-    -> { where("address_id is not null") }
+    -> { where("#{self.table_name}.address_id is not null") }
   scope :possessed,
-    -> { where "shop_id is not null" }
+    -> { where "#{self.table_name}.shop_id is not null" }
   scope :relevant,
-    -> { where "listing_id is not null" }
+    -> { where "#{self.table_name}.listing_id is not null" }
   scope :fresh,
-    -> { where("expires_at is null or expires_at > ?", Time.now) }
+    -> { where("#{self.table_name}.expires_at is null or expires_at > ?", Time.now) }
   scope :completed,
     -> { destined.possessed.relevant.fresh }
 
   scope :aimless,
-    -> { where("address_id is null") }
+    -> { where("#{self.table_name}.address_id is null") }
   scope :disowned,
-    -> { where("shop_id is null") }
+    -> { where("#{self.table_name}.shop_id is null") }
   scope :irrelevant,
-    -> { where("listing_id is null") }
+    -> { where("#{self.table_name}.listing_id is null") }
   scope :moldy,
-    -> { where("expires_at < ?", Time.now) }
+    -> { where("#{self.table_name}.expires_at < ?", Time.now) }
   scope :utter_crap,
     -> { where("address_id is null or shop_id is null or listing_id is null or expires_at < ?", Time.now) }
   attr_accessor :metadata

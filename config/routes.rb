@@ -86,13 +86,17 @@ Tracago::Application.routes.draw do
     resources :counter_offers, only: [:new], controller: 'spree/counter_offers'
     resources :services, only: [:new], controller: 'spree/offers/services'
     resources :finalizations, 
-      only: [:new, :create],
+      only: [:new, :create, :index],
       controller: 'spree/offers/finalizations'
     resources :comments, only: [:new, :create], controller: 'spree/offers/comments'
     resources :addresses, only: [:create, :new], controller: 'spree/offers/addresses'
   end
   resources :shops, only: [:show], controller: 'spree/shops' do
-    resources :ratings, only: [:index], controller: 'spree/shops/ratings'
+    resources :ratings, only: [:index], controller: 'spree/shops/ratings' do
+      collection do
+        get :given
+      end
+    end
     resources :listings, only: [:index], controller: 'spree/shops/listings'
     resources :offers, only: [:index], controller: 'spree/shops/offers'
     resources :finalizations, only: [:index], controller: 'spree/shops/finalizations'
