@@ -91,7 +91,7 @@ Tracago::Application.routes.draw do
     resources :comments, only: [:new, :create], controller: 'spree/offers/comments'
     resources :addresses, only: [:create, :new], controller: 'spree/offers/addresses'
   end
-  resources :shops, only: [:show], controller: 'spree/shops' do
+  resources :shops, only: [:show, :edit], controller: 'spree/shops' do
     resources :ratings, only: [:index], controller: 'spree/shops/ratings' do
       collection do
         get :given

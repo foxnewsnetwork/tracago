@@ -3,6 +3,11 @@
   span.parentheses {
     font-size: 12px;
   }
+  
+  #basic-information {
+    @extend .col-lg-12;
+  }
+
   #my-ratings {
     article {
       @extend .col-lg-6;
