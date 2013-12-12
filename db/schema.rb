@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205202605) do
+ActiveRecord::Schema.define(version: 20131210205625) do
 
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"
@@ -91,6 +91,35 @@ ActiveRecord::Schema.define(version: 20131205202605) do
 
   add_index "spree_dispute_negotiations", ["post_transaction_id"], name: "index_spree_dispute_negotiations_on_post_transaction_id", using: :btree
   add_index "spree_dispute_negotiations", ["shop_id"], name: "index_spree_dispute_negotiations_on_shop_id", using: :btree
+
+  create_table "spree_documents", force: true do |t|
+    t.string   "presentation"
+    t.string   "permalink",                  null: false
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
+    t.datetime "rejected_at"
+    t.string   "comment"
+    t.string   "documentation_file_name"
+    t.string   "documentation_content_type"
+    t.integer  "documentation_file_size"
+    t.datetime "documentation_updated_at"
+  end
+
+  add_index "spree_documents", ["documentable_id", "documentable_type"], name: "index_spree_documents_on_documentable_id_and_documentable_type", using: :btree
+  add_index "spree_documents", ["permalink"], name: "index_spree_documents_on_permalink", using: :btree
+
+  create_table "spree_escrow_steps", force: true do |t|
+    t.string   "presentation"
+    t.string   "permalink",       null: false
+    t.integer  "finalization_id"
+    t.datetime "completed_at"
+    t.string   "step_type",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spree_escrow_steps", ["finalization_id"], name: "index_spree_escrow_steps_on_finalization_id", using: :btree
+  add_index "spree_escrow_steps", ["permalink"], name: "index_spree_escrow_steps_on_permalink", using: :btree
 
   create_table "spree_finalizations", force: true do |t|
     t.integer  "offer_id"

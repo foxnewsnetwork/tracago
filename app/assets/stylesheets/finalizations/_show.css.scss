@@ -1,3 +1,78 @@
 @mixin finalizations-show {
   @extend .row;
+  #finalized-offer-summary {
+    h2 {
+      @extend .col-lg-12;
+    }
+    dl {
+      @extend .col-lg-6;
+    }
+    i {
+      @extend .fa;
+      &.dollars {
+        @extend .fa-usd;
+      }
+    }
+  }
+  
+  #finalization-steps {
+    @extend .col-lg-12;
+    ul {
+      @extend .row;
+      padding-left: 15px;
+      list-style: none;
+      li {
+        @extend .col-lg-12;
+        i {
+          @extend .fa;
+          &.waiting {
+            @extend .fa-spinner;
+          }
+          &.active {
+            @extend .fa-circle-o;
+          }
+          &.complete {
+            @extend .fa-check-circle;
+          }
+          &.missing {
+            @extend .fa-exclamation-circle;
+          }
+          &.rejected {
+            @extend .fa-warning;
+          }
+        }
+        &.waiting, &.complete {
+          dl, p {
+            display: none;
+          }
+          h4 {
+            border-bottom: none;
+          }
+        }
+        a {
+          @extend .thumbnail;
+          @extend .row;
+          h4 {
+            @extend .col-lg-12;
+            font-size: 16px;
+            border-bottom: $standard-border;
+            margin: 0px;
+            padding-top: 5px;
+            padding-bottom: 10px;
+
+            span.parentheses {
+              font-size: 12px;
+            }
+          }
+          dl {
+            @extend .col-lg-6;
+          }
+          p {
+            @extend .col-lg-6;
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+  }
 }

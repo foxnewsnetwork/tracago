@@ -1,13 +1,12 @@
 = content_for :sidebar do
   %ul
     %li= link_to t(:finalized_offer_summary), '#finalized-offer-summary'
-    %li= link_to t(:steps_to_completion), '#finalization-steps'
-    - if correct_shop_session? @finalization.buyer
-      %li= link_to t(:buyer_actions), '#buyer-actions'
-    - if correct_shop_session? @finalization.seller
-      %li= link_to t(:seller_actions), '#seller-actions'
-    %li= link_to t(:services_summary), '#services-summary'
-    %li= link_to t(:required_documentation), '#required-documentation'
+    %li
+      = link_to t(:steps_to_completion), '#finalization-steps'
+      %ul
+        - @finalization.downcast_escrow_steps.each do |e|
+          %li= link_to e.presentation, "##{e.permalink}"
+
 
 #finalized-offer-summary
   %h2= t(:finalized_offer_summary)
@@ -41,62 +40,6 @@
     %dt= t(:minimum_weight)
     %dd= offer.minimum_weight_presentation
 
-- if true # correct_shop_session? @finalization.buyer
-  #buyer-actions
-    %h2= t(:buyer_actions)
-    %section
-      = link_to new_finalization_escrow_path(@finalization) do
-        %figure
-          %i.escrow
-        %h6= t(:open_escrow)
-      = link_to edit_finalization_path(@finalization) do
-        %figure
-          %i.edit
-        %h6= t(:set_expiration)
-      = link_to new_finalization_truck_demand_path(@finalization) do
-        %figure
-          %i.truck
-        %h6= t(:truck_service)
-      = link_to new_finalization_ship_demand_path(@finalization) do
-        %figure
-          %i.ship
-        %h6= t(:ship_service)
-      = link_to new_finalization_comment_path(@finalization) do
-        %figure
-          %i.comment
-        %h6= t(:comment)
-      = link_to new_finalization_rating_path(@finalization) do
-        %figure
-          %i.rating
-        %h6= t(:rate_transaction)
-
-- if true # correct_shop_session? @finalization.seller
-  #seller-actions
-    %h2= t(:seller_actions)
-    %section
-      = link_to new_finalization_truck_demand_path(@finalization) do
-        %figure
-          %i.truck
-        %h6= t(:truck_service)
-      = link_to new_finalization_ship_demand_path(@finalization) do
-        %figure
-          %i.ship
-        %h6= t(:ship_service)
-      = link_to new_finalization_comment_path(@finalization) do
-        %figure
-          %i.comment
-        %h6= t(:comment)
-      = link_to new_finalization_rating_path(@finalization) do
-        %figure
-          %i.rating
-        %h6= t(:rate_transaction)
 #finalization-steps
   %h2= t(:steps_to_completion)
-  %ul
-
-#services-summary
-  %h2= t(:services_summary)
-  %ul= render partial: 'spree/finalizations/service_contract', collection: @finalization.service_contracts
-#required-documentation
-  %h2= t(:dialogue_back_and_forth)
-  
+  %ul= render partial: 'spree/finalizations/escrow_step', collection: @finalization.downcast_escrow_steps

@@ -22,6 +22,11 @@ International Trade Platform
 # Monday, December 9
 1. shop show page
 
+# Tuesday, December 10
+1. ?
+
+# Wednesday, December 11
+1. Escrow-steps
 Work to be Done
 =
 * finish finalization show page

@@ -79,7 +79,7 @@
             @extend .col-lg-12;
             margin-top: 0px;
             margin-bottom: 0px;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: $standard-border;
           }
           dl {
             @extend .col-lg-6;

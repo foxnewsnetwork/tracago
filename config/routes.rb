@@ -26,6 +26,8 @@ Tracago::Application.routes.draw do
       passwords: 'spree/users/devise/passwords'
     }
   
+  resources :escrow_steps, only: [:show, :update], controller: 'spree/escrow_steps'
+
   resources :escrows, only: [:show, :edit], controller: 'spree/escrows' do
     member do
       get :close

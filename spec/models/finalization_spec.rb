@@ -4,6 +4,13 @@ describe Spree::Finalization do
   before do
     @finalization = ChineseFactory::Finalization.mock
   end
+
+  context 'escrow_steps' do
+    let(:escrow_steps) { @finalization.escrow_steps }
+    it 'should create 10 escrow_steps' do
+      lambda { escrow_steps }.should change(Spree::EscrowStep, :count).by(10)
+    end
+  end
   context 'factory' do
     subject { @finalization }
     it "should be a valid finalization" do

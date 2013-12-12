@@ -1,0 +1,16 @@
+%li{ :class => escrow_step.status, :id => escrow_step.permalink }
+  = link_to escrow_step_path(escrow_step) do
+    %h4
+      %i{ :class => escrow_step.status }
+      = escrow_step.presentation
+      %span.parentheses= escrow_step.status
+    %dl
+      %dt= t(:missing_documents)
+      - if escrow_step.missing_documents.present?
+        %dd= escrow_step.missing_documents.join(", ")
+      - else
+        %dd= t(:none)
+      %dt= t(:submitted_documents)
+      %dd= t(:none)
+    %p
+      = Faker::Lorem.paragraph
