@@ -42,9 +42,17 @@
           }
         }
         &.waiting, &.complete {
-          dl, p {
-            display: none;
+          &:hover {
+            dl, p {
+              display: inline;
+            }
+            h4 {
+              border-bottom: $standard-border;
+            }
           }
+          dl, p {
+              display: none;
+            }
           h4 {
             border-bottom: none;
           }
