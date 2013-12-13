@@ -1,0 +1,36 @@
+@mixin shared-header {
+  @extend .container;
+  nav {
+    @extend .row;
+    ul {
+      padding-left: 0px;
+      list-style: none;
+      li {
+        @extend .col-lg-1;
+        text-align: center;
+        a {
+          display: inline-block;
+          height: 60px;
+          color: $standard-linkcolor;
+          font-weight: bold;
+          padding-top: 18px;
+        }
+        &.logo {
+          a {
+            padding-top: 10px;
+            font-size: 28px;
+          }
+        }
+        &.active {
+          background: $highlight-background;
+          a {
+            color: $highlight-textcolor;
+          }
+        }
+        &:nth-child(4) {
+          @extend .col-lg-offset-7;
+        }
+      }
+    }
+  }
+}

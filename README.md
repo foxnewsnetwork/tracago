@@ -27,6 +27,14 @@ International Trade Platform
 
 # Wednesday, December 11
 1. Escrow-steps
+
+# Thursday, December 12
+1. finish finalization page
+2. front page for asshole site
+
+# Friday, December 12
+1. front page styled out
+
 Work to be Done
 =
 * finish finalization show page

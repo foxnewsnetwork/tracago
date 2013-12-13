@@ -1,0 +1,25 @@
+!!!5
+/ [if lt IE 7 ]
+  %html.ie.ie6{ lang: I18n.locale }
+/ [if IE 7 ]
+  %html.ie.ie7{ lang: I18n.locale }
+/ [if IE 8 ]
+  %html.ie.ie8{ lang: I18n.locale }
+/ [if IE 9 ]
+  %html.ie.ie9{ lang: I18n.locale }
+/ [if gt IE 9]
+  %html{ lang: I18n.locale }
+
+%head
+  = render partial: 'itps/shared/head'
+%body
+  #rooftop
+  %header
+    = render partial: 'itps/shared/header'
+  %main
+    = yield
+  %footer
+    = render partial: 'itps/shared/footer'
+  %section#misc-invisible-crap
+    = render partial: 'itps/shared/invisible'
+      

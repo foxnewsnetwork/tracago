@@ -1,0 +1,25 @@
+@import 'itps/shared/variables';
+@import 'itps/shared/header';
+@import 'itps/shared/main';
+@import 'itps/shared/footer';
+
+body {
+  background: #e7e7e7;
+  #rooftop {
+    height: 18px;
+    width: 100%;
+    background: #6e6d71;
+  }
+  header {
+    @include shared-header;
+  }
+  main {
+    @include shared-main;
+  }
+  footer {
+    @include shared-footer;
+  }
+  #misc-invisible-crap {
+    display: none;
+  }
+}

@@ -1,0 +1,43 @@
+@mixin shared-footer {
+  background-color: #d0d0d0;
+  border-top: 1px solid #6e6d71;
+  border-bottom: 20px solid #6e6d71;
+  section {
+    @extend .container;
+    padding-top: 10px;
+    article#footer-stats {
+      @extend .row;
+      border-bottom: 1px solid #c0c0c0;
+      dl {
+        @extend .dl-horizontal;
+        @extend .col-lg-4;
+        font-size: 20px;
+      }
+    }
+    ul#footer-links {
+      @extend .row;
+      margin-top: 15px;
+      list-style: none;
+      li {
+        @extend .col-lg-2;
+        text-align: center;
+        a {
+          color: $standard-linkcolor;
+        }
+      }
+    }
+    article#footer-logos {
+      @extend .row;
+      padding-top: 10px;
+      figure {
+        @extend .col-lg-2;
+        @extend .col-lg-offset-10;
+        text-align: center;
+        color: $standard-linkcolor; 
+        a {
+          color: $standard-linkcolor; 
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,13 @@
 Tracago::Application.routes.draw do
 
   root :to => 'spree/home#index'
-
+  namespace 'itps' do
+    get '/' => 'home#index'
+    get '/faq' => 'home#faq'
+    get '/usage' => 'home#usage'
+    get '/documentation' => 'home#documentation'
+    get '/help' => 'home#help'
+  end
   resources :searches, only: [:index]
   resources :services, only: [:index]
   resources :service_demands, only: [:show]

@@ -1,0 +1,20 @@
+%section
+  %article#footer-stats
+    %dl
+      %dt= t(:days_active)
+      %dd= time_ago_in_words rand(9999).days.ago
+    %dl
+      %dt= t(:active_transfers)
+      %dd= rand(99999)
+  %ul#footer-links
+    %li= link_to t(:aboutus), '#aboutus'
+    %li= link_to t(:location), '#location'
+    %li= link_to t(:status), '#status'
+    %li= link_to t(:blog), '#blog'
+    %li= link_to t(:jobs), '#jobs'
+    %li= link_to t(:privacy_and_terms), '#privacy-and-terms'
+  %article#footer-logos
+    %figure
+      © 1949 - 2014
+      %span ITPS
+

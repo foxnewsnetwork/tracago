@@ -1,0 +1,38 @@
+#hero-banner{ :class => "dog#{params[:c].to_i}" }
+  %section.desktop
+    %ul
+      - 3.times do |i|
+        %li= render 'itps/home/hero_box'
+
+#basic-usage-explanation
+  %ul
+    %li
+      %h1= Faker::Company.bs
+      %figure
+        %i.bank-and-check
+      %p
+        = Faker::Lorem.paragraph(2)
+      = link_to t(:see_more), '#somewhere'
+    %li
+      %h1= Faker::Company.bs
+      %figure
+        %i.pricing
+      %p
+        = Faker::Lorem.paragraph(2)
+      = link_to t(:see_more), '#somewhere'
+    %li
+      %h1= Faker::Company.bs
+      %figure
+        %i.accessibility
+      %p
+        = Faker::Lorem.paragraph(2)
+      = link_to t(:see_more), '#somewhere'
+
+#available-services
+  %article
+    %ul
+      - 12.times do
+        %li
+          %figure
+            %i
+          %h6= Faker::Company.name

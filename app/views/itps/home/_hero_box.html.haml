@@ -1,0 +1,18 @@
+- active ||= params[:c].to_i
+- header ||= Faker::Lorem.sentence
+- paragraph ||= Faker::Lorem.paragraph
+- link ||= link_to t(:call_to_action), '#somewhere'
+- content = capture do
+  %h1= header
+  %p= paragraph
+  .call-to-action= link
+  .carousel
+    - (0..2).each do |i|
+      %span{ :class => i == active ? :active : :inactive }
+        = link_to itps_path(c: i) do
+          %i
+  
+.opaque-box
+  = content
+.transparent-box
+  = content
