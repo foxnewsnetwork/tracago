@@ -1,0 +1,29 @@
+#hero-banner
+  %section
+    %h1= t(:frequently_asked_questions)
+
+#faq-content
+  %section
+    = form_for :search, url: itps_faq_path, method: :get do |f|
+      .fieldset
+        = f.text_field :q, value: params[:search].try(:[], :q)
+        %span
+          = button_tag type: :submit do
+            %i
+            = t(:search_help)
+  %section
+    %article.questions-and-answers
+      - 4.times do
+        %h2= Faker::Company.bs
+        %dl
+          - 6.times do
+            %dt= Faker::Lorem.sentence.gsub(/\.$/, '?')
+            %dd= Faker::Lorem.sentence(3)
+    %article.additional-resources
+      %h3= t(:other_resources)
+      %ul
+        %li= link_to t(:help), itps_help_path
+        %li= link_to t(:documentation), itps_documentation_path
+        %li= link_to t(:location), itps_location_path
+        %li= link_to t(:about_us), itps_aboutus_path
+        %li= link_to t(:privacy_and_legal), itps_legal_path

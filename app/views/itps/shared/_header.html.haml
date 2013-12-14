@@ -1,7 +1,12 @@
+- activation = lambda { |path| request.fullpath.split("?").first.to_s == path.to_s ? :active : :inactive }
 %nav
   %ul
     %li.logo= link_to 'ITPS', itps_path
-    %li.active= link_to t(:usage), itps_usage_path
-    %li= link_to t(:faq), itps_faq_path
-    %li= link_to t(:documentation), itps_documentation_path
-    %li= link_to t(:help), itps_help_path
+    %li{ :class => activation.call(itps_path) }
+      = link_to t(:usage), itps_usage_path
+    %li{ :class => activation.call(itps_faq_path) }
+      = link_to t(:faq), itps_faq_path
+    %li
+      = link_to t(:documentation), itps_documentation_path
+    %li
+      = link_to t(:help), itps_help_path

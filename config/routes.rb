@@ -7,6 +7,9 @@ Tracago::Application.routes.draw do
     get '/usage' => 'home#usage'
     get '/documentation' => 'home#documentation'
     get '/help' => 'home#help'
+    get '/aboutus' => 'home#aboutus'
+    get '/location' => 'home#location'
+    get '/legal' => 'home#legal'
   end
   resources :searches, only: [:index]
   resources :services, only: [:index]

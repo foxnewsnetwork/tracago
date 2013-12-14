@@ -17,7 +17,7 @@
   %header
     = render partial: 'itps/shared/header'
   %main
-    = yield
+    %div{ :id => main_content_div_id }= yield
   %footer
     = render partial: 'itps/shared/footer'
   %section#misc-invisible-crap
