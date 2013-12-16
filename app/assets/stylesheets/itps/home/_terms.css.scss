@@ -16,12 +16,23 @@
       }
     }
   }
-  #terms-of-service-content {
+  #legal-terms-content {
     margin-top: 20px;
     margin-bottom: 20px;
     @extend .container;
     section {
       @extend .row;
+      h2 {
+        a {
+          font-size: 14px;
+          &:before {
+            content: "(";
+          }
+          &:after {
+            content: ")";
+          }
+        }
+      }
       h2, h3, p {
         @extend .col-lg-8;
       }
