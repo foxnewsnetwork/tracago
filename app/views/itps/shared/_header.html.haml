@@ -1,8 +1,10 @@
-- activation = lambda { |path| request.fullpath.split("?").first.to_s == path.to_s ? :active : :inactive }
+- active_test = lambda { |path| request.fullpath.split("?").first.to_s == path.to_s }
+- full_test = lambda { |paths| paths.inject(false) { |mem, path| mem || active_test.call(path) } }
+- activation = lambda { |*paths| full_test.call(paths) ? :active : :inactive }
 %nav
   %ul
     %li.logo= link_to 'ITPS', itps_path
-    %li{ :class => activation.call(itps_path) }
+    %li{ :class => activation.call(itps_path, itps_usage_path) }
       = link_to t(:usage), itps_usage_path
     %li{ :class => activation.call(itps_faq_path) }
       = link_to t(:faq), itps_faq_path

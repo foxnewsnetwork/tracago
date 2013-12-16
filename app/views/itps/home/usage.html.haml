@@ -1,0 +1,49 @@
+#hero-banner
+  %section
+    %h1= t(:example_usage)
+
+#usage-content
+  %section
+    %ul
+      %li#create-or-login-account
+        %h3
+          %span.colon= t(:step_one)
+          = t(:create_or_login)
+        %article
+          %p= Faker::Lorem.paragraph
+          %figure= link_to image_tag '/itps/dog1.jpg'
+      %li#specify-escrow-documentation
+        %h3
+          %span.colon= t(:step_two)
+          = t(:specify_completion_path)
+        %article
+          %p= Faker::Lorem.paragraph
+          %figure= link_to image_tag '/itps/dog2.jpg'
+      %li#inform-the-other-party
+        %h3
+          %span.colon= t(:step_three)
+          = t(:specify_completion_path)
+        %article
+          %p= Faker::Lorem.paragraph
+          %figure= link_to image_tag '/itps/dog3.jpg'
+      %li#someone-pays-in
+        %h3
+          %span.colon= t(:step_four)
+          = t(:deposit_funds_into_shared_account)
+        %article
+          %p= Faker::Lorem.paragraph
+          %figure= link_to image_tag '/itps/dog1.jpg'
+      %li#someone-does-the-work
+        %h3
+          %span.colon= t(:step_five)
+          = t(:work_is_completed)
+        %article
+          %p= Faker::Lorem.paragraph
+          %figure= link_to image_tag '/itps/dog2.jpg'
+      %li#work-and-pay-is-exchanged
+        %h3
+          %span.colon= t(:step_six)
+          = t(:work_is_checked_and_payment_is_made)
+        %article
+          %p= Faker::Lorem.paragraph
+          %figure= link_to image_tag '/itps/dog3.jpg'

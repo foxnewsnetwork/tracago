@@ -1,0 +1,58 @@
+@mixin itps-home-usage {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      @extend .hidden-xs;
+      @extend .hidden-sm;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  #usage-content {
+    @extend .container;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    section {
+      @extend .row;
+      ul {
+        list-style: none;
+        padding-left: 0px;
+        &:first-child {
+          @extend .col-lg-12;
+          li {
+            @extend .row;
+            margin-left: 0px;
+
+            h3 {
+              border-bottom: $standard-border;
+              margin-right: 15px;
+              .colon{
+                &:after {
+                  content: ":";
+                }
+              }
+            }
+            p {
+              @extend .col-lg-8;
+              padding-left: 0px;
+            }
+            figure {
+              @extend .col-lg-4;
+              img {
+                max-width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

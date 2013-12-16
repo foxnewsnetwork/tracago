@@ -1,5 +1,6 @@
 @import 'itps/home/index';
 @import 'itps/home/faq';
+@import 'itps/home/usage';
 
 @mixin shared-main {
   #home-index {
@@ -7,5 +8,8 @@
   }
   #home-faq {
     @include itps-home-faq;
+  }
+  #home-usage {
+    @include itps-home-usage;
   }
 }
