@@ -5,11 +5,15 @@ Tracago::Application.routes.draw do
     get '/' => 'home#index'
     get '/faq' => 'home#faq'
     get '/usage' => 'home#usage'
-    get '/documentation' => 'home#documentation'
+    get '/account' => 'home#account'
     get '/help' => 'home#help'
     get '/aboutus' => 'home#aboutus'
-    get '/location' => 'home#location'
+    get '/terms' => 'home#terms'
     get '/legal' => 'home#legal'
+    get '/status' => 'home#status'
+    get '/blog' => 'home#blog'
+    get '/jobs' => 'home#jobs'
+    get '/documentation' => 'home#documentation'
   end
   resources :searches, only: [:index]
   resources :services, only: [:index]

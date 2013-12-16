@@ -1,6 +1,8 @@
 @import 'itps/home/index';
 @import 'itps/home/faq';
 @import 'itps/home/usage';
+@import 'itps/home/aboutus';
+@import 'itps/home/terms';
 
 @mixin shared-main {
   #home-index {
@@ -11,5 +13,11 @@
   }
   #home-usage {
     @include itps-home-usage;
+  }
+  #home-aboutus {
+    @include itps-home-aboutus;
+  }
+  #home-terms {
+    @include itps-home-terms;
   }
 }

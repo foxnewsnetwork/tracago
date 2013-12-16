@@ -35,6 +35,15 @@ International Trade Platform
 # Friday, December 12
 1. front page styled out
 
+# Sunday, December 15
+1. usage page styled out
+2. help page styled out
+3. styled the help page
+
+
+# Monday, December 16
+1. terms page
+
 Work to be Done
 =
 * finish finalization show page

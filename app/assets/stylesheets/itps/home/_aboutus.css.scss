@@ -1,0 +1,22 @@
+@mixin itps-home-aboutus {
+  #hero-banner {
+    @extend .hidden-xs;
+    @extend .hidden-sm;
+    background: url('/itps/dog1.jpg');
+    width: 100%;
+    height: 275px;
+  }
+  #aboutus-content {
+    @extend .container;
+    section {
+      @extend .row;
+      margin-bottom: 20px;
+      article {
+        @extend .col-lg-8;
+        h3 {
+          border-bottom: $standard-border;
+        }
+      }
+    }
+  }
+}
