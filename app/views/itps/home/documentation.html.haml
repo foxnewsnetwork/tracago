@@ -1,0 +1,15 @@
+%section
+  #left-navigation
+    %ul
+      %li
+        - Itps::DocTag.roots.each do |tag|
+          = link_to itps_doc_tag_path(tag.permalink) do
+            %i{ :class => tag.permalink }
+            = tag.title
+  
+  #right-content
+    %article
+      %h3= Faker::Lorem.sentence
+      %p= Faker::Lorem.paragraph
+      %h4= Faker::Lorem.sentence
+      %p= Faker::Lorem.paragraph

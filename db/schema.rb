@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210205625) do
+ActiveRecord::Schema.define(version: 20131216233154) do
+
+  create_table "itps_doc_tags", force: true do |t|
+    t.string  "permalink",                    null: false
+    t.string  "title",                        null: false
+    t.integer "parent_id"
+    t.integer "documentation_id"
+    t.integer "level",            default: 0, null: false
+  end
+
+  add_index "itps_doc_tags", ["parent_id"], name: "index_itps_doc_tags_on_parent_id", using: :btree
+  add_index "itps_doc_tags", ["permalink"], name: "index_itps_doc_tags_on_permalink", using: :btree
+
+  create_table "itps_documentations", force: true do |t|
+    t.string   "permalink",  null: false
+    t.string   "title",      null: false
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_documentations", ["permalink"], name: "index_itps_documentations_on_permalink", using: :btree
 
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"

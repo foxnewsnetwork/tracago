@@ -14,7 +14,9 @@ Tracago::Application.routes.draw do
     get '/blog' => 'home#blog'
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'home#documentation'
+    resources :doc_tags, only: [:show]
   end
+
   resources :searches, only: [:index]
   resources :services, only: [:index]
   resources :service_demands, only: [:show]

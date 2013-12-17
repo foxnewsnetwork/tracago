@@ -3,6 +3,7 @@
 @import 'itps/home/usage';
 @import 'itps/home/aboutus';
 @import 'itps/home/terms';
+@import 'itps/home/documentation';
 
 @mixin shared-main {
   #home-index {
@@ -22,5 +23,8 @@
   }
   #home-legal {
     @include itps-home-terms;
+  }
+  #home-documentation {
+    @include itps-home-documentation;
   }
 }
