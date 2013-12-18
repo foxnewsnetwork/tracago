@@ -1,4 +1,8 @@
 class Itps::EscrowsController < Itps::BaseController
+  def show
+    _escrow
+  end
+
   def new
     _form_helper
   end
@@ -11,7 +15,7 @@ class Itps::EscrowsController < Itps::BaseController
 
   private
   def _get_out_of_here!
-    return redirect_to new_itps_escrow_step_path(_escrow.permalink) if _existing?
+    return redirect_to itps_escrow_path(_escrow.permalink) if _existing?
     return render :new if _invalid?
   end
 

@@ -1,0 +1,29 @@
+#hero-banner
+  %legend
+    %h1= t(:steps_to_escrow)
+
+= form_for :steps, url: itps_escrow_steps_path(@escrow.permalink) do |f|
+  %fieldset
+    %h3= t(:step_information)
+    %dl
+      %dt= f.label :title, t(:step_name)
+      %dd= f.text_field :title
+      %dt= f.label :instructions
+      %dd= f.text_area :instructions
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %h3= t(:required_documents)
+    %dl
+      %dt= f.label :document_name, t(:document_name)
+      %dd= f.text_field :document_name
+      %dt= f.label :document_description, t(:document_description)
+      %dd= f.text_area :document_description
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %section
+      = button_tag type: :submit do
+        %i.submit
+        = t(:next)
+      = button_tag type: :reset do
+        %i.reset
+        = t(:cancel)

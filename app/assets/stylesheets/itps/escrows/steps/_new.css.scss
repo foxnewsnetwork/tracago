@@ -1,4 +1,4 @@
-@mixin itps-escrows-new {
+@mixin itps-escrows-steps-new {
   #hero-banner {
     background-color: $highlight-background;
     legend {
@@ -28,7 +28,7 @@
         @extend .col-lg-6;
         dd {
           @extend .form-group;
-          input {
+          input, textarea {
             @extend .form-control;
           }
         }

@@ -47,6 +47,10 @@ International Trade Platform
 
 # Tuesday, December 17
 1. escrow new page
+2. flash
+
+# Wednesday, December 18
+1. escrow steps new
 
 Work to be Done
 =

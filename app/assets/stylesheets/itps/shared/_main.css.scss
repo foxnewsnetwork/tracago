@@ -5,7 +5,8 @@
 @import 'itps/home/terms';
 @import 'itps/home/documentation';
 @import 'itps/escrows/new';
-
+@import 'itps/escrows/steps/new';
+@import 'itps/escrows/show';
 @mixin shared-main {
   #home-index {
     @include itps-home-index;
@@ -30,5 +31,11 @@
   }
   #escrows-create, #escrows-new {
     @include itps-escrows-new;
+  }
+  #escrows-steps-create, #escrows-steps-new {
+    @include itps-escrows-steps-new;    
+  }
+  #escrows-show {
+    @include itps-escrows-show;
   }
 }

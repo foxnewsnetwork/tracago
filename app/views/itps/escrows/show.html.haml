@@ -1,0 +1,44 @@
+#hero-banner{ :class => @escrow.status }
+  %section
+    %h1
+      %span.colon= t(:escrow_status)
+      = @escrow.status
+
+#content-box
+  #basic-information
+    %h2= t(:basic_information)
+    %dl
+      %dt= t(:payment_party)
+      %dd= @escrow.payment_party.company_name
+      %dt= t(:payment_party_email)
+      %dd= mail_to @escrow.payment_party.email
+    %dl
+      %dt= t(:goods_or_service_party)
+      %dd= @escrow.service_party.company_name
+      %dt= t(:goods_or_service_party_email)
+      %dd= mail_to @escrow.service_party.email
+  #actions
+    %h2= t(:actions)
+    %ul
+      %li
+        = link_to new_itps_escrow_step_path(@escrow.permalink) do
+          %figure
+            %i.add-step
+          = t(:add_step)
+      %li
+        = link_to escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
+          %figure
+            %i.destroy-escrow
+          = t(:destroy_escrow)
+    
+  #steps-to-completion
+    %h2= t(:steps_to_completion)
+    - if @escrow.steps.blank?
+      %h6
+        = t(:no_steps_yet)
+        = link_to new_itps_escrow_step_path(@escrow.permalink) do
+          %i
+          = t(:add_step)
+    %ol= render partial: 'itps/escrows/step', collection: @escrow.steps
+
+

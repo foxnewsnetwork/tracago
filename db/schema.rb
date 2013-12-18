@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20131217185835) do
     t.string   "status_key"
     t.datetime "closed_at"
     t.datetime "deleted_at"
+    t.datetime "opened_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

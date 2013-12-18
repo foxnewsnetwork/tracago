@@ -1,0 +1,101 @@
+@mixin itps-escrows-show {
+  #hero-banner {
+    color: $highlight-textcolor;
+    &.unready {
+      background-color: $warning-color;
+    }
+    &.deleted {
+      background-color: $danger-color;
+    }
+    &.opened {
+      background-color: $success-color;
+    }
+    &.closed {
+      background-color: $hooray-color;
+    }
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        @extend .hidden-xs;
+        @extend .hidden-sm;
+        text-transform: uppercase;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+        .colon {
+          text-transform: none;
+          font-weight: normal;
+          &:after {
+            content: ":";
+          }
+        }
+      }
+    }
+  }
+  #content-box {
+    @extend .container;
+    margin-bottom: 20px;
+    #basic-information, #actions, #steps-to-completion {
+      @extend .row;
+      h2 {
+        @extend .col-lg-12;
+        border-bottom: $standard-border;
+      }
+    }
+    #basic-information {
+      dl {
+        @extend .col-lg-6;
+      }
+    }
+    #actions {
+      ul {
+        list-style: none;
+        padding-left: 0px;
+        li {
+          @extend .col-lg-2;
+          a {
+            @extend .thumbnail;
+            text-align: center;
+            font-size: 16px;
+            figure {
+              i {
+                @extend .fa;
+                @extend .fa-2x;
+
+                &.add-step {
+                  @extend .fa-plus-circle;
+                }
+
+                &.destroy-escrow {
+                  @extend .fa-exclamation-circle;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #steps-to-completion {
+      h6 {
+        @extend .col-lg-12;
+        font-size: 16px;
+        &:before {
+          content: "(";
+        }
+        &:after {
+          content: ")";
+        }
+        a {
+          i {
+            @extend .fa;
+            @extend .fa-plus-circle;
+          }
+        }
+      }
+    }
+  }
+}

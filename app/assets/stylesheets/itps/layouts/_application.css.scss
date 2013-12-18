@@ -8,6 +8,26 @@
 body {
   @include shared-important;
   background: #e7e7e7;
+  button {
+    @extend .btn;
+    &[type=submit] {
+      @extend .btn-block;
+      @extend .btn-primary;
+    }
+    &[type=reset] {
+      @extend .btn-block;
+      @extend .btn-default;
+    }
+    i {
+      @extend .fa;
+      &.submit {
+        @extend .fa-check;
+      }
+      &.reset {
+        @extend .fa-ban;
+      }
+    }
+  }
   #the-flash {
     @include shared-flash;
   }
