@@ -1,5 +1,4 @@
-class Itps::HomeController < ApplicationController
-  layout 'itps/layouts/application'
+class Itps::HomeController < Itps::BaseController
   def index; end
   def faq; end
   def usage; end

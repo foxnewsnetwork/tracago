@@ -43,6 +43,10 @@ International Trade Platform
 
 # Monday, December 16
 1. terms page
+2. documentation page
+
+# Tuesday, December 17
+1. escrow new page
 
 Work to be Done
 =

@@ -1,0 +1,29 @@
+#hero-banner
+  %legend
+    %h1= t(:open_escrow_form)
+
+= form_for @form_helper, url: itps_escrows_path do |f|
+  %fieldset
+    %h3= t(:paying_party_details)
+    %dl
+      %dt= f.label :paying_company_name, t(:company_name)
+      %dd= f.text_field :paying_company_name
+      %dt= f.label :paying_company_email, t(:email)
+      %dd= f.email_field :paying_company_email
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %h3= t(:working_party_details)
+    %dl
+      %dt= f.label :working_company_name, t(:company_name)
+      %dd= f.text_field :working_company_name
+      %dt= f.label :working_company_email, t(:email)
+      %dd= f.email_field :working_company_email
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %section
+      = button_tag type: :submit do
+        %i.submit
+        = t(:next)
+      = button_tag type: :reset do
+        %i.reset
+        = t(:cancel)

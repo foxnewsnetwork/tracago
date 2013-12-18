@@ -1,0 +1,6 @@
+- if flash.empty?
+  #rooftop
+- flash.each do |key, message|
+  %article{ :class => key }
+    %i
+    = message

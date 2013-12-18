@@ -19,7 +19,6 @@ class Itps::DocTag < ActiveRecord::Base
         find_or_create_by title: title
       end
     end
-
   end
 
   private

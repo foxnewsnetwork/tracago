@@ -1,0 +1,63 @@
+@mixin itps-escrows-new {
+  #hero-banner {
+    background-color: $highlight-background;
+    legend {
+      @extend .container;
+      @extend .hidden-xs;
+      @extend .hidden-sm;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  form {
+    @extend .container;
+    fieldset {
+      @extend .row;
+      h3 {
+        @extend .col-lg-12;
+        border-bottom: $standard-border;
+      }
+      dl {
+        @extend .col-lg-6;
+        dd {
+          @extend .form-group;
+          input {
+            @extend .form-control;
+          }
+        }
+      }
+      p {
+        @extend .col-lg-6;
+      }
+      section {
+        @extend .col-lg-6;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-top: $standard-border;
+        button {
+          @extend .btn;
+          @extend .btn-block;
+          &[type=submit] {
+            @extend .btn-primary;
+          }
+          i {
+            @extend .fa;
+            &.submit {
+              @extend .fa-check;
+            }
+            &.reset {
+              @extend .fa-ban;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@mixin shared-flash {
+  background-color: #6e6d71;
+  width: 100%;
+  padding: 0px;
+  min-width: 20px;
+  #rooftop {
+    height: 18px;
+    width: 100%;
+    background: #6e6d71;
+  }
+  article {
+    @extend .alert;
+    display: inline-block;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    i {
+      @extend .fa;
+    }
+    &.error {
+      @extend .alert-danger;
+      i {
+        @extend .fa-exclamation-triangle;
+      }
+    }
+    &.success {
+      @extend .alert-success;
+      i {
+        @extend .fa-check-circle-o;
+      }
+    }
+    &.notice {
+      @extend .alert-warning; 
+      i {
+        @extend .fa-info-circle;
+      }
+    }
+  }
+}

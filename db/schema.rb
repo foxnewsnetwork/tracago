@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216233154) do
+ActiveRecord::Schema.define(version: 20131217185835) do
+
+  create_table "itps_accounts", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_accounts", ["email"], name: "index_itps_accounts_on_email", unique: true, using: :btree
+  add_index "itps_accounts", ["reset_password_token"], name: "index_itps_accounts_on_reset_password_token", unique: true, using: :btree
 
   create_table "itps_doc_tags", force: true do |t|
     t.string  "permalink",                    null: false
@@ -33,6 +51,63 @@ ActiveRecord::Schema.define(version: 20131216233154) do
   end
 
   add_index "itps_documentations", ["permalink"], name: "index_itps_documentations_on_permalink", using: :btree
+
+  create_table "itps_escrows", force: true do |t|
+    t.integer  "service_party_id", null: false
+    t.integer  "payment_party_id", null: false
+    t.string   "permalink",        null: false
+    t.string   "status_key"
+    t.datetime "closed_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_escrows", ["payment_party_id"], name: "index_itps_escrows_on_payment_party_id", using: :btree
+  add_index "itps_escrows", ["permalink"], name: "index_itps_escrows_on_permalink", unique: true, using: :btree
+  add_index "itps_escrows", ["service_party_id"], name: "index_itps_escrows_on_service_party_id", using: :btree
+
+  create_table "itps_escrows_documents", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "permalink",                  null: false
+    t.datetime "approved_at"
+    t.datetime "rejected_at"
+    t.integer  "step_id",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attached_file_file_name"
+    t.string   "attached_file_content_type"
+    t.integer  "attached_file_file_size"
+    t.datetime "attached_file_updated_at"
+  end
+
+  add_index "itps_escrows_documents", ["permalink"], name: "index_itps_escrows_documents_on_permalink", unique: true, using: :btree
+  add_index "itps_escrows_documents", ["step_id"], name: "index_itps_escrows_documents_on_step_id", using: :btree
+
+  create_table "itps_escrows_steps", force: true do |t|
+    t.integer  "escrow_id",                null: false
+    t.string   "title",                    null: false
+    t.string   "permalink",                null: false
+    t.text     "instructions",             null: false
+    t.datetime "completed_at"
+    t.integer  "position",     default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_escrows_steps", ["escrow_id"], name: "index_itps_escrows_steps_on_escrow_id", using: :btree
+  add_index "itps_escrows_steps", ["permalink"], name: "index_itps_escrows_steps_on_permalink", unique: true, using: :btree
+
+  create_table "itps_parties", force: true do |t|
+    t.string   "company_name"
+    t.string   "email",        null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_parties", ["email"], name: "index_itps_parties_on_email", unique: true, using: :btree
 
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"

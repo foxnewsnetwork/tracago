@@ -15,6 +15,16 @@ Tracago::Application.routes.draw do
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'home#documentation'
     resources :doc_tags, only: [:show]
+    resources :escrows do
+      resources :steps, only: [:new, :create], controller: 'escrows/steps'
+    end
+    devise_for :accounts,
+      class_name: 'Itps::Account',
+      controllers: {
+        sessions: 'itps/accounts/sessions',
+        registrations: 'itps/accounts/registrations',
+        passwords: 'itps/accounts/passwords'
+      }
   end
 
   resources :searches, only: [:index]
