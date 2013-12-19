@@ -51,6 +51,8 @@ International Trade Platform
 
 # Wednesday, December 18
 1. escrow steps new
+2. escrow show page
+3. escrow steps create
 
 Work to be Done
 =
