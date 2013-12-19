@@ -1,0 +1,10 @@
+%li
+  = link_to itps_document_path(document.permalink) do
+    %h4{ :class => document.status }
+      %i
+      = document.title
+    %dl
+      %dt= t(:status)
+      %dd= t(document.status)
+      %dt= t(:description)
+      %dd= document.description

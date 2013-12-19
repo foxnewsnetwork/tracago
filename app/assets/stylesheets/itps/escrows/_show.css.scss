@@ -19,8 +19,6 @@
       padding-bottom: 15px;
       h1 {
         @extend .row;
-        @extend .hidden-xs;
-        @extend .hidden-sm;
         text-transform: uppercase;
         margin-left: 0px;
         margin-top: 0px;
@@ -49,6 +47,9 @@
     #basic-information {
       dl {
         @extend .col-lg-6;
+        @extend .col-md-6;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
       }
     }
     #actions {
@@ -57,6 +58,9 @@
         padding-left: 0px;
         li {
           @extend .col-lg-2;
+          @extend .col-md-3;
+          @extend .col-sm-4;
+          @extend .col-xs-12;
           a {
             @extend .thumbnail;
             text-align: center;
@@ -93,6 +97,111 @@
           i {
             @extend .fa;
             @extend .fa-plus-circle;
+          }
+        }
+      }
+      ol {
+        @extend .col-lg-12;
+        list-style: none;
+        padding-left: 15px;
+        li {
+          @extend .thumbnail;
+          margin-left: 0px;
+          padding: 0px;
+          article {
+            @extend .row;
+            margin-left: 0px;
+            margin-right: 0px;
+            i {
+              @extend .fa;
+            }
+            dl {
+              @extend .col-lg-4;
+              @extend .col-md-4;
+              @extend .col-sm-6;
+              @extend .col-xs-12;
+            }
+            &.completed {
+              background-color: $success-color;
+              i {
+                @extend .fa-checked;
+              }
+            }
+            &.waiting_documents {
+              background-color: none;
+              border-bottom: $standard-border;
+              h4 {
+                color: $standard-linkcolor;
+              }
+              i {
+                @extend .fa-spinner;
+              }
+            }
+            &.needs_approval {
+              background-color: none;
+              border-bottom: $standard-border;
+              h4 {
+                color: $standard-linkcolor;
+              }
+              i {
+                @extend .fa-ellipsis-h;
+              }
+            }
+            &.rejected {
+              background-color: $danger-color;
+              i {
+                @extend .fa-exclamation-circle;
+              }
+            }
+            &.standby {
+              background-color: $warning-color;
+              i {
+                @extend .fa-exclamation-triangle;
+              }
+            }
+            a {
+              @extend .col-lg-1;
+              @extend .col-sm-2;
+              @extend .col-xs-2;
+              &:first-child {
+                @extend .col-lg-8;
+                @extend .col-sm-6;
+                @extend .col-xs-6;
+              }
+              &:last-child {
+                @extend .col-lg-2;
+                @extend .col-sm-2;
+                @extend .col-xs-2;
+                text-align: right;
+              }
+              figure {
+                margin-top: 5px;
+                i {
+                  @extend .fa-2x;
+                  &.up {
+                    @extend .fa-arrow-circle-up;
+                  }
+                  &.down {
+                    @extend .fa-arrow-circle-down;
+                  }
+                  &.destroy {
+                    @extend .fa-times-circle;
+                  }
+                }
+              }
+              h4 {
+                text-transform: capitalize;
+                color: $highlight-textcolor;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                
+                .colon:after {
+                  content: ":";
+                }
+              }
+            }
           }
         }
       }

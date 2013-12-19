@@ -1,0 +1,178 @@
+@mixin itps-steps-show {
+  #hero-banner {
+    color: $highlight-textcolor;
+    &.completed {
+      background-color: $hooray-color;
+    }
+    &.waiting_documents, &.standby {
+      background-color: $warning-color;
+    }
+    &.rejected {
+      background-color: $danger-color;
+    }
+    &.needs_approval {
+      background-color: $success-color;
+    }
+    
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        text-transform: uppercase;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+        .dash, .colon {
+          text-transform: none;
+          font-weight: normal;
+        }
+        .dash:after {
+          content: "-";
+        }
+        .colon:after {
+          content: ":";
+        }
+      }
+    }
+  }
+  #steps-content {
+    @extend .container;
+    #cookie-crumbs {
+      @extend .row;
+      padding-top: 15px;
+      ul {
+        @extend .col-lg-12;
+        list-style: none;
+        margin-left: 15px;
+        padding-left: 0px;
+        li {
+          display: inline-block;
+          &:after {
+            content: " » ";
+          }
+          &:last-child &:after {
+            content: "";
+          }
+        }
+      }
+    }
+    #basic-information {
+      @extend .row;
+      h2 {
+        @extend .col-lg-12;
+        margin-top: 0px;
+        border-bottom: $standard-border;
+      }
+      dl {
+        @extend .col-lg-6;
+        @extend .col-md-6;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+      }
+    }
+    #executive-actions {
+      @extend .row;
+      h2 {
+        @extend .col-lg-12;
+        margin-top: 0px;
+        border-bottom: $standard-border;
+      }
+      ul {
+        list-style: none;
+        padding-left: 0px;
+        li {
+          @extend .col-lg-2;
+          @extend .col-md-3;
+          @extend .col-sm-4;
+          @extend .col-xs-12;
+          a {
+            @extend .thumbnail;
+            text-align: center;
+            figure {
+              i {
+                @extend .fa;
+                @extend .fa-2x;
+                &.edit {
+                  @extend .fa-edit;
+                }
+                &.approve {
+                  @extend .fa-check-circle-o;
+                }
+                &.document {
+                  @extend .fa-file-o;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #documents {
+      @extend .row;
+      margin-bottom: 20px;
+      h2 {
+        @extend .col-lg-12;
+        margin-top: 0px;
+        border-bottom: $standard-border;
+      }
+      .parantheses {
+        @extend .col-lg-12;
+      }
+      ul {
+        list-style: none;
+        padding-left: 0px;
+        li {
+          @extend .col-lg-3;
+          @extend .col-md-6;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
+          dl {
+            padding-left: 10px;
+          }
+          a {
+            @extend .thumbnail;
+            padding: 0px;
+            h4 {
+              padding-left: 10px;
+              text-transform: capitalize;
+              margin-top: 0px;
+              color: $highlight-textcolor;
+              i {
+                @extend .fa;
+                padding: 5px;
+                border-radius: 5px;
+              }
+              &.rejected {
+                background-color: $danger-color;
+                i {
+                  @extend .fa-times;
+                }
+              }
+              &.approved {
+                background-color: $success-color;
+                i {
+                  @extend .fa-checked;
+                }
+              }
+              &.waiting_upload {
+                background-color: $warning-color;
+                i {
+                  @extend .fa-upload;
+                }
+              }
+              &.waiting_approval {
+                background-color: $warning-color;
+                i {
+                  @extend .fa-spinner;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

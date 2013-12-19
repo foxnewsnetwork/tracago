@@ -28,6 +28,14 @@ body {
       }
     }
   }
+  .parantheses {
+    &:before {
+      content: "(";
+    }
+    &:after {
+      content: ")";
+    }
+  }
   #the-flash {
     @include shared-flash;
   }

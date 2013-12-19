@@ -53,6 +53,7 @@ International Trade Platform
 1. escrow steps new
 2. escrow show page
 3. escrow steps create
+4. steps show
 
 Work to be Done
 =

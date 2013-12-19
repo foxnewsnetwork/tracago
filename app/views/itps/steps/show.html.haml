@@ -1,0 +1,55 @@
+#hero-banner{ :class => @step.status }
+  %section
+    %h1
+      %span.colon
+        = t(:escrow_step)
+        = @step.position
+      = t @step.status
+
+#steps-content
+  #cookie-crumbs
+    %ul
+      %li= link_to t(:escrow_page), itps_escrow_path(@step.escrow.permalink)
+      %li= link_to @step.title, itps_step_path(@step.permalink)
+  #basic-information
+    %h2= t(:basic_information)
+    %dl
+      %dt= t(:title)
+      %dd= @step.title
+      %dt= t(:instructions)
+      %dd
+        - if @step.instructions.present?
+          = @step.instructions
+        - else
+          = t(:none_given)
+    %dl
+      %dt= t(:previous_step)
+      %dd= t(:none)
+      %dt= t(:next_step)
+      %dd= t(:none)
+      %dt= t(:step_position)
+      %dd= @step.position
+  #executive-actions
+    %h2= t(:actions)
+    %ul
+      %li
+        = link_to approve_itps_step_path(@step.permalink) do
+          %figure
+            %i.approve
+          = t(:approve)
+      %li
+        = link_to edit_itps_step_path(@step.permalink) do
+          %figure
+            %i.edit
+          = t(:edit)
+      %li
+        = link_to new_itps_step_document_path(@step.permalink) do
+          %figure
+            %i.document
+          = t(:add_document)
+  #documents
+    %h2= t(:documents)
+    - if @step.documents.present?
+      %ul= render partial: 'itps/steps/document', collection: @step.documents
+    - else
+      .parantheses= t(:no_documents)

@@ -15,7 +15,15 @@ Tracago::Application.routes.draw do
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'home#documentation'
     resources :doc_tags, only: [:show]
-    resources :steps, only: [:show]
+    resources :steps, only: [:show, :edit] do
+      member do
+        put :swap_down
+        put :swap_up
+        post :approve
+      end
+      resources :documents, only: [:new, :create], controller: 'steps/documents'
+    end
+    resources :documents, only: [:show]
     resources :escrows do
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end
