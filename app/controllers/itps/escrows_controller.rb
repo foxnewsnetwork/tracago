@@ -3,6 +3,16 @@ class Itps::EscrowsController < Itps::BaseController
     _escrow
   end
 
+  def edit
+    _editive_form_helper
+  end
+
+  def update
+    _update_escrow!
+    _render_update_flash!
+    _get_out_of_here_update!
+  end
+
   def new
     _form_helper
   end
@@ -14,6 +24,29 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   private
+  def _get_out_of_here_update!
+    return redirect_to itps_escrow_path(_escrow.permalink) if _valid?
+    return render :edit if _invalid?
+  end
+
+  def _render_update_flash!
+    flash.now[:error] = t(:unable_to_update) if _invalid?
+    flash[:notice] = t(:update_successful) if _valid?
+  end
+
+  def _update_escrow!
+    _updative_form_helper.update_escrow!
+  end
+
+  def _updative_form_helper
+    _editive_form_helper
+    _creative_form_helper
+  end
+
+  def _editive_form_helper
+    _form_helper.tap { |f| f.slug_in_escrow _escrow }
+  end
+
   def _get_out_of_here!
     return redirect_to itps_escrow_path(_escrow.permalink) if _existing?
     return render :new if _invalid?

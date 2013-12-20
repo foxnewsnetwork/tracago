@@ -26,10 +26,15 @@
             %i.add-step
           = t(:add_step)
       %li
-        = link_to escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
+        = link_to itps_escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
           %figure
             %i.destroy-escrow
           = t(:destroy_escrow)
+      %li
+        = link_to edit_itps_escrow_path(@escrow.permalink) do
+          %figure
+            %i.edit
+          = t(:edit_basic_info)
     
   #steps-to-completion
     %h2= t(:steps_to_completion)

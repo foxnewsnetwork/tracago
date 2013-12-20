@@ -1,10 +1,11 @@
 #hero-banner{ :class => @step.status }
   %section
-    %h1
-      %span.colon
-        = t(:escrow_step)
-        = @step.position
-      = t @step.status
+    = link_to itps_escrow_path(@step.escrow.permalink) do
+      %h1
+        %span.colon
+          = t(:escrow_step)
+          = @step.position
+        = t @step.status
 
 #steps-content
   #cookie-crumbs

@@ -1,6 +1,5 @@
 @mixin itps-steps-show {
   #hero-banner {
-    color: $highlight-textcolor;
     &.completed {
       background-color: $hooray-color;
     }
@@ -25,6 +24,7 @@
         margin-top: 0px;
         margin-bottom: 0px;
         font-weight: bold;
+        color: $highlight-textcolor;
         .dash, .colon {
           text-transform: none;
           font-weight: normal;
@@ -50,11 +50,10 @@
         padding-left: 0px;
         li {
           display: inline-block;
+        }
+        li:first-child {
           &:after {
             content: " » ";
-          }
-          &:last-child &:after {
-            content: "";
           }
         }
       }

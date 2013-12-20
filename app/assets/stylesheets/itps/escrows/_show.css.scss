@@ -77,6 +77,9 @@
                 &.destroy-escrow {
                   @extend .fa-exclamation-circle;
                 }
+                &.edit {
+                  @extend .fa-edit;
+                }
               }
             }
           }
@@ -167,6 +170,7 @@
                 @extend .col-lg-8;
                 @extend .col-sm-6;
                 @extend .col-xs-6;
+                text-align: left;
               }
               &:last-child {
                 @extend .col-lg-2;

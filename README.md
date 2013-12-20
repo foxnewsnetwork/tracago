@@ -55,6 +55,9 @@ International Trade Platform
 3. escrow steps create
 4. steps show
 
+# Thursday, December 19
+1. escrow steps documents styling
+2. destroy step path
 Work to be Done
 =
 * finish finalization show page

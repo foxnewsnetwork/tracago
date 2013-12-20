@@ -9,7 +9,7 @@ class Itps::Escrows::Step < ActiveRecord::Base
   has_many :rejected_documents,
     -> { rejected },
     class_name: 'Itps::Escrows::Document'
-  before_validation :_create_permalink
+  before_validation :_create_permalink, :_establish_position
 
   def status
     return :completed if completed?
@@ -50,8 +50,11 @@ class Itps::Escrows::Step < ActiveRecord::Base
     documents.all?(&:approved?) && !completed?
   end
 
-
   private
+  def _establish_position
+    self.position = escrow.last_step.try(:position).to_i + 1
+  end
+
   def _create_permalink
     self.permalink ||= "#{title.to_url}-#{_scrambled_datekey}"
   end
