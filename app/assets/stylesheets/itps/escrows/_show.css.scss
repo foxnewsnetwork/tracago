@@ -59,7 +59,7 @@
         li {
           @extend .col-lg-2;
           @extend .col-md-3;
-          @extend .col-sm-4;
+          @extend .col-sm-6;
           @extend .col-xs-12;
           a {
             @extend .thumbnail;
@@ -69,7 +69,9 @@
               i {
                 @extend .fa;
                 @extend .fa-2x;
-
+                &.open {
+                  @extend .fa-unlock;
+                }
                 &.add-step {
                   @extend .fa-plus-circle;
                 }
@@ -126,6 +128,9 @@
             }
             &.completed {
               background-color: $success-color;
+              h4 {
+                color: $highlight-textcolor;
+              }
               i {
                 @extend .fa-checked;
               }
@@ -152,57 +157,64 @@
             }
             &.rejected {
               background-color: $danger-color;
+              h4 {
+                color: $highlight-textcolor;
+              }
               i {
                 @extend .fa-exclamation-circle;
               }
             }
             &.standby {
               background-color: $warning-color;
+              h4 {
+                color: $highlight-textcolor;
+              }
               i {
                 @extend .fa-exclamation-triangle;
               }
             }
-            a {
-              @extend .col-lg-1;
-              @extend .col-sm-2;
-              @extend .col-xs-2;
-              &:first-child {
-                @extend .col-lg-8;
-                @extend .col-sm-6;
-                @extend .col-xs-6;
-                text-align: left;
-              }
-              &:last-child {
-                @extend .col-lg-2;
+            &:first-child {
+              a {
+                @extend .col-lg-1;
                 @extend .col-sm-2;
                 @extend .col-xs-2;
-                text-align: right;
-              }
-              figure {
-                margin-top: 5px;
-                i {
-                  @extend .fa-2x;
-                  &.up {
-                    @extend .fa-arrow-circle-up;
-                  }
-                  &.down {
-                    @extend .fa-arrow-circle-down;
-                  }
-                  &.destroy {
-                    @extend .fa-times-circle;
+                &:first-child {
+                  @extend .col-lg-8;
+                  @extend .col-sm-6;
+                  @extend .col-xs-6;
+                  text-align: left;
+                }
+                &:last-child {
+                  @extend .col-lg-2;
+                  @extend .col-sm-2;
+                  @extend .col-xs-2;
+                  text-align: right;
+                }
+                figure {
+                  margin-top: 5px;
+                  i {
+                    @extend .fa-2x;
+                    &.up {
+                      @extend .fa-arrow-circle-up;
+                    }
+                    &.down {
+                      @extend .fa-arrow-circle-down;
+                    }
+                    &.destroy {
+                      @extend .fa-times-circle;
+                    }
                   }
                 }
-              }
-              h4 {
-                text-transform: capitalize;
-                color: $highlight-textcolor;
-                margin-top: 0px;
-                margin-bottom: 0px;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                
-                .colon:after {
-                  content: ":";
+                h4 {
+                  text-transform: capitalize;
+                  margin-top: 0px;
+                  margin-bottom: 0px;
+                  padding-top: 10px;
+                  padding-bottom: 10px;
+                  
+                  .colon:after {
+                    content: ":";
+                  }
                 }
               }
             }

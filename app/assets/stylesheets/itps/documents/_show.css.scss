@@ -1,0 +1,69 @@
+@mixin itps-documents-show {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+      .colon:after {
+        content: ":";
+      }
+    }
+  }
+  #document-content {
+    @extend .container;
+    #cookie-crumbs {
+      @extend .row;
+      ul {
+        @extend .col-lg-12;
+        margin-top: 15px;
+        list-style: none;
+        li {
+          display: inline-block;
+        }
+        li:last-child {
+          &:after {
+            content: none;
+          }
+        }
+        li:after {
+          content: " » ";
+        }
+      }
+    }
+    #document-form {
+      @extend .row;
+      form {
+        @extend .col-lg-12;
+        fieldset {
+          @extend .row;
+          legend {
+            margin-left: 15px;
+            margin-bottom: 5px;
+            border-bottom: $standard-border;
+          }
+          dl {
+            @extend .col-lg-4;
+            dd {
+              @extend .form-group;
+              input {
+                @extend .form-control;
+              }
+              p {
+                @extend .help-block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

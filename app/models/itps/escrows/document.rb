@@ -1,6 +1,9 @@
 class Itps::Escrows::Document < ActiveRecord::Base
   belongs_to :step,
     class_name: 'Itps::Escrows::Step'
+  has_one :escrow,
+    through: :step,
+    class_name: 'Itps::Escrow'
   before_validation :_create_permalink
 
   scope :approved,

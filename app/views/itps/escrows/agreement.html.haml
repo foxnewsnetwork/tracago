@@ -1,0 +1,18 @@
+#hero-banner
+  %section
+    %h1= t(:open_escrow_user_agreement)
+
+#agreement-content
+  %section
+    - 10.times do
+      %article
+        %h3= Faker::LoremCN.sentence
+        %p= Faker::LoremCN.paragraph
+  = form_for :escrows, url: open_itps_escrow_path(@escrow.permalink) do |f|
+    %fieldset
+      = f.check_box :agree
+      = f.label :agree, t(:agree_to_terms_of_usage)
+    %fieldset
+      = button_tag type: :submit do
+        %i.submit
+        = t(:open_escrow)

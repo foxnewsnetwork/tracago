@@ -17,16 +17,17 @@
       %figure
         %i.destroy
   %article
-    %dl
-      %dt= t(:status)
-      %dd= t step.status
-      %dt= t(:instructions)
-      %dd= step.instructions
-    %dl
-      %dt= t(:required_documents)
-      %dd= step.required_documents_presentation
-    %dl
-      %dt= t(:approved_documents)
-      %dd= step.approved_documents_presentation
-      %dt= t(:rejected_documents)
-      %dd= step.rejected_documents_presentation
+    = link_to itps_step_path(step.permalink) do
+      %dl
+        %dt= t(:status)
+        %dd= t step.status
+        %dt= t(:instructions)
+        %dd= step.instructions
+      %dl
+        %dt= t(:required_documents)
+        %dd= step.required_documents_presentation
+      %dl
+        %dt= t(:approved_documents)
+        %dd= step.approved_documents_presentation
+        %dt= t(:rejected_documents)
+        %dd= step.rejected_documents_presentation

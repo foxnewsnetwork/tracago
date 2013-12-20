@@ -25,6 +25,10 @@ Tracago::Application.routes.draw do
     end
     resources :documents, only: [:show]
     resources :escrows do
+      member do
+        get :agreement
+        post :open
+      end
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end
     devise_for :accounts,

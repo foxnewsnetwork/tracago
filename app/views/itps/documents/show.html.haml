@@ -1,0 +1,34 @@
+#hero-banner
+  %section
+    = link_to itps_step_path(@document.step.permalink) do
+      %h1
+        %span.colon= t(:escrow_document)
+        = @document.title
+
+#document-content
+  #cookie-crumbs
+    %ul
+      %li= link_to t(:escrow), itps_escrow_path(@document.escrow.permalink)
+      %li
+        = link_to itps_step_path(@document.step.permalink) do
+          = t(:step)
+          = @document.step.position
+      %li= link_to @document.title, itps_document_path(@document.permalink)
+  #document-form
+    = form_for :document, method: :put, multipart: true do |f|
+      %fieldset
+        %legend= t(:document_upload)
+      %fieldset
+        %dl
+          %dt= f.label :attach_file, t(:document)
+          %dd
+            = f.file_field :attach_file
+            %p= @document.description
+      %fieldset
+        %section
+          = button_tag type: :submit do
+            %i.submit
+            = t(:submit)
+          = button_tag type: :reset do
+            %i.reset
+            = t(:cancel)

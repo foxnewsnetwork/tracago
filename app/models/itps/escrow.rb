@@ -19,6 +19,10 @@ class Itps::Escrow < ActiveRecord::Base
     return :unready
   end
 
+  def open!
+    update opened_at: DateTime.now
+  end
+
   def opened?
     opened_at.present?
   end

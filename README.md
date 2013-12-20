@@ -58,6 +58,12 @@ International Trade Platform
 # Thursday, December 19
 1. escrow steps documents styling
 2. destroy step path
+
+# Friday, December 20
+1. Accounts, sessions, and permissions
+2. documents show
+3. escrow open and agreement
+
 Work to be Done
 =
 * finish finalization show page

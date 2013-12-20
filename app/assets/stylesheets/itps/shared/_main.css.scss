@@ -9,6 +9,9 @@
 @import 'itps/escrows/show';
 @import 'itps/steps/show';
 @import 'itps/escrows/edit';
+@import 'itps/documents/show';
+@import 'itps/escrows/agreement';
+
 @mixin shared-main {
   #home-index {
     @include itps-home-index;
@@ -45,5 +48,11 @@
   }
   #escrows-edit {
     @include itps-escrows-edit;
+  }
+  #documents-show {
+    @include itps-documents-show;
+  }
+  #escrows-agreement {
+    @include itps-escrows-agreement;
   }
 }

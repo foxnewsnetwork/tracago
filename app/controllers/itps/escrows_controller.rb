@@ -3,6 +3,16 @@ class Itps::EscrowsController < Itps::BaseController
     _escrow
   end
 
+  def agreement
+    _escrow
+  end
+
+  def open
+    _open_escrow!
+    _render_open_flash!
+    _get_out_of_here_open!
+  end
+
   def edit
     _editive_form_helper
   end
@@ -24,6 +34,24 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   private
+  def _render_open_flash!
+    return flash[:notice] = t(:escrow_opened) if @result
+    flash.now[:error] = t(:you_need_to_agree_to_the_user_agreement)
+  end
+
+  def _get_out_of_here_open!
+    return redirect_to itps_escrow_path(_escrow.permalink) if @result
+    return render :agreement
+  end
+
+  def _open_escrow!
+    @result ||= _escrow.open! if _agreement_params[:agree].present?
+  end
+
+  def _agreement_params
+    params.require(:escrows).permit(:agree)
+  end
+
   def _get_out_of_here_update!
     return redirect_to itps_escrow_path(_escrow.permalink) if _valid?
     return render :edit if _invalid?
