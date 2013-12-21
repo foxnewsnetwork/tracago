@@ -1,0 +1,23 @@
+#hero-banner
+  %section
+    %h1= t(:require_new_documents)
+
+= form_for @document, url: itps_step_documents_path(@document.step.permalink) do |f|
+  %fieldset
+    %dl
+      %dt= f.label :title, t(:document_name)
+      %dd= f.text_field :title
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %dl
+      %dt= f.label :description, t(:document_description)
+      %dd= f.text_area :description
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %section
+      = button_tag type: :submit do
+        %i.submit
+        = t(:next)
+      = button_tag type: :reset do
+        %i.reset
+        = t(:cancel)
