@@ -28,6 +28,7 @@
         @extend .col-lg-6;
         dd {
           @extend .form-group;
+          
           input {
             @extend .form-control;
           }

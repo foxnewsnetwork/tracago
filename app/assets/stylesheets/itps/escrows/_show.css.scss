@@ -69,15 +69,15 @@
               i {
                 @extend .fa;
                 @extend .fa-2x;
-                &.open {
-                  @extend .fa-unlock;
+                &.mark-ready {
+                  @extend .fa-lock;
                 }
                 &.add-step {
                   @extend .fa-plus-circle;
                 }
 
                 &.destroy-escrow {
-                  @extend .fa-exclamation-circle;
+                  @extend .fa-exclamation-triangle;
                 }
                 &.edit {
                   @extend .fa-edit;

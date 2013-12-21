@@ -53,17 +53,20 @@ ActiveRecord::Schema.define(version: 20131217185835) do
   add_index "itps_documentations", ["permalink"], name: "index_itps_documentations_on_permalink", using: :btree
 
   create_table "itps_escrows", force: true do |t|
-    t.integer  "service_party_id", null: false
-    t.integer  "payment_party_id", null: false
-    t.string   "permalink",        null: false
+    t.integer  "service_party_id",         null: false
+    t.integer  "payment_party_id",         null: false
+    t.integer  "draft_party_id",           null: false
+    t.string   "permalink",                null: false
     t.string   "status_key"
-    t.datetime "closed_at"
+    t.datetime "completed_at"
     t.datetime "deleted_at"
-    t.datetime "opened_at"
+    t.datetime "payment_party_agreed_at"
+    t.datetime "serviced_party_agreed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "itps_escrows", ["draft_party_id"], name: "index_itps_escrows_on_draft_party_id", using: :btree
   add_index "itps_escrows", ["payment_party_id"], name: "index_itps_escrows_on_payment_party_id", using: :btree
   add_index "itps_escrows", ["permalink"], name: "index_itps_escrows_on_permalink", unique: true, using: :btree
   add_index "itps_escrows", ["service_party_id"], name: "index_itps_escrows_on_service_party_id", using: :btree

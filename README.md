@@ -63,6 +63,7 @@ International Trade Platform
 1. Accounts, sessions, and permissions
 2. documents show
 3. escrow open and agreement
+4. escrow open email
 
 Work to be Done
 =

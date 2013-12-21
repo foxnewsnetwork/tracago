@@ -11,6 +11,7 @@ class Itps::EscrowsController < Itps::BaseController
     _open_escrow!
     _render_open_flash!
     _get_out_of_here_open!
+    _dispatch_emails!
   end
 
   def edit
@@ -34,6 +35,14 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   private
+  def _dispatch_emails!
+    _email_helper.dispatch! if @result
+  end
+
+  def _email_helper
+    @email_helper ||= Itps::Escrows::EscrowEmailHelper.new
+  end
+
   def _render_open_flash!
     return flash[:notice] = t(:escrow_opened) if @result
     flash.now[:error] = t(:you_need_to_agree_to_the_user_agreement)

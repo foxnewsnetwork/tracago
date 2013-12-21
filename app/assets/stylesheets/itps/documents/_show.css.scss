@@ -45,13 +45,18 @@
         @extend .col-lg-12;
         fieldset {
           @extend .row;
+          legend, section, dl {
+            @extend .col-lg-6;
+            @extend .col-md-8;
+            @extend .col-sm-12;
+            @extend .col-xs-12;
+          }
           legend {
             margin-left: 15px;
             margin-bottom: 5px;
             border-bottom: $standard-border;
           }
           dl {
-            @extend .col-lg-4;
             dd {
               @extend .form-group;
               input {

@@ -9,8 +9,14 @@ class Itps::Escrow < ActiveRecord::Base
     class_name: 'Itps::Party'
   belongs_to :service_party,
     class_name: 'Itps::Party'
+  belongs_to :draft_party,
+    class_name: 'Itps::Party'
 
   before_validation :_create_permalink
+  validates :draft_party, 
+    :payment_party, 
+    :service_party, 
+    presence: true
 
   def status
     return :deleted if deleted?
@@ -19,17 +25,47 @@ class Itps::Escrow < ActiveRecord::Base
     return :unready
   end
 
+  def drafted_by_payer?
+    payment_party == draft_party
+  end
+
+  def drafted_by_worker?
+    service_party == draft_party
+  end
+
+  def service_party_agree!
+    update service_party_agreed_at: DateTime.now
+  end
+
+  def payment_party_agree!
+    update payment_party_agreed_at: DateTime.now
+  end
+
   def open!
-    update opened_at: DateTime.now
+    service_party_agree! && payment_party_agree!
   end
 
   def opened?
-    opened_at.present?
+    service_party_agreed? && payment_party_agreed?
   end
 
-  def closed?
-    closed_at.present?
+  def other_party
+    return payment_party if service_party == draft_party
+    return service_party
   end
+
+  def service_party_agreed?
+    serviced_party_agreed_at.present?
+  end
+
+  def payment_party_agreed?
+    payment_party_agreed_at.present?
+  end
+
+  def completed?
+    completed_at.present?
+  end
+  alias_method :closed?, :completed?
 
   private
   def _create_permalink

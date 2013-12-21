@@ -10,6 +10,8 @@
       %dd= f.text_field :paying_company_name
       %dt= f.label :paying_company_email, t(:email)
       %dd= f.email_field :paying_company_email
+      %dt= f.label :drafted_by_paying, t(:your_are_the_paying_party)
+      %dd= f.radio_button :drafted_by_paying, true, checked: true
     %p= Faker::Lorem.paragraph
   %fieldset
     %h3= t(:working_party_details)
@@ -18,6 +20,8 @@
       %dd= f.text_field :working_company_name
       %dt= f.label :working_company_email, t(:email)
       %dd= f.email_field :working_company_email
+      %dt= f.label :drafted_by_paying, t(:your_are_the_service_party)
+      %dd= f.radio_button :drafted_by_paying, false
     %p= Faker::Lorem.paragraph
   %fieldset
     %section
