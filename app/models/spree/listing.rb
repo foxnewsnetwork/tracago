@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: spree_listings
+#
+#  id                    :integer          not null, primary key
+#  stockpile_id          :integer          not null
+#  shop_id               :integer
+#  days_to_refresh       :integer
+#  available_on          :datetime
+#  expires_on            :datetime
+#  deleted_at            :datetime
+#  created_at            :datetime
+#  updated_at            :datetime
+#  packing_weight_pounds :integer
+#
+
 module Spree
   class Listing < ActiveRecord::Base
     acts_as_paranoid

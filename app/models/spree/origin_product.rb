@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: spree_origin_products
+#
+#  id           :integer          not null, primary key
+#  permalink    :string(255)      not null
+#  presentation :string(255)      not null
+#  deleted_at   :datetime
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class Spree::OriginProduct < ActiveRecord::Base
   acts_as_paranoid
   has_many :origin_relationships, 

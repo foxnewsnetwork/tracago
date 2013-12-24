@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: spree_comments
+#
+#  id         :integer          not null, primary key
+#  offer_id   :integer
+#  shop_id    :integer
+#  content    :text             not null
+#  deleted_at :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 module Spree
   class Comment < ActiveRecord::Base
     acts_as_paranoid

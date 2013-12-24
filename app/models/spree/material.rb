@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: spree_materials
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text
+#  permalink   :string(255)      not null
+#  deleted_at  :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 module Spree
   class Material < ActiveRecord::Base
     acts_as_paranoid

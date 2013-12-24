@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: spree_states
+#
+#  id                 :integer          not null, primary key
+#  romanized_name     :string(255)
+#  abbr               :string(255)
+#  permalink          :string(255)      not null
+#  local_presentation :string(255)
+#  country_permalink  :string(255)
+#  updated_at         :datetime
+#
+
 class Spree::State < ActiveRecord::Base
   include ::Spree::Optionable
   extend ::Spree::Normalizable

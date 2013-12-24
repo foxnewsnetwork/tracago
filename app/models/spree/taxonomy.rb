@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: spree_taxonomies
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Spree::Taxonomy < ActiveRecord::Base
   validates :name, presence: true
 

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: spree_preferences
+#
+#  id         :integer          not null, primary key
+#  name       :string(100)
+#  owner_id   :integer
+#  owner_type :string(255)
+#  value      :text
+#  key        :string(255)
+#  value_type :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Spree::Preference < ActiveRecord::Base
   serialize :value
 

@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: itps_escrows_documents
+#
+#  id                         :integer          not null, primary key
+#  title                      :string(255)
+#  description                :text
+#  permalink                  :string(255)      not null
+#  approved_at                :datetime
+#  rejected_at                :datetime
+#  step_id                    :integer          not null
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#  attached_file_file_name    :string(255)
+#  attached_file_content_type :string(255)
+#  attached_file_file_size    :integer
+#  attached_file_updated_at   :datetime
+#
+
 class Itps::Escrows::Document < ActiveRecord::Base
   belongs_to :step,
     class_name: 'Itps::Escrows::Step'

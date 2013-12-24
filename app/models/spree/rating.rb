@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: spree_ratings
+#
+#  id              :integer          not null, primary key
+#  trustworthiness :integer          not null
+#  simplicity      :integer          not null
+#  agreeability    :integer          not null
+#  notes           :text
+#  shop_id         :integer
+#  reviewer_id     :integer
+#  reviewable_id   :integer
+#  reviewable_type :string(255)
+#  deleted_at      :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 module Spree
   class Rating < ActiveRecord::Base
     acts_as_paranoid

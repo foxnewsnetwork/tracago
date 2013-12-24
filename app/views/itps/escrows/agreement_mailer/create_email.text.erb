@@ -1,0 +1,5 @@
+To <%= @escrow.draft_party.company_name %>,
+
+<%= @escrow.other_party.company_name %> has accepted all the terms of the contract. It is now a locked and fully legal document. See it here:
+
+<%= link_to itps_escrow_path(@escrow.permalink) %>

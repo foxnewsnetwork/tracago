@@ -3,15 +3,15 @@ class Itps::EscrowsController < Itps::BaseController
     _escrow
   end
 
-  def agreement
+  def tos
     _escrow
   end
 
-  def open
-    _open_escrow!
-    _render_open_flash!
-    _get_out_of_here_open!
-    _dispatch_emails!
+  def ready
+    _escrow_ready!
+    _render_flash_ready!
+    _get_out_of_here_ready!
+    _dispatch_email!
   end
 
   def edit
@@ -35,30 +35,30 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   private
+  def _escrow_ready!
+    @result ||= _escrow.draft_party_agree! if _ready_params[:agree].present?
+  end
+
+  def _ready_params
+    params.require(:escrow).permit(:agree)
+  end
+
+  def _render_flash_ready!
+    flash.now[:error] = t(:you_must_consent_to_the_terms_of_service) unless @result
+    flash[:success] = t(:contract_ready) if @result
+  end
+
+  def _get_out_of_here_ready!
+    return redirect_to itps_escrow_path _escrow if @result
+    return render :tos
+  end
+
   def _dispatch_emails!
     _email_helper.dispatch! if @result
   end
 
   def _email_helper
     @email_helper ||= Itps::Escrows::EscrowEmailHelper.new
-  end
-
-  def _render_open_flash!
-    return flash[:notice] = t(:escrow_opened) if @result
-    flash.now[:error] = t(:you_need_to_agree_to_the_user_agreement)
-  end
-
-  def _get_out_of_here_open!
-    return redirect_to itps_escrow_path(_escrow.permalink) if @result
-    return render :agreement
-  end
-
-  def _open_escrow!
-    @result ||= _escrow.open! if _agreement_params[:agree].present?
-  end
-
-  def _agreement_params
-    params.require(:escrows).permit(:agree)
   end
 
   def _get_out_of_here_update!

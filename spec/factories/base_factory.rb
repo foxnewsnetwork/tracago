@@ -33,3 +33,20 @@ module ChineseFactory
     end
   end
 end
+module JewFactory
+  class Base < ::ChineseFactory::Base
+    private
+
+    def _creator
+      self.class.to_s.split("::").tail.reduce(Itps) do |cc, name|
+        begin
+          cc.const_get name
+        rescue TypeError => e
+          e.messages += "Current class: #{cc}\n"
+          e.messages += "Requested name: #{name}"
+          raise e
+        end
+      end
+    end
+  end
+end

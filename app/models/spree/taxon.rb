@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: spree_taxons
+#
+#  id                :integer          not null, primary key
+#  parent_id         :integer
+#  position          :integer          default(0)
+#  name              :string(255)      not null
+#  permalink         :string(255)
+#  taxonomy_id       :integer
+#  lft               :integer
+#  rgt               :integer
+#  icon_file_name    :string(255)
+#  icon_content_type :string(255)
+#  icon_file_size    :integer
+#  icon_updated_at   :datetime
+#  description       :text
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class Spree::Taxon < ActiveRecord::Base
   belongs_to :parent,
     class_name: 'Spree::Taxon'

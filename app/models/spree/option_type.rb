@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: spree_option_types
+#
+#  id           :integer          not null, primary key
+#  name         :string(100)
+#  presentation :string(100)
+#  position     :integer          default(0), not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 module Spree
   class OptionType < ActiveRecord::Base
     has_many :option_values, -> { order(:position) }, dependent: :destroy

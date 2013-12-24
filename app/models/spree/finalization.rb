@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: spree_finalizations
+#
+#  id         :integer          not null, primary key
+#  offer_id   :integer
+#  expires_at :datetime
+#  deleted_at :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Spree::Finalization < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :offer,

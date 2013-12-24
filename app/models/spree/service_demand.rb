@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: spree_service_demands
+#
+#  id               :integer          not null, primary key
+#  finalization_id  :integer
+#  serviceable_id   :integer
+#  serviceable_type :string(255)
+#  fulfilled_at     :datetime
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 module Spree
   class ServiceDemand < ActiveRecord::Base
     belongs_to :finalization

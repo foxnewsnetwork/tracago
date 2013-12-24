@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: spree_cities
+#
+#  id                 :integer          not null, primary key
+#  state_id           :integer
+#  romanized_name     :string(255)      not null
+#  permalink          :string(255)      not null
+#  local_presentation :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 class Spree::City < ActiveRecord::Base
   include ::Spree::Optionable
   extend ::Spree::Normalizable  

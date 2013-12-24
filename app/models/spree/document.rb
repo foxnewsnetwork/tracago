@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: spree_documents
+#
+#  id                         :integer          not null, primary key
+#  presentation               :string(255)
+#  permalink                  :string(255)      not null
+#  documentable_id            :integer
+#  documentable_type          :string(255)
+#  rejected_at                :datetime
+#  comment                    :string(255)
+#  documentation_file_name    :string(255)
+#  documentation_content_type :string(255)
+#  documentation_file_size    :integer
+#  documentation_updated_at   :datetime
+#
+
 class Spree::Document < ActiveRecord::Base
   self.table_name = 'spree_documents'
 

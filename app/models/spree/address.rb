@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: spree_addresses
+#
+#  id                :integer          not null, primary key
+#  fullname          :string(255)
+#  address1          :string(255)
+#  address2          :string(255)
+#  city_permalink    :string(255)
+#  zipcode           :string(255)
+#  phone             :string(255)
+#  alternative_phone :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  nickname          :string(255)
+#
+
 module Spree
   class Address < ActiveRecord::Base
     belongs_to :city,

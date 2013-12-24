@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: spree_tags
+#
+#  id           :integer          not null, primary key
+#  permalink    :string(255)      not null
+#  presentation :string(255)      not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class Spree::Tag < ActiveRecord::Base
   KnownNames = [:front, :side, :back, :top, :closeup]
   class << self

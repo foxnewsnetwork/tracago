@@ -26,8 +26,13 @@ Tracago::Application.routes.draw do
     resources :documents, only: [:show]
     resources :escrows do
       member do
-        get :agreement
-        post :open
+        get :tos
+        post :ready
+      end
+      resources :agreements, only: [:new, :create], controller: 'escrows/agreements' do
+        member do
+          get :tos
+        end
       end
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end

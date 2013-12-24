@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217185835) do
+ActiveRecord::Schema.define(version: 20131221021439) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -64,11 +64,15 @@ ActiveRecord::Schema.define(version: 20131217185835) do
     t.datetime "serviced_party_agreed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "payment_party_agree_key"
+    t.string   "service_party_agree_key"
   end
 
   add_index "itps_escrows", ["draft_party_id"], name: "index_itps_escrows_on_draft_party_id", using: :btree
+  add_index "itps_escrows", ["payment_party_agree_key"], name: "index_itps_escrows_on_payment_party_agree_key", unique: true, using: :btree
   add_index "itps_escrows", ["payment_party_id"], name: "index_itps_escrows_on_payment_party_id", using: :btree
   add_index "itps_escrows", ["permalink"], name: "index_itps_escrows_on_permalink", unique: true, using: :btree
+  add_index "itps_escrows", ["service_party_agree_key"], name: "index_itps_escrows_on_service_party_agree_key", unique: true, using: :btree
   add_index "itps_escrows", ["service_party_id"], name: "index_itps_escrows_on_service_party_id", using: :btree
 
   create_table "itps_escrows_documents", force: true do |t|

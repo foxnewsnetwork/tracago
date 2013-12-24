@@ -60,10 +60,14 @@ International Trade Platform
 2. destroy step path
 
 # Friday, December 20
-1. Accounts, sessions, and permissions
 2. documents show
 3. escrow open and agreement
 4. escrow open email
+5. steps documents new create
+
+# Saturday, December 21
+1. Accounts, sessions, and permissions
+2. escrow ecryped agree
 
 Work to be Done
 =
