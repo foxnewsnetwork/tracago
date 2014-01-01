@@ -43,11 +43,13 @@ Tracago::Application.routes.draw do
       end
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end
-    namespace :accounts do
+    resources :accounts, only: [:show] do
       resources :escrows, only: [:index], controller: 'accounts/escrows'
     end
-    resource :session, only: [:new, :create, :destroy]
-    resource :registration, only: [:new, :create]
+    devise_scope :users do
+      get '/login' => 'sessions#new', :as => :login
+      get '/signup' => 'registrations#new', :as => :signup
+    end
   end
 
   resources :searches, only: [:index]
@@ -69,9 +71,9 @@ Tracago::Application.routes.draw do
   devise_for :users,
     class_name: 'Spree::User',
     controllers: {
-      sessions: 'spree/users/devise/sessions',
-      registrations: 'spree/users/devise/registrations',
-      passwords: 'spree/users/devise/passwords'
+      sessions: 'devise/tracago_sessions',
+      registrations: 'devise/tracago_registrations',
+      passwords: 'devise/tracago_passwords'
     }
   
   resources :escrow_steps, only: [:show, :update], controller: 'spree/escrow_steps'

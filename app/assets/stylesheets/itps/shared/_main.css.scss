@@ -60,7 +60,7 @@
   #steps-documents-new {
     @include itps-steps-documents-new;
   }
-  #accounts-sessions-new, #accounts-registrations-new, #accounts-registrations-create {
+  #sessions-new, #registrations-new {
     @include itps-accounts-sessions-new;
   }
 }

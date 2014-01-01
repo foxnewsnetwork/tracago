@@ -11,8 +11,8 @@
       = link_to t(:faq), itps_faq_path
     %li
       - if user_signed_in?
-        = link_to t(:my_account), itps_account_escrows_path(current_account)
+        = link_to t(:me), itps_account_path(current_user)
       - else
-        = link_to t(:sign_in), new_itps_session_path(back: back_path)
+        = link_to t(:sign_in), itps_login_path(back: back_path)
     %li
       = link_to t(:help), itps_help_path
