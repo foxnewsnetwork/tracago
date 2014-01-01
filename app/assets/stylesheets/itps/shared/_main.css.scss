@@ -12,6 +12,7 @@
 @import 'itps/documents/show';
 @import 'itps/escrows/tos';
 @import 'itps/steps/documents/new';
+@import 'itps/accounts/sessions/new';
 
 @mixin shared-main {
   #home-index {
@@ -58,5 +59,8 @@
   }
   #steps-documents-new {
     @include itps-steps-documents-new;
+  }
+  #accounts-sessions-new, #accounts-registrations-new, #accounts-registrations-create {
+    @include itps-accounts-sessions-new;
   }
 }

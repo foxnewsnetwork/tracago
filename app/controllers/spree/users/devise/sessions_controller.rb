@@ -7,7 +7,6 @@ class Spree::Users::Devise::SessionsController < Devise::SessionsController
   end
 
   private
-
   def _setup_appropriate_flash
     set_flash_message(:notice, :signed_in)      if _successful_login?
     set_flash_message(:error, :no_such_email)   if _no_such_email?

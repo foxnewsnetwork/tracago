@@ -1,0 +1,101 @@
+@mixin logistica-plans-step {
+  background: $logistica-thumbnail-color;
+  border: $logistica-border;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .header {
+    @extend .row;
+    border-bottom: $logistica-border;
+    margin-left: 0px;
+    margin-right: 0px;
+    a {
+      color: $logistica-text-color;
+      h4 {
+        @extend .col-lg-9;
+        @extend .col-md-6;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        text-transform: capitalize;
+        font-weight: bold;
+        &.waiting_proof {
+          i {
+            @extend .fa-files-o;
+          }
+        }
+        &.waiting_approval {
+          i {
+            @extend .fa-spinner;
+          }
+        }
+      }
+      &:hover {
+        color: #fff;
+        figure {
+          color: #fff;
+        }
+      }
+    }
+    figure {
+      @extend .col-lg-1;
+      @extend .col-md-2;
+      @extend .col-sm-4;
+      @extend .col-xs-4;
+      color: $logistica-text-color;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      text-align: center;
+    }
+    i {
+      @extend .fa;
+      &.swap-up {
+        @extend .fa-2x;
+        @extend .fa-arrow-circle-up;
+      }
+      &.swap-down {
+        @extend .fa-2x;
+        @extend .fa-arrow-circle-down;
+      }
+      &.destroy {
+        @extend .fa-2x;
+        @extend .fa-times-circle;
+      }
+    }
+  }
+  .body {
+    @extend .row;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    a {
+      color: $logistica-text-color;
+      article {
+        @extend .col-lg-4;
+        @extend .col-md-4;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        ol {
+          padding-left: 0px;
+          list-style-position: inside;
+          margin-bottom: 10px;
+        }
+        h5 {
+          font-weight: bold;
+          margin-top: 5px;
+        }
+        dl {
+          margin-top: 0px;
+        }
+        h4 {
+          border-bottom: $logistica-border;
+          text-transform: capitalize;
+          padding-bottom: 10px;
+          margin-left: -15px;
+          margin-right: -15px;
+          padding-left: 15px;
+          
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: spree_service_contracts
+#
+#  id               :integer          not null, primary key
+#  finalization_id  :integer
+#  shop_id          :integer
+#  serviceable_id   :integer
+#  serviceable_type :string(255)
+#
+
 class ChineseFactory::ServiceContract < ChineseFactory::Base
   attr_accessor :recipient, :provider, :serviceable
   def attributes

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: spree_serviceables_trucks
+#
+#  id             :integer          not null, primary key
+#  origination_id :integer
+#  destination_id :integer
+#  pickup_at      :datetime
+#  arrive_at      :datetime
+#  usd_price      :decimal(10, 2)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 class ChineseFactory::Serviceables::Truck < ChineseFactory::Base
   def attributes
     p = (1 + rand(234))

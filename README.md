@@ -69,27 +69,63 @@ International Trade Platform
 1. Accounts, sessions, and permissions
 2. escrow ecryped agree
 
-Work to be Done
+# Thursday, December 26
+1. Accounts, sessesions, and permissions
+
+# Friday, December 27
+1. Get frustrated over account sessions
+
+
+International Merchants
 =
-* finish finalization show page
-* rework serviceables models (it's unnecessarily difficult)
-* ship demand new
-* truck demand new
-* inspection demand new
-* escrow open
-* escrow close
-* Company logo and name
-* Services index
-* Services supplies index
-* services demand index
-* services show
-* counter offer model
-* shop ratings index
-* shop show page
-* offers comment new page
-* offers counter new page
-* listing new page
-* post transaction new
-* escrow new
-* Email notifications
-* shop add user
+Purchase Order (aka Sales Invoice)
+  - belongs to Seller
+  - belongs to Buyer
+  - has many payment plan
+  - has many delivery plan
+
+Payment Plan
+  - has many steps
+
+Delivery plan
+  - has many steps
+
+Local Delivery Plan
+  - step 1: send truck to site
+  - step 2: load truck on site
+  - step 3: truck returns
+
+International Delivery Plan
+  - step 1: acquire booking
+  - step 2: send truck to pull container(s)
+  - step 3: take container to site to load
+  - step 4: return container to terminal
+
+International Clusterfucked Delivery Plan
+  - step 1: acquire booking
+  - step 2: send truck to pull container(s)
+  - step 2.5 (optional): acquire late-gate
+  - step 3: take container to site to load
+  - step 4: return container to terminal
+
+Step
+  - has many overseers
+  - has many documents
+
+Person
+  - has many contact_methods
+
+Contact Method
+  - email
+  - cellphone
+  - mail
+  - fax
+  - landline
+
+Company
+  - has many employees
+  - belongs to person
+
+Employee
+  - belongs to person
+  - position & role

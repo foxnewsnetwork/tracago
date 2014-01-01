@@ -13,6 +13,8 @@
 #  documentation_content_type :string(255)
 #  documentation_file_size    :integer
 #  documentation_updated_at   :datetime
+#  expires_at                 :datetime
+#  approved_at                :datetime
 #
 
 class Spree::Document < ActiveRecord::Base

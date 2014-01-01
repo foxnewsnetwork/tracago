@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: spree_offers
+#
+#  id                      :integer          not null, primary key
+#  shop_id                 :integer
+#  listing_id              :integer
+#  address_id              :integer
+#  usd_per_pound           :decimal(10, 5)   default(0.0), not null
+#  loads                   :integer
+#  shipping_terms          :string(255)      default("EXWORKS"), not null
+#  created_at              :datetime
+#  updated_at              :datetime
+#  deleted_at              :datetime
+#  expires_at              :datetime
+#  transport_method        :string(255)      default("CONTAINER"), not null
+#  minimum_pounds_per_load :integer
+#  confirmed_at            :datetime
+#
+
 module ChineseFactory
   class Offer
     attr_accessor :shop, :listing, :address

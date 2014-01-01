@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131221021439) do
+ActiveRecord::Schema.define(version: 20131230230740) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -117,6 +117,68 @@ ActiveRecord::Schema.define(version: 20131221021439) do
 
   add_index "itps_parties", ["email"], name: "index_itps_parties_on_email", unique: true, using: :btree
 
+  create_table "logistica_plans", force: true do |t|
+    t.string   "plan_type",             null: false
+    t.string   "external_reference_id"
+    t.text     "notes"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "ready_at"
+  end
+
+  create_table "logistica_plans_planners", force: true do |t|
+    t.integer "plan_id"
+    t.integer "planner_id"
+    t.string  "planner_type"
+    t.string  "role"
+  end
+
+  add_index "logistica_plans_planners", ["plan_id"], name: "index_logistica_plans_planners_on_plan_id", using: :btree
+  add_index "logistica_plans_planners", ["planner_id", "planner_type"], name: "index_logistica_plans_planners_on_planner_id_and_planner_type", using: :btree
+
+  create_table "logistica_proofs", force: true do |t|
+    t.integer  "step_id"
+    t.integer  "provable_id"
+    t.string   "provable_type"
+    t.string   "title"
+    t.string   "permalink"
+    t.datetime "expires_at"
+    t.datetime "rejected_at"
+    t.datetime "approved_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "logistica_proofs", ["step_id"], name: "index_logistica_proofs_on_step_id", using: :btree
+
+  create_table "logistica_steps", force: true do |t|
+    t.integer  "plan_id"
+    t.string   "presentation"
+    t.string   "permalink"
+    t.string   "step_type",                null: false
+    t.integer  "position",     default: 0, null: false
+    t.text     "notes"
+    t.datetime "expires_at"
+    t.datetime "rejected_at"
+    t.datetime "approved_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "logistica_steps", ["plan_id"], name: "index_logistica_steps_on_plan_id", using: :btree
+
+  create_table "logistica_steps_overseers", force: true do |t|
+    t.integer "step_id"
+    t.integer "overseer_id"
+    t.string  "overseer_type"
+    t.string  "role"
+  end
+
+  add_index "logistica_steps_overseers", ["overseer_id", "overseer_type"], name: "index_logistica_steps_overseers_on_overseer_id_and_overseer_type", using: :btree
+  add_index "logistica_steps_overseers", ["step_id"], name: "index_logistica_steps_overseers_on_step_id", using: :btree
+
   create_table "spree_addresses", force: true do |t|
     t.string   "fullname"
     t.string   "address1"
@@ -207,6 +269,8 @@ ActiveRecord::Schema.define(version: 20131221021439) do
     t.string   "documentation_content_type"
     t.integer  "documentation_file_size"
     t.datetime "documentation_updated_at"
+    t.datetime "expires_at"
+    t.datetime "approved_at"
   end
 
   add_index "spree_documents", ["documentable_id", "documentable_type"], name: "index_spree_documents_on_documentable_id_and_documentable_type", using: :btree

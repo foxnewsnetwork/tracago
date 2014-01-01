@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: spree_service_supplies
+#
+#  id               :integer          not null, primary key
+#  shop_id          :integer
+#  serviceable_id   :integer
+#  serviceable_type :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class ChineseFactory::ServiceSupply < ChineseFactory::Base
   attr_accessor :shop, :serviceable
   def belongs_to(thing)

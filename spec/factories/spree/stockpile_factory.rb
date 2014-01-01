@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: spree_stockpiles
+#
+#  id                 :integer          not null, primary key
+#  material_id        :integer
+#  address_id         :integer
+#  pounds_on_hand     :integer
+#  cost_usd_per_pound :decimal(10, 5)
+#  deleted_at         :datetime
+#  created_at         :datetime
+#  updated_at         :datetime
+#  notes              :text
+#
+
 module ChineseFactory
   class Stockpile
     class << self

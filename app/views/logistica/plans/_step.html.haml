@@ -1,0 +1,39 @@
+%li
+  .header
+    = link_to logistica_step_path(step) do
+      %h4{ :class => step.status }
+        %i
+        = step.presentation
+    = link_to '#swap_up' do
+      %figure
+        %i.swap-up
+    = link_to '#swap_down' do
+      %figure
+        %i.swap-down
+    = link_to '#destroy' do
+      %figure
+        %i.destroy
+
+  .body
+    = link_to logistica_step_path(step) do
+      %article
+        %dl
+          %dt= t(:status)
+          %dd= step.status
+          %dt= t(:title)
+          %dd= step.presentation
+          %dt= t(:instructions)
+          %dd= step.notes
+      %article
+        %dl
+          %dt= t(:needed_documents)
+          %dd= step.needed_documents_presentation
+          %dt= t(:uploaded_documents)
+          %dd= step.uploaded_documents_presentation
+          %dt= t(:approved_documents)
+          %dd= step.approved_documents_presentation
+      %article
+        %h5= t(:what_you_still_need_to_do)
+        %ol
+          - rand(5).times do
+            %li= Faker::Lorem.sentence

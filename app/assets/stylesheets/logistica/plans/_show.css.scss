@@ -1,0 +1,39 @@
+@import 'logistica/plans/step';
+@mixin logistica-plans-show {
+  @extend .container;
+  >article {
+    @extend .row;
+    margin-left: 0px;
+    h3,dl {
+      padding-left: 0px;
+    }
+    >h3 {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      color: $logistica-text-color;
+      border-bottom: $logistica-border;
+    }
+    >dl {
+      @extend .col-lg-4;
+      @extend .col-md-6;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      color: $logistica-text-color;
+    }
+    >ul {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      list-style: none;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 10px;
+      >li {
+        @include logistica-plans-step;
+      }
+    }
+  }
+}

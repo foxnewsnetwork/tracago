@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: spree_countries
+#
+#  id                 :integer          not null, primary key
+#  iso                :string(255)
+#  iso3               :string(255)
+#  permalink          :string(255)      not null
+#  romanized_name     :string(255)
+#  local_presentation :string(255)
+#  numcode            :string(255)
+#  updated_at         :datetime
+#
+
 module ChineseFactory
   class Country
     class << self

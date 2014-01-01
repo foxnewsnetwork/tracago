@@ -1,0 +1,24 @@
+@import 'itps/shared/variables';
+@import 'logistica/shared/variables';
+@import 'itps/shared/footer';
+@import 'shared/important';
+@import 'logistica/shared/main';
+@import 'logistica/shared/flash';
+@import 'logistica/shared/header';
+
+body {
+  @include shared-important;
+  background: #4d4d4d;
+  header {
+    @include shared-header;
+  }
+  main {
+    #the-flash {
+      @include shared-flash;
+    }
+    @include shared-main;
+  }
+  footer {
+    @include shared-footer;
+  }
+}

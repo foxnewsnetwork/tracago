@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: spree_post_transactions
+#
+#  id              :integer          not null, primary key
+#  finalization_id :integer
+#  closed_at       :datetime
+#  deleted_at      :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class ChineseFactory::PostTransaction < ChineseFactory::Base 
   attr_accessor :finalization
 

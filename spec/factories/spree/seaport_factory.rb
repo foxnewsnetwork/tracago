@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: spree_seaports
+#
+#  id         :integer          not null, primary key
+#  port_code  :string(255)      not null
+#  port_name  :string(255)
+#  address_id :integer
+#
+
 class ChineseFactory::Seaport < ChineseFactory::Base
   attr_accessor :address
 

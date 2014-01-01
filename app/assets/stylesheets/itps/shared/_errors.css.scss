@@ -1,0 +1,15 @@
+@mixin shared-errors {
+  @extend .panel;
+  @extend .panel-danger;
+  .heading {
+    @extend .panel-heading;
+    h3 {
+      @extend .panel-title;
+      text-transform: capitalize;
+    }   
+  }
+  ul {
+    @extend .panel-body;
+    list-style: none;
+  }
+}

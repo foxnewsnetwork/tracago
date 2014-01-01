@@ -1,0 +1,15 @@
+%section
+  %article#footer-stats
+    %dl
+      %dt= t(:active_for)
+      %dd= time_ago_in_words 100.years.ago
+    %dl
+      %dt= t(:active_transfers)
+      %dd= rand(99999) + 999
+  %ul#footer-links
+    %li= link_to t(:nowhere), '#nowhere'
+  %article#footer-logos
+    %figure
+      © 370,000,000 BC - 2014 AD
+      %span Logistica
+

@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+require 'open-uri'
+require 'stringex'
+
+def _save_to_disk(tempfile, type="jpg")
+  $COUNTER ||= 0 
+  $COUNTER += 1
+  $START_DATE ||= Time.now.to_s.to_url
+  File.open "ruby-scrap-#{$START_DATE}-#{$COUNTER}.#{type}", "w" do |f|
+    f.puts tempfile.read
+  end
+end
+
+def _get_doc_from_url(uri)
+  Nokogiri::HTML open uri
+end
+
+def _get_image_urls_from_thread_url(url)
+  _get_doc_from_url(url).xpath '//a[@class="fileThumb"]' do |link|
+    link.get_attribute 'href'
+  end
+end
+
+def scrap_4chan_thread(url)
+  _get_image_urls_from_thread_url(url).each do |href|
+    _save_to_disk open href
+  end
+end
+
+scrap_4chan_thread ARGV.first

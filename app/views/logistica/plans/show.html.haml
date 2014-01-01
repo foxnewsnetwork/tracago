@@ -1,0 +1,19 @@
+%article
+  %h3= t(:basic_information)
+  %dl
+    %dt= t(:plan_type)
+    %dd= @plan.plan_type
+    %dt= t(:external_reference)
+    %dd= @plan.external_reference_id
+  %dl
+    %dt= t(:created_at)
+    %dd= @plan.created_at
+    %dt= t(:ready_at)
+    %dd= @plan.ready_at
+  %dl
+    %dt= t(:notes)
+    %dd= @plan.notes
+
+%article
+  %h3= t(:plan_steps)
+  %ul= render partial: 'logistica/plans/step', collection: @plan.steps.map(&:downcast)

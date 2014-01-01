@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: spree_option_values
+#
+#  id             :integer          not null, primary key
+#  position       :integer
+#  name           :string(255)
+#  presentation   :string(255)
+#  option_type_id :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 module ChineseFactory
   class OptionValue
     class << self

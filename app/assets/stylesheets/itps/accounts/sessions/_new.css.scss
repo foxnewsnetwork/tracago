@@ -1,0 +1,45 @@
+@mixin itps-accounts-sessions-new {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+      .colon:after {
+        content: ":";
+      }
+    }
+  }
+  #new-session-new {
+    @extend .container;
+    padding-bottom: 20px;
+    form {
+      fieldset {
+        @extend .row;
+        dl, article {
+          @extend .col-lg-4;
+          @extend .col-md-6;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
+          dd {
+            @extend .form-group;
+            input {
+              @extend .form-control;
+            }
+          }
+        }
+        h4 {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}

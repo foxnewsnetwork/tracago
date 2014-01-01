@@ -1,0 +1,12 @@
+%section
+  %nav
+    %article
+      = link_to 'MLogistica', logistica_path
+    %ul
+      - if user_signed_in?
+        %li= link_to t(:my_account), logistica_user_path(current_user)
+        %li= link_to t(:log_out), destroy_logistica_sessions_path, method: :put
+      - else
+        %li= link_to t(:sign_in), new_logistica_sessions_path
+        %li= link_to t(:sign_up), new_logistica_registrations_path
+

@@ -2,25 +2,25 @@ source 'https://rubygems.org'
 
 # gem 'spree', '2.2.0.beta', :path => File.expand_path("../../spree", __FILE__)
 # gem 'spree_gateway', '2.1.0.beta', :path => File.expand_path("../../spree_gateway", __FILE__)
-gem 'unicorn', '~>4.6.3'
-gem "haml", "~> 4.0.0"
-gem "haml-rails", "~>0.4"
-gem 'devise', '~> 3.0.1'
-gem 'functional_support', '>=0.0.5', :path => File.expand_path("../../functional_support", __FILE__)
-gem 'paranoia', '~> 2.0'
-gem "kaminari", "~> 0.14.1"
-gem "paperclip", "~> 3.5.2"
-gem "font-awesome-sass", "~> 4.0.2"
-gem "stringex", "~> 2.1.2"
-group :development do
-  gem 'ffaker', ">=1.20.0"
-  gem "rspec", '~>2.13.0'
-  gem 'rspec-rails', '~>2.13.0'
-  gem 'annotate', ">=2.5.0.pre1"
-  gem 'simplecov', "~>0.7.1"
-  gem 'capybara', '~>2.1.0'
-  gem 'selenium-webdriver', "~> 2.37.0"
-end
+  gem 'unicorn', '~>4.6.3'
+  gem "haml", "~> 4.0.0"
+  gem "haml-rails", "~>0.4"
+  gem 'devise', '~> 3.0.1'
+  gem 'functional_support', '>=0.0.5', :path => File.expand_path("../../functional_support", __FILE__)
+  gem 'paranoia', '~> 2.0'
+  gem "kaminari", "~> 0.14.1"
+  gem "paperclip", "~> 3.5.2"
+  gem "font-awesome-sass", "~> 4.0.2"
+  gem "stringex", "~> 2.1.2"
+  group :development do
+    gem 'ffaker', ">=1.20.0"
+    gem "rspec", '~>2.13.0'
+    gem 'rspec-rails', '~>2.13.0'
+    gem 'annotate', ">=2.5.0.pre1"
+    gem 'simplecov', "~>0.7.1"
+    gem 'capybara', '~>2.1.0'
+    gem 'selenium-webdriver', "~> 2.37.0"
+  end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 4.0.1"

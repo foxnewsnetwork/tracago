@@ -1,11 +1,18 @@
 Tracago::Application.routes.draw do
-
   root :to => 'spree/home#index'
+  namespace 'logistica' do
+    get '/' => 'home#index'
+    resources :plans, only: [:show, :edit, :update, :destroy]
+    resources :steps, only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:show]
+    resource :sessions, only: [:new, :create, :destroy]
+    resource :registrations, only: [:new, :create]
+  end
   namespace 'itps' do
     get '/' => 'home#index'
     get '/faq' => 'home#faq'
     get '/usage' => 'home#usage'
-    get '/account' => 'home#account'
+    # get '/account' => 'home#account'
     get '/help' => 'home#help'
     get '/aboutus' => 'home#aboutus'
     get '/terms' => 'home#terms'
@@ -36,13 +43,11 @@ Tracago::Application.routes.draw do
       end
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end
-    devise_for :accounts,
-      class_name: 'Itps::Account',
-      controllers: {
-        sessions: 'itps/accounts/sessions',
-        registrations: 'itps/accounts/registrations',
-        passwords: 'itps/accounts/passwords'
-      }
+    namespace :accounts do
+      resources :escrows, only: [:index], controller: 'accounts/escrows'
+    end
+    resource :session, only: [:new, :create, :destroy]
+    resource :registration, only: [:new, :create]
   end
 
   resources :searches, only: [:index]

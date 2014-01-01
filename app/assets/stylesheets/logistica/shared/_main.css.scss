@@ -1,0 +1,6 @@
+@import 'logistica/plans/show';
+@mixin shared-main {
+  #plans-show {
+    @include logistica-plans-show;
+  }
+}

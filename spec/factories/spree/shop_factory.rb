@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: spree_shops
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  deleted_at :datetime
+#  email      :string(255)
+#  address_id :integer
+#  name       :string(255)      not null
+#  permalink  :string(255)      not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 module ChineseFactory
   class Shop
     attr_accessor :user
