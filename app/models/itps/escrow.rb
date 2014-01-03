@@ -33,6 +33,22 @@ class Itps::Escrow < ActiveRecord::Base
   belongs_to :draft_party,
     class_name: 'Itps::Party'
 
+  scope :incomplete,
+    -> { where "#{self.table_name}.completed_at is null" }
+  scope :completed,
+    -> { where "#{self.table_name}.completed_at is not null" }
+  scope :service_party_inactive,
+    -> { where "#{self.table_name}.serviced_party_agreed_at is null" }
+  scope :payment_party_inactive,
+    -> { where "#{self.table_name}.payment_party_agreed_at is null" }
+  scope :service_party_active,
+    -> { where "#{self.table_name}.serviced_party_agreed_at is not null" }
+  scope :payment_party_active,
+    -> { where "#{self.table_name}.payment_party_agreed_at is not null" }
+  scope :inactive,
+    -> { incomplete.where("#{self.table_name}.serviced_party_agreed_at is null or #{self.table_name}.payment_party_agreed_at is null") }
+  scope :active,
+    -> { incomplete.payment_party_active.service_party_active }
   before_validation :_create_permalink, :_create_secret_hashes
   validates :draft_party, 
     :payment_party, 
@@ -52,6 +68,15 @@ class Itps::Escrow < ActiveRecord::Base
     return :unready
   end
 
+  def payment_party_agreed_at_presentation
+    payment_party_agreed_at.blank? ? I18n.t(:never) : payment_party_agreed_at.to_s(:long)
+  end
+
+  def service_party_agreed_at_presentation
+    serviced_party_agreed_at.blank? ? I18n.t(:never) : serviced_party_agreed_at.to_s(:long)
+  end
+
+
   def drafted_by_payer?
     payment_party == draft_party
   end
@@ -61,7 +86,7 @@ class Itps::Escrow < ActiveRecord::Base
   end
 
   def service_party_agree!
-    update service_party_agreed_at: DateTime.now
+    update serviced_party_agreed_at: DateTime.now
   end
 
   def payment_party_agree!

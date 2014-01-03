@@ -1,0 +1,21 @@
+%li{ :class => escrow.status }
+  = link_to itps_escrow_path(escrow.permalink) do
+    %h4
+      %i
+      %span.colon= t(:status)
+      = escrow.status
+    %dl
+      %dt= t(:payment_party)
+      %dd= escrow.payment_party.company_name
+      %dt= t(:service_party)
+      %dd= escrow.service_party.company_name
+    %dl
+      %dt= t(:created_at)
+      %dd= escrow.created_at.to_s(:short)
+      %dt= t(:updated_at)
+      %dd= escrow.updated_at.to_s(:short)
+    %dl
+      %dt= t(:payment_party_agreed_at)
+      %dd= escrow.payment_party_agreed_at_presentation
+      %dt= t(:service_party_agreed_at)
+      %dd= escrow.service_party_agreed_at_presentation

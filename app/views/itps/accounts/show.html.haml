@@ -1,0 +1,55 @@
+#hero-banner
+  %section
+    %h1= t(:my_account_profile)
+
+#account-stuff
+  %section
+    #table-of-contents
+      %ul
+        %li= link_to t(:basics), '#basics'
+        %li
+          = link_to t(:contracts), '#contracts'
+          %ul
+            %li= link_to t(:active_contracts), '#contracts-active'
+            %li= link_to t(:in_progress_contracts), '#contracts-in-progress'
+            %li= link_to t(:archived_contracts), '#contracts-archived'
+        %li= link_to t(:preferences), '#preferences'
+        %li= link_to t(:logout), destroy_user_session_path, method: :delete
+
+    #meat-and-bones
+      #basics
+        %h3
+          = t(:basic_information)
+          = link_to t(:edit), '#edit'
+        %dl
+          %dt= t(:company_name)
+          %dd= @account.company_name
+          %dt= t(:login_email)
+          %dd= @account.email
+      #contracts
+        #contracts-active
+          %h3
+            = t(:active_contracts)
+            = link_to t(:edit), '#edit'
+          %ul= render partial: 'itps/accounts/escrow', collection: @account.active_escrows
+          - if @account.active_escrows.blank?
+            %p= t(:none)
+        #contracts-in-progress
+          %h3
+            = t(:in_progress_contracts)
+            = link_to t(:edit), '#edit'
+          %ul= render partial: 'itps/accounts/escrow', collection: @account.in_progress_escrows
+          - if @account.in_progress_escrows.blank?
+            %p= t(:none)
+        #contracts-archived
+          %h3
+            = t(:archived_contracts)
+            = link_to t(:edit), '#edit'
+          %ul= render partial: 'itps/accounts/escrow', collection: @account.archived_escrows
+          - if @account.archived_escrows.blank?
+            %p= t(:none)
+      #preferences
+        %h3= t(:preferences)
+        %dl
+          %dt= t(:some_preference)
+          %dd= t(:some_option)

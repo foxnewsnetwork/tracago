@@ -18,9 +18,27 @@
 #
 
 class Itps::Account < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  self.table_name = 'spree_users'
+
+  has_one :party,
+    class_name: 'Itps::Party',
+    foreign_key: 'email',
+    primary_key: 'email'
+
+  delegate :company_name,
+    :active_escrows,
+    :in_progress_escrows,
+    :archived_escrows,
+    to: :party
+
+  def party_with_defaults
+    return _generate_party if party_without_defaults.blank?
+    party_without_defaults
+  end
+  alias_method_chain :party, :defaults
+
+  private
+  def _generate_party
+    @party ||= Itps::Party.create! email: email, company_name: 'Unnamed Party'
+  end
 end
