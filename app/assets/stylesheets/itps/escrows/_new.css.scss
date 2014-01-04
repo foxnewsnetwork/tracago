@@ -24,18 +24,31 @@
         @extend .col-lg-12;
         border-bottom: $standard-border;
       }
-      dl {
+      article {
         @extend .col-lg-6;
-        dd {
-          @extend .form-group;
-          
-          input {
-            @extend .form-control;
+        dl {
+          &:last-child {
+            @extend .dl-horizontal;
+            dt {
+              float: left;
+              text-align: left;
+              width: 190px;
+            }
+            dd {
+              text-align: left;
+              margin-left: 190px;
+              input {
+                width: 35px;
+              }
+            }
+          }
+          dd {
+            @extend .form-group;
+            input {
+              @extend .form-control;
+            }
           }
         }
-      }
-      p {
-        @extend .col-lg-6;
       }
       section {
         @extend .col-lg-6;

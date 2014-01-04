@@ -66,7 +66,7 @@
             font-size: 14px;
           }
         }
-        #basics, #preferences {
+        #basics, #preferences, #actions {
           @extend .row;
           h3 {
             @extend .col-lg-12;
@@ -81,6 +81,31 @@
             @extend .col-md-12;
             @extend .col-sm-12;
             @extend .col-xs-12;
+          }
+        }
+        #actions {
+          i {
+            @extend .fa;
+            @extend .fa-2x;
+            &.new-contract {
+              @extend .fa-file-text-o;
+            }
+          }
+          ul {
+            list-style: none;
+            padding-left: 0px;
+            li {
+              @extend .col-lg-2;
+              @extend .col-md-3;
+              @extend .col-sm-4;
+              @extend .col-xs-6;
+              text-align: center;
+              a {
+                @extend .thumbnail;
+                text-transform: capitalize;
+                font-weight: bold;
+              }
+            }
           }
         }
         #contracts {

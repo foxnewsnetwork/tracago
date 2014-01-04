@@ -1,0 +1,29 @@
+#hero-banner
+  %legend
+    %h1= t(:open_escrow_form)
+
+= form_for @form_helper, url: itps_account_escrows_path(current_account) do |f|
+  %fieldset
+    %h3= t(:associated_party_details)
+    %article
+      %dl
+        %dt= f.label :other_party_company_name, t(:other_company_name)
+        %dd= f.text_field :other_party_company_name
+        %dt= f.label :other_party_email, t(:other_company_email)
+        %dd= f.email_field :other_party_email
+      %dl
+        %dt= f.label :my_role, t(:i_am_the_payment_party)
+        %dd= f.radio_button :my_role, :payment_party, checked: true
+        %dt= f.label :my_role, t(:i_am_the_service_party)
+        %dd= f.radio_button :my_role, :service_party, checked: false
+    %article
+      = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
+      %p= Faker::Lorem.paragraph
+  %fieldset
+    %section
+      = button_tag type: :submit do
+        %i.submit
+        = t(:confirm)
+      = button_tag type: :reset do
+        %i.reset
+        = t(:cancel)

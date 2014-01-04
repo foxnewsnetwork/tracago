@@ -7,6 +7,7 @@
     #table-of-contents
       %ul
         %li= link_to t(:basics), '#basics'
+        %li= link_to t(:actions), '#actions'
         %li
           = link_to t(:contracts), '#contracts'
           %ul
@@ -26,30 +27,40 @@
           %dd= @account.company_name
           %dt= t(:login_email)
           %dd= @account.email
+      #actions
+        %h3= t(:actions)
+        %ul
+          %li
+            = link_to new_itps_escrow_path do
+              %figure
+                %i.new-contract
+              = t(:new_contract)
       #contracts
         #contracts-active
           %h3
             = t(:active_contracts)
-            = link_to t(:edit), '#edit'
+            = link_to t(:show_all), '#edit'
           %ul= render partial: 'itps/accounts/escrow', collection: @account.active_escrows
           - if @account.active_escrows.blank?
             %p= t(:none)
         #contracts-in-progress
           %h3
             = t(:in_progress_contracts)
-            = link_to t(:edit), '#edit'
+            = link_to t(:show_all), '#edit'
           %ul= render partial: 'itps/accounts/escrow', collection: @account.in_progress_escrows
           - if @account.in_progress_escrows.blank?
             %p= t(:none)
         #contracts-archived
           %h3
             = t(:archived_contracts)
-            = link_to t(:edit), '#edit'
+            = link_to t(:show_all), '#edit'
           %ul= render partial: 'itps/accounts/escrow', collection: @account.archived_escrows
           - if @account.archived_escrows.blank?
             %p= t(:none)
       #preferences
-        %h3= t(:preferences)
+        %h3
+          = t(:preferences)
+          = link_to t(:edit), '#edit'
         %dl
           %dt= t(:some_preference)
           %dd= t(:some_option)

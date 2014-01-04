@@ -1,4 +1,6 @@
 class Itps::EscrowsController < Itps::BaseController
+  before_filter :_filter_logged_in_users,
+    only: [:new, :create]
   def show
     _escrow
   end
@@ -14,16 +16,6 @@ class Itps::EscrowsController < Itps::BaseController
     _dispatch_email!
   end
 
-  def edit
-    _editive_form_helper
-  end
-
-  def update
-    _update_escrow!
-    _render_update_flash!
-    _get_out_of_here_update!
-  end
-
   def new
     _form_helper
   end
@@ -35,6 +27,11 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   private
+  def _filter_logged_in_users
+    return unless user_signed_in?
+    redirect_to new_itps_account_escrow_path current_account
+  end
+
   def _escrow_ready!
     @result ||= _escrow.draft_party_agree! if _ready_params[:agree].present?
   end
@@ -61,36 +58,15 @@ class Itps::EscrowsController < Itps::BaseController
     @email_helper ||= Itps::Escrows::EscrowEmailHelper.new
   end
 
-  def _get_out_of_here_update!
-    return redirect_to itps_escrow_path(_escrow.permalink) if _valid?
-    return render :edit if _invalid?
-  end
-
-  def _render_update_flash!
-    flash.now[:error] = t(:unable_to_update) if _invalid?
-    flash[:notice] = t(:update_successful) if _valid?
-  end
-
-  def _update_escrow!
-    _updative_form_helper.update_escrow!
-  end
-
-  def _updative_form_helper
-    _editive_form_helper
-    _creative_form_helper
-  end
-
-  def _editive_form_helper
-    _form_helper.tap { |f| f.slug_in_escrow _escrow }
-  end
-
   def _get_out_of_here!
     return redirect_to itps_escrow_path(_escrow.permalink) if _existing?
     return render :new if _invalid?
   end
 
   def _creative_form_helper
-    _form_helper.tap { |f| f.attributes = _raw_escrow_params }
+    _form_helper.tap do |f| 
+      f.attributes = _raw_escrow_params
+    end
   end
 
   def _form_helper

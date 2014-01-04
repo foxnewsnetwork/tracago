@@ -5,6 +5,7 @@
 #new-session-new
   = form_for :user, url: user_session_path do |f|
     = f.hidden_field :origin, value: :itps
+    = f.hidden_field :back, value: params[:back]
     %fieldset
       %dl
         %dt= f.label :email, t(:login_email)

@@ -5,24 +5,30 @@
 = form_for @form_helper, url: itps_escrows_path do |f|
   %fieldset
     %h3= t(:paying_party_details)
-    %dl
-      %dt= f.label :paying_company_name, t(:company_name)
-      %dd= f.text_field :paying_company_name
-      %dt= f.label :paying_company_email, t(:email)
-      %dd= f.email_field :paying_company_email
-      %dt= f.label :drafted_by_paying, t(:your_are_the_paying_party)
-      %dd= f.radio_button :drafted_by_paying, true, checked: true
-    %p= Faker::Lorem.paragraph
+    %article
+      %dl
+        %dt= f.label :paying_company_name, t(:company_name)
+        %dd= f.text_field :paying_company_name
+        %dt= f.label :paying_company_email, t(:email)
+        %dd= f.email_field :paying_company_email
+      %dl
+        %dt= f.label :drafted_by_paying, t(:your_are_the_paying_party)
+        %dd= f.radio_button :drafted_by_paying, true, checked: true
+    %article
+      %p= Faker::Lorem.paragraph
   %fieldset
     %h3= t(:working_party_details)
-    %dl
-      %dt= f.label :working_company_name, t(:company_name)
-      %dd= f.text_field :working_company_name
-      %dt= f.label :working_company_email, t(:email)
-      %dd= f.email_field :working_company_email
-      %dt= f.label :drafted_by_paying, t(:your_are_the_service_party)
-      %dd= f.radio_button :drafted_by_paying, false
-    %p= Faker::Lorem.paragraph
+    %article
+      %dl
+        %dt= f.label :working_company_name, t(:company_name)
+        %dd= f.text_field :working_company_name
+        %dt= f.label :working_company_email, t(:email)
+        %dd= f.email_field :working_company_email
+      %dl
+        %dt= f.label :drafted_by_paying, t(:your_are_the_service_party)
+        %dd= f.radio_button :drafted_by_paying, false
+    %article
+      %p= Faker::Lorem.paragraph
   %fieldset
     %section
       = button_tag type: :submit do

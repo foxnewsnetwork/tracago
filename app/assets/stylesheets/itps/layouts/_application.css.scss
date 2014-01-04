@@ -9,7 +9,7 @@
 body {
   @include shared-important;
   background: #e7e7e7;
-  button {
+  button, a[type=reset] {
     @extend .btn;
     &[type=submit] {
       @extend .btn-block;

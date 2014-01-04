@@ -57,16 +57,23 @@ class Itps::Party < ActiveRecord::Base
     email.to_url
   end
 
-  def active_escrows
-    active_service_escrows + active_payment_escrows
+  def active_escrows(n=3)
+    active_service_escrows.limit(n) + active_payment_escrows.limit(n)
   end
 
-  def in_progress_escrows
-    in_progress_service_escrows + in_progress_payment_escrows
+  def in_progress_escrows(n=3)
+    in_progress_service_escrows.limit(n) + in_progress_payment_escrows.limit(n)
   end
 
-  def archived_escrows
-    archived_service_escrows + archived_payment_escrows
+  def archived_escrows(n=3)
+    archived_service_escrows.limit(n) + archived_payment_escrows.limit(n)
+  end
+
+  private
+  def _limit_sort_merge(es, n=3)
+    es.sort do |a,b|
+      b.updated_at <=> a.updated_at
+    end.take n
   end
 
 end

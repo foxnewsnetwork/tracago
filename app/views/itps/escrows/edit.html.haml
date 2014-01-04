@@ -8,6 +8,7 @@
     %ul
       %li= link_to t(:escrow), itps_escrow_path(@escrow.permalink)
       %li= link_to t(:edit), edit_itps_escrow_path(@escrow.permalink)
+  = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
   = form_for @form_helper, url: itps_escrow_path(@escrow.permalink), method: :put do |f|
     %fieldset
       %h3= t(:paying_party_details)
@@ -28,6 +29,6 @@
         = button_tag type: :submit do
           %i.submit
           = t(:confirm)
-        = button_tag type: :reset do
+        = link_to itps_escrow_path(@escrow.permalink), type: :reset do
           %i.reset
           = t(:cancel)

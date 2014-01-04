@@ -1,14 +1,18 @@
 @mixin shared-errors {
   @extend .panel;
   @extend .panel-danger;
-  .heading {
+  #error-heading-div {
     @extend .panel-heading;
-    h3 {
+    #error-header-h3 {
       @extend .panel-title;
       text-transform: capitalize;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      padding-left: 0px;
     }   
   }
-  ul {
+  ul#error-body-ul {
     @extend .panel-body;
     list-style: none;
   }

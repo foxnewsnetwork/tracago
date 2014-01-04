@@ -31,7 +31,7 @@ Tracago::Application.routes.draw do
       resources :documents, only: [:new, :create], controller: 'steps/documents'
     end
     resources :documents, only: [:show]
-    resources :escrows do
+    resources :escrows, only: [:new, :create, :destroy, :show] do
       member do
         get :tos
         post :ready
@@ -44,7 +44,7 @@ Tracago::Application.routes.draw do
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end
     resources :accounts, only: [:show] do
-      resources :escrows, only: [:index], controller: 'accounts/escrows'
+      resources :escrows, only: [:index, :new, :create], controller: 'accounts/escrows'
     end
     devise_scope :users do
       get '/login' => 'sessions#new', :as => :login

@@ -31,11 +31,6 @@
             %i.destroy-escrow
           = t(:destroy_escrow)
       %li
-        = link_to edit_itps_escrow_path(@escrow.permalink) do
-          %figure
-            %i.edit
-          = t(:edit_basic_info)
-      %li
         = link_to ready_itps_escrow_path(@escrow.permalink) do
           %figure
             %i.mark-ready

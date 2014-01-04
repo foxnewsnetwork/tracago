@@ -8,12 +8,12 @@
 @import 'itps/escrows/steps/new';
 @import 'itps/escrows/show';
 @import 'itps/steps/show';
-@import 'itps/escrows/edit';
 @import 'itps/documents/show';
 @import 'itps/escrows/tos';
 @import 'itps/steps/documents/new';
 @import 'itps/sessions/new';
 @import 'itps/accounts/show';
+@import 'itps/accounts/escrows/new';
 
 @mixin shared-main {
   #home-index {
@@ -49,9 +49,6 @@
   #steps-show {
     @include itps-steps-show;
   }
-  #escrows-edit {
-    @include itps-escrows-edit;
-  }
   #documents-show {
     @include itps-documents-show;
   }
@@ -66,5 +63,9 @@
   }
   #accounts-show {
     @include itps-accounts-show;
+  }
+  #accounts-escrows-new, #accounts-escrows-create {
+    @include itps-accounts-escrows-new;
+    @include itps-escrows-new;
   }
 }

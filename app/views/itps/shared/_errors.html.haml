@@ -1,9 +1,9 @@
 - if errors.any?
   #error-explanation
-    .heading
-      %h3
+    #error-heading-div
+      #error-header-h3
         = pluralize(errors.count, "error")
         = "are in your form:"
-    %ul
+    %ul#error-body-ul
       - errors.full_messages.each do |msg|
         %li= msg
