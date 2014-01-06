@@ -1,4 +1,6 @@
 class Itps::Escrows::StepsController < Itps::BaseController
+  before_filter :filter_anonymous_account,
+    :filter_wrong_account
   def new
     _form_helper
   end
@@ -10,6 +12,10 @@ class Itps::Escrows::StepsController < Itps::BaseController
   end
 
   private
+  def _correct_accounts
+    [_escrow.draft_party.account]
+  end
+
   def _step!
     @step ||= _creative_form_helper.step!
   end

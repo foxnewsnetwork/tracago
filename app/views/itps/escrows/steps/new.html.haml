@@ -3,6 +3,10 @@
     %h1= t(:steps_to_escrow)
 
 = form_for :steps, url: itps_escrow_steps_path(@escrow.permalink) do |f|
+  %fieldset#cookie-crumbs
+    %ol
+      %li= link_to t(:contract_overview), itps_escrow_path(@escrow.permalink)
+      %li= link_to t(:new_step)
   %fieldset
     %h3= t(:step_information)
     %dl
@@ -23,7 +27,7 @@
     %section
       = button_tag type: :submit do
         %i.submit
-        = t(:next)
-      = button_tag type: :reset do
+        = t(:submit)
+      = link_to itps_escrow_path(@escrow.permalink), type: :reset do
         %i.reset
         = t(:cancel)

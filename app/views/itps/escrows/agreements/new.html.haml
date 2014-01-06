@@ -1,0 +1,25 @@
+#hero-banner
+  %section
+    %h1= t(:open_escrow_user_agreement)
+
+#agreement-content
+  #backwards-thing-whatever
+    - out_link = itps_escrow_path(@escrow.permalink, secret_key: params[:secret_key])
+    = link_to t(:contract_details), out_link, target: '_blank'
+  %section
+    - 5.times do
+      %article
+        %h3= Faker::LoremCN.sentence
+        %p= Faker::LoremCN.paragraph
+  = form_for :escrows, url: itps_escrow_agreement_path(@escrow.permalink) do |f|
+    %fieldset
+      = f.check_box :agree
+      = f.label :agree, t(:agree_to_terms_of_usage)
+      - super_secret_key = params[:secret_key]
+      - if correct_account? @escrow.drafting_party.try :account
+        - super_secret_key ||= @escrow.drafting_party_secret_key
+      = f.hidden_field :super_secret_key, value: super_secret_key
+    %fieldset
+      = button_tag type: :submit do
+        %i.submit
+        = t(:commit_to_contract)

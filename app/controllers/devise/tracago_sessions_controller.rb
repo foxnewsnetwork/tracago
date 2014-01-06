@@ -7,6 +7,10 @@ class Devise::TracagoSessionsController < Devise::SessionsController
   end
 
   private
+  def after_sign_out_path_for(resource_name)
+    params[:back] || root_path
+  end
+
   def _setup_appropriate_flash
     set_flash_message(:notice, :signed_in)      if _successful_login?
     set_flash_message(:error, :no_such_email)   if _no_such_email?

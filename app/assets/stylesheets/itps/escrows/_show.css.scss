@@ -1,17 +1,26 @@
 @mixin itps-escrows-show {
   #hero-banner {
     color: $highlight-textcolor;
-    &.unready {
-      background-color: $warning-color;
-    }
     &.deleted {
       background-color: $danger-color;
     }
     &.opened {
       background-color: $success-color;
     }
-    &.closed {
+    &.completed {
       background-color: $hooray-color;
+    }
+    &.edit_mode {
+      background-color: $warning-color;
+    }
+    &.active {
+      background-color: $success-color;
+    }
+    &.waiting_for_other_party {
+      background-color: $warning-color;
+    }
+    &.error {
+      background-color: $danger-color;
     }
     section {
       @extend .container;
@@ -46,8 +55,8 @@
     }
     #basic-information {
       dl {
-        @extend .col-lg-6;
-        @extend .col-md-6;
+        @extend .col-lg-4;
+        @extend .col-md-4;
         @extend .col-sm-12;
         @extend .col-xs-12;
       }

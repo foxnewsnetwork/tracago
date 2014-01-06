@@ -20,6 +20,16 @@
     @extend .container;
     fieldset {
       @extend .row;
+      &#cookie-crumbs {
+        ol {
+          @extend .breadcrumb;
+          @extend .col-lg-12;
+          @extend .col-md-12;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
+          margin-left: 15px;
+        }
+      }
       h3 {
         @extend .col-lg-12;
         border-bottom: $standard-border;

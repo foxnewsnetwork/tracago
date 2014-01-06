@@ -32,6 +32,9 @@ class Itps::Escrow < ActiveRecord::Base
     class_name: 'Itps::Party'
   belongs_to :draft_party,
     class_name: 'Itps::Party'
+  belongs_to :drafting_party,
+    class_name: 'Itps::Party',
+    foreign_key: 'draft_party_id'
 
   scope :incomplete,
     -> { where "#{self.table_name}.completed_at is null" }
@@ -45,8 +48,12 @@ class Itps::Escrow < ActiveRecord::Base
     -> { where "#{self.table_name}.serviced_party_agreed_at is not null" }
   scope :payment_party_active,
     -> { where "#{self.table_name}.payment_party_agreed_at is not null" }
+  scope :waiting_for_both_sides_to_agree,
+    -> { incomplete.where("#{self.table_name}.serviced_party_agreed_at is null XOR #{self.table_name}.payment_party_agreed_at is null") }
+  scope :edit_mode,
+    -> { incomplete.service_party_inactive.payment_party_inactive }
   scope :inactive,
-    -> { incomplete.where("#{self.table_name}.serviced_party_agreed_at is null or #{self.table_name}.payment_party_agreed_at is null") }
+    -> { incomplete.service_party_inactive.payment_party_inactive }
   scope :active,
     -> { incomplete.payment_party_active.service_party_active }
   before_validation :_create_permalink, :_create_secret_hashes
@@ -61,11 +68,44 @@ class Itps::Escrow < ActiveRecord::Base
       return find_by_payment_party_agree_key! mysterious_key
     end
   end
+
+  def secret_key_for_account(account)
+    return if account.blank? || account.party.blank?
+    return payment_party_agree_key if payment_party == account.party
+    return service_party_agree_key if service_party == account.party
+  end
+
+  def secret_key_party_agree!(key)
+    return false if key.blank?
+    return payment_party if (payment_party_agree_key == key) && payment_party_agree!
+    return service_party if (service_party_agree_key == key) && service_party_agree!
+  end
+
+  def matches_payment_account?(account)
+    return false if account.blank? || payment_party.blank?
+    account == payment_party.account
+  end
+
+  def matches_service_account?(account)
+    return false if account.blank? || service_party.blank?
+    account == service_party.account
+  end
+  
+  def edit_enabled?
+    !locked?
+  end
+
   def status
     return :deleted if deleted?
-    return :closed if closed?
-    return :opened if opened?
-    return :unready
+    return :completed if completed?
+    return :edit_mode if edit_mode?
+    return :active if opened?
+    return :waiting_for_other_party if single_side_locked?
+    return :error
+  end
+
+  def edit_mode?
+    !(completed? || locked?)
   end
 
   def payment_party_agreed_at_presentation
@@ -76,6 +116,10 @@ class Itps::Escrow < ActiveRecord::Base
     serviced_party_agreed_at.blank? ? I18n.t(:never) : serviced_party_agreed_at.to_s(:long)
   end
 
+  def drafting_party_secret_key
+    return payment_party_agree_key if drafted_by_payer?
+    return service_party_agree_key if drafted_by_worker?
+  end
 
   def drafted_by_payer?
     payment_party == draft_party
@@ -93,6 +137,16 @@ class Itps::Escrow < ActiveRecord::Base
     update payment_party_agreed_at: DateTime.now
   end
 
+  def already_agreed_party
+    return payment_party if payment_party_agreed?
+    return service_party if service_party_agreed?
+  end
+
+  def not_agreed_party_secret_key
+    return payment_party_agree_key if service_party_agreed?
+    return service_party_agree_key if payment_party_agreed?
+  end
+
   def other_party_agree!
     return payment_party_agree! if drafted_by_worker?
     return service_party_agree! if drafted_by_payer?
@@ -101,6 +155,10 @@ class Itps::Escrow < ActiveRecord::Base
 
   def open!
     service_party_agree! && payment_party_agree!
+  end
+
+  def single_side_locked?
+    service_party_agreed? ^ payment_party_agreed?
   end
 
   def locked?

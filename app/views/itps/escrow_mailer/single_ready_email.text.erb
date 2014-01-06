@@ -1,0 +1,15 @@
+Contract with <%= @escrow.already_agreed_party.company_name %> requires your agreement
+===
+
+Visit the following link to review the contract:
+
+<%= new_itps_escrow_agreement_url @escrow.permalink, secret_key: @escrow.not_agreed_party_secret_key, host: Itps::BaseHelper.itps_app_host %>
+
+The other party's contact details are reproduced here for your convenience:
+
+Party Name: <%= @escrow.already_agreed_party.company_name %>
+Contact Email: <%= @escrow.already_agreed_party.email %>
+
+Sincerely,
+
+Lowly ITPS Mail Clerk

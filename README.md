@@ -1,3 +1,8 @@
+Calendar for Escrow
+=
+Monday Jan 6
+1. Account creation after email contact
+
 Tracago Project
 =
 International Trade Platform
@@ -74,6 +79,21 @@ International Trade Platform
 
 # Friday, December 27
 1. Get frustrated over account sessions
+
+# Friday, Jan 3
+1. Got account sessions working
+2. Added a more intutive path for new escrows when logged in
+
+# Saturday, Jan 4
+1. Needs escrow show page permission setup with locks and shit
+2. Needs user logout to properly redirect
+> Needs proper permission across showing contracts and such
+> Needs a nature way for emailed contract users to create accounts
+> Needs a nature way for users to change their company name
+> Needs a preferences page
+> Needs to make all the accounts show page links go live
+> Needs real documentation data and whatnot
+> Needs appropriate links everywhere
 
 
 International Merchants

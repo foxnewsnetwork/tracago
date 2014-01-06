@@ -9,7 +9,7 @@
 @import 'itps/escrows/show';
 @import 'itps/steps/show';
 @import 'itps/documents/show';
-@import 'itps/escrows/tos';
+@import 'itps/escrows/agreements/new';
 @import 'itps/steps/documents/new';
 @import 'itps/sessions/new';
 @import 'itps/accounts/show';
@@ -52,8 +52,8 @@
   #documents-show {
     @include itps-documents-show;
   }
-  #escrows-tos {
-    @include itps-escrows-tos;
+  #escrows-agreements-new, #escrows-agreements-create {
+    @include itps-escrows-agreements-new;
   }
   #steps-documents-new {
     @include itps-steps-documents-new;

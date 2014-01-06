@@ -15,7 +15,7 @@
             %li= link_to t(:in_progress_contracts), '#contracts-in-progress'
             %li= link_to t(:archived_contracts), '#contracts-archived'
         %li= link_to t(:preferences), '#preferences'
-        %li= link_to t(:logout), destroy_user_session_path, method: :delete
+        %li= link_to t(:logout), destroy_user_session_path(back: itps_path), method: :delete
 
     #meat-and-bones
       #basics

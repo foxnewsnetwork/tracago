@@ -1,0 +1,58 @@
+@mixin itps-escrows-agreements-new {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+      .colon:after {
+        content: ":";
+      }
+    }
+  }
+  #agreement-content {
+    @extend .container;
+    margin-bottom: 20px;
+    #backwards-thing-whatever {
+      @extend .row;
+      margin-top: 15px;
+      margin-left: 0px;
+      a {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    section {
+      @extend .row;
+      article {
+        @extend .col-lg-8;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+      }
+    }
+    form {
+      @extend .row;
+      margin-top: 5px;
+      fieldset {
+        @extend .col-lg-8;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12; 
+
+        &:first-child { 
+          padding-top: 10px;
+          border-top: $standard-border;
+        }
+      }
+    }
+  }
+}

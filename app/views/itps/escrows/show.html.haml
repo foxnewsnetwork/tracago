@@ -2,48 +2,76 @@
   %section
     %h1
       %span.colon= t(:escrow_status)
-      = @escrow.status
+      = t @escrow.status
 
 #content-box
   #basic-information
     %h2= t(:basic_information)
     %dl
+      %dt= t(:drafted_by)
+      %dd
+        = @escrow.draft_party.company_name
+        %span.parantheses
+          - if @escrow.drafted_by_payer?
+            = t(:same_as_payment_party) 
+          - elsif @escrow.drafted_by_worker?
+            = t(:same_as_service_party)
+      %dt= t(:drafting_party_email)
+      %dd= mail_to @escrow.drafting_party.email
+      %dt= t(:document_last_updated_at)
+      %dd= @escrow.updated_at
+    %dl
       %dt= t(:payment_party)
       %dd= @escrow.payment_party.company_name
       %dt= t(:payment_party_email)
       %dd= mail_to @escrow.payment_party.email
+      %dt= t(:payment_party_agreed_at)
+      %dd= @escrow.payment_party_agreed_at || t(:not_yet)
     %dl
       %dt= t(:goods_or_service_party)
       %dd= @escrow.service_party.company_name
       %dt= t(:goods_or_service_party_email)
       %dd= mail_to @escrow.service_party.email
+      %dt= t(:goods_or_service_party_agreed_at)
+      %dd= @escrow.serviced_party_agreed_at || t(:not_yet)
   #actions
     %h2= t(:actions)
     %ul
-      %li
-        = link_to new_itps_escrow_step_path(@escrow.permalink) do
-          %figure
-            %i.add-step
-          = t(:add_step)
-      %li
-        = link_to itps_escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
-          %figure
-            %i.destroy-escrow
-          = t(:destroy_escrow)
-      %li
-        = link_to ready_itps_escrow_path(@escrow.permalink) do
-          %figure
-            %i.mark-ready
-          = t(:mark_ready)
+      - if @escrow.edit_enabled? && correct_account?(@escrow.draft_party.account)
+        %li
+          = link_to new_itps_escrow_step_path(@escrow.permalink) do
+            %figure
+              %i.add-step
+            = t(:add_step)
+        %li
+          = link_to itps_escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
+            %figure
+              %i.destroy-escrow
+            = t(:destroy_escrow)
+        %li
+          = link_to new_itps_escrow_agreement_path(@escrow.permalink) do
+            %figure
+              %i.mark-ready
+            = t(:mark_ready)
+      - elsif params[:secret_key].present?
+        %li
+          = link_to new_itps_escrow_agreement_path(@escrow.permalink, secret_key: params[:secret_key]) do
+            %figure
+              %i.mark-ready
+            = t(:mark_ready)
+      - else
+        %li= t(:no_actions_available)
     
   #steps-to-completion
     %h2= t(:steps_to_completion)
     - if @escrow.steps.blank?
       %h6
         = t(:no_steps_yet)
-        = link_to new_itps_escrow_step_path(@escrow.permalink) do
-          %i
-          = t(:add_step)
+        / Bad code below! Needs to be refactored as to not cause cancer
+        - if @escrow.edit_enabled? && correct_account?(@escrow.draft_party.account)
+          = link_to new_itps_escrow_step_path(@escrow.permalink) do
+            %i
+            = t(:add_step)
     %ol= render partial: 'itps/escrows/step', collection: @escrow.steps
 
 

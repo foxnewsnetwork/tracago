@@ -1,4 +1,9 @@
 module Itps::BaseHelper
+  class << self
+    def itps_app_host
+      'international-trade-payment-service.com'
+    end
+  end
   def back_path
     if this_is_the_itps_login_page? || this_is_the_itps_signup_page?
       back_path = params[:back]
@@ -6,4 +11,5 @@ module Itps::BaseHelper
       request.fullpath
     end
   end
+
 end
