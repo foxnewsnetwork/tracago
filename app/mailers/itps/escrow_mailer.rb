@@ -8,7 +8,8 @@ class Itps::EscrowMailer < ActionMailer::Base
 
   def both_ready_email(escrow)
     @escrow = escrow
-    mail to: @escrow.other_party.email, 
+    mail to: @escrow.payment_party.email,
+      cc: @escrow.service_party.email,
       subject: "Both parties have agreed!"
   end
 end

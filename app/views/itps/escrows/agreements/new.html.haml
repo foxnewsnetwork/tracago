@@ -18,7 +18,7 @@
       - super_secret_key = params[:secret_key]
       - if correct_account? @escrow.drafting_party.try :account
         - super_secret_key ||= @escrow.drafting_party_secret_key
-      = f.hidden_field :super_secret_key, value: super_secret_key
+      = f.hidden_field :secret_key, value: super_secret_key
     %fieldset
       = button_tag type: :submit do
         %i.submit

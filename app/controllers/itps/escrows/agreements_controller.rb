@@ -32,7 +32,7 @@ class Itps::Escrows::AgreementsController < Itps::BaseController
   end
 
   def _has_secret_key?
-    params[:secret_key].present?
+    params[:secret_key].present? || params[:escrows][:secret_key].present?
   end
 
   def _escrow
