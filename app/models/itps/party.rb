@@ -63,6 +63,9 @@ class Itps::Party < ActiveRecord::Base
     foreign_key: 'payment_party_id',
     class_name: 'Itps::Escrow'
 
+  validates :email,
+    presence: true,
+    format: { with: Devise.email_regexp }
 
   def permalink
     email.to_url
@@ -86,6 +89,10 @@ class Itps::Party < ActiveRecord::Base
     _limit_flatten_sort_merge n,
       archived_service_escrows,
       archived_payment_escrows
+  end
+
+  def claimed?
+    account.present?
   end
 
   private

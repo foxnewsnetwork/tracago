@@ -68,4 +68,7 @@
     @include itps-accounts-escrows-new;
     @include itps-escrows-new;
   }
+  #parties-accounts-new, #parties-accounts-create {
+    @include itps-sessions-new;
+  }
 }

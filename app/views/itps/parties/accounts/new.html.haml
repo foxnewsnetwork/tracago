@@ -3,23 +3,20 @@
     %h1= t(:account_creation)
 
 #new-session-new
-  = form_for :user, url: user_registration_path do |f|
+  = form_for @form_helper, url: itps_party_accounts_path(@party) do |f|
     %fieldset
       = f.hidden_field :back, value: params[:back]
-      = f.hidden_field :origin, value: :itps
       %dl
         %dt= f.label :email, t(:login_email)
-        %dd= f.email_field :email, value: params[:email]
+        %dd= @party.email
         %dt= f.label :password, t(:password)
         %dd= f.password_field :password
         %dt= f.label :password_confirmation, t(:password_confirmation)
         %dd= f.password_field :password_confirmation
       %article
-        %h4
-          = Faker::Lorem.sentence
-        %h4
-          = link_to t(:login_to_existing_account), itps_login_path(back: back_path)
         = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
+        %h4
+          It looks like you don't have an account with us yet. Please setup a password for your new account.
     %fieldset
       %article
         = button_tag type: :submit do

@@ -3,6 +3,10 @@ Calendar for Escrow
 Monday Jan 6
 1. Account creation after email contact
 
+Tuesday Jan 7
+1. Easy Life Roger
+2. Login sessions and junk
+
 Tracago Project
 =
 International Trade Platform

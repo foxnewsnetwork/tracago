@@ -31,6 +31,10 @@ class Itps::Account < ActiveRecord::Base
     :archived_escrows,
     to: :party
 
+  validates :email,
+    presence: true,
+    format: { with: Devise.email_regexp }
+    
   def party_with_defaults
     return _generate_party if party_without_defaults.blank?
     party_without_defaults

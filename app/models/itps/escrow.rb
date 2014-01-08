@@ -75,10 +75,26 @@ class Itps::Escrow < ActiveRecord::Base
     return service_party_agree_key if service_party == account.party
   end
 
+  def party_for_secret_key(key)
+    return payment_party if payment_party_agree_key == key
+    return service_party if service_party_agree_key == key
+  end
+
   def secret_key_party_agree!(key)
     return false if key.blank?
     return payment_party if (payment_party_agree_key == key) && payment_party_agree!
     return service_party if (service_party_agree_key == key) && service_party_agree!
+  end
+
+  def secret_keys
+    [payment_party_agree_key, service_party_agree_key].reject(&:blank?)
+  end
+
+  def unclaimed_secret_keys
+    keys = []
+    keys << payment_party_agree_key unless payment_party.claimed?
+    keys << service_party_agree_key unless service_party.claimed?
+    keys
   end
 
   def matches_payment_account?(account)
@@ -93,6 +109,10 @@ class Itps::Escrow < ActiveRecord::Base
   
   def edit_enabled?
     !locked?
+  end
+
+  def lockable?
+    :edit_mode == status || :waiting_for_other_party == status
   end
 
   def status
@@ -194,7 +214,7 @@ class Itps::Escrow < ActiveRecord::Base
 
   private
   def _create_permalink
-    self.permalink ||= "#{DateTime.now.to_s}-#{payment_party.permalink}-#{service_party.permalink}"
+    self.permalink ||= "#{DateTime.now.to_s}-#{payment_party.permalink}-#{service_party.permalink}".to_url
   end
 
   def _create_secret_hashes

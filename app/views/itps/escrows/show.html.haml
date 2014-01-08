@@ -5,6 +5,14 @@
       = t @escrow.status
 
 #content-box
+  - unless user_signed_in?
+    #warning-messages
+      %h5
+        %span.label= t(:warning)
+        = t(:it_looks_like_you_have_not_made_an_account_yet)
+      - asdf = new_itps_party_account_path @escrow.party_for_secret_key(params[:secret_key]), back: itps_escrow_path(@escrow.permalink)
+      %h5= link_to t(:create_account), asdf 
+
   #basic-information
     %h2= t(:basic_information)
     %dl
@@ -53,12 +61,19 @@
             %figure
               %i.mark-ready
             = t(:mark_ready)
-      - elsif params[:secret_key].present?
+      - elsif params[:secret_key].present? && @escrow.single_side_locked?
         %li
           = link_to new_itps_escrow_agreement_path(@escrow.permalink, secret_key: params[:secret_key]) do
             %figure
               %i.mark-ready
             = t(:mark_ready)
+      - elsif params[:secret_key].present? && !user_signed_in?
+        %li
+          - asdf = new_itps_party_account_path @escrow.party_for_secret_key(params[:secret_key]), back: itps_escrow_path(@escrow.permalink)
+          = link_to asdf do
+            %figure
+              %i.login
+            = t(:login)
       - else
         %li= t(:no_actions_available)
     

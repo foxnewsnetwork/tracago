@@ -1,6 +1,9 @@
 class Itps::EscrowsController < Itps::BaseController
   before_filter :_filter_logged_in_users,
     only: [:new, :create]
+
+  before_filter :_filter_anonymous_keyless_users,
+    only: [:show]
   def show
     _escrow
   end
@@ -16,6 +19,21 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   private
+  def _filter_anonymous_keyless_users
+    if !user_signed_in? && _incorrect_secret_key?
+      flash[:error] = t(:please_sign_in_to_manage_your_contract_escrow)
+      redirect_to itps_login_path back: request.fullpath
+    end
+  end
+
+  def _incorrect_secret_key?
+    !_correct_secret_key?
+  end
+
+  def _correct_secret_key?
+    params[:secret_key].present? && _escrow.unclaimed_secret_keys.include?(params[:secret_key])
+  end
+
   def _filter_logged_in_users
     return unless user_signed_in?
     redirect_to new_itps_account_escrow_path current_account
