@@ -21,6 +21,11 @@
     %fieldset
       %ul
         %li
+          = link_to itps_step_path(@document.step.permalink) do
+            %figure
+              %i.back
+            = t(:back)
+        %li
           = link_to edit_itps_document_path(@document.permalink) do
             %figure
               %i.edit

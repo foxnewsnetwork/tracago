@@ -34,6 +34,11 @@
     %h2= t(:actions)
     %ul
       %li
+        = link_to itps_escrow_path(@step.escrow.permalink) do
+          %figure
+            %i.back
+          = t(:back)
+      %li
         = link_to approve_itps_step_path(@step.permalink), method: :put do
           %figure
             %i.approve

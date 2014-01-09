@@ -88,6 +88,9 @@
               i {
                 @extend .fa;
                 @extend .fa-2x;
+                &.back {
+                  @extend .fa-chevron-left;
+                }
                 &.edit {
                   @extend .fa-edit;
                 }
