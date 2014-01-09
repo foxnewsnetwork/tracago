@@ -75,8 +75,12 @@ class Itps::Escrows::Step < ActiveRecord::Base
     p.present? ? p : I18n.t(:none)
   end
 
+  def complete!
+    update_column 'completed_at', DateTime.now
+  end
+
   def completed?
-    completed_at.present?
+    _n(completed_at) > _n(updated_at)
   end
 
   def waiting_documents?
@@ -96,6 +100,10 @@ class Itps::Escrows::Step < ActiveRecord::Base
   end
 
   private
+  def _n(datetime)
+    Spree::DateTime.normalize_against_never datetime
+  end
+
   def _establish_position
     self.position = escrow.last_step.try(:position).to_i + 1
   end

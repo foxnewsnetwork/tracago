@@ -20,6 +20,7 @@
 class Itps::Escrows::Document < ActiveRecord::Base
   IdBuffer = 18761
   belongs_to :step,
+    touch: true,
     class_name: 'Itps::Escrows::Step'
   has_one :escrow,
     through: :step,
@@ -52,6 +53,14 @@ class Itps::Escrows::Document < ActiveRecord::Base
 
   def waiting_upload?
     attached_file.blank?
+  end
+
+  def approve!
+    update_column 'approved_at', DateTime.now
+  end
+
+  def reject!
+    update_column 'rejected_at', DateTime.now
   end
 
   def rejected?

@@ -142,10 +142,16 @@
                   @extend .fa-times;
                 }
               }
+              &.error {
+                background-color: $danger-color;
+                i {
+                  @extend .fa-exclamation-triangle;
+                }
+              }
               &.approved {
                 background-color: $success-color;
                 i {
-                  @extend .fa-checked;
+                  @extend .fa-check;
                 }
               }
               &.waiting_upload {

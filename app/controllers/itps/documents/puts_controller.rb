@@ -43,11 +43,11 @@ class Itps::Documents::PutsController < Itps::BaseController
   end
 
   def _approve_document!
-    @approve_result = _document.update approved_at: DateTime.now
+    @approve_result = _document.approve!
   end
 
   def _reject_document!
-    @rejection_result = _document.update rejected_at: DateTime.now
+    @rejection_result = _document.reject!
   end
 
   def _render_flash!

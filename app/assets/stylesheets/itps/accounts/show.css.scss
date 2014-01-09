@@ -1,4 +1,7 @@
 @mixin itps-accounts-show {
+  .colon:after {
+    content: ":";
+  }
   #hero-banner {
     background-color: $highlight-background;
     section {
@@ -12,9 +15,6 @@
         margin-bottom: 0px;
         text-transform: capitalize;
         color: $highlight-textcolor;
-      }
-      .colon:after {
-        content: ":";
       }
     }
   }
@@ -130,6 +130,21 @@
                 &.unready {
                   i {
                     @extend .fa-spinner;
+                  }
+                }
+                &.edit_mode {
+                  i {
+                    @extend .fa-pencil;
+                  }
+                }
+                &.active {
+                  i {
+                    @extend .fa-check;
+                  }
+                }
+                &.completed {
+                  i {
+                    @extend .fa-archive;
                   }
                 }
                 h4 {

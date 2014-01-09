@@ -32,7 +32,7 @@ class Itps::Steps::PutsController < Itps::BaseController
   end
 
   def _approve_step!
-    @approve_result = _step.update completed_at: DateTime.now
+    @approve_result = _step.complete!
   end
 
   def _get_out_of_here!

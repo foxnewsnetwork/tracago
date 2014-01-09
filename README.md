@@ -1,10 +1,14 @@
 Calendar for Escrow
 =
->Document destroy path
 >Document & step permission setup
 >Preference pages
 >propagate edit_mode down from escrow to all affilated things
 >Add buttons for going back and forth on the actions slabs
+
+Thursday Jan 9
+1. Document destroy complete
+2. Fixed issue with completed_at and whatnot also updating updated_at
+3. Fixed issue with missing icons
 
 Wedesday Jan 8
 1. Document approve, rejection, edit, update
