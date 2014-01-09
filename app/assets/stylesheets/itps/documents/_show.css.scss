@@ -16,6 +16,9 @@
     &.error {
       background-color: $danger-color;
     }
+    &.edit_mode {
+      background-color: $edit-color;
+    }
     section {
       @extend .container;
       padding-top: 15px;

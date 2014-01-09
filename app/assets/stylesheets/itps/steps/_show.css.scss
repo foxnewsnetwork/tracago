@@ -12,7 +12,9 @@
     &.needs_approval, &.waiting_final_approval {
       background-color: $hooray-color;
     }
-    
+    &.edit_mode {
+      background-color: $edit-color;
+    }    
     section {
       @extend .container;
       padding-top: 15px;
@@ -135,6 +137,12 @@
                 @extend .fa;
                 padding: 5px;
                 border-radius: 5px;
+              }
+              &.edit_mode {
+                background-color: $edit-color;
+                i {
+                  @extend .fa-pencil;
+                }
               }
               &.rejected {
                 background-color: $danger-color;

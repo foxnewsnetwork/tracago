@@ -35,7 +35,11 @@ class Itps::Escrows::Document < ActiveRecord::Base
     url: '/itps/escrows/documents/:id/:access_token/:basename.:extension',
     path: ':rails_root/public/itps/escrows/documents/:id/:access_token/:basename.:extension'
 
+  delegate :edit_mode?,
+    to: :step
+
   def status
+    return :edit_mode if edit_mode?
     return :approved if approved?
     return :rejected if rejected?
     return :waiting_upload if waiting_upload?

@@ -2,13 +2,15 @@ Calendar for Escrow
 =
 >Document & step permission setup
 >Preference pages
->propagate edit_mode down from escrow to all affilated things
 >Add buttons for going back and forth on the actions slabs
+
 
 Thursday Jan 9
 1. Document destroy complete
 2. Fixed issue with completed_at and whatnot also updating updated_at
 3. Fixed issue with missing icons
+4. edit_mode propagated down and added the boring gray color for editing
+5. Investment formula: $(time) = (exponential(interest * time) - 1) * wage / interest
 
 Wedesday Jan 8
 1. Document approve, rejection, edit, update

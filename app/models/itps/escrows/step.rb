@@ -26,7 +26,10 @@ class Itps::Escrows::Step < ActiveRecord::Base
     class_name: 'Itps::Escrows::Document'
   before_validation :_create_permalink, :_establish_position
 
+  delegate :edit_mode?,
+    to: :escrow
   def status
+    return :edit_mode if edit_mode?
     return :completed if completed?
     return :waiting_documents if waiting_documents?
     return :rejected if rejected_documents?

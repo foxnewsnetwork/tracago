@@ -11,7 +11,7 @@
       background-color: $hooray-color;
     }
     &.edit_mode {
-      background-color: $warning-color;
+      background-color: $edit-color;
     }
     &.active {
       background-color: $success-color;
@@ -147,6 +147,15 @@
               @extend .col-md-4;
               @extend .col-sm-6;
               @extend .col-xs-12;
+            }
+            &.edit_mode {
+              background-color: $edit-color;
+              h4, i {
+                color: $highlight-textcolor;
+              }
+              i {
+                @extend .fa-pencil;
+              }
             }
             &.completed {
               background-color: $success-color;
