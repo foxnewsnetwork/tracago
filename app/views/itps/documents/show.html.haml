@@ -1,34 +1,74 @@
-#hero-banner
+#hero-banner{ :class => @document.status }
   %section
     = link_to itps_step_path(@document.step.permalink) do
       %h1
-        %span.colon= t(:escrow_document)
-        = @document.title
+        %span.colon
+          = @document.title
+        = t @document.status 
 
 #document-content
   #cookie-crumbs
-    %ul
+    %ol
       %li= link_to t(:escrow), itps_escrow_path(@document.escrow.permalink)
       %li
         = link_to itps_step_path(@document.step.permalink) do
           = t(:step)
           = @document.step.position
       %li= link_to @document.title, itps_document_path(@document.permalink)
+  #document-other-actions
+    %fieldset
+      %legend= t(:available_actions)
+    %fieldset
+      %ul
+        %li
+          = link_to edit_itps_document_path(@document.permalink) do
+            %figure
+              %i.edit
+            = t(:edit)
+        %li
+          = link_to itps_document_path(@document.permalink), method: :delete do
+            %figure
+              %i.destroy
+            = t(:destroy)
+        %li
+          = link_to reject_itps_document_path(@document.permalink), method: :put do
+            %figure
+              %i.reject
+            = t(:reject)
+        %li
+          = link_to approve_itps_document_path(@document.permalink), method: :put do
+            %figure
+              %i.approve
+            = t(:approve)
   #document-form
-    = form_for :document, method: :put, multipart: true do |f|
+    - out_url = upload_itps_document_path(@document.permalink)
+    = form_for :document, url: out_url, method: :put, multipart: true do |f|
       %fieldset
         %legend= t(:document_upload)
       %fieldset
         %dl
-          %dt= f.label :attach_file, t(:document)
+          %dt= t(:status)
+          %dd= t @document.status
+          %dt= t(:description)
+          %dd= @document.description
+          %dt= t(:last_updated_at)
+          %dd= @document.updated_at
+          %dt= t(:previously_uploaded_document)
           %dd
-            = f.file_field :attach_file
-            %p= @document.description
+            - if @document.attached_file.present?
+              = link_to @document.attached_file.url, target: '_blank' do
+                %i.file
+                = h @document.title
+            - else
+              = t(:no_files_uploaded)
+          %dt= f.label :attached_file, t(:document_file_upload)
+          %dd
+            = f.file_field :attached_file
       %fieldset
         %section
           = button_tag type: :submit do
             %i.submit
             = t(:submit)
-          = button_tag type: :reset do
+          = link_to itps_step_path(@document.step.permalink), type: :reset do
             %i.reset
             = t(:cancel)

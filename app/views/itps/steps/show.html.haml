@@ -9,7 +9,7 @@
 
 #steps-content
   #cookie-crumbs
-    %ul
+    %ol
       %li= link_to t(:escrow_page), itps_escrow_path(@step.escrow.permalink)
       %li= link_to @step.title, itps_step_path(@step.permalink)
   #basic-information
@@ -34,7 +34,7 @@
     %h2= t(:actions)
     %ul
       %li
-        = link_to approve_itps_step_path(@step.permalink) do
+        = link_to approve_itps_step_path(@step.permalink), method: :put do
           %figure
             %i.approve
           = t(:approve)
@@ -48,6 +48,11 @@
           %figure
             %i.document
           = t(:add_document)
+      %li
+        = link_to itps_step_path(@step.permalink), method: :delete do
+          %figure
+            %i.destroy
+          = t(:destroy)
   #documents
     %h2= t(:documents)
     - if @step.documents.present?

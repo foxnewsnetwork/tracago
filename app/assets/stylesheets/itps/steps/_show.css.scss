@@ -1,16 +1,16 @@
 @mixin itps-steps-show {
   #hero-banner {
     &.completed {
-      background-color: $hooray-color;
+      background-color: $success-color;
     }
-    &.waiting_documents, &.standby {
+    &.waiting_documents, &.rejected {
       background-color: $warning-color;
     }
-    &.rejected {
+    &.error {
       background-color: $danger-color;
     }
-    &.needs_approval {
-      background-color: $success-color;
+    &.needs_approval, &.waiting_final_approval {
+      background-color: $hooray-color;
     }
     
     section {
@@ -43,28 +43,25 @@
     #cookie-crumbs {
       @extend .row;
       padding-top: 15px;
-      ul {
+      ol {
+        @extend .breadcrumb;
         @extend .col-lg-12;
         list-style: none;
+        padding-left: 15px;
+        margin-left: 15px;
+      }
+    }
+    #basic-information, #executive-actions, #documents {
+      h2 {
+        @extend .col-lg-12;
         margin-left: 15px;
         padding-left: 0px;
-        li {
-          display: inline-block;
-        }
-        li:first-child {
-          &:after {
-            content: " » ";
-          }
-        }
+        margin-top: 0px;
+        border-bottom: $standard-border;
       }
     }
     #basic-information {
       @extend .row;
-      h2 {
-        @extend .col-lg-12;
-        margin-top: 0px;
-        border-bottom: $standard-border;
-      }
       dl {
         @extend .col-lg-6;
         @extend .col-md-6;
@@ -74,11 +71,6 @@
     }
     #executive-actions {
       @extend .row;
-      h2 {
-        @extend .col-lg-12;
-        margin-top: 0px;
-        border-bottom: $standard-border;
-      }
       ul {
         list-style: none;
         padding-left: 0px;
@@ -103,6 +95,9 @@
                 &.document {
                   @extend .fa-file-o;
                 }
+                &.destroy {
+                  @extend .fa-times;
+                }
               }
             }
           }
@@ -112,11 +107,6 @@
     #documents {
       @extend .row;
       margin-bottom: 20px;
-      h2 {
-        @extend .col-lg-12;
-        margin-top: 0px;
-        border-bottom: $standard-border;
-      }
       .parantheses {
         @extend .col-lg-12;
       }
@@ -138,6 +128,8 @@
               padding-left: 10px;
               text-transform: capitalize;
               margin-top: 0px;
+              padding-top: 5px;
+              padding-bottom: 5px;
               color: $highlight-textcolor;
               i {
                 @extend .fa;
@@ -163,7 +155,7 @@
                 }
               }
               &.waiting_approval {
-                background-color: $warning-color;
+                background-color: $hooray-color;
                 i {
                   @extend .fa-spinner;
                 }

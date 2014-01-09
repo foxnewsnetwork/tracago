@@ -10,9 +10,19 @@ class Spree::DateTime
     end
 
     def normalize(date_time)
+      normalize_against_always date_time
+    end
+
+    def normalize_against_always(date_time)
       return date_time if date_time.is_a? self
       return new date_time if _timelike? date_time
       new nil
+    end
+
+    def normalize_against_never(date_time)
+      return date_time if date_time.is_a? self
+      return new date_time if _timelike? date_time
+      new :never
     end
 
     def _timelike?(thing)

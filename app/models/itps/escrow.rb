@@ -20,6 +20,7 @@
 
 class Itps::Escrow < ActiveRecord::Base
   class ThirdPartyDraftingNotImplemeneted < ::StandardError; end
+  IdBuffer = 23134
   acts_as_paranoid
   has_many :steps,
     class_name: 'Itps::Escrows::Step'
@@ -67,6 +68,14 @@ class Itps::Escrow < ActiveRecord::Base
       return find_by_service_party_agree_key! mysterious_key if work.present?
       return find_by_payment_party_agree_key! mysterious_key
     end
+  end
+
+  def full_presentation
+    "Contract Id: #{IdBuffer + id.to_i}"
+  end
+
+  def relevant_accounts
+    [service_party, payment_party, draft_party].map(&:account).reject(&:blank?)
   end
 
   def secret_key_for_account(account)

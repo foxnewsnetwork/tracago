@@ -31,7 +31,33 @@ class Itps::Escrows::Step < ActiveRecord::Base
     return :waiting_documents if waiting_documents?
     return :rejected if rejected_documents?
     return :needs_approval if needs_approval?
-    return :standby
+    return :waiting_final_approval if waiting_final_approval?
+    return :error
+  end
+
+  def full_presentation
+    "Step #{position} -- #{title}"
+  end
+
+  def swap_down!
+    swap_position_with! one_step_down if one_step_down.present?
+  end
+
+  def one_step_down
+    escrow.steps.find_by_position(position + 1)
+  end
+
+  def swap_up!
+    swap_position_with! one_step_up if one_step_up.present?
+  end
+
+  def one_step_up
+    escrow.steps.find_by_position(position - 1)
+  end
+
+  def swap_position_with!(step)
+    p = position
+    update(position: step.position) && step.update(position: p)
   end
 
   def required_documents_presentation
@@ -62,7 +88,11 @@ class Itps::Escrows::Step < ActiveRecord::Base
   end
 
   def needs_approval?
-    documents.all?(&:approved?) && !completed?
+    documents.any?(&:waiting_approval?) && !completed?
+  end
+
+  def waiting_final_approval?
+    documents.all(&:approved?) && !completed?
   end
 
   private
@@ -71,7 +101,7 @@ class Itps::Escrows::Step < ActiveRecord::Base
   end
 
   def _create_permalink
-    self.permalink ||= "#{title.to_url}-#{_scrambled_datekey}"
+    self.permalink ||= "#{title.to_url}-#{_scrambled_datekey}".to_url
   end
 
   def _scrambled_datekey

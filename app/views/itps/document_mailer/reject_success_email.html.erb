@@ -1,0 +1,17 @@
+Dear All,
+
+The document:
+<%= @document.full_presentation %>
+
+Submitted for Step: 
+<%= @step.full_presentation %>
+
+of Escrow:
+<%= @escrow.full_presentation %>
+
+has been rejected. Escrow contract details are found at the following link:
+<%= itps_escrow_path @escrow.permalink, host: Itps::BaseHelper.itps_app_host %>
+
+Sincerely,
+
+Mail Clerk

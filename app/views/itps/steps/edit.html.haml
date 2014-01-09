@@ -1,0 +1,26 @@
+#hero-banner
+  %legend
+    %h1= t(:edit_step)
+
+= form_for @step, url: itps_step_path(@step.permalink), method: :put do |f|
+  %fieldset#cookie-crumbs
+    %ol
+      %li= link_to t(:contract_overview), itps_escrow_path(@step.escrow.permalink)
+      %li= link_to t(:escrow_step), itps_escrow_path(@step.permalink)
+      %li= link_to t(:edit)
+  %fieldset
+    %h3= t(:step_information)
+    %dl
+      %dt= f.label :title, t(:step_name)
+      %dd= f.text_field :title
+      %dt= f.label :instructions
+      %dd= f.text_area :instructions
+    %p= Faker::Lorem.paragraph
+  %fieldset
+    %section
+      = button_tag type: :submit do
+        %i.submit
+        = t(:submit)
+      = link_to itps_step_path(@step.permalink), type: :reset do
+        %i.reset
+        = t(:cancel)

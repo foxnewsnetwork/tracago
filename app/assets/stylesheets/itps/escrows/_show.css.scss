@@ -150,7 +150,7 @@
             }
             &.completed {
               background-color: $success-color;
-              h4 {
+              h4, i {
                 color: $highlight-textcolor;
               }
               i {
@@ -167,7 +167,7 @@
                 @extend .fa-spinner;
               }
             }
-            &.needs_approval {
+            &.needs_approval, &.waiting_final_approval {
               background-color: none;
               border-bottom: $standard-border;
               h4 {
@@ -179,16 +179,16 @@
             }
             &.rejected {
               background-color: $danger-color;
-              h4 {
+              h4, i {
                 color: $highlight-textcolor;
               }
               i {
                 @extend .fa-exclamation-circle;
               }
             }
-            &.standby {
+            &.error {
               background-color: $warning-color;
-              h4 {
+              h4, i {
                 color: $highlight-textcolor;
               }
               i {

@@ -22,18 +22,27 @@ Tracago::Application.routes.draw do
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'home#documentation'
     resources :doc_tags, only: [:show]
-    resources :steps, only: [:show, :edit, :destroy] do
+    resources :steps, only: [:update], controller: 'steps/puts' do
       member do
         put :swap_down
         put :swap_up
-        post :approve
+        put :approve
       end
+    end
+    resources :steps, only: [:edit, :show, :destroy] do
       resources :documents, only: [:new, :create], controller: 'steps/documents'
     end
     resources :parties, only: [] do
       resources :accounts, only: [:new, :create], controller: 'parties/accounts'
     end
-    resources :documents, only: [:show]
+    resources :documents, only: [:update], controller: 'documents/puts' do
+      member do
+        put :approve
+        put :reject
+        put :upload
+      end
+    end
+    resources :documents, only: [:show, :destroy, :edit]
     resources :escrows, only: [:new, :create, :destroy, :show] do
       resource :agreement, only: [:new, :create], controller: 'escrows/agreements'
       resources :steps, only: [:new, :create], controller: 'escrows/steps'

@@ -1,6 +1,21 @@
 @mixin itps-documents-show {
   #hero-banner {
     background-color: $highlight-background;
+    &.approved {
+      background-color: $success-color;
+    }
+    &.rejected {
+      background-color: $warning-color;
+    }
+    &.waiting_upload {
+      background-color: $warning-color;
+    }
+    &.waiting_approval {
+      background-color: $hooray-color;
+    }
+    &.error {
+      background-color: $danger-color;
+    }
     section {
       @extend .container;
       padding-top: 15px;
@@ -20,22 +35,59 @@
   }
   #document-content {
     @extend .container;
+    margin-bottom: 15px;
     #cookie-crumbs {
       @extend .row;
-      ul {
-        @extend .col-lg-12;
+      ol {
+        @extend .col-lg-8;
+        @extend .col-md-10;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        @extend .breadcrumb;
         margin-top: 15px;
-        list-style: none;
+        margin-left: 15px;
+      }
+    }
+    #document-other-actions {
+      fieldset {
+        @extend .row;
+        legend {
+          @extend .col-lg-8;
+          @extend .col-md-10;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
+          margin-left: 15px;
+          padding-left: 0px;
+          margin-bottom: 5px;
+          border-bottom: $standard-border;
+        }
+        ul {
+          list-style: none;
+          padding-left: 15px;
+        }
         li {
-          display: inline-block;
-        }
-        li:last-child {
-          &:after {
-            content: none;
+          @extend .col-lg-2;
+          @extend .col-md-3;
+          @extend .col-sm-4;
+          @extend .col-xs-6;
+          @extend .thumbnail;
+          text-align: center;
+          i {
+            @extend .fa;
+            @extend .fa-2x;
+            &.edit {
+              @extend .fa-edit;
+            }
+            &.destroy {
+              @extend .fa-times;
+            }
+            &.reject {
+              @extend .fa-thumbs-o-down;
+            }
+            &.approve {
+              @extend .fa-check-square-o;
+            }
           }
-        }
-        li:after {
-          content: " » ";
         }
       }
     }
@@ -46,19 +98,24 @@
         fieldset {
           @extend .row;
           legend, section, dl {
-            @extend .col-lg-6;
-            @extend .col-md-8;
+            @extend .col-lg-8;
+            @extend .col-md-10;
             @extend .col-sm-12;
             @extend .col-xs-12;
           }
           legend {
             margin-left: 15px;
+            padding-left: 0px;
             margin-bottom: 5px;
             border-bottom: $standard-border;
           }
           dl {
             dd {
               @extend .form-group;
+              i {
+                @extend .fa;
+                @extend .fa-file-o;
+              }
               input {
                 @extend .form-control;
               }

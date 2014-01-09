@@ -1,8 +1,8 @@
 #hero-banner
   %section
-    %h1= t(:require_new_documents)
+    %h1= t(:edit_document_requirements)
 
-= form_for @document, url: itps_step_documents_path(@document.step.permalink) do |f|
+= form_for @document, url: itps_document_path(@document.permalink), method: :put do |f|
   %fieldset
     %dl
       %dt= f.label :title, t(:document_name)
@@ -18,6 +18,6 @@
       = button_tag type: :submit do
         %i.submit
         = t(:submit)
-      = button_tag type: :reset do
+      = link_to itps_document_path(@document.permalink), type: :reset do
         %i.reset
         = t(:cancel)

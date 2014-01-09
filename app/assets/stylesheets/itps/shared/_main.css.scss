@@ -71,4 +71,10 @@
   #parties-accounts-new, #parties-accounts-create {
     @include itps-sessions-new;
   }
+  #steps-edit {
+    @include itps-escrows-steps-new;
+  }
+  #documents-edit {
+    @include itps-steps-documents-new;
+  }
 }

@@ -1,11 +1,23 @@
 Calendar for Escrow
 =
-Monday Jan 6
-1. Account creation after email contact
+>Document destroy path
+>Document & step permission setup
+>Preference pages
+>propagate edit_mode down from escrow to all affilated things
+>Add buttons for going back and forth on the actions slabs
+
+Wedesday Jan 8
+1. Document approve, rejection, edit, update
+2. step edit, update, etc. paths
+3. Fixed color issue
 
 Tuesday Jan 7
 1. Easy Life Roger
 2. Login sessions and junk
+
+Monday Jan 6
+1. Account creation after email contact
+
 
 Tracago Project
 =

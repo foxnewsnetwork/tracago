@@ -18,6 +18,7 @@
 #
 
 class Itps::Escrows::Document < ActiveRecord::Base
+  IdBuffer = 18761
   belongs_to :step,
     class_name: 'Itps::Escrows::Step'
   has_one :escrow,
@@ -34,29 +35,40 @@ class Itps::Escrows::Document < ActiveRecord::Base
     path: ':rails_root/public/itps/escrows/documents/:id/:access_token/:basename.:extension'
 
   def status
-    return :rejected if rejected?
     return :approved if approved?
+    return :rejected if rejected?
     return :waiting_upload if waiting_upload?
-    return :waiting_approval
+    return :waiting_approval if waiting_approval?
+    return :error
   end
 
+  def full_presentation
+    "#{title} -- #{IdBuffer + id}"
+  end
+
+  def waiting_approval?
+    _n(updated_at) > _n(approved_at) && _n(updated_at) > _n(rejected_at)
+  end
 
   def waiting_upload?
     attached_file.blank?
   end
 
   def rejected?
-    rejected_at.present?
+    !waiting_approval? && _n(rejected_at) > _n(approved_at)
   end
 
   def approved?
-    approved_at.present?
+    !waiting_approval? && _n(approved_at) > _n(rejected_at)
   end
 
-
   private
+  def _n(datetime)
+    Spree::DateTime.normalize_against_never datetime
+  end
+
   def _create_permalink
-    self.permalink ||= "#{title.to_url}-#{_scrambled_datekey}"
+    self.permalink ||= "#{title.to_url}-#{_scrambled_datekey}".to_url
   end
 
   def _scrambled_datekey
