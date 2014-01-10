@@ -2,7 +2,6 @@ Calendar for Escrow
 =
 >Document & step permission setup
 >Preference pages
->Add buttons for going back and forth on the actions slabs
 
 
 Thursday Jan 9
@@ -11,6 +10,7 @@ Thursday Jan 9
 3. Fixed issue with missing icons
 4. edit_mode propagated down and added the boring gray color for editing
 5. Investment formula: $(time) = (exponential(interest * time) - 1) * wage / interest
+6. Add buttons for going back and forth on the actions slabs
 
 Wedesday Jan 8
 1. Document approve, rejection, edit, update

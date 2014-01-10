@@ -1,7 +1,10 @@
 class Itps::Steps::PutsController < Itps::BaseController
   before_filter :filter_anonymous_account,
     :filter_wrong_account
-
+  before_filter :_filter_edit_mode_escrows,
+    only: [:approve]
+  before_filter :_filter_lock_mode_escrows,
+    only: [:update]
   def approve
     _approve_step!
     _render_flash!
@@ -27,6 +30,20 @@ class Itps::Steps::PutsController < Itps::BaseController
   end
 
   private
+  def _filter_edit_mode_escrows
+    if _step.edit_mode?
+      redirect_to itps_step_path _step.permalink
+      flash[:error] = t(:you_should_not_approve_of_things_in_edit_mode)
+    end
+  end
+
+  def _filter_lock_mode_escrows
+    if _step.escrow.locked?
+      redirect_to itps_step_path _step.permalink
+      flash[:error] = t(:you_should_not_approve_of_things_in_edit_mode)
+    end
+  end
+
   def _correct_accounts
     _escrow.relevant_accounts
   end

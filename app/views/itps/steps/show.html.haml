@@ -38,26 +38,28 @@
           %figure
             %i.back
           = t(:back)
-      %li
-        = link_to approve_itps_step_path(@step.permalink), method: :put do
-          %figure
-            %i.approve
-          = t(:approve)
-      %li
-        = link_to edit_itps_step_path(@step.permalink) do
-          %figure
-            %i.edit
-          = t(:edit)
-      %li
-        = link_to new_itps_step_document_path(@step.permalink) do
-          %figure
-            %i.document
-          = t(:add_document)
-      %li
-        = link_to itps_step_path(@step.permalink), method: :delete do
-          %figure
-            %i.destroy
-          = t(:destroy)
+      - if @step.escrow.locked?
+        %li
+          = link_to approve_itps_step_path(@step.permalink), method: :put do
+            %figure
+              %i.approve
+            = t(:approve)
+      - if @step.edit_mode?
+        %li
+          = link_to edit_itps_step_path(@step.permalink) do
+            %figure
+              %i.edit
+            = t(:edit)
+        %li
+          = link_to new_itps_step_document_path(@step.permalink) do
+            %figure
+              %i.document
+            = t(:add_document)
+        %li
+          = link_to itps_step_path(@step.permalink), method: :delete do
+            %figure
+              %i.destroy
+            = t(:destroy)
   #documents
     %h2= t(:documents)
     - if @step.documents.present?

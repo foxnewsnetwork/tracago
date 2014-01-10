@@ -15,7 +15,6 @@ class Itps::StepsController < Itps::BaseController
     _render_flash!
     _get_out_of_here!
   end
-
   private
 
   def _correct_accounts

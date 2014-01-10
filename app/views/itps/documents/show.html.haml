@@ -25,26 +25,28 @@
             %figure
               %i.back
             = t(:back)
-        %li
-          = link_to edit_itps_document_path(@document.permalink) do
-            %figure
-              %i.edit
-            = t(:edit)
-        %li
-          = link_to itps_document_path(@document.permalink), method: :delete do
-            %figure
-              %i.destroy
-            = t(:destroy)
-        %li
-          = link_to reject_itps_document_path(@document.permalink), method: :put do
-            %figure
-              %i.reject
-            = t(:reject)
-        %li
-          = link_to approve_itps_document_path(@document.permalink), method: :put do
-            %figure
-              %i.approve
-            = t(:approve)
+        - if @document.edit_mode?
+          %li
+            = link_to edit_itps_document_path(@document.permalink) do
+              %figure
+                %i.edit
+              = t(:edit)
+          %li
+            = link_to itps_document_path(@document.permalink), method: :delete do
+              %figure
+                %i.destroy
+              = t(:destroy)
+        - if @document.escrow.locked?
+          %li
+            = link_to reject_itps_document_path(@document.permalink), method: :put do
+              %figure
+                %i.reject
+              = t(:reject)
+          %li
+            = link_to approve_itps_document_path(@document.permalink), method: :put do
+              %figure
+                %i.approve
+              = t(:approve)
   #document-form
     - out_url = upload_itps_document_path(@document.permalink)
     = form_for :document, url: out_url, method: :put, multipart: true do |f|
