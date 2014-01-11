@@ -11,11 +11,33 @@
 #  position     :integer          default(0), not null
 #  created_at   :datetime
 #  updated_at   :datetime
+#  previous_id  :integer
 #
 
 class Itps::Escrows::Step < ActiveRecord::Base
+  class AbandonedFeature < StandardError; end
+  class << self
+    def swap_positions(stepa, stepb)
+      raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
+      _move_stepb_into_stepa stepa, stepb
+      _move_stepb_into_stepa stepb, stepa
+    end
+
+    private
+    def _move_stepb_into_stepa(stepa, stepb)
+      raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
+      stepb.update previous_step: stepa.previous_step
+      stepa.next_step.update previous_step: stepb if stepa.next_step.present?
+    end
+  end
   belongs_to :escrow,
     class_name: 'Itps::Escrow'
+  belongs_to :previous_step,
+    class_name: 'Itps::Escrows::Step',
+    foreign_key: 'previous_id'
+  has_one :next_step,
+    class_name: 'Itps::Escrows::Step',
+    foreign_key: 'previous_id'
   has_many :documents,
     class_name: 'Itps::Escrows::Document'
   has_many :approved_documents,
@@ -24,8 +46,8 @@ class Itps::Escrows::Step < ActiveRecord::Base
   has_many :rejected_documents,
     -> { rejected },
     class_name: 'Itps::Escrows::Document'
-  before_validation :_create_permalink, :_establish_position
-
+  before_create :_create_permalink, :_establish_position
+  
   delegate :edit_mode?,
     to: :escrow
   def status
@@ -38,29 +60,29 @@ class Itps::Escrows::Step < ActiveRecord::Base
     return :error
   end
 
+  def reference_id
+    previous_id
+  end
+
   def full_presentation
     "Step #{position} -- #{title}"
   end
 
   def swap_down!
-    swap_position_with! one_step_down if one_step_down.present?
-  end
-
-  def one_step_down
-    escrow.steps.find_by_position(position + 1)
+    raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
+    swap_position_with! next_step if next_step.present?
   end
 
   def swap_up!
-    swap_position_with! one_step_up if one_step_up.present?
-  end
-
-  def one_step_up
-    escrow.steps.find_by_position(position - 1)
+    raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
+    swap_position_with! previous_step if previous_step.present?
   end
 
   def swap_position_with!(step)
+    raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
     p = position
     update(position: step.position) && step.update(position: p)
+    self.class.swap_positions(stepa, stepb)
   end
 
   def required_documents_presentation
@@ -109,6 +131,7 @@ class Itps::Escrows::Step < ActiveRecord::Base
 
   def _establish_position
     self.position = escrow.last_step.try(:position).to_i + 1
+    self.previous_id = escrow.last_step.try :id
   end
 
   def _create_permalink

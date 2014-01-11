@@ -1,8 +1,8 @@
 Calendar for Escrow
 =
->Document & step permission setup
 >Preference pages
-
+Friday Jan 10
+1. Spend all day debugging and developing the position linked list swap feature, but at least decided to just fuck it
 
 Thursday Jan 9
 1. Document destroy complete
@@ -11,6 +11,8 @@ Thursday Jan 9
 4. edit_mode propagated down and added the boring gray color for editing
 5. Investment formula: $(time) = (exponential(interest * time) - 1) * wage / interest
 6. Add buttons for going back and forth on the actions slabs
+7. Document & step permission setup
+8. Fixed issue with sorting step positions (But still requires testing)
 
 Wedesday Jan 8
 1. Document approve, rejection, edit, update

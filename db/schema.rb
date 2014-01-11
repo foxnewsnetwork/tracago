@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230230740) do
+ActiveRecord::Schema.define(version: 20140110001502) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -102,10 +102,12 @@ ActiveRecord::Schema.define(version: 20131230230740) do
     t.integer  "position",     default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "previous_id"
   end
 
   add_index "itps_escrows_steps", ["escrow_id"], name: "index_itps_escrows_steps_on_escrow_id", using: :btree
   add_index "itps_escrows_steps", ["permalink"], name: "index_itps_escrows_steps_on_permalink", unique: true, using: :btree
+  add_index "itps_escrows_steps", ["previous_id"], name: "index_itps_escrows_steps_on_previous_id", using: :btree
 
   create_table "itps_parties", force: true do |t|
     t.string   "company_name"

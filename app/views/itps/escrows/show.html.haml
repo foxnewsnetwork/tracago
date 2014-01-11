@@ -52,15 +52,15 @@
               %i.add-step
             = t(:add_step)
         %li
-          = link_to itps_escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
-            %figure
-              %i.destroy-escrow
-            = t(:destroy_escrow)
-        %li
           = link_to new_itps_escrow_agreement_path(@escrow.permalink) do
             %figure
               %i.mark-ready
             = t(:mark_ready)
+        %li
+          = link_to itps_escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
+            %figure
+              %i.destroy-escrow
+            = t(:destroy_escrow)
       - elsif params[:secret_key].present? && @escrow.single_side_locked?
         %li
           = link_to new_itps_escrow_agreement_path(@escrow.permalink, secret_key: params[:secret_key]) do

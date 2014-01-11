@@ -34,3 +34,7 @@ class JewFactory::Escrow < JewFactory::Base
   end
 
 end
+
+module JewFactory::Escrows
+  Dir[File.join(__dir__, "escrows", "*.rb")].each { |f| require f }
+end

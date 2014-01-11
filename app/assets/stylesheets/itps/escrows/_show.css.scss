@@ -96,7 +96,7 @@
                 }
 
                 &.destroy-escrow {
-                  @extend .fa-exclamation-triangle;
+                  @extend .fa-times;
                 }
                 &.edit {
                   @extend .fa-edit;
@@ -206,19 +206,18 @@
             }
             &:first-child {
               a {
-                @extend .col-lg-1;
-                @extend .col-sm-2;
-                @extend .col-xs-2;
                 &:first-child {
-                  @extend .col-lg-8;
-                  @extend .col-sm-6;
-                  @extend .col-xs-6;
+                  @extend .col-lg-10;
+                  @extend .col-md-10;
+                  @extend .col-sm-8;
+                  @extend .col-xs-8;
                   text-align: left;
                 }
                 &:last-child {
                   @extend .col-lg-2;
-                  @extend .col-sm-2;
-                  @extend .col-xs-2;
+                  @extend .col-md-2;
+                  @extend .col-sm-4;
+                  @extend .col-xs-4;
                   text-align: right;
                 }
                 figure {

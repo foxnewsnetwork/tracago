@@ -24,9 +24,6 @@ class Itps::Escrow < ActiveRecord::Base
   acts_as_paranoid
   has_many :steps,
     class_name: 'Itps::Escrows::Step'
-  has_one :last_step,
-    -> { order("#{self.table_name}.position desc").limit(1) },
-    class_name: 'Itps::Escrows::Step'
   belongs_to :payment_party,
     class_name: 'Itps::Party'
   belongs_to :service_party,
@@ -68,6 +65,14 @@ class Itps::Escrow < ActiveRecord::Base
       return find_by_service_party_agree_key! mysterious_key if work.present?
       return find_by_payment_party_agree_key! mysterious_key
     end
+  end
+
+  def last_step
+    ordered_steps.last
+  end
+
+  def ordered_steps
+    Itps::LinkListTools.sort_in_order steps
   end
 
   def full_presentation
