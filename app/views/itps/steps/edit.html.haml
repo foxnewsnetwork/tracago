@@ -13,6 +13,8 @@
     %dl
       %dt= f.label :title, t(:step_name)
       %dd= f.text_field :title
+      %dt= f.label :position, t(:step_number)
+      %dd= f.number_field :position
       %dt= f.label :instructions
       %dd= f.text_area :instructions
     %p= Faker::Lorem.paragraph
