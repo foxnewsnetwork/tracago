@@ -37,21 +37,25 @@ class Itps::Party < ActiveRecord::Base
     -> { completed },
     foreign_key: 'service_party_id',
     class_name: 'Itps::Escrow'
+  alias_method :archive_service_escrows, :archived_service_escrows
 
   has_many :archived_payment_escrows,
     -> { completed },
     foreign_key: 'payment_party_id',
     class_name: 'Itps::Escrow'
+  alias_method :archive_payment_escrows, :archived_payment_escrows
 
   has_many :in_progress_service_escrows,
     -> { inactive },
     foreign_key: 'service_party_id',
     class_name: 'Itps::Escrow'
+  alias_method :unready_service_escrows, :in_progress_service_escrows
 
   has_many :in_progress_payment_escrows,
     -> { inactive },
     foreign_key: 'payment_party_id',
     class_name: 'Itps::Escrow'
+  alias_method :unready_payment_escrows, :in_progress_payment_escrows
 
   has_many :waiting_full_agreement_payment_escrows,
     -> { waiting_for_both_sides_to_agree },
@@ -66,6 +70,8 @@ class Itps::Party < ActiveRecord::Base
   validates :email,
     presence: true,
     format: { with: Devise.email_regexp }
+  validates :company_name,
+    presence: true
 
   def permalink
     email.to_url

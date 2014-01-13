@@ -1,6 +1,17 @@
 Calendar for Escrow
 =
 >Preference pages
+>Admin role
+>Admin permissions
+>Fix navigation bar to not be so shitty
+
+Sunday Jan 12
+1. Account contracts index page
+2. Fix front-page mobile appearance
+
+Saturday Jan 11
+1. Account Edit
+
 Friday Jan 10
 1. Spend all day debugging and developing the position linked list swap feature, but at least decided to just fuck it
 2. Put in ability edit position in steps edit and update

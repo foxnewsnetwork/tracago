@@ -1,3 +1,5 @@
+@import 'itps/accounts/escrow';
+
 @mixin itps-accounts-show {
   .colon:after {
     content: ":";
@@ -122,49 +124,7 @@
               list-style: none;
               padding-left: 0px;
               li {
-                @extend .row;
-                @extend .thumbnail;
-                padding-right: 0px;
-                padding-left: 0px;
-                margin: 0px;
-                &.unready {
-                  i {
-                    @extend .fa-spinner;
-                  }
-                }
-                &.edit_mode {
-                  i {
-                    @extend .fa-pencil;
-                  }
-                }
-                &.active {
-                  i {
-                    @extend .fa-check;
-                  }
-                }
-                &.completed {
-                  i {
-                    @extend .fa-archive;
-                  }
-                }
-                h4 {
-                  @extend .col-lg-12;
-                  @extend .col-md-12;
-                  @extend .col-sm-12;
-                  @extend .col-xs-12;
-                  padding-bottom: 5px;
-                  margin-bottom: 5px;
-                  font-weight: bold;
-                  text-transform: capitalize;
-                  border-bottom: $standard-border;
-                }
-                dl {
-                  @extend .col-lg-4;
-                  @extend .col-md-4;
-                  @extend .col-sm-12;
-                  @extend .col-xs-12;
-                  margin-top: 5px;
-                }
+                @include itps-accounts-escrow;
               }
             }
           }

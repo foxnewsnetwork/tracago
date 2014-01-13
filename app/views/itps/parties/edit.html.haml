@@ -1,0 +1,22 @@
+#hero-banner
+  %section
+    %h1= t(:edit_account_basics)
+
+#new-session-new
+  = form_for @party, url: itps_party_path(@party), method: :put do |f|
+    %fieldset
+      %dl
+        %dt= f.label :company_name, t(:company_name)
+        %dd= f.text_field :company_name
+      %article
+        = render partial: 'itps/shared/errors', locals: { errors: @party.errors }
+        %h4
+          You should avoid changing your company name too often as it reflects badly on your business trustworthiness.
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        = link_to itps_account_path(@party.account), type: :reset do
+          %i.reset
+          = t(:cancel)

@@ -21,7 +21,7 @@
       #basics
         %h3
           = t(:basic_information)
-          = link_to t(:edit), '#edit'
+          = link_to t(:edit), edit_itps_party_path(@account.party)
         %dl
           %dt= t(:company_name)
           %dd= @account.company_name
@@ -39,21 +39,21 @@
         #contracts-active
           %h3
             = t(:active_contracts)
-            = link_to t(:show_all), '#edit'
+            = link_to t(:show_all), itps_party_escrows_path(@account.party, type: :active)
           %ul= render partial: 'itps/accounts/escrow', collection: @account.active_escrows
           - if @account.active_escrows.blank?
             %p= t(:none)
         #contracts-in-progress
           %h3
             = t(:in_progress_contracts)
-            = link_to t(:show_all), '#edit'
+            = link_to t(:show_all), itps_party_escrows_path(@account.party, type: :unready)
           %ul= render partial: 'itps/accounts/escrow', collection: @account.in_progress_escrows
           - if @account.in_progress_escrows.blank?
             %p= t(:none)
         #contracts-archived
           %h3
             = t(:archived_contracts)
-            = link_to t(:show_all), '#edit'
+            = link_to t(:show_all), itps_party_escrows_path(@account.party, type: :archive)
           %ul= render partial: 'itps/accounts/escrow', collection: @account.archived_escrows
           - if @account.archived_escrows.blank?
             %p= t(:none)

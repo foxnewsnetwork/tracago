@@ -32,7 +32,8 @@ Tracago::Application.routes.draw do
     resources :steps, only: [:edit, :show, :destroy] do
       resources :documents, only: [:new, :create], controller: 'steps/documents'
     end
-    resources :parties, only: [] do
+    resources :parties, only: [:edit, :update] do
+      resources :escrows, only: [:index], controller: 'parties/escrows'
       resources :accounts, only: [:new, :create], controller: 'parties/accounts'
     end
     resources :documents, only: [:update], controller: 'documents/puts' do

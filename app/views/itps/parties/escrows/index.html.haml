@@ -1,0 +1,51 @@
+#hero-banner
+  %section
+    %h1= t(:my_escrow_contracts)
+
+#escrows-index
+  %section
+    #table-of-contents
+      %ul
+        %li{ :class => class_check(:active) }
+          = link_to t(:active_escrows), path(type: :active)
+          %ul
+            %li{ :class => class_check(:active, :payment)}
+              = link_to path(type: :active, show: :payment) do
+                = t(:active_payment_escrows)
+                %span.counter= counter(type: :active, show: :payment)
+            %li{ :class => class_check(:active, :service)}
+              = link_to path(type: :active, show: :service) do
+                = t(:active_service_escrows)
+                %span.counter= counter(type: :active, show: :service)
+        %li{ :class => class_check(:unready) }
+          = link_to t(:unready_escrows), path(type: :unready)
+          %ul
+            %li{ :class => class_check(:unready, :payment)}
+              = link_to path(type: :unready, show: :payment) do
+                = t(:unready_payment_escrows)
+                %span.counter= counter(type: :unready, show: :payment)
+            %li{ :class => class_check(:unready, :service)}
+              = link_to path(type: :unready, show: :service) do
+                = t(:unready_service_escrows)
+                %span.counter= counter(type: :unready, show: :service)
+        %li{ :class => class_check(:archive) }
+          = link_to t(:archive_escrows), path(type: :archive)
+          %ul
+            %li{ :class => class_check(:archive, :payment)}
+              = link_to path(type: :archive, show: :payment) do
+                = t(:archive_payment_escrows)
+                %span.counter= counter(type: :archive, show: :payment)
+            %li{ :class => class_check(:archive, :service)}
+              = link_to path(type: :archive, show: :service) do
+                = t(:archive_service_escrows)
+                %span.counter= counter(type: :archive, show: :service)
+
+    #meat-and-bones
+      %article
+        %h3
+          = h params[:type]
+          = h params[:show]
+          = "escrows"
+        %ul= render partial: 'itps/accounts/escrow', collection: @escrows
+        - if @escrows.blank?
+          %h6.parantheses= t(:you_have_nothing_here)

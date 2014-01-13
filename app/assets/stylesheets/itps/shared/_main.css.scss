@@ -14,6 +14,7 @@
 @import 'itps/sessions/new';
 @import 'itps/accounts/show';
 @import 'itps/accounts/escrows/new';
+@import 'itps/parties/escrows/index';
 
 @mixin shared-main {
   #home-index {
@@ -76,5 +77,11 @@
   }
   #documents-edit {
     @include itps-steps-documents-new;
+  }
+  #parties-edit, #parties-update {
+    @include itps-sessions-new;
+  }
+  #parties-escrows-index {
+    @include itps-parties-escrows-index;
   }
 }
