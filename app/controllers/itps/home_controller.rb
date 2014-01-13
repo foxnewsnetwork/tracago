@@ -4,4 +4,5 @@ class Itps::HomeController < Itps::BaseController
   def usage; end
   def account; end
   def terms; end
+  def help; end
 end

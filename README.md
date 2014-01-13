@@ -5,6 +5,9 @@ Calendar for Escrow
 >Admin permissions
 >Fix navigation bar to not be so shitty
 
+Monday Jan 13
+1. Home page for small screens and medium screens changed
+
 Sunday Jan 12
 1. Account contracts index page
 2. Fix front-page mobile appearance

@@ -3,8 +3,39 @@
     %ul
       - 3.times do |i|
         %li= render 'itps/home/hero_box'
+#mobile-banner
+  %section
+    %ul
+      - if user_signed_in?
+        %li
+          = link_to itps_account_path(current_account) do
+            %figure
+              %i.account
+            = t(:my_account)
+        %li
+          = link_to itps_party_escrows_path(current_account.party) do
+            %figure
+              %i.escrows
+            = t(:my_escrows)
+        %li
+          = link_to new_itps_party_escrow_path(current_account.party) do
+            %figure
+              %i.new-escrow
+            = t(:new_escrow)
+      - else
+        %li
+          = link_to itps_login_path do
+            %figure
+              %i.login
+            = t(:login)
+        %li
+          = link_to new_itps_escrow_path do
+            %figure
+              %i.new-escrow
+            = t(:create_escrow)
 
-#basic-usage-explanation
+
+#basic-usage-explanation.desktop
   %ul
     %li
       %h1= t(:trust_and_business)
@@ -28,7 +59,7 @@
         = Faker::Lorem.paragraph(2)
       = link_to t(:view_documentation), itps_documentation_path
 
-#available-services
+#available-services.desktop
   %article
     %ul
       - 12.times do
