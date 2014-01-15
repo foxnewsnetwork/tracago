@@ -7,7 +7,7 @@
   %section
     %ul
       - if user_signed_in?
-        %li
+        %li.primary
           = link_to itps_account_path(current_account) do
             %figure
               %i.account
@@ -18,12 +18,12 @@
               %i.escrows
             = t(:my_escrows)
         %li
-          = link_to new_itps_party_escrow_path(current_account.party) do
+          = link_to new_itps_account_escrow_path(current_account) do
             %figure
               %i.new-escrow
             = t(:new_escrow)
       - else
-        %li
+        %li.primary
           = link_to itps_login_path do
             %figure
               %i.login
@@ -35,7 +35,7 @@
             = t(:create_escrow)
 
 
-#basic-usage-explanation.desktop
+#basic-usage-explanation
   %ul
     %li
       %h1= t(:trust_and_business)

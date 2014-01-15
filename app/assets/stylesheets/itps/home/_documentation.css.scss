@@ -1,59 +1,80 @@
 @mixin itps-home-documentation {
-  @extend .container;
-  border-top: $standard-border;
-  i {
-    @extend .fa;
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+      .colon:after {
+        content: ":";
+      }
+    }
   }
-  section {
-    @extend .row;
-    #left-navigation {
-      @extend .col-lg-3;
-      ul {
-        @extend .thumbnail;
-        @extend .nav;
-        @extend .nav-pills;
-        @extend .nav-stacked;
-        list-style: none;
-        margin-top: 20px;
-        padding-left: 0px;
-        padding-right: 0px;
-        >li {
-          font-weight: bold;
-          text-transform: capitalize;
-          a { 
-            color: $standard-linkcolor;
-          }
-          i {
-            &.documentation {
-              @extend .fa-book;
+  #meat-and-bones {
+    @extend .container;
+    border-top: $standard-border;
+    i {
+      @extend .fa;
+    }
+    section {
+      @extend .row;
+      #left-navigation {
+        @extend .col-lg-3;
+        ul {
+          @extend .thumbnail;
+          @extend .nav;
+          @extend .nav-pills;
+          @extend .nav-stacked;
+          list-style: none;
+          margin-top: 20px;
+          padding-left: 0px;
+          padding-right: 0px;
+          >li {
+            font-weight: bold;
+            text-transform: capitalize;
+            a { 
+              color: $standard-linkcolor;
             }
-            &.references {
-              @extend .fa-archive;
-            }
-            &.accessibility {
-              @extend .fa-phone-square;
-            }
-            &.faq {
-              @extend .fa-info-circle;
-            }
-            &.other {
-              @extend .fa-suitcase;
+            i {
+              &.documentation {
+                @extend .fa-book;
+              }
+              &.references {
+                @extend .fa-archive;
+              }
+              &.accessibility {
+                @extend .fa-phone-square;
+              }
+              &.faq {
+                @extend .fa-info-circle;
+              }
+              &.other {
+                @extend .fa-suitcase;
+              }
             }
           }
         }
       }
-    }
-    #right-content {
-      @extend .col-lg-9;
-      article {
-        h3, h4 {
-          border-bottom: $standard-border;
-          padding-bottom: 5px;
-          margin-bottom: 15px;
-          text-transform: capitalize;
-        }
-        h4 {
-          margin-top: 20px;
+      #right-content {
+        @extend .col-lg-9;
+        article {
+          h3, h4 {
+            border-bottom: $standard-border;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+          }
+          h4 {
+            margin-top: 20px;
+          }
         }
       }
     }

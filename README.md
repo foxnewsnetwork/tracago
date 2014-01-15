@@ -3,10 +3,23 @@ Calendar for Escrow
 >Preference pages
 >Admin role
 >Admin permissions
->Fix navigation bar to not be so shitty
+>status page
+>blog page
+>replace all the Lorem Ipsum with real bullshit
+>replace all dog pictures with real pictures
+>replace all outbound emails with steady address
+
+Tuesday Jan 14
+1. Home page minor fixes and whatnot
+2. repaired that shitty nav bar
+3. Smoothed out some css rough edges
 
 Monday Jan 13
 1. Home page for small screens and medium screens changed
+notes: City Order (or whatever invoice due)
+notes: Jacky can't do $0.10 with arthur
+notes: Ed fitch HDPE natural ($0.25) half load what do?
+notes: Linda Bao sends invoice
 
 Sunday Jan 12
 1. Account contracts index page

@@ -2,6 +2,44 @@
   @extend .container;
   nav {
     @extend .row;
+    .logo, .toggle {
+      border-bottom: $standard-border;
+      padding-top: 10px;
+      padding-bottom: 14px;
+    }
+    .logo {
+      @extend .col-lg-1;
+      @extend .col-md-2;
+      @extend .col-sm-10;
+      @extend .col-xs-10;
+      text-align: left;
+      a {
+        padding-top: 10px;
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+    .toggle {
+      @extend .visible-xs;
+      @extend .visible-sm;
+      @extend .hidden-md;
+      @extend .hidden-lg;
+      @extend .col-sm-1;
+      @extend .col-xs-1;
+      @extend .pull-right;
+      margin-right: 25px;
+      font-size: 32px;
+      i {
+        @extend .fa;
+        @extend .fa-bars;
+      }
+    }
+    .hidden-to-mobile {
+      @extend .hidden-xs;
+      @extend .hidden-sm;
+      @extend .visible-md;
+      @extend .visible-lg;
+    }
     ul {
       padding-left: 0px;
       list-style: none;
@@ -10,32 +48,24 @@
         @extend .col-md-2;
         @extend .col-sm-6;
         @extend .col-xs-12;
+        @extend .thumbnail;
         text-align: center;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
         a {
+          width: 100%;
           display: inline-block;
           height: 60px;
           color: $standard-linkcolor;
           font-weight: bold;
           padding-top: 18px;
         }
-        &.logo {
-          @extend .col-lg-1;
-          @extend .col-md-2;
-          @extend .col-sm-12;
-          @extend .col-xs-12;
-          a {
-            padding-top: 10px;
-            font-size: 28px;
-          }
-        }
         &.active {
           background: $highlight-background;
           a {
             color: $highlight-textcolor;
           }
-        }
-        &:nth-child(4) {
-          @extend .col-lg-offset-7;
         }
       }
     }
