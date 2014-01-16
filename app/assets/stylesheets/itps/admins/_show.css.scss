@@ -1,3 +1,5 @@
+@import 'itps/admins/document';
+
 @mixin itps-admins-show {
   #hero-banner {
     background-color: $highlight-background;
@@ -85,46 +87,7 @@
             list-style: none;
             margin-left: 15px;
             li {
-              @extend .row;
-              @extend .thumbnail;
-              &.edit_mode i {
-                @extend .fa-pencil;
-              }
-              &.approved i {
-                @extend .fa-check;
-              }
-              &.rejected i {
-                @extend .fa-times;
-              }
-              &.waiting_upload i {
-                @extend .fa-spinner;
-              }
-              &.waiting_approval i {
-                @extend .fa-exclamation;
-              }
-              &.error i {
-                @extend .fa-exclamation-triangle;
-              }
-              a {
-                h4 {
-                  @extend .col-lg-12;
-                  @extend .col-md-12;
-                  @extend .col-sm-12;
-                  @extend .col-xs-12;
-                  border-bottom: $standard-border;
-                  text-transform: capitalize;
-                  padding-bottom: 10px;
-                  i {
-                    @extend .fa;
-                  }
-                }
-                dl {
-                  @extend .col-lg-4;
-                  @extend .col-md-4;
-                  @extend .col-sm-6;
-                  @extend .col-xs-6;
-                }
-              }
+              @include itps-admins-document;
             }
           }
         }

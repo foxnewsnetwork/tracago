@@ -21,7 +21,7 @@ Tracago::Application.routes.draw do
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'home#documentation'
     resource :admin, only: [] do
-      resources :escrows, only: [:index], controller: 'admins/escrows'
+      resources :documents, only: [:index], controller: 'admins/documents'
     end
     resources :admins, only: [:show]
     resources :doc_tags, only: [:show]

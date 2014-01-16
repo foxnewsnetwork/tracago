@@ -1,6 +1,5 @@
-class Itps::AdminsController < Itps::BaseController
-  before_filter :filter_anonymous_account,
-    :filter_wrong_account
+class Itps::AdminsController < Itps::AdminBaseController
+  
   def show
     _account
   end

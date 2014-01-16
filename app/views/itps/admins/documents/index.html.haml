@@ -1,0 +1,8 @@
+#hero-banner
+  %section
+    %h1= t(:escrow_documents)
+
+#admin-container
+  - if @documents.blank?
+    %h2= t(:you_have_no_escrows_in_need_of_approval)
+  %ul= render partial: 'itps/admins/document', collection: @documents

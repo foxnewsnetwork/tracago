@@ -8,7 +8,7 @@
       %ul
         %li= link_to t(:site_statistics), '#site-statistics'
         %li= link_to t(:account_information), '#about-this-account'
-        %li= link_to t(:escrow_documents), itps_admin_escrows_path
+        %li= link_to t(:escrow_documents), itps_admin_documents_path
 
     #dashboard
       #site-statistics
@@ -43,7 +43,7 @@
           %dt= t(:created_at)
           %dd= @account.created_at
       #escrow-documents-summary
-        %h2= link_to t(:escrow_documents_summary), itps_admin_escrows_path          
+        %h2= link_to t(:escrow_documents_summary), itps_admin_documents_path          
         %dl
           %dt= t(:docs_needs_approval)
           %dd= Itps::Escrows::Document.waiting_approval.count

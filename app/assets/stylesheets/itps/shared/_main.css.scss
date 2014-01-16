@@ -16,6 +16,7 @@
 @import 'itps/accounts/escrows/new';
 @import 'itps/parties/escrows/index';
 @import 'itps/admins/show';
+@import 'itps/admins/documents/index';
 
 @mixin shared-main {
   #home-index {
@@ -87,5 +88,8 @@
   }
   #admins-show {
     @include itps-admins-show;
+  }
+  #admins-documents-index {
+    @include itps-admins-documents-index;
   }
 }

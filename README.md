@@ -10,7 +10,7 @@ Calendar for Escrow
 Wednesday Jan 15
 1. admin role created
 2. admin permissions baked in
-3. admin panel done
+3. admin panel done, admin-documents done
 
 Tuesday Jan 14
 1. Home page minor fixes and whatnot

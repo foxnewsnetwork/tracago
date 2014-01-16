@@ -1,0 +1,28 @@
+@import 'itps/admins/document';
+@mixin itps-admins-documents-index {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  #admin-container {
+    @extend .container;
+    ul {
+      list-style: none;
+      li {
+        @include itps-admins-document;
+      }
+    }
+  }
+}
