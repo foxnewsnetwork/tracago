@@ -7,6 +7,9 @@ Calendar for Escrow
 >replace all dog pictures with real pictures
 >replace all outbound emails with steady address
 
+Thursday Jan 16
+1. 
+
 Wednesday Jan 15
 1. admin role created
 2. admin permissions baked in

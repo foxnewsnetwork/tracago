@@ -60,7 +60,7 @@
       #preferences
         %h3
           = t(:preferences)
-          = link_to t(:edit), '#edit'
+          = link_to t(:show_all), itps_account_preferences_path(@account)
         %dl
           %dt= t(:some_preference)
           %dd= t(:some_option)

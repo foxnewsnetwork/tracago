@@ -53,6 +53,7 @@ Tracago::Application.routes.draw do
     end
     resources :accounts, only: [:show] do
       resources :escrows, only: [:index, :new, :create], controller: 'accounts/escrows'
+      resources :preferences, only: [:index], controller: 'accounts/preferences'
     end
     devise_scope :users do
       get '/login' => 'sessions#new', :as => :login
