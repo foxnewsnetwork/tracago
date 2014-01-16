@@ -35,10 +35,28 @@
 class Itps::Account < ActiveRecord::Base
   self.table_name = 'spree_users'
 
+  class << self
+    def admins
+      _admin_hashes.map do |hash|
+        acc = find_by_email(hash["email"])
+        acc ||= create! hash.merge(password_confirmation: hash["password"])
+        acc.adminify!
+        acc
+      end
+    end
+
+    private
+    def _admin_hashes
+      YAML.load(File.read Rails.root.join('config', 'admins.yml'))["admins"]
+    end
+  end
   has_one :party,
     class_name: 'Itps::Party',
     foreign_key: 'email',
     primary_key: 'email'
+
+  has_many :roles,
+    class_name: 'Itps::Accounts::Role'
 
   delegate :company_name,
     :active_escrows,
@@ -55,6 +73,22 @@ class Itps::Account < ActiveRecord::Base
     party_without_defaults
   end
   alias_method_chain :party, :defaults
+
+  def adminify!
+    roles.find_or_create_by role_name: :admin
+  end
+
+  def admin?
+    roles.map(&:role_name).include? 'admin'
+  end
+
+  def enslave!
+    roles.find_or_create_by role_name: :slave
+  end
+
+  def slave?
+    roles.map(&:role_name).include? 'slave'
+  end
 
   private
   def _generate_party

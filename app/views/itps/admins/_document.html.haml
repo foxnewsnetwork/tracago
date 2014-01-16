@@ -1,0 +1,20 @@
+%li{ :class => document.status }
+  = link_to itps_document_path document.permalink do
+    %h4
+      %i
+      = h document.title
+    %dl
+      %dt= t(:status)
+      %dd= t document.status
+      %dt= t :permalink
+      %dd= document.permalink
+    %dl
+      %dt= t(:escrow_id)
+      %dd= document.escrow.id
+      %dt= t(:escrow_status)
+      %dd= document.escrow.status
+    %dl
+      %dt= t(:document_uploaded_at)
+      %dd= document.attached_file_updated_at || t(:never)
+      %dt= t(:document_last_rejected_at)
+      %dd= document.rejected_at || t(:never)

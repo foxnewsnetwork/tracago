@@ -16,6 +16,7 @@ module Itps::SessionsHelper
   end
 
   def filter_wrong_account
+    return if _admin_account?
     unless current_account.present? && _correct_accounts.reject(&:blank?).include?(current_account)
       redirect_to itps_path 
       flash[:error] = Spree.t(:you_are_not_allowed_access_to_that_page)
@@ -23,6 +24,10 @@ module Itps::SessionsHelper
   end
 
   private
+  def _admin_account?
+    current_account.try :admin?
+  end
+
   def _correct_accounts
     []
   end

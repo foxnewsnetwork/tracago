@@ -20,7 +20,7 @@ class Itps::Escrows::AgreementsController < Itps::BaseController
   end
 
   def _relevant_party?
-    _payment_party? || _service_party?
+    current_account.try(:admin?) || _payment_party? || _service_party?
   end
 
   def _payment_party?

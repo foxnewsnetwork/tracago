@@ -20,6 +20,10 @@ Tracago::Application.routes.draw do
     get '/blog' => 'home#blog'
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'home#documentation'
+    resource :admin, only: [] do
+      resources :escrows, only: [:index], controller: 'admins/escrows'
+    end
+    resources :admins, only: [:show]
     resources :doc_tags, only: [:show]
     resources :steps, only: [:update], controller: 'steps/puts' do
       member do

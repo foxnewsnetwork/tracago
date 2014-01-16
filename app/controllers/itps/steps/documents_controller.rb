@@ -1,4 +1,5 @@
 class Itps::Steps::DocumentsController < Itps::BaseController
+  before_filter :_filter_locked_escrow
   def new
     _document
   end
@@ -10,6 +11,13 @@ class Itps::Steps::DocumentsController < Itps::BaseController
   end
 
   private
+  def _filter_locked_escrow
+    if _document.escrow.opened?
+      redirect_to itps_step_path _step.permalink
+      flash[:error] = t(:additional_steps_cannot_be_appended_to_a_locked_contract)
+    end
+  end
+
   def _document!
     @document ||= _step.documents.new _document_params
   end

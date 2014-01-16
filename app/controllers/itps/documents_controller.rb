@@ -1,4 +1,7 @@
 class Itps::DocumentsController < Itps::BaseController
+  before_filter :filter_anonymous_account,
+    :filter_wrong_account,
+    only: [:edit, :destroy]
   def show
     _document
   end
@@ -14,6 +17,10 @@ class Itps::DocumentsController < Itps::BaseController
   end
 
   private
+  def _correct_accounts
+    _document.escrow.relevant_accounts
+  end
+
   def _document
     @document ||= Itps::Escrows::Document.find_by_permalink! params[:id]
   end

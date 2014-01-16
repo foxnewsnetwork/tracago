@@ -1,10 +1,15 @@
 class Itps::Parties::EscrowsController < Itps::BaseController
-
+  before_filter :filter_anonymous_account,
+    :filter_wrong_account
   def index
     _escrows
   end
 
   private
+  def _correct_accounts
+    [_party.account]
+  end
+
   def _show_params
     params[:show] ||= "payment"
   end

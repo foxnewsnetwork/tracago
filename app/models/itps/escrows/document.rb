@@ -27,10 +27,17 @@ class Itps::Escrows::Document < ActiveRecord::Base
     class_name: 'Itps::Escrow'
   before_validation :_create_permalink
 
+  scope :has_attachment,
+    -> { where "#{self.table_name}.attached_file_file_name is not null" }
+  scope :not_approved,
+    -> { where "#{self.table_name}.approved_at is null or #{self.table_name}.approved_at < #{self.table_name}.rejected_at"}
+  scope :waiting_approval,
+    -> { has_attachment.not_approved }
   scope :approved,
     -> { where("#{self.table_name}.approved_at is not null") }
   scope :rejected,
     -> { where("#{self.table_name}.rejected_at is not null" )}
+
   has_attached_file :attached_file,
     url: '/itps/escrows/documents/:id/:access_token/:basename.:extension',
     path: ':rails_root/public/itps/escrows/documents/:id/:access_token/:basename.:extension'

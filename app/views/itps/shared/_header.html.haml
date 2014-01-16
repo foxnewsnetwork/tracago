@@ -26,3 +26,6 @@
         = link_to t(:sign_in), itps_login_path(back: back_path)
     %li{ :class => activation.call(itps_help_path)}
       = link_to t(:help), itps_help_path
+    - if current_account.try(:admin?)
+      %li{ :class => activation.call(itps_admin_path(current_account))}
+        = link_to t(:admin), itps_admin_path(current_account)

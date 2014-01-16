@@ -1,13 +1,16 @@
 Calendar for Escrow
 =
 >Preference pages
->Admin role
->Admin permissions
 >status page
 >blog page
 >replace all the Lorem Ipsum with real bullshit
 >replace all dog pictures with real pictures
 >replace all outbound emails with steady address
+
+Wednesday Jan 15
+1. admin role created
+2. admin permissions baked in
+3. admin panel done
 
 Tuesday Jan 14
 1. Home page minor fixes and whatnot

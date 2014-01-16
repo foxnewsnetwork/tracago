@@ -41,6 +41,13 @@ class Itps::Documents::PutsController < Itps::BaseController
     _document.escrow
   end
 
+  def _filter_active_mode_escrows
+    if _document.escrow.opened?
+      redirect_to _itps_document_path _document.permalink
+      flash[:error] = t(:document_specs_cannot_be_altered_after_a_contract_has_been_locked)
+    end
+  end
+
   def _filter_edit_mode_escrows
     if _document.edit_mode?
       redirect_to _itps_document_path _document.permalink

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110001502) do
+ActiveRecord::Schema.define(version: 20140115173807) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20140110001502) do
 
   add_index "itps_accounts", ["email"], name: "index_itps_accounts_on_email", unique: true, using: :btree
   add_index "itps_accounts", ["reset_password_token"], name: "index_itps_accounts_on_reset_password_token", unique: true, using: :btree
+
+  create_table "itps_accounts_roles", force: true do |t|
+    t.string   "role_name",  null: false
+    t.integer  "account_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "itps_doc_tags", force: true do |t|
     t.string  "permalink",                    null: false

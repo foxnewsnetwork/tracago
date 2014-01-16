@@ -1,0 +1,51 @@
+#hero-banner
+  %section
+    %h1= t(:my_account_profile)
+
+#admin-container
+  .nine-to-three
+    #table-of-contents
+      %ul
+        %li= link_to t(:site_statistics), '#site-statistics'
+        %li= link_to t(:account_information), '#about-this-account'
+        %li= link_to t(:escrow_documents), itps_admin_escrows_path
+
+    #dashboard
+      #site-statistics
+        %h2= t(:site_statistics)
+        %dl
+          %dt= t(:total_accounts)
+          %dd= Itps::Account.count
+          %dt= t(:total_parties)
+          %dd= Itps::Party.count
+        %dl
+          %dt= t(:total_escrows)
+          %dd= Itps::Escrow.count
+          %dt= t(:total_documents)
+          %dd= Itps::Escrows::Document.count
+        %dl
+          %dt= t(:active_escrows)
+          %dd= Itps::Escrow.active.count
+          %dt= t(:archived_escrows)
+          %dd= Itps::Escrow.completed.count
+      #about-this-account
+        %h2
+          = t(:account_number)
+          = @account.id
+        %dl
+          %dt= t(:email)
+          %dd= @account.email
+          %dt= t(:associated_party)
+          %dd= @account.party.company_name
+        %dl
+          %dt= t(:roles)
+          %dd= @account.roles.map(&:role_name).join ", "
+          %dt= t(:created_at)
+          %dd= @account.created_at
+      #escrow-documents-summary
+        %h2= link_to t(:escrow_documents_summary), itps_admin_escrows_path          
+        %dl
+          %dt= t(:docs_needs_approval)
+          %dd= Itps::Escrows::Document.waiting_approval.count
+        - docs = Itps::Escrows::Document.waiting_approval.order("updated_at desc").limit(3)
+        %ul= render partial: 'itps/admins/document', collection: docs
