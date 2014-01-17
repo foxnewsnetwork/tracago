@@ -8,6 +8,8 @@ Thursday Jan 16
 1. preferences page
 2. status page
 3. blog page axed
+4. home page content
+5. aboutus page content
 Note: have mom return call to Jack - he has questions regarding the offers he's made
 Note: wendy's suppliers are saying they need another booking because they can only do 2 containers on the current one
 

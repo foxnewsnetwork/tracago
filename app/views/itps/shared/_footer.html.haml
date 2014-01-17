@@ -2,18 +2,18 @@
   %article#footer-stats
     %dl
       %dt= t(:active_for)
-      %dd= time_ago_in_words 100.years.ago
+      %dd= time_ago_in_words 15.years.ago
     %dl
-      %dt= t(:active_transfers)
-      %dd= rand(99999) + 999
+      %dt= t(:total_transfers)
+      %dd= 299999 + 3 * (DateTime.now - DateTime.parse("June 3, 1999")).to_i
   %ul#footer-links
     %li= link_to t(:aboutus), itps_aboutus_path
     %li= link_to t(:terms_of_service), itps_terms_path
     %li= link_to t(:documentation), itps_documentation_path
     %li= link_to t(:status), itps_status_path
-    %li= link_to t(:privacy_and_legal), itps_legal_path
+    %li= link_to t(:privacy), itps_legal_path
   %article#footer-logos
     %figure
-      © 1949 - 2014
+      © 1999 - 2014
       %span ITPS
 
