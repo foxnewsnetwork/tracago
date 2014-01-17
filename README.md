@@ -4,6 +4,10 @@ Calendar for Escrow
 >replace all dog pictures with real pictures
 >replace all outbound emails with steady address
 
+Friday Jan 17
+1. privacy policy hijacked from alibaba and edited to be usable
+2. stole and edited stripe's term of use document
+
 Thursday Jan 16
 1. preferences page
 2. status page

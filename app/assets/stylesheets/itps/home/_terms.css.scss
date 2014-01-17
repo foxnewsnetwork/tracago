@@ -33,8 +33,14 @@
           }
         }
       }
-      h2, h3, p {
-        @extend .col-lg-8;
+      h2, h3, p, ol, h4 {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+      }
+      h4 {
+        margin-left: 0px;
       }
       h2, h3 {
         border-bottom: $standard-border;

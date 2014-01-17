@@ -12,6 +12,7 @@ source 'https://rubygems.org'
   gem "paperclip", "~> 3.5.2"
   gem "font-awesome-sass", "~> 4.0.2"
   gem "stringex", "~> 2.1.2"
+  gem "bluecloth", "~> 2.2.0"
   group :development do
     gem 'ffaker', ">=1.20.0"
     gem "rspec", '~>2.13.0'

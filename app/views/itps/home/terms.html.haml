@@ -4,14 +4,4 @@
 
 #legal-terms-content
   %section
-    %h2
-      = t(:human_readable)
-      = link_to '#printable' do
-        %i.print
-        = t(:printable)
-    %p= Faker::Lorem.paragraph rand 6
-    %h2= t(:full_terms)
-    %p= Faker::Lorem.paragraph rand 6
-    - 10.times do
-      %h3= Faker::Lorem.sentence
-      %p= Faker::Lorem.paragraph rand 6
+    = markdown_loadup :terms

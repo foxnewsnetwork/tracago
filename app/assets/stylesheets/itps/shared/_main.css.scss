@@ -33,10 +33,7 @@
   #home-aboutus {
     @include itps-home-aboutus;
   }
-  #home-terms {
-    @include itps-home-terms;
-  }
-  #home-legal {
+  #home-terms, #home-legal {
     @include itps-home-terms;
   }
   #home-documentation {
