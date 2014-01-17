@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def company_legal_name
+    "Global Payment Services Inc."
+  end
+
   def main_content_div_id
     cpath = request.path_parameters[:controller]
     action = request.path_parameters[:action]
