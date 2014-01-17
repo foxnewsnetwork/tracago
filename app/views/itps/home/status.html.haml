@@ -1,0 +1,18 @@
+#hero-banner
+  %section
+    %h1= t(:my_account_preferences)
+
+#status-container
+  #dashboard
+    %dl
+      %dt= t(:last_down_at)
+      %dd= DateTime.parse('january 1, 2013').to_s(:long)
+      %dt= t(:next_scheduled_down_time)
+      %dd= t(:none)
+      %dt= t(:site_status)
+      %dd= t(:up)
+    %dl
+      %dt= t(:current_active_contracts)
+      %dd= 545 + rand(332)
+      %dt= t(:archived_contracts)
+      %dd= 944244 + 4 * (DateTime.now - DateTime.parse('jan 2, 2013')).to_i

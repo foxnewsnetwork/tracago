@@ -1,14 +1,15 @@
 Calendar for Escrow
 =
->Preference pages
->status page
->blog page
 >replace all the Lorem Ipsum with real bullshit
 >replace all dog pictures with real pictures
 >replace all outbound emails with steady address
 
 Thursday Jan 16
-1. 
+1. preferences page
+2. status page
+3. blog page axed
+Note: have mom return call to Jack - he has questions regarding the offers he's made
+Note: wendy's suppliers are saying they need another booking because they can only do 2 containers on the current one
 
 Wednesday Jan 15
 1. admin role created

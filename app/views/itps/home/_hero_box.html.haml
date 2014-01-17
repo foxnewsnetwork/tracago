@@ -1,10 +1,12 @@
 - active ||= params[:c].to_i
-- header ||= Faker::Lorem.sentence
-- paragraph ||= Faker::Lorem.paragraph
-- link ||= link_to t(:call_to_action), '#somewhere'
+- # header ||= Faker::Lorem.sentence
+- # paragraph ||= Faker::Lorem.paragraph
+- # link ||= link_to t(:login), '#somewhere'
 - content = capture do
-  %h1= header
-  %p= paragraph
+  %h1
+    = header
+  %p
+    = paragraph
   .call-to-action= link
   .carousel
     - (0..2).each do |i|

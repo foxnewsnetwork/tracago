@@ -1,8 +1,30 @@
 #hero-banner{ :class => "dog#{params[:c].to_i}" }
   %section.desktop
     %ul
-      - 3.times do |i|
-        %li= render 'itps/home/hero_box'
+      - h1 = "Escrow and large payment services for modern merchants"
+      - p1 = "A set of universally accessible services and tools that enable businesses to trade, pay for, and provide services with trust and assurance."
+      - if user_signed_in?
+        - l1 = link_to t(:my_account), itps_account_path(current_account)
+      - else
+        - l1 = link_to t(:login), itps_login_path
+      %li{ :class => 0 == params[:c].to_i ? '' : 'inactive' }
+        = render partial: 'itps/home/hero_box', locals: { header: h1, paragraph: p1, link: l1 }
+      - h2 = "Infrastructure across the internet and mobile devices"
+      - p2 = "Whether you're purchasing plastics from the East Coast or chew-toys from China, GTPS provides the services to ensure your transactions occur honestly."
+      - if user_signed_in?
+        - l2 = link_to t(:my_escrows), itps_party_escrows_path(current_account.party)
+      - else
+        - l2 = link_to t(:sign_up), itps_signup_path
+      %li{ :class => 1 == params[:c].to_i ? '' : 'inactive' }
+        = render partial: 'itps/home/hero_box', locals: { header: h2, paragraph: p2, link: l2 }
+      - h3 = "Simplified internationalized monetary transfer"
+      - p3 = "Businesses in North America, Europe, Australia, East Asia, and South East Asia can now use our services to ensure honesty from all around the world."
+      - if user_signed_in?
+        - l3 = link_to t(:draft_contract), new_itps_account_escrow_path(current_account)
+      - else
+        - l3 = link_to t(:draft_contract), new_itps_escrow_path
+      %li{ :class => 2 == params[:c].to_i ? '' : 'inactive' }
+        = render partial: 'itps/home/hero_box', locals: { header: h3, paragraph: p3, link: l3 }
 #mobile-banner
   %section
     %ul
@@ -42,21 +64,21 @@
       %figure
         %i.bank-and-check
       %p
-        = Faker::Lorem.paragraph(2)
+        = "Ensure honesty in both payment and services through third party and constant monitoring."
       = link_to t(:overview_usage), itps_usage_path
     %li
       %h1= t(:terms_and_pricing)
       %figure
         %i.pricing
       %p
-        = Faker::Lorem.paragraph(2)
+        = "Flat rate pricing allows for large transactions to be easy and painless."
       = link_to t(:see_details), itps_terms_path
     %li
       %h1= t(:accessibility)
       %figure
         %i.accessibility
       %p
-        = Faker::Lorem.paragraph(2)
+        = "Natively accessible on all devices from desktop to mobile with standard email and text alerts."
       = link_to t(:view_documentation), itps_documentation_path
 
 #available-services.desktop

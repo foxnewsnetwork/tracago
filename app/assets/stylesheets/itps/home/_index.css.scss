@@ -86,6 +86,10 @@
         margin-bottom: 0px;
         list-style: none;
         li {
+          &.inactive {
+            @extend .hidden-lg;
+            @extend .hidden-md;
+          }
           .transparent-box, .opaque-box {
             @extend .col-lg-5;
             @extend .col-md-8;
@@ -97,6 +101,7 @@
                 @extend .btn-block;
                 @extend .btn-lg;
                 font-size: 18px;
+                font-weight: bold;
               }
             }
             .carousel {
@@ -136,9 +141,6 @@
             @media (max-width: 1200px) {
               background-color: $highlight-background;
             }
-          }
-          &:nth-child(2), &:last-child { 
-            display: none;
           }
           h1 {
             margin-top: 20px;
