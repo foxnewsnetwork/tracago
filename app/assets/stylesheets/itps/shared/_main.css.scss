@@ -36,7 +36,7 @@
   #home-terms, #home-legal {
     @include itps-home-terms;
   }
-  #home-documentation {
+  #doc_tags-index, #doc_tags-show {
     @include itps-home-documentation;
   }
   #escrows-create, #escrows-new {

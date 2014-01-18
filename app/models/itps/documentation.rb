@@ -16,6 +16,12 @@ class Itps::Documentation < ActiveRecord::Base
     class_name: 'Itps::DocTag'
   before_validation :_create_permalink
 
+  class << self
+    def by_doc_tag(doc_tag)
+      
+    end
+  end
+
   private
   def _create_permalink
     self.permalink = self.title.downcase.split('').select do |l| 

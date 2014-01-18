@@ -3,6 +3,8 @@ Calendar for Escrow
 >replace all the Lorem Ipsum with real bullshit
 >replace all dog pictures with real pictures
 >replace all outbound emails with steady address
+>doc tags controller & show page
+>specified pay-step controller and whatnot
 
 Friday Jan 17
 1. privacy policy hijacked from alibaba and edited to be usable

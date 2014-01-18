@@ -19,12 +19,13 @@ Tracago::Application.routes.draw do
     get '/status' => 'home#status'
     get '/blog' => 'home#blog'
     get '/jobs' => 'home#jobs'
-    get '/documentation' => 'home#documentation'
+    get '/documentation' => 'doc_tags#index'
     resource :admin, only: [] do
       resources :documents, only: [:index], controller: 'admins/documents'
+      resources :doc_tags, only: [:new, :create], controller: 'admins/doc_tags'
     end
     resources :admins, only: [:show]
-    resources :doc_tags, only: [:show]
+    resources :doc_tags, only: [:show, :index]
     resources :steps, only: [:update], controller: 'steps/puts' do
       member do
         put :swap_down

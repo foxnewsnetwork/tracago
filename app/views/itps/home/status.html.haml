@@ -16,3 +16,7 @@
       %dd= 545 + rand(332)
       %dt= t(:archived_contracts)
       %dd= 944244 + 4 * (DateTime.now - DateTime.parse('jan 2, 2013')).to_i
+    %p
+      Something wrong with the website? Please email our webmaster
+      = mail_to 'foxnewsnetwork@gmail.com', 'Thomas Chen'
+      and let him know where things need improvement.

@@ -20,7 +20,7 @@
     @extend .container;
     #dashboard {
       @extend .row;
-      dl {
+      dl, p {
         @extend .col-lg-6;
         @extend .col-md-6;
         @extend .col-sm-12;

@@ -1,0 +1,18 @@
+#hero-banner
+  %section
+    %h1= t(:documentation_and_help)
+
+#meat-and-bones
+  %section
+    #left-navigation
+      %ul= render partial: 'itps/doc_tags/nav_tag', collection: Itps::DocTag.roots
+    
+    #right-content
+      %article
+        %h3= t(:documentation_index)
+        %p= "Documentation live here. Please browse to get a feel how to use our service."
+        %h4= t(:popular_subjects)
+        %ul
+          %li= link_to t(:usage), itps_usage_path
+          %li= link_to t(:faq), itps_faq_path
+          %li= link_to t(:about), itps_aboutus_path

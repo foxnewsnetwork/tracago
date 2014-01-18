@@ -1,0 +1,7 @@
+- is_active = defined?(active_tag) && active_tag.present? && nav_tag == active_tag
+%li{ :class => is_active ? 'activated' : 'inactive' }
+  = link_to itps_doc_tag_path(nav_tag.permalink) do
+    %i{ :class => nav_tag.permalink }
+    = nav_tag.title
+  - if is_active && active_tag.children.present?
+    %ul= render partial: 'itps/doc_tags/nav_tag', collection: active_tag.children

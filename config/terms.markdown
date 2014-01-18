@@ -234,3 +234,7 @@ GTPS may respond to and comply with any writ of attachment, lien, levy, subpoena
 #### 18. Entire Agreement
 
 This Agreement and all policies and procedures that are incorporated herein by reference constitute the entire agreement between you, GTPS, and Wells Fargo with respect to the provision of the Service. In the event of a conflict between this Agreement and any other GTPS agreement or policy relating to the subject matter herein, this Agreement shall prevail. Except as expressly provided herein, these terms and conditions describe the entire liability of GTPS, Wells Fargo, and our vendors and suppliers (including processors), set forth your exclusive remedies with respect to the Service, and define your access and use of the Service. If any provision of this Agreement (or portion thereof) is held to be invalid or unenforceable under applicable law, then it shall be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law, and the remaining provisions will continue in full force and effect.
+
+#### 19. Contact
+
+We welcome any and all legal feedback you may have in regard to our terms of service. Please email all your posts to Thomas Chen <foxnewsnetwork@gmail.com>
