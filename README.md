@@ -5,6 +5,11 @@ Calendar for Escrow
 >replace all outbound emails with steady address
 >doc tags controller & show page
 >specified pay-step controller and whatnot
+>error pages for 500, 404, etc.
+
+Monday Jan 20
+1. Nginx assets and images issue resolved
+
 
 Friday Jan 17
 1. privacy policy hijacked from alibaba and edited to be usable

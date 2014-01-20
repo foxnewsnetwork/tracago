@@ -4,7 +4,11 @@ module ApplicationHelper
   end
 
   def company_legal_name
-    "Global Payment Services Inc."
+    "Global Trade Payment Corporation"
+  end
+
+  def company_common_name
+    "GTPC"
   end
 
   def main_content_div_id

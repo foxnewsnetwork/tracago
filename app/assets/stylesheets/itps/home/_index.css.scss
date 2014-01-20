@@ -69,12 +69,12 @@
   #hero-banner {
     @extend .desktop;
     background-color: $highlight-background;
-    background: url('/itps/dog1.jpg');
+    background: image-url('dog1.jpg');
     &.dog1 {
-      background: url('/itps/dog2.jpg');
+      background: image-url('dog2.jpg');
     }
     &.dog2 {
-      background: url('/itps/dog3.jpg');
+      background: image-url('dog3.jpg');
     }
     border-bottom: $standard-border;
     section {

@@ -8,11 +8,11 @@ Tracago::Application.routes.draw do
     resource :sessions, only: [:new, :create, :destroy]
     resource :registrations, only: [:new, :create]
   end
+  
   namespace 'itps' do
     get '/' => 'home#index'
     get '/faq' => 'home#faq'
     get '/usage' => 'home#usage'
-    get '/help' => 'home#documentation'
     get '/aboutus' => 'home#aboutus'
     get '/terms' => 'home#terms'
     get '/legal' => 'home#legal'
@@ -20,6 +20,7 @@ Tracago::Application.routes.draw do
     get '/blog' => 'home#blog'
     get '/jobs' => 'home#jobs'
     get '/documentation' => 'doc_tags#index'
+
     resource :admin, only: [] do
       resources :documents, only: [:index], controller: 'admins/documents'
       resources :doc_tags, only: [:new, :create], controller: 'admins/doc_tags'

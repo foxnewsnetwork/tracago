@@ -23,7 +23,7 @@ Tracago::Application.configure do
   # config.serve_static_assets = false
 
   # Granted nginx already does this, but I haven't gotten it properly working yet, so whatever
-  config.serve_static_assets = true
+  config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
