@@ -7,6 +7,11 @@ Calendar for Escrow
 >specified pay-step controller and whatnot
 >error pages for 500, 404, etc.
 >parties bank account edit and update features
+>favicon.ico must be generated
+>get some real bank accounts
+
+Tuesday Jan 21
+1. edit and update for bank accounts
 
 Monday Jan 20
 1. Nginx assets and images issue resolved

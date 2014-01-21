@@ -14,6 +14,9 @@ class Itps::Party < ActiveRecord::Base
   self.table_name = 'itps_parties'
   has_many :bank_accounts,
     class_name: 'Itps::Parties::BankAccount'
+  has_one :main_bank_account,
+    -> { ordered_by_defaulted_at.limit(1) },
+    class_name: 'Itps::Parties::BankAccount'
   belongs_to :account,
     foreign_key: "email",
     primary_key: "email",
@@ -74,6 +77,11 @@ class Itps::Party < ActiveRecord::Base
     format: { with: Devise.email_regexp }
   validates :company_name,
     presence: true
+
+  delegate :routing_number, 
+    :account_number,
+    to: :main_bank_account,
+    allow_nil: true
 
   def permalink
     email.to_url

@@ -98,7 +98,7 @@
   #home-status {
     @include itps-home-status;
   }
-  #parties-bank_accounts-new, #parties-bank_accounts-create {
+  #parties-bank_accounts-new, #parties-bank_accounts-create, #bank_accounts-edit, #bank_accounts-update {
     @include itps-parties-bank_accounts-new
   }
 }

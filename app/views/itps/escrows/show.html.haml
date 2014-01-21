@@ -28,6 +28,10 @@
       %dd= mail_to @escrow.drafting_party.email
       %dt= t(:document_last_updated_at)
       %dd= @escrow.updated_at
+      %dt= t(:escrow_party_routing_number)
+      %dd= Itps::Parties::BankAccount.itps_routing_number
+      %dt= t(:escrow_party_account_number)
+      %dd= Itps::Parties::BankAccount.itps_account_number
     %dl
       %dt= t(:payment_party)
       %dd= @escrow.payment_party.company_name
@@ -35,6 +39,11 @@
       %dd= mail_to @escrow.payment_party.email
       %dt= t(:payment_party_agreed_at)
       %dd= @escrow.payment_party_agreed_at || t(:not_yet)
+      - if current_account.try :admin?
+        %dt= t(:payment_party_routing_number)
+        %dd= @escrow.payment_party.routing_number || t(:not_specified)
+        %dt= t(:payment_party_account_number)
+        %dd= @escrow.payment_party.account_number || t(:not_specified)
     %dl
       %dt= t(:goods_or_service_party)
       %dd= @escrow.service_party.company_name
@@ -42,6 +51,11 @@
       %dd= mail_to @escrow.service_party.email
       %dt= t(:goods_or_service_party_agreed_at)
       %dd= @escrow.serviced_party_agreed_at || t(:not_yet)
+      - if current_account.try :admin?
+        %dt= t(:service_party_routing_number)
+        %dd= @escrow.service_party.routing_number || t(:not_specified)
+        %dt= t(:service_party_account_number)
+        %dd= @escrow.service_party.account_number || t(:not_specified)
   #actions
     %h2= t(:actions)
     %ul
