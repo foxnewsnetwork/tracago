@@ -6,10 +6,12 @@ Calendar for Escrow
 >doc tags controller & show page
 >specified pay-step controller and whatnot
 >error pages for 500, 404, etc.
+>parties bank account edit and update features
 
 Monday Jan 20
 1. Nginx assets and images issue resolved
-
+2. bank account new and create
+Note: #1-7 and film from seattle, we buying or not?
 
 Friday Jan 17
 1. privacy policy hijacked from alibaba and edited to be usable

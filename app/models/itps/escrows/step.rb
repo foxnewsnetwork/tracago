@@ -50,6 +50,11 @@ class Itps::Escrows::Step < ActiveRecord::Base
   
   delegate :edit_mode?,
     to: :escrow
+  def downcast
+    return Itps::Escrows::PayStep.find id if 'pay_step' == class_name.to_s
+    self
+  end
+
   def status
     return :edit_mode if edit_mode?
     return :completed if completed?

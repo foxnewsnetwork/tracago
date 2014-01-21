@@ -68,7 +68,7 @@
             font-size: 14px;
           }
         }
-        #basics, #preferences, #actions {
+        #basics, #preferences, #actions, #bank-accounts {
           @extend .row;
           h3 {
             @extend .col-lg-12;
@@ -85,12 +85,26 @@
             @extend .col-xs-12;
           }
         }
+        #bank-accounts {
+          .bank-account {
+            @extend .col-lg-3;
+            @extend .col-md-4;
+            @extend .col-sm-6;
+            @extend .col-xs-6;
+            dl {
+              padding: 0px;
+            }
+          }
+        }
         #actions {
           i {
             @extend .fa;
             @extend .fa-2x;
             &.new-contract {
               @extend .fa-file-text-o;
+            }
+            &.new-bank-account {
+              @extend .fa-money;
             }
           }
           ul {

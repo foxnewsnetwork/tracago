@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: itps_accounts_roles
+#
+#  id         :integer          not null, primary key
+#  role_name  :string(255)      not null
+#  account_id :integer          not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Itps::Accounts::Role < ActiveRecord::Base
   AccessLevels = {
     admin: 8,

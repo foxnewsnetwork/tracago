@@ -12,6 +12,8 @@
 
 class Itps::Party < ActiveRecord::Base
   self.table_name = 'itps_parties'
+  has_many :bank_accounts,
+    class_name: 'Itps::Parties::BankAccount'
   belongs_to :account,
     foreign_key: "email",
     primary_key: "email",

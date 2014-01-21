@@ -1,0 +1,7 @@
+.bank-account
+  = link_to edit_itps_bank_account_path(bank_account) do
+    %dl
+      %dt= t(:bank_name)
+      %dd= bank_account.bank_name
+      %dt= t(:account_number)
+      %dd= bank_account.account_number

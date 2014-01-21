@@ -1,0 +1,27 @@
+#hero-banner
+  %section
+    %h1= t(:add_bank_account_information)
+
+#new-bank-account
+  = form_for @bank_account, url: itps_party_bank_accounts_path(@party) do |f|
+    %section
+      .crap-with-errors= render partial: 'itps/shared/errors', locals: { errors: @bank_account.errors }
+    %fieldset
+      %dl
+        %dt= f.label :routing_number, t(:bank_routing_number)
+        %dd= f.text_field :routing_number
+        %dt= f.label :account_number, t(:account_number)
+        %dd= f.text_field :account_number
+      %article
+        %figure
+          = image_tag 'newcheckimg.gif'
+        %span.rou-num= f.label :routing_number, t(:bank_routing_number)
+        %span.acc-num= f.label :account_number, t(:account_number)
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        = link_to itps_account_path(@party.account), type: :reset do
+          %i.reset
+          = t(:cancel)

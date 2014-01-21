@@ -19,6 +19,7 @@
 @import 'itps/admins/documents/index';
 @import 'itps/accounts/preferences/index';
 @import 'itps/home/status';
+@import 'itps/parties/bank_accounts/new';
 
 @mixin shared-main {
   #home-index {
@@ -96,5 +97,8 @@
   }
   #home-status {
     @include itps-home-status;
+  }
+  #parties-bank_accounts-new, #parties-bank_accounts-create {
+    @include itps-parties-bank_accounts-new
   }
 }

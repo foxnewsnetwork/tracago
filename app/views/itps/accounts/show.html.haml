@@ -7,6 +7,7 @@
     #table-of-contents
       %ul
         %li= link_to t(:basics), '#basics'
+        %li= link_to t(:bank_accounts), '#bank-accounts'
         %li= link_to t(:actions), '#actions'
         %li
           = link_to t(:contracts), '#contracts'
@@ -27,6 +28,14 @@
           %dd= @account.company_name
           %dt= t(:login_email)
           %dd= @account.email
+      #bank-accounts
+        %h3
+          = t(:bank_accounts)
+          = link_to t(:see_all), itps_party_bank_accounts_path(@account.party)
+        - if @account.bank_accounts.blank?
+          %p= t(:you_have_no_bank_accounts)
+        - bank_accounts = @account.bank_accounts.order('created_at desc').limit(3)
+        = render partial: 'itps/accounts/bank_account', collection: bank_accounts
       #actions
         %h3= t(:actions)
         %ul
@@ -35,6 +44,11 @@
               %figure
                 %i.new-contract
               = t(:new_contract)
+          %li
+            = link_to new_itps_party_bank_account_path(@account.party) do
+              %figure
+                %i.new-bank-account
+              = t(:add_bank)
       #contracts
         #contracts-active
           %h3

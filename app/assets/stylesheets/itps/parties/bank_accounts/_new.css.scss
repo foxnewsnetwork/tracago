@@ -1,0 +1,59 @@
+@mixin itps-parties-bank_accounts-new {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  #new-bank-account {
+    @extend .container;
+    form {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      section {
+        @extend .row;
+        .crap-with-errors {
+          @extend .col-lg-6;
+          @extend .col-md-6;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
+        } 
+      }
+      fieldset {
+        @extend .row;
+        dl, article {
+          @extend .col-lg-6;
+          @extend .col-md-6;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
+        }
+        dl {
+          dd {
+            @extend .form-group;
+            input {
+              @extend .form-control;
+            }
+          }
+        }
+        article {
+          figure {
+            margin-top: 20px;
+          }
+          .acc-num {
+            margin-left: 30px;
+          }
+        }
+      }
+    }
+  }
+}

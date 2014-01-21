@@ -37,9 +37,11 @@ Tracago::Application.routes.draw do
     resources :steps, only: [:edit, :show, :destroy] do
       resources :documents, only: [:new, :create], controller: 'steps/documents'
     end
+    resources :bank_accounts, only: [:edit, :update, :destroy]
     resources :parties, only: [:edit, :update] do
       resources :escrows, only: [:index], controller: 'parties/escrows'
       resources :accounts, only: [:new, :create], controller: 'parties/accounts'
+      resources :bank_accounts, only: [:new, :create, :index], controller: 'parties/bank_accounts'
     end
     resources :documents, only: [:update], controller: 'documents/puts' do
       member do
