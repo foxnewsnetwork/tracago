@@ -14,6 +14,8 @@
       %dd= f.text_field :title
       %dt= f.label :instructions
       %dd= f.text_area :instructions
+      %dt= f.label :payment_step, t(:payment_step)
+      %dd= f.check_box :payment_step
     %p= Faker::Lorem.paragraph
   %fieldset
     %h3= t(:required_documents)

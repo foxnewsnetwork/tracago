@@ -12,6 +12,7 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  previous_id  :integer
+#  class_name   :string(255)
 #
 
 class Itps::Escrows::Step < ActiveRecord::Base
@@ -51,8 +52,12 @@ class Itps::Escrows::Step < ActiveRecord::Base
   delegate :edit_mode?,
     to: :escrow
   def downcast
-    return Itps::Escrows::PayStep.find id if 'pay_step' == class_name.to_s
+    return Itps::Escrows::PayStep.find id if pay_step?
     self
+  end
+
+  def pay_step?
+    'pay_step' == class_name.to_s
   end
 
   def status

@@ -3,7 +3,8 @@ class Itps::Escrows::Steps::StepFormHelper < Spree::FormHelperBase
     :title,
     :instructions,
     :document_name,
-    :document_description
+    :document_description,
+    :payment_step
   ]
   attr_accessor :attributes
   attr_hash_accessor *Fields
@@ -29,8 +30,17 @@ class Itps::Escrows::Steps::StepFormHelper < Spree::FormHelperBase
   def _processed_params
     {
       title: title,
-      instructions: instructions
-    }
+      instructions: instructions,
+    }.merge _class_name_params
+  end
+
+  def _class_name_params
+    return { class_name: 'pay_step' } if _payment_step?
+    return {}
+  end
+
+  def _payment_step?
+    "1" == payment_step.to_s
   end
 
   def _document_params

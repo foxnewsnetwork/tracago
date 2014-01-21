@@ -12,6 +12,7 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  previous_id  :integer
+#  class_name   :string(255)
 #
 
 require 'spec_helper'

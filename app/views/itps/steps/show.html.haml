@@ -13,7 +13,9 @@
       %li= link_to t(:escrow_page), itps_escrow_path(@step.escrow.permalink)
       %li= link_to @step.title, itps_step_path(@step.permalink)
   #basic-information
-    %h2= t(:basic_information)
+    %h2
+      = t(:basic_information)
+      %span.parantheses= t(:payment_step)
     %dl
       %dt= t(:title)
       %dd= @step.title
@@ -23,6 +25,11 @@
           = @step.instructions
         - else
           = t(:none_given)
+      - if @step.pay_step?
+        %dt= t(:escrow_routing_number)
+        %dd= Itps::Parties::BankAccount.itps_routing_number
+        %dt= t(:escrow_account_number)
+        %dd= Itps::Parties::BankAccount.itps_account_number
     %dl
       %dt= t(:previous_step)
       %dd= t(:none)

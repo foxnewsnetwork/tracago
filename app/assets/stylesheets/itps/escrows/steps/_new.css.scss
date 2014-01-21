@@ -38,8 +38,12 @@
         @extend .col-lg-6;
         dd {
           @extend .form-group;
-          input, textarea {
+          input[type='text'], textarea {
             @extend .form-control;
+          }
+          input[type='checkbox'] {
+            width: 65px;
+            height: 65px;
           }
         }
       }

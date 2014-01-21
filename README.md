@@ -12,6 +12,7 @@ Calendar for Escrow
 
 Tuesday Jan 21
 1. edit and update for bank accounts
+needs designatable payment step
 
 Monday Jan 20
 1. Nginx assets and images issue resolved
