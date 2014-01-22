@@ -80,6 +80,6 @@ class Itps::EscrowsController < Itps::BaseController
   end
 
   def _escrow
-    @escrow ||= Itps::Escrow.find_by_permalink params[:id]
+    @escrow ||= Itps::Escrow.find_by_permalink! params[:id]
   end
 end
