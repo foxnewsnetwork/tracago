@@ -13,12 +13,55 @@
             = t(:search_help)
   %section
     %article.questions-and-answers
-      - 4.times do
-        %h2= Faker::Company.bs
-        %dl
-          - 6.times do
-            %dt= Faker::Lorem.sentence.gsub(/\.$/, '?')
-            %dd= Faker::Lorem.sentence(3)
+      %h2= "Managing Accounts"
+      %dl
+        %dt= "How do I create an account?"
+        %dd
+          = link_to "Visit the sign up page.", itps_signup_path
+          = "You will need an email address, preferrably one that you check often, to fill out the sign up form."
+        %dt= "How do I change my company name?"
+        %dd
+          - if current_account.present?
+            = link_to "Visit the edit company info page.", edit_itps_party_path(current_account.party)
+          - else
+            = "Please log in, go to your account page, then click the edit basic information link"
+        %dt= "Why do we need your bank account number?"
+        %dd= "Because that's how we wire or deposit escrow money into your account."
+        %dt= "How do I update my bank account information?"
+        %dd
+          - if current_account.present?
+            = link_to "Visit the add bank account page", new_itps_party_bank_account_path(current_account.party)
+            = "to add a bank account."
+          - else
+            = "Please log in, go to your account page, then click the add bank account button."
+        %dt= "How do I change my password?"
+        %dd= "At this time, it is not possible to change your password. This is because of a problem on our end, which will be resolved presently."
+      %h2= "Managing Contracts"
+      %dl
+        %dt= "Someone has invited me to participate in a contract, what do I need to do?"
+        %dd= "Visit the link to the contract given to you via email. Review the terms and contact the drafting party of the contract if the terms are not agreeable. Once both you and the other party have come to a agreement, click the lock button. Once both parties have accepted and locked the contract, the contract becomes active and no longer editable."
+        %dt= "The contract is now locked and active, what now?"
+        %dd= "Now, you follow the terms and directions and specified on your individual contract. You may check the status of your contract to see what documents and what step the contract is currently on at anytime."
+        %dt= "When do I get paid?"
+        %dd= "Depending upon where the payment step of your contract is, you will be paid when you have completed the terms of your contract and provided some form of proof of it. The money will be wired or deposited into your bank account according to the information you have provided us on the day of the completion."
+        %dt= "The other party seems to have abandoned the contract and I am left high-and-dry. What now?"
+        %dd= "After a mutually agreed time of inaction on the service party's part, the payment party will have their funds returned to their account. A service party should NOT engage in any work until the mutual GTPC escrow account has been funded. You can see the funding status on the contract page."
+      %h2= "Email and Other Notifications"
+      %dl
+        %dt= "I am not receiving emails, what's going on?"
+        %dd= "Chances are your spam filter is filtering our emails. Check your spam folder."
+        %dt= "I do not want to receive emails from GTPC, what do I do?"
+        %dd= "We do not contact you via email for any other purpose than to inform you of the status of your contracts. Nevertheless, you may turn off all email alerts in your preferences."
+        %dt= "What about text-alerts? How do I sign up for those?"
+        %dd= "This service is currently unavailable due to a problem on our end. We are resolving this problem, and will be able to provide this service presently."
+      %h2= "Other questions"
+      %dl
+        %dt= "Where are guys based?"
+        %dd= "GTPC is a Los Angeles, CA based company, however, we operate internationally."
+        %dt= "Something has gone terribly wrong and I need to contact a real person, what do I do?"
+        %dd
+          = "You can contact Tom, our technical support lead, at"
+          = mail_to "foxnewsnetwork@gmail.com"
     %article.additional-resources
       %h3= t(:other_resources)
       %ul

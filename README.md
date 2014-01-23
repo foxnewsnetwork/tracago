@@ -5,14 +5,19 @@ Calendar for Escrow
 >replace all outbound emails with steady address
 >doc tags controller & show page
 >specified pay-step controller and whatnot
->error pages for 500, 404, etc.
 >parties bank account edit and update features
 >favicon.ico must be generated
 >get some real bank accounts
+>confirm email domain naming issues
+
+Wednesday Jan 22
+1. replaced lorem ipsum in session and faq
 
 Tuesday Jan 21
 1. edit and update for bank accounts
 2. needs designatable payment step
+3. error pages for 500, 404, etc.
+
 memax eric $0.10/lb 
 
 Monday Jan 20

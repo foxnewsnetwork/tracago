@@ -14,7 +14,8 @@
         %dd= f.password_field :password
       %article
         %h4
-          = Faker::Lorem.sentence
+          = "You need to be logged in edit, agree to, and manage your contracts."
+          = "If you don't have an account, you will need an email address to make one."
         %h4
           = link_to t(:new_account), itps_signup_path(back: back_path)
     %fieldset
