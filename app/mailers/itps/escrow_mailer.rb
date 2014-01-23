@@ -1,5 +1,4 @@
-class Itps::EscrowMailer < ActionMailer::Base
-  default from: 'no-reply@thiswebsite.com'
+class Itps::EscrowMailer < Itps::BaseMailer
   def single_ready_email(escrow)
     @escrow = escrow
     mail to: @escrow.other_party.email, 

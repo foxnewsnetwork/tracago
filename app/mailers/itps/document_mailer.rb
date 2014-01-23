@@ -1,5 +1,5 @@
-class Itps::DocumentMailer < ActionMailer::Base
-  default from: 'no-reply@thiswebsite.com'
+class Itps::DocumentMailer < Itps::BaseMailer
+  
   def approve_success_email(document)
     @document = document
     @step = @document.step
