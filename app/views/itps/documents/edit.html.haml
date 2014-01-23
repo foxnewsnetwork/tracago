@@ -7,12 +7,12 @@
     %dl
       %dt= f.label :title, t(:document_name)
       %dd= f.text_field :title
-    %p= Faker::Lorem.paragraph
+    %p The document name should be easily understood and informative.
   %fieldset
     %dl
       %dt= f.label :description, t(:document_description)
       %dd= f.text_area :description
-    %p= Faker::Lorem.paragraph
+    %p You should specify any specific instructions or requirements you may have here.
   %fieldset
     %section
       = button_tag type: :submit do

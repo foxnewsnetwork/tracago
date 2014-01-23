@@ -16,7 +16,8 @@
         %dd= f.password_field :password_confirmation
       %article
         %h4
-          = Faker::Lorem.sentence
+          = "You need to register an account as contracts between parties involve both money and services."
+          = "If you already have an account, you may log into it."
         %h4
           = link_to t(:login_to_existing_account), itps_login_path(back: back_path)
         = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }

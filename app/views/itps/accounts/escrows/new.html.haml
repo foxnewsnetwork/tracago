@@ -18,7 +18,7 @@
         %dd= f.radio_button :my_role, :service_party, checked: false
     %article
       = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
-      %p= Faker::Lorem.paragraph
+      %p You need to specify the other party's identity and contact information. In additional, you must also specify your role in the escrow contract as either the service provider or the payment payer.
   %fieldset
     %section
       = button_tag type: :submit do

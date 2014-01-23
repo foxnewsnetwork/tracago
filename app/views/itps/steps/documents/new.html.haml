@@ -7,12 +7,12 @@
     %dl
       %dt= f.label :title, t(:document_name)
       %dd= f.text_field :title
-    %p= Faker::Lorem.paragraph
+    %p Please specify a title which describes the document
   %fieldset
     %dl
       %dt= f.label :description, t(:document_description)
       %dd= f.text_area :description
-    %p= Faker::Lorem.paragraph
+    %p Please provide a reasonable description specifying what this document should be.
   %fieldset
     %section
       = button_tag type: :submit do

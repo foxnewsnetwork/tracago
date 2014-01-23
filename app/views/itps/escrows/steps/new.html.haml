@@ -16,7 +16,7 @@
       %dd= f.text_area :instructions
       %dt= f.label :payment_step, t(:payment_step)
       %dd= f.check_box :payment_step
-    %p= Faker::Lorem.paragraph
+    %p Please provide a reasonable title and some instructions to specify this step or term. Although the payment step happens last in an escrow agreement, you may specify the payment step to happen earlier (or multiple times) as appropriate in your particular application.
   %fieldset
     %h3= t(:required_documents)
     %dl
@@ -24,7 +24,7 @@
       %dd= f.text_field :document_name
       %dt= f.label :document_description, t(:document_description)
       %dd= f.text_area :document_description
-    %p= Faker::Lorem.paragraph
+    %p Specify whatever document proof this step may require. If you don't put anything here right now, you may do so later on the step's page.
   %fieldset
     %section
       = button_tag type: :submit do

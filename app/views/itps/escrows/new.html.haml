@@ -15,7 +15,7 @@
         %dt= f.label :drafted_by_paying, t(:your_are_the_paying_party)
         %dd= f.radio_button :drafted_by_paying, true, checked: true
     %article
-      %p= Faker::Lorem.paragraph
+      %p The paying party is the party who will fund the mutual escrow account at the beginning of the contract activation.
   %fieldset
     %h3= t(:working_party_details)
     %article
@@ -28,7 +28,7 @@
         %dt= f.label :drafted_by_paying, t(:your_are_the_service_party)
         %dd= f.radio_button :drafted_by_paying, false
     %article
-      %p= Faker::Lorem.paragraph
+      %p The working party, also known as the service or goods party, will provide the agreed to services or goods after the escrow account has been funded.
   %fieldset
     %section
       = button_tag type: :submit do

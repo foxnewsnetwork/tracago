@@ -12,6 +12,7 @@ Calendar for Escrow
 
 Wednesday Jan 22
 1. replaced lorem ipsum in session and faq
+2. lorem ipsum replaced in usage page
 
 Tuesday Jan 21
 1. edit and update for bank accounts
