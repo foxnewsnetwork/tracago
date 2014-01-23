@@ -163,7 +163,7 @@
                 color: $highlight-textcolor;
               }
               i {
-                @extend .fa-checked;
+                @extend .fa-check;
               }
             }
             &.waiting_documents {

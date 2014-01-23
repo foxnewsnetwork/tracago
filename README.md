@@ -91,6 +91,80 @@ Monday Jan 6
 1. Account creation after email contact
 
 
+Email Setup
+=
+In order to properly use actionmailer, the developer must setup either sendmail or postfix (preferrably both). I will go over how to setup both in this readme. [sauce here](https://help.ubuntu.com/community/Postfix)
+
+#### Postfix
+Run the following command to get postfix from your friendly online repo
+```shell
+$ sudo apt-get install postfix
+```
+Accept all the default choices the postfix installation presents to you, as you will be configuring in greater detail in the next step.
+
+Run the following command to configure postfix
+```shell
+$ sudo dpkg-reconfigure postfix
+```
+
+Change your mail root to /home/[you]/Maildir
+```shell
+$ sudo postconf -e 'home_mailbox = Maildir/'
+$ sudo postconf -e 'mailbox_command ='
+```
+Configure sasl for smtp
+```shell
+$ sudo postconf -e 'smtpd_sasl_local_domain ='
+$ sudo postconf -e 'smtpd_sasl_auth_enable = yes'
+$ sudo postconf -e 'smtpd_sasl_security_options = noanonymous'
+$ sudo postconf -e 'broken_sasl_auth_clients = yes'
+$ sudo postconf -e 'smtpd_recipient_restrictions = permit_sasl_authenticated,permit_mynetworks,reject_unauth_destination'
+$ sudo postconf -e 'inet_interfaces = all'
+```
+
+Create a smtpd.conf file
+```shell
+$ sudo vim /etc/postfix/sasl/smtpd.conf
+```
+and put the following into it
+```
+pwcheck_method: saslauthd
+mech_list: plain login
+```
+
+Next, you must generate keys, certificates, and whatnot for TLS encryption
+```shell
+touch smtpd.key
+chmod 600 smtpd.key
+openssl genrsa 1024 > smtpd.key
+openssl req -new -key smtpd.key -x509 -days 3650 -out smtpd.crt # has prompts
+openssl req -new -x509 -extensions v3_ca -keyout cakey.pem -out cacert.pem -days 3650 # has prompts
+sudo mv smtpd.key /etc/ssl/private/
+sudo mv smtpd.crt /etc/ssl/certs/
+sudo mv cakey.pem /etc/ssl/private/
+sudo mv cacert.pem /etc/ssl/certs/
+```
+
+Configure TSL issues
+```shell
+sudo postconf -e 'smtp_tls_security_level = may'
+sudo postconf -e 'smtpd_tls_security_level = may'
+sudo postconf -e 'smtpd_tls_auth_only = no'
+sudo postconf -e 'smtp_tls_note_starttls_offer = yes'
+sudo postconf -e 'smtpd_tls_key_file = /etc/ssl/private/smtpd.key'
+sudo postconf -e 'smtpd_tls_cert_file = /etc/ssl/certs/smtpd.crt'
+sudo postconf -e 'smtpd_tls_CAfile = /etc/ssl/certs/cacert.pem'
+sudo postconf -e 'smtpd_tls_loglevel = 1'
+sudo postconf -e 'smtpd_tls_received_header = yes'
+sudo postconf -e 'smtpd_tls_session_cache_timeout = 3600s'
+sudo postconf -e 'tls_random_source = dev:/dev/urandom'
+sudo postconf -e 'myhostname = server1.example.com'
+```
+
+Restart the postfix daemon
+```shell
+sudo /etc/init.d/postfix restart
+```
 Tracago Project
 =
 International Trade Platform
