@@ -9,7 +9,7 @@ namespace :emails do
     require 'mail'
     Mail.defaults do
       delivery_method :smtp, address: 'localhost', 
-        domain: 'localhost',
+        domain: 'globaltradepayment.co',
         port: 25
     end
     Mail.deliver do
