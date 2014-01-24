@@ -27,8 +27,7 @@ namespace :emails do
   task test_ruby: :environment do
     require 'net/smtp'
     msg = 'Subject: This is a test email\n'
-    smtp = Net::SMTP.new('localhost', 25)
-    smtp.start do |mailer|
-      puts mailer.sendmail msg, 'rubytest@globaltradepayment.co', 'hell@mailinator.com'
+    Net::SMTP.new('localhost', 25).start do |mailer|
+      puts mailer.sendmail(msg, 'rubytest@globaltradepayment.co', 'hell@mailinator.com')
     end
 end
