@@ -24,9 +24,9 @@ module Tracago
     config.assets.paths << Rails.root.join("app", "assets", "stylesheets", "spree")
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address: "globaltradepayment.co",
+      address: "localhost",
       port: 25,
-      domain: 'globaltradepayment.co',
+      domain: 'localhost',
       authentication: 'plain',
       tls: true,
       enable_starttls_auto: true  }
