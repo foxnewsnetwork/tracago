@@ -30,4 +30,5 @@ namespace :emails do
     Net::SMTP.new('localhost', 25).start do |mailer|
       puts mailer.sendmail(msg, 'rubytest@globaltradepayment.co', 'hell@mailinator.com')
     end
+  end
 end
