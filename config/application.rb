@@ -22,6 +22,14 @@ module Tracago
     end
 
     config.assets.paths << Rails.root.join("app", "assets", "stylesheets", "spree")
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: "globaltradepayment.co",
+      port: 25,
+      domain: 'globaltradepayment.co',
+      authentication: 'plain',
+      tls: true,
+      enable_starttls_auto: true  }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
