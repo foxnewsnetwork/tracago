@@ -1,0 +1,17 @@
+development:
+  delivery_method: smtp
+  address: globaltradepayment.co
+  domain: globaltradepayment.co
+  port: 25
+
+test:
+  delivery_method: smtp
+  address: globaltradepayment.co
+  domain: globaltradepayment.co
+  port: 25
+
+production:
+  delivery_method: smtp
+  address: globaltradepayment.co
+  domain: globaltradepayment.co
+  port: 25
