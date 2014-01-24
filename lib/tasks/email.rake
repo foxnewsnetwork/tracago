@@ -11,9 +11,8 @@ namespace :emails do
       delivery_method :smtp, address: 'localhost', 
         domain: 'localhost',
         port: 25,
-        ssl: false,
-        tls: false,
-        enable_starttls_auto: false
+        tls: true,
+        enable_starttls_auto: true
     end
     Mail.deliver do
       from 'mailtest@globaltradepayment.co'
