@@ -8,8 +8,8 @@ namespace :emails do
   task test_mail: :environment do
     require 'mail'
     Mail.defaults do
-      delivery_method :smtp, address: 'globaltradepayment.co', 
-        domain: 'globaltradepayment.co',
+      delivery_method :smtp, address: 'localhost', 
+        domain: 'localhost',
         port: 25,
         ssl: false,
         tls: false,
