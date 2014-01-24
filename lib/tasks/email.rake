@@ -10,7 +10,10 @@ namespace :emails do
     Mail.defaults do
       delivery_method :smtp, address: 'globaltradepayment.co', 
         domain: 'globaltradepayment.co',
-        port: 25
+        port: 25,
+        ssl: false,
+        tls: false,
+        enable_starttls_auto: false
     end
     Mail.deliver do
       from 'mailtest@globaltradepayment.co'
