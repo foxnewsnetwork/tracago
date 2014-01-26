@@ -1,7 +1,8 @@
 namespace :emails do
   desc "Sends out a test email to me"
   task test: :environment do
-    puts Itps::TestMailer.test_email 'hell@mailinator.com'
+    male = Itps::TestMailer.test_email 'hell@mailinator.com'
+    puts male.perform_deliveries
   end
 
   desc "Tests the mail gem"
