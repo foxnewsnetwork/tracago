@@ -1,7 +1,8 @@
 class Itps::TestMailer < Itps::BaseMailer
   def test_email(*targets)
-    mail to: targets.first,
+    m = mail to: targets.first,
       cc: targets.tail,
       subject: "Testing Emails"
+    m.deliver!
   end
 end

@@ -4,18 +4,20 @@ class Itps::DocumentMailer < Itps::BaseMailer
     @document = document
     @step = @document.step
     @escrow = @step.escrow
-    mail to: @escrow.payment_party.email,
+    m = mail to: @escrow.payment_party.email,
       cc: @escrow.service_party.email,
       subject: "#{@document.full_presentation} has been approved." 
+    m.deliver!
   end
 
   def reject_success_email(document)
     @document = document
     @step = @document.step
     @escrow = @step.escrow
-    mail to: @escrow.payment_party.email,
+    m = mail to: @escrow.payment_party.email,
       cc: @escrow.service_party.email,
       subject: "#{@document.full_presentation} has been rejected."
+    m.deliver!
   end
 end
 
