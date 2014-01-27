@@ -69,12 +69,18 @@
   #hero-banner {
     @extend .desktop;
     background-color: $highlight-background;
-    background: image-url('dog1.jpg');
+    background: image-url('port-ipad.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     &.dog1 {
-      background: image-url('dog2.jpg');
+      background: image-url('space-satellite.png');
+      background-size: cover;
+      background-repeat: no-repeat;
     }
     &.dog2 {
-      background: image-url('dog3.jpg');
+      background: image-url('flags-greet.png');
+      background-size: cover;
+      background-repeat: no-repeat;
     }
     border-bottom: $standard-border;
     section {

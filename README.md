@@ -1,19 +1,24 @@
 Calendar for Escrow
 =
 >replace all dog pictures with real pictures
->replace all outbound emails with steady address
 >doc tags controller & show page
->specified pay-step controller and whatnot
->parties bank account edit and update features
 >favicon.ico must be generated
 >get some real bank accounts
->confirm email domain naming issues
 >model and controller to create escrows from archived escrows
+
+
+
+Sunday Jan 26
+1. Finally fucking emails working. (had to call #deliver!)
+2. replace all outbound emails with steady address
+3. confirm email domain naming issues
 
 Wednesday Jan 22
 1. replaced lorem ipsum in session and faq
 2. lorem ipsum replaced in usage page
 3. got the rest of the lorem ipsums
+4. specified pay-step controller and whatnot
+5. parties bank account edit and update features
 
 Tuesday Jan 21
 1. edit and update for bank accounts
