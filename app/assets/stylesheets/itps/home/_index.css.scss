@@ -78,7 +78,7 @@
       background-repeat: no-repeat;
     }
     &.dog2 {
-      background: image-url('flags-greet.png');
+      background: image-url('just-flags.png');
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -184,8 +184,22 @@
         }
         i {
           @extend .fa;
-          @extend .fa-linux;
           @extend .fa-4x;
+          &.bank-and-check {
+            background: image-url('handshake-tag.png');
+            width: 75px;
+            height: 75px;
+          }
+          &.pricing {
+            background: image-url('price-tag.png');
+            width: 70px;
+            height: 70px;
+          }
+          &.accessibility {
+            background: image-url('accessibility-tag.png');
+            width: 80px;
+            height: 70px;
+          }
         }
         p {
           font-size: 15px;
