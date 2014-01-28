@@ -6,7 +6,8 @@ Calendar for Escrow
 >get some real bank accounts
 >model and controller to create escrows from archived escrows
 
-
+Monday Jan 27
+1. Home page real pictures (except for banks)
 
 Sunday Jan 26
 1. Finally fucking emails working. (had to call #deliver!)
