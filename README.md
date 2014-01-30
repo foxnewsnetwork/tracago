@@ -5,6 +5,13 @@ Calendar for Escrow
 >favicon.ico must be generated
 >get some real bank accounts
 >model and controller to create escrows from archived escrows
+>write a real unicorn proc and conf file for actual production
+
+Wednesday Jan 29
+
+
+Tuesday Jan 28
+1. Talked to William Lawton
 
 Monday Jan 27
 1. Home page real pictures (except for banks)

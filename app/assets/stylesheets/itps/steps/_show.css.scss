@@ -42,17 +42,7 @@
   }
   #steps-content {
     @extend .container;
-    #cookie-crumbs {
-      @extend .row;
-      padding-top: 15px;
-      ol {
-        @extend .breadcrumb;
-        @extend .col-lg-12;
-        list-style: none;
-        padding-left: 15px;
-        margin-left: 15px;
-      }
-    }
+    
     #basic-information, #executive-actions, #documents {
       h2 {
         @extend .col-lg-12;

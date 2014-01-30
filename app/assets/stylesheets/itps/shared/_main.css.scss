@@ -67,7 +67,7 @@
   #accounts-show {
     @include itps-accounts-show;
   }
-  #accounts-escrows-new, #accounts-escrows-create {
+  #accounts-escrows-new, #accounts-escrows-create, #escrows-escrows-new, #escrows-escrows-create {
     @include itps-accounts-escrows-new;
     @include itps-escrows-new;
   }

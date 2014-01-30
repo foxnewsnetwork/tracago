@@ -5,6 +5,7 @@
 @import 'itps/shared/flash';
 @import 'shared/important';
 @import 'itps/shared/errors';
+@import 'itps/shared/cookiecrumbs';
 
 body {
   @include shared-important;
@@ -42,6 +43,9 @@ body {
   }
   #error-explanation {
     @include shared-errors;
+  }
+  #cookie-crumbs {
+    @include shared-cookiecrumbs;
   }
   header {
     @include shared-header;

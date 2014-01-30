@@ -1,0 +1,14 @@
+@mixin shared-cookiecrumbs {
+  @extend .row;
+  padding-top: 15px;
+  ol {
+    @extend .breadcrumb;
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    list-style: none;
+    padding-left: 15px;
+    margin-left: 15px;
+  }
+}

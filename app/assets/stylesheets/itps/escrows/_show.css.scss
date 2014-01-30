@@ -98,6 +98,9 @@
                 &.destroy-escrow {
                   @extend .fa-times;
                 }
+                &.copy {
+                  @extend .fa-copy;
+                }
                 &.edit {
                   @extend .fa-edit;
                 }

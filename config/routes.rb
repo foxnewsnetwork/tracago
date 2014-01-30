@@ -52,6 +52,7 @@ Tracago::Application.routes.draw do
     end
     resources :documents, only: [:show, :destroy, :edit]
     resources :escrows, only: [:new, :create, :destroy, :show] do
+      resources :escrows, only: [:new, :create], controller: 'escrows/escrows'
       resource :agreement, only: [:new, :create], controller: 'escrows/agreements'
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
     end

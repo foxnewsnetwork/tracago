@@ -67,6 +67,15 @@ class Itps::Escrow < ActiveRecord::Base
     end
   end
 
+  def copy_steps_from!(escrow)
+    escrow.steps.map do |step|
+      steps.create! title: step.title,
+        instructions: step.instructions,
+        position: step.position,
+        class_name: step.class_name
+    end
+  end
+
   def last_step
     ordered_steps.last
   end

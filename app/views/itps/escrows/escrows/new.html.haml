@@ -1,12 +1,12 @@
 #hero-banner
   %legend
-    %h1= t(:open_escrow_form)
+    %h1= t(:escrow_copy_form)
 
-= form_for @form_helper, url: itps_account_escrows_path(current_account) do |f|
+= form_for @form_helper, url: itps_escrow_escrows_path(@escrow.permalink) do |f|
   #cookie-crumbs
     %ol
-      %li= link_to t(:my_account), itps_account_path(current_account)
-      %li= link_to t(:new_escrow)
+      %li= link_to t(:original_escrow), itps_escrow_path(@escrow.permalink)
+      %li= link_to t(:clone_escrow_details)
   %fieldset
     %h3= t(:associated_party_details)
     %article
@@ -22,12 +22,12 @@
         %dd= f.radio_button :my_role, :service_party, checked: false
     %article
       = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
-      %p You need to specify the other party's identity and contact information. In additional, you must also specify your role in the escrow contract as either the service provider or the payment payer.
+      %p You still need provide the contact details for the other party and we will take care of the rest of copying over the details of each step.
   %fieldset
     %section
       = button_tag type: :submit do
         %i.submit
         = t(:confirm)
-      = link_to itps_account_path(current_account), type: :reset do
+      = link_to itps_escrow_path(@escrow.permalink), type: :reset do
         %i.reset
         = t(:cancel)

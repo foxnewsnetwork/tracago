@@ -24,6 +24,7 @@ class JewFactory::Escrow < JewFactory::Base
   def belongs_to(thing)
     tap do |f|
       f.draft_party = thing if thing.is_a? Itps::Party
+      f.payment_party = thing if thing.is_a? Itps::Party
     end
   end
 

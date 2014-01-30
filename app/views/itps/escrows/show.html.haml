@@ -88,8 +88,11 @@
             %figure
               %i.login
             = t(:login)
-      - else
-        %li= t(:no_actions_available)
+      %li
+        = link_to new_itps_escrow_escrow_path(@escrow.permalink) do
+          %figure
+            %i.copy
+          = t(:copy)
     
   #steps-to-completion
     %h2= t(:steps_to_completion)
