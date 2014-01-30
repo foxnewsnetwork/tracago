@@ -76,6 +76,11 @@ class Itps::Escrow < ActiveRecord::Base
     end
   end
 
+  def attempt_destroy!
+    return true if edit_mode? && destroy
+    false
+  end
+
   def last_step
     ordered_steps.last
   end

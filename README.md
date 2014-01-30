@@ -4,11 +4,19 @@ Calendar for Escrow
 >doc tags controller & show page
 >favicon.ico must be generated
 >get some real bank accounts
->model and controller to create escrows from archived escrows
->write a real unicorn proc and conf file for actual production
+
+Thursday Jan 30
+1. copy functionality complete (model and controller to create escrows from archived escrows)
+2. escrow destroy operation complete
+3. write a real unicorn proc and conf file for actual production
+Note: to deploy, run the following:
+```shell
+unicorn_rails -c config/unicorn.conf.rb -D
+```
+don't forget to regenerate assets
 
 Wednesday Jan 29
-
+1. started copy functionality
 
 Tuesday Jan 28
 1. Talked to William Lawton
