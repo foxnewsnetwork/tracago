@@ -45,7 +45,16 @@
           %dd= @account.created_at
       #documentation-summary
         %h2= t(:documentation)
-        %p Implement this section
+        %article
+          = link_to new_itps_admin_documentation_path do
+            %figure
+              %i.new-doc
+            = t(:new_doc)
+        %article
+          = link_to new_itps_admin_tag_path do
+            %figure
+              %i.new-tag
+            = t(:new_root_tag)
       #escrow-documents-summary
         %h2= link_to t(:escrow_documents_summary), itps_admin_documents_path          
         %dl

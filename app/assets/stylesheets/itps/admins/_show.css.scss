@@ -76,6 +76,28 @@
             @extend .col-xs-12;
           }
         }
+        #documentation-summary {
+          article {
+            @extend .col-lg-2;
+            @extend .col-md-3;
+            @extend .col-sm-4;
+            @extend .col-xs-6;
+            a {
+              @extend .thumbnail;
+              text-align: center;
+              i {
+                @extend .fa;
+                @extend .fa-2x;
+                &.new-doc {
+                  @extend .fa-file;
+                }
+                &.new-tag {
+                  @extend .fa-tag;
+                }
+              }
+            }
+          }
+        }
         #escrow-documents-summary {
           dl, ul {
             @extend .col-lg-12;

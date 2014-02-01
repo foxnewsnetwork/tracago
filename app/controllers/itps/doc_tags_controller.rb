@@ -4,6 +4,6 @@ class Itps::DocTagsController < Itps::BaseController
   end
   private
   def _doc_tag
-    @doc_tag ||= Itps::DocTag.find_by_permalink! params[:id]
+    @doc_tag ||= Itps::Tag.find_by_permalink! params[:id]
   end
 end

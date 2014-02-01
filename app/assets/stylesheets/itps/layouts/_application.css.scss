@@ -10,6 +10,7 @@
 body {
   @include shared-important;
   background: #e7e7e7;
+  padding: 0px;
   button, a[type=reset] {
     @extend .btn;
     &[type=submit] {

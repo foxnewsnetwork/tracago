@@ -20,8 +20,11 @@
 @import 'itps/accounts/preferences/index';
 @import 'itps/home/status';
 @import 'itps/parties/bank_accounts/new';
+@import 'itps/admins/documentations/new';
+@import 'itps/admins/tags/new';
 
 @mixin shared-main {
+  padding: 0px;
   #home-index {
     @include itps-home-index;
   }
@@ -37,7 +40,10 @@
   #home-terms, #home-legal {
     @include itps-home-terms;
   }
-  #doc_tags-index, #doc_tags-show {
+  #doc_tags-index, 
+  #doc_tags-show, 
+  #documentations-show,
+  #tags-show {
     @include itps-home-documentation;
   }
   #escrows-create, #escrows-new {
@@ -67,11 +73,15 @@
   #accounts-show {
     @include itps-accounts-show;
   }
-  #accounts-escrows-new, #accounts-escrows-create, #escrows-escrows-new, #escrows-escrows-create {
+  #accounts-escrows-new,
+  #accounts-escrows-create,
+  #escrows-escrows-new,
+  #escrows-escrows-create {
     @include itps-accounts-escrows-new;
     @include itps-escrows-new;
   }
-  #parties-accounts-new, #parties-accounts-create {
+  #parties-accounts-new, 
+  #parties-accounts-create {
     @include itps-sessions-new;
   }
   #steps-edit {
@@ -98,7 +108,20 @@
   #home-status {
     @include itps-home-status;
   }
-  #parties-bank_accounts-new, #parties-bank_accounts-create, #bank_accounts-edit, #bank_accounts-update {
-    @include itps-parties-bank_accounts-new
+  #parties-bank_accounts-new, 
+  #parties-bank_accounts-create, 
+  #bank_accounts-edit, 
+  #bank_accounts-update {
+    @include itps-parties-bank_accounts-new;
+  }
+  #admins-documentations-new,
+  #admins-documentations-create {
+    @include itps-admins-documentations-new;
+  }
+  #admins-tags-new,
+  #admins-tags-create,
+  #admins-tags-tags-new,
+  #admins-tags-tags-create {
+    @include itps-admins-tags-new;
   }
 }

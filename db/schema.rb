@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121205416) do
+ActiveRecord::Schema.define(version: 20140131011622) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -38,17 +38,6 @@ ActiveRecord::Schema.define(version: 20140121205416) do
     t.datetime "updated_at"
   end
 
-  create_table "itps_doc_tags", force: true do |t|
-    t.string  "permalink",                    null: false
-    t.string  "title",                        null: false
-    t.integer "parent_id"
-    t.integer "documentation_id"
-    t.integer "level",            default: 0, null: false
-  end
-
-  add_index "itps_doc_tags", ["parent_id"], name: "index_itps_doc_tags_on_parent_id", using: :btree
-  add_index "itps_doc_tags", ["permalink"], name: "index_itps_doc_tags_on_permalink", using: :btree
-
   create_table "itps_documentations", force: true do |t|
     t.string   "permalink",  null: false
     t.string   "title",      null: false
@@ -58,6 +47,17 @@ ActiveRecord::Schema.define(version: 20140121205416) do
   end
 
   add_index "itps_documentations", ["permalink"], name: "index_itps_documentations_on_permalink", using: :btree
+
+  create_table "itps_documentations_tags", force: true do |t|
+    t.integer  "documentation_id",             null: false
+    t.integer  "tag_id",                       null: false
+    t.integer  "count",            default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_documentations_tags", ["documentation_id"], name: "index_itps_documentations_tags_on_documentation_id", using: :btree
+  add_index "itps_documentations_tags", ["tag_id"], name: "index_itps_documentations_tags_on_tag_id", using: :btree
 
   create_table "itps_escrows", force: true do |t|
     t.integer  "service_party_id",         null: false
@@ -139,6 +139,24 @@ ActiveRecord::Schema.define(version: 20140121205416) do
   end
 
   add_index "itps_parties_bank_accounts", ["party_id"], name: "index_itps_parties_bank_accounts_on_party_id", using: :btree
+
+  create_table "itps_tags", force: true do |t|
+    t.string "permalink",    null: false
+    t.string "presentation", null: false
+  end
+
+  add_index "itps_tags", ["permalink"], name: "index_itps_tags_on_permalink", unique: true, using: :btree
+
+  create_table "itps_tags_tags", force: true do |t|
+    t.integer  "parent_id",              null: false
+    t.integer  "child_id",               null: false
+    t.integer  "count",      default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_tags_tags", ["child_id"], name: "index_itps_tags_tags_on_child_id", using: :btree
+  add_index "itps_tags_tags", ["parent_id", "child_id"], name: "index_itps_tags_tags_on_parent_id_and_child_id", unique: true, using: :btree
 
   create_table "logistica_plans", force: true do |t|
     t.string   "plan_type",             null: false

@@ -1,0 +1,33 @@
+#hero-banner
+  %legend
+    %h1= t(:new_documentation)
+
+= form_for @form_helper, url: itps_admin_documentations_path do |f|
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_account), itps_admin_path(current_account)
+      %li= link_to t(:new_doc)
+  %fieldset
+    %h3= t(:documentation_details)
+    %article
+      %dl
+        %dt= f.label :title, t(:article_title)
+        %dd= f.text_field :title
+        %dt= f.label :body, t(:article_content)
+        %dd= f.text_area :body
+        %dt= f.label :tags, t(:tags)
+        %dd= f.text_field :tags, value: @form_helper.tags || params[:tags]
+    %article
+      = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
+      %p
+        Separate tags by commas.
+        Be aware that content is written in markdown. If you're not sure what markdown is,
+        = link_to "consult the wikipedia article", 'http://en.wikipedia.org/wiki/Markdown', target: 'blank'
+  %fieldset
+    %section
+      = button_tag type: :submit do
+        %i.submit
+        = t(:confirm)
+      = link_to itps_admin_path(current_account), type: :reset do
+        %i.reset
+        = t(:cancel)

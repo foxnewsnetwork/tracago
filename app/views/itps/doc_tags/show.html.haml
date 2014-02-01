@@ -5,14 +5,36 @@
 #meat-and-bones
   %section
     #left-navigation
-      %ul= render partial: 'itps/doc_tags/nav_tag', collection: Itps::DocTag.roots, locals: { active_tag: @doc_tag }
+      %ul= render partial: 'itps/doc_tags/nav_tag', collection: Itps::Tag.roots, locals: { active_tag: @doc_tag }
     
     #right-content
+      - if current_account.try(:admin?)
+        #admin-actions
+          %h3= t(:admin_actions)
+          %ul
+            %li
+              = link_to new_itps_admin_tag_tag_path(@doc_tag.permalink) do
+                %figure
+                  %i.new-tag
+                = t(:new_tag)
+            %li
+              = link_to new_itps_admin_documentation_path(tags: @doc_tag.presentation) do
+                %figure
+                  %i.new-doc
+                = t(:new_doc)
       %article
         %h3= @doc_tag.title
-        %p It looks like there's nothing here yet...
-        %p 
-          Please email our technical writer 
-          = mail_to 'foxnewsnetwork@gmail.com', 'Thomas Chen' 
-          and let him know this page is missing missing.
-        
+        - if @doc_tag.documentations.present?
+          %p
+            = t(:articles_available)
+            = @doc_tag.documentations.count
+          %ul
+            - @doc_tag.documentations.each do |documentation|
+              %li= link_to documentation.presentation, itps_documentation_path(documentation.permalink)
+        - if @doc_tag.documentations.blank?
+          %p It looks like there's nothing here yet...
+          %p 
+            Please email our technical writer 
+            = mail_to 'foxnewsnetwork@gmail.com', 'Thomas Chen' 
+            and let him know this page is missing missing.
+          

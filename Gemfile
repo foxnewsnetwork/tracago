@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 # gem 'spree', '2.2.0.beta', :path => File.expand_path("../../spree", __FILE__)
 # gem 'spree_gateway', '2.1.0.beta', :path => File.expand_path("../../spree_gateway", __FILE__)
-gem 'unicorn', '~>4.6.3'
+gem "rails", "~> 4.0.2"
+gem 'unicorn', '~>4.8.1'
+gem 'gctools', '~>0.2.3'
 gem "haml", "~> 4.0.0"
 gem "haml-rails", "~>0.4"
 gem 'devise', '~> 3.0.1'
@@ -12,9 +14,11 @@ gem "kaminari", "~> 0.14.1"
 gem "paperclip", "~> 3.5.2"
 gem "font-awesome-sass", "~> 4.0.2"
 gem "font-awesome-rails", "~> 4.0.3.1"
+gem "bootstrap-sass", "~> 3.1.0.0"
 gem "stringex", "~> 2.1.2"
 gem "bluecloth", "~> 2.2.0"
 gem 'ffaker', ">=1.20.0"
+gem 'kramdown', '~>1.3.1'
 group :development do
   gem "rspec", '~>2.13.0'
   gem 'rspec-rails', '~>2.13.0'
@@ -25,14 +29,12 @@ group :development do
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 4.0.1"
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
-gem "bootstrap-sass", "~> 3.0.2.1"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

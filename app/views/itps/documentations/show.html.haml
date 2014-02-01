@@ -1,0 +1,20 @@
+#hero-banner
+  %section
+    %h1= t(:documentation_and_help)
+
+#meat-and-bones
+  %section
+    #left-navigation
+      %ul= render partial: 'itps/doc_tags/nav_tag', collection: Itps::Tag.roots, locals: { active_tag: @doc_tag }
+    
+    #right-content
+      %article
+        %h3= @documentation.title
+        = @documentation.html_body.html_safe
+        - if @documentation.html_body.blank?
+          %p It looks like there's nothing here yet...
+          %p 
+            Please email our technical writer 
+            = mail_to 'foxnewsnetwork@gmail.com', 'Thomas Chen' 
+            and let him know this page is missing missing.
+          

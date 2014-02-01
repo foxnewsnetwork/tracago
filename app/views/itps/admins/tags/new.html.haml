@@ -1,0 +1,31 @@
+#hero-banner
+  %section
+    %h1= t(:new_root_tag)
+
+#new-tag
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_account), itps_admin_path(current_account)
+      %li= link_to t(:new_root_tag) 
+  = form_for @tag, url: itps_admin_tags_path do |f|
+    %fieldset
+      %dl
+        %dt= f.label :presentation, t(:tag_title)
+        %dd= f.text_field :presentation
+      %article
+        = render partial: 'itps/shared/errors', locals: { errors: @tag.errors }
+        %p 
+          Root tags are unique tags that should not be created arbitrarily.
+          Current existing root tags are as follows:
+        %ul
+          - Itps::Tag.roots.each do |tag|
+            %li= tag.presentation
+
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        = link_to itps_admin_path(current_account), type: :reset do
+          %i.reset
+          = t(:cancel)

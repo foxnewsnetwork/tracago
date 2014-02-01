@@ -1,0 +1,38 @@
+#hero-banner
+  %section
+    %h1= t(:new_child_tag)
+
+#new-tag
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_account), itps_admin_path(current_account)
+      %li= link_to @parent_tag.presentation, itps_tag_path(@parent_tag.permalink)
+      %li= link_to t(:new_child_tag) 
+  = form_for @tag, url: itps_admin_tag_tags_path(@parent_tag.permalink) do |f|
+    %fieldset
+      %dl
+        %dt= f.label :presentation, t(:tag_title)
+        %dd= f.text_field :presentation
+      %article
+        = render partial: 'itps/shared/errors', locals: { errors: @tag.errors }
+        %p 
+          You are creating a child tag for the current root:
+          %strong= @parent_tag.presentation
+          The following are your existing peers:
+        - if 1 < @parent_tag.children.try(:count).to_i
+          %ul
+            - @parent_tag.children.each do |tag|
+              %li= tag.presentation
+        - else
+          %p
+            Just like your future wife, this tag is barren.
+
+
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        = link_to itps_tag_path(@parent_tag.permalink), type: :reset do
+          %i.reset
+          = t(:cancel)

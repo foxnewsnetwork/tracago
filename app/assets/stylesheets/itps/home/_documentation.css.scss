@@ -28,7 +28,10 @@
       @extend .row;
       #left-navigation {
         @extend .col-lg-3;
-        ul {
+        .active {
+          text-decoration: underline;
+        }
+        >ul {
           @extend .thumbnail;
           @extend .nav;
           @extend .nav-pills;
@@ -65,7 +68,8 @@
       }
       #right-content {
         @extend .col-lg-9;
-        article {
+        article, #admin-actions {
+          @extend .row;
           h3, h4 {
             border-bottom: $standard-border;
             padding-bottom: 5px;
@@ -74,6 +78,33 @@
           }
           h4 {
             margin-top: 20px;
+          }
+        }
+        #admin-actions {
+          ul {
+            list-style: none;
+            padding-left: 0px;
+            li {
+              @extend .col-lg-2;
+              @extend .col-md-3;
+              @extend .col-sm-4;
+              @extend .col-xs-6;
+              padding-left: 0px;
+              a {
+                @extend .thumbnail;
+                text-align: center;
+              }
+              i {
+                @extend .fa;
+                @extend .fa-2x;
+                &.new-tag {
+                  @extend .fa-tag;
+                }
+                &.new-doc {
+                  @extend .fa-file;
+                }
+              }
+            }
           }
         }
       }

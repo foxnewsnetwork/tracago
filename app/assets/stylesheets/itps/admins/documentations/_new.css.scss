@@ -1,0 +1,55 @@
+@mixin itps-admins-documentations-new {
+  #hero-banner {
+    background-color: $highlight-background;
+    legend {
+      @extend .container;
+      @extend .hidden-xs;
+      @extend .hidden-sm;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  form {
+    @extend .container;
+    fieldset {
+      @extend .row;
+      h3 {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        border-bottom: $standard-border;
+      }
+      article {
+        @extend .col-lg-6;
+        @extend .col-md-6;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        dl {
+          dd {
+            @extend .form-group;
+            input, textarea {
+              @extend .form-control;
+            }
+          }
+        }
+      }
+      section {
+        @extend .col-lg-6;
+        @extend .col-md-6;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-top: $standard-border;
+      }
+    }
+  }
+}

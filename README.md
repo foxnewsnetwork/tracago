@@ -1,14 +1,29 @@
 Calendar for Escrow
 =
+(non-critical, but should be done)
+>roll in newrelic (data-monitoring)
+>google tracking (page count)
+>cloudflare (cdn and caching)
+>airbrake (or squash for exception tracking)
+>mandrillapp (or sendgrid for emails)
+>s3 (for production-tier document hosting)
+
+(critical)
 >replace all dog pictures with real pictures
 >doc tags controller & show page
 >favicon.ico must be generated
 >get some real bank accounts
+>the rest of the tags and documentations controllers
+
+Friday (yay) Jan 31
+1. Refactor the documentation and tag models
+(Jacky called requiring $0.12 PO for Wendy #1-5 container)
 
 Thursday Jan 30
 1. copy functionality complete (model and controller to create escrows from archived escrows)
 2. escrow destroy operation complete
 3. write a real unicorn proc and conf file for actual production
+4. Read (this guy's blog)[http://tmm1.net/ruby21-oobgc/] and now I'm going to switch up to ruby2.1 to take advantage of RGenGC (this means next push will mean I update ruby on the production machine)
 Note: to deploy, run the following:
 ```shell
 unicorn_rails -c config/unicorn.conf.rb -D
