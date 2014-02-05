@@ -5,25 +5,19 @@
 
 #escrow-edit-content
   #cookie-crumbs
-    %ul
+    %ol
       %li= link_to t(:escrow), itps_escrow_path(@escrow.permalink)
       %li= link_to t(:edit), edit_itps_escrow_path(@escrow.permalink)
-  = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
-  = form_for @form_helper, url: itps_escrow_path(@escrow.permalink), method: :put do |f|
+  = form_for @escrow, url: itps_escrow_path(@escrow.permalink), method: :put do |f|
     %fieldset
-      %h3= t(:paying_party_details)
-      %dl
-        %dt= f.label :paying_company_name, t(:company_name)
-        %dd= f.text_field :paying_company_name
-        %dt= f.label :paying_company_email, t(:email)
-        %dd= f.email_field :paying_company_email
-    %fieldset
-      %h3= t(:working_party_details)
-      %dl
-        %dt= f.label :working_company_name, t(:company_name)
-        %dd= f.text_field :working_company_name
-        %dt= f.label :working_company_email, t(:email)
-        %dd= f.email_field :working_company_email
+      %section
+        %h3= t(:payment_details)
+        %dl
+          %dt= f.label :dollar_amount, t(:payment_amount)
+          %dd= f.number_field :dollar_amount, maximum: 0
+      %section
+        %p Please enter a valid dollar value.
+        = render partial: 'itps/shared/errors', locals: { errors: @escrow.errors }
     %fieldset
       %section
         = button_tag type: :submit do

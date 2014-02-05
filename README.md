@@ -14,6 +14,18 @@ Calendar for Escrow
 >favicon.ico must be generated
 >get some real bank accounts
 >the rest of the tags and documentations controllers
+>deposit and withdrawal models (inbound_transfer, outbound_transfer, money_transfer controller and views)
+> money transfer show, index, pages
+>money tranfers escrows new create pages
+
+
+Monday Feb 3
+1. inbound forms, transfers_escrows, create
+2. views for admin fixed
+3. resolved shit-issue with bootstrap update
+
+Sunday Feb 2
+1. Inbound transfer new and create
 
 Friday (yay) Jan 31
 1. Refactor the documentation and tag models

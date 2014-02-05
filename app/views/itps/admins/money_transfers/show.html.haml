@@ -1,0 +1,68 @@
+#hero-banner
+  %section
+    %h1
+      = t(:money_transfer)
+      = "#"
+      = @money_transfer.id
+
+#content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_profile), itps_admin_path(current_account)
+      %li= link_to t(:money_transfers_index), itps_admin_money_transfers_path
+      %li= link_to "transfer##{@money_transfer.id}"
+  #actions
+    %h3= t(:available_actions)
+    %article
+      = link_to itps_admin_inbound_transfer_escrows_path(@money_transfer) do
+        %figure
+          %i.claim
+        = t(:claim)
+    %article
+      = link_to itps_admin_inbound_transfer_path(@money_transfer), method: :delete, confirm: 'Are you sure?' do
+        %figure
+          %i.unclaim
+        = t(:unclaim)
+    %article
+      = link_to edit_itps_admin_money_transfer_path(@money_transfer) do
+        %figure
+          %i.edit
+        = t(:edit)
+    %article
+      = link_to itps_admin_money_transfer_path(@money_transfer), method: :delete, confirm: 'Are you serious?' do
+        %figure
+          %i.destroy
+        = t(:destroy)
+  #details
+    %h3= t(:transfer_details)
+    %dl
+      %dt= t(:name_on_account)
+      %dd= @money_transfer.name_on_account || t(:not_written)
+      %dt= t(:dollar_amount)
+      %dd
+        %i.dollar-sign
+        = @money_transfer.dollar_amount
+      %dt= t(:memo)
+      %dd= @money_transfer.memo || t(:not_written)
+    %dl
+      %dt= t(:status)
+      %dd= t @money_transfer.status
+      %dt= t(:claimed_at)
+      %dd= @money_transfer.claimed_at || t(:never)
+      %dt= t(:created_at)
+      %dd= @money_transfer.created_at
+    %dl
+      %dt= t(:bank_name)
+      %dd= @money_transfer.bank_name || t(:not_written)
+      %dt= t(:routing_number)
+      %dd= @money_transfer.routing_number
+      %dt= t(:account_number)
+      %dd= @money_transfer.account_number
+    %dl
+      %dt= t(:claiming_escrow)
+      %dd
+        - if @money_transfer.claimed?
+          = link_to t(:escrow_view), itps_escrow_path(@money_transfer.escrows.first.permalink)
+        - else
+          = t(:unclaimed)
+      

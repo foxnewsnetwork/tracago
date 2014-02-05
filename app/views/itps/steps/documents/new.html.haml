@@ -4,6 +4,8 @@
 
 = form_for @document, url: itps_step_documents_path(@document.step.permalink) do |f|
   %fieldset
+    %section= render partial: 'itps/shared/errors', locals: { errors: @document.errors }
+  %fieldset
     %dl
       %dt= f.label :title, t(:document_name)
       %dd= f.text_field :title

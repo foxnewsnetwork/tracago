@@ -17,6 +17,9 @@ class Itps::Parties::BankAccount < ActiveRecord::Base
   belongs_to :party,
     class_name: 'Itps::Party'
 
+  has_many :money_transfers,
+    class_name: 'Itps::MoneyTransfer'
+    
   scope :ordered_by_defaulted_at,
     -> { order("#{self.table_name}.defaulted_at desc") }
   before_create :_set_defaulted_at
@@ -24,8 +27,8 @@ class Itps::Parties::BankAccount < ActiveRecord::Base
   validates :account_number, 
     :routing_number,
     presence: true,
-    format: { with: /\d{8}/ },
-    length: { is: 8 }
+    format: { with: /\d{4,10}/ },
+    length: { minimum: 4, maximum: 10 }
   
   class << self
     def itps_routing_number

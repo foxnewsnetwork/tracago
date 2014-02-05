@@ -8,7 +8,8 @@
       %ul
         %li= link_to t(:site_statistics), '#site-statistics'
         %li= link_to t(:account_information), '#about-this-account'
-        %li= link_to t(:documentation), '#documentation-summary'
+        %li= link_to t(:executive_actions), '#documentation-summary'
+        %li= link_to t(:money_transfer_summary), itps_admin_money_transfers_path
         %li= link_to t(:escrow_documents), itps_admin_documents_path
 
     #dashboard
@@ -44,7 +45,7 @@
           %dt= t(:created_at)
           %dd= @account.created_at
       #documentation-summary
-        %h2= t(:documentation)
+        %h2= t(:executive_actions)
         %article
           = link_to new_itps_admin_documentation_path do
             %figure
@@ -55,6 +56,21 @@
             %figure
               %i.new-tag
             = t(:new_root_tag)
+        %article
+          = link_to new_itps_admin_inbound_transfer_path do
+            %figure
+              %i.new-deposit
+            = t(:money_in)
+      #money-transfers-summary
+        %h2= link_to t(:money_transfers_summary), itps_admin_money_transfers_path
+        %dl
+          %dt= t(:unclaimed_transfers)
+          %dd= Itps::MoneyTransfer.unclaimed.count
+        %dl
+          %dt= t(:current_balance)
+          %dd= Itps::MoneyTransfer.bank_balance || t(:no_transfers_yet)
+        - monies = Itps::MoneyTransfer.unclaimed.order("updated_at desc").limit(3)
+        %ul= render partial: 'itps/admins/money_transfer', collection: monies
       #escrow-documents-summary
         %h2= link_to t(:escrow_documents_summary), itps_admin_documents_path          
         %dl

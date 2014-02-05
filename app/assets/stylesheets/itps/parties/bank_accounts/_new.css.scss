@@ -38,6 +38,15 @@
           @extend .col-xs-12;
         }
         dl {
+          dt.required:before {
+            content: '*';
+            color: #d9534f;
+          }
+          dt.required {
+            .field_with_errors {
+              display: inline-block;
+            }
+          }
           dd {
             @extend .form-group;
             input {
@@ -48,6 +57,11 @@
         article {
           figure {
             margin-top: 20px;
+          }
+          .rou-num, .acc-num {
+            .field_with_errors {
+              display: inline-block;
+            }
           }
           .acc-num {
             margin-left: 30px;

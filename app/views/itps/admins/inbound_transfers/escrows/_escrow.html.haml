@@ -1,0 +1,24 @@
+%li{ :class => escrow.status }
+  %h5
+    = link_to itps_escrow_path(escrow.permalink) do
+      %span.dash= t escrow.status
+      = escrow.full_presentation
+  .left-button
+    %dl
+      %dt= t(:payment_party)
+      %dd= escrow.payment_party.company_name
+      %dt= t(:service_party)
+      %dd= escrow.service_party.company_name
+
+  .mid-explanation
+    %dt= t(:created_at)
+    %dd= escrow.updated_at
+    %dt= t(:contract_amount)
+    %dd
+      %i.dollar
+      = escrow.dollar_amount || t(:unknown)
+
+  .right-button
+    = form_for :relationship, url: itps_admin_inbound_transfer_relationships_path(inbound_transfer) do |f|
+      = f.hidden_field :escrow_id, value: escrow.id
+      = f.submit value: 'Claim'

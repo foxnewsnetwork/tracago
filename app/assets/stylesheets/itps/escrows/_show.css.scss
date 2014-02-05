@@ -46,8 +46,13 @@
   #content-box {
     @extend .container;
     margin-bottom: 20px;
-    #basic-information, #actions, #steps-to-completion, #warning-messages {
+    #basic-information,
+    #payment-information,
+    #actions,
+    #steps-to-completion,
+    #warning-messages {
       @extend .row;
+      padding-left: 0px;
       h2 {
         @extend .col-lg-12;
         border-bottom: $standard-border;
@@ -61,6 +66,18 @@
         span.label {
           @extend .label-warning;
         }
+      }
+    }
+    #payment-information {
+      dl {
+        @extend .col-lg-4;
+        @extend .col-md-6;
+        @extend .col-sm-6;
+        @extend .col-xs-12;
+      }
+      i {
+        @extend .fa;
+        @extend .fa-dollar;
       }
     }
     #basic-information {

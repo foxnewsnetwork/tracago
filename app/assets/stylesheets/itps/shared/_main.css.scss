@@ -22,9 +22,14 @@
 @import 'itps/parties/bank_accounts/new';
 @import 'itps/admins/documentations/new';
 @import 'itps/admins/tags/new';
+@import 'itps/admins/money_transfers/show';
+@import 'itps/admins/money_transfers/index';
+@import 'itps/admins/inbound_transfers/escrows/index';
+@import 'itps/escrows/edit';
 
 @mixin shared-main {
   padding: 0px;
+  
   #home-index {
     @include itps-home-index;
   }
@@ -64,7 +69,7 @@
   #escrows-agreements-new, #escrows-agreements-create {
     @include itps-escrows-agreements-new;
   }
-  #steps-documents-new {
+  #steps-documents-new, #steps-documents-create {
     @include itps-steps-documents-new;
   }
   #sessions-new, #registrations-new {
@@ -72,6 +77,10 @@
   }
   #accounts-show {
     @include itps-accounts-show;
+  }
+  #escrows-puts-edit,
+  #escrows-puts-create {
+    @include itps-escrows-edit;
   }
   #accounts-escrows-new,
   #accounts-escrows-create,
@@ -111,7 +120,9 @@
   #parties-bank_accounts-new, 
   #parties-bank_accounts-create, 
   #bank_accounts-edit, 
-  #bank_accounts-update {
+  #bank_accounts-update,
+  #admins-inbound_transfers-new,
+  #admins-inbound_transfers-create {
     @include itps-parties-bank_accounts-new;
   }
   #admins-documentations-new,
@@ -123,5 +134,14 @@
   #admins-tags-tags-new,
   #admins-tags-tags-create {
     @include itps-admins-tags-new;
+  }
+  #admins-money_transfers-show {
+    @include itps-admins-money_transfers-show;
+  }
+  #admins-money_transfers-index {
+    @include itps-admins-money_transfers-index;
+  }
+  #admins-inbound_transfers-escrows-index {
+    @include itps-admins-inbound_transfers-escrows-index;
   }
 }

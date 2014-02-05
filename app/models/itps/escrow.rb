@@ -16,6 +16,7 @@
 #  updated_at               :datetime
 #  payment_party_agree_key  :string(255)
 #  service_party_agree_key  :string(255)
+#  dollar_amount            :decimal(16, 2)
 #
 
 class Itps::Escrow < ActiveRecord::Base
@@ -24,6 +25,11 @@ class Itps::Escrow < ActiveRecord::Base
   acts_as_paranoid
   has_many :steps,
     class_name: 'Itps::Escrows::Step'
+  has_many :money_transfers_escrows,
+    class_name: 'Itps::MoneyTransfersEscrows'
+  has_many :money_transfers,
+    through: :money_transfers_escrows,
+    class_name: 'Itps::MoneyTransfer'
   belongs_to :payment_party,
     class_name: 'Itps::Party'
   belongs_to :service_party,
@@ -34,6 +40,10 @@ class Itps::Escrow < ActiveRecord::Base
     class_name: 'Itps::Party',
     foreign_key: 'draft_party_id'
 
+  scope :unclaimed,
+    -> { active.where "#{self.table_name}.claimed_at is null" }
+  scope :claimed,
+    -> { active.where "#{self.table_name}.claimed_at is not null" }
   scope :incomplete,
     -> { where "#{self.table_name}.completed_at is null" }
   scope :completed,
@@ -65,6 +75,22 @@ class Itps::Escrow < ActiveRecord::Base
       return find_by_service_party_agree_key! mysterious_key if work.present?
       return find_by_payment_party_agree_key! mysterious_key
     end
+
+    def exist_by_bullshit_id?(id)
+      find_by_bullshit_id(id).present?
+    end
+
+    def find_by_bullshit_id(id)
+      find_by_id unbullshitify_id id
+    end
+
+    def bullshitify_id(id)
+      IdBuffer + id.to_i
+    end
+
+    def unbullshitify_id(bullshit_id)
+      bullshit_id.to_i - IdBuffer
+    end
   end
 
   def copy_steps_from!(escrow)
@@ -90,7 +116,7 @@ class Itps::Escrow < ActiveRecord::Base
   end
 
   def full_presentation
-    "Contract Id: #{IdBuffer + id.to_i}"
+    "Contract Id: #{self.class.bullshitify_id id}"
   end
 
   def relevant_accounts
@@ -125,6 +151,27 @@ class Itps::Escrow < ActiveRecord::Base
     keys
   end
 
+  def claimed?
+    money_transfers.present?
+  end
+
+  def unclaimed?
+    money_transfers.empty?
+  end
+
+  def fully_funded?
+    funded_amount == dollar_amount
+  end
+
+  def funded_amount
+    return if money_transfers.blank?
+    money_transfers.reduce(-Itps::MoneyTransfer.Fees) { |money, transfer| money + transfer.dollar_amount }
+  end
+
+  def funded_at
+    money_transfers.last.try(:updated_at)
+  end
+
   def matches_payment_account?(account)
     return false if account.blank? || payment_party.blank?
     account == payment_party.account
@@ -143,6 +190,14 @@ class Itps::Escrow < ActiveRecord::Base
     :edit_mode == status || :waiting_for_other_party == status
   end
 
+  def funding_status
+    return :not_funded if money_transfers.blank?
+    return :underfunded if funded_amount < dollar_amount
+    return :overfunded if funded_amount > dollar_amount 
+    return :fully_funded if funded_amount == dollar_amount
+    return :error
+  end
+
   def status
     return :deleted if deleted?
     return :completed if completed?
@@ -150,6 +205,10 @@ class Itps::Escrow < ActiveRecord::Base
     return :active if opened?
     return :waiting_for_other_party if single_side_locked?
     return :error
+  end
+
+  def expired_or_archived?
+    deleted? || completed?
   end
 
   def edit_mode?

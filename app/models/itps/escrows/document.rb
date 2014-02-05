@@ -45,6 +45,11 @@ class Itps::Escrows::Document < ActiveRecord::Base
   delegate :edit_mode?,
     to: :step
 
+  validates :title,
+    :permalink,
+    :step,
+    presence: true
+
   def status
     return :edit_mode if edit_mode?
     return :approved if approved?
@@ -88,7 +93,7 @@ class Itps::Escrows::Document < ActiveRecord::Base
   end
 
   def _create_permalink
-    self.permalink ||= "#{title.to_url}-#{_scrambled_datekey}".to_url
+    self.permalink ||= "#{title.to_s.to_url}-#{_scrambled_datekey}".to_url
   end
 
   def _scrambled_datekey

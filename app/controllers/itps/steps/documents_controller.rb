@@ -19,7 +19,7 @@ class Itps::Steps::DocumentsController < Itps::BaseController
   end
 
   def _document!
-    @document ||= _step.documents.new _document_params
+    @document = _step.documents.new _document_params
   end
 
   def _valid?
@@ -27,13 +27,13 @@ class Itps::Steps::DocumentsController < Itps::BaseController
   end
 
   def _render_flash!
-    flash.now[:error] = _document.errors.full_message.join(", ") unless _valid?
+    flash.now[:error] = t(:create_failed) unless _valid?
     flash[:notice] = t(:successfully_created) if _valid?
   end
 
   def _get_out_of_here!
     return redirect_to itps_step_path _document.step.permalink if _valid?
-    return render :new unless _valid?
+    return render :new
   end
 
   def _document_params

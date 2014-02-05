@@ -1,4 +1,5 @@
 @import 'itps/admins/document';
+@import 'itps/admins/money_transfer';
 
 @mixin itps-admins-show {
   #hero-banner {
@@ -58,8 +59,13 @@
         @extend .col-sm-12;
         @extend .col-xs-12;
         margin-bottom: 20px;
-        #site-statistics, #about-this-account, #escrow-documents-summary, #documentation-summary {
+        #site-statistics, 
+        #about-this-account, 
+        #escrow-documents-summary, 
+        #documentation-summary,
+        #money-transfers-summary  {
           @extend .row;
+          padding-left: 0px;
           h2 {
             @extend .col-lg-12;
             @extend .col-md-12;
@@ -94,22 +100,34 @@
                 &.new-tag {
                   @extend .fa-tag;
                 }
+                &.new-deposit {
+                  @extend .fa-dollar;
+                }
               }
             }
           }
         }
-        #escrow-documents-summary {
-          dl, ul {
+        #escrow-documents-summary, #money-transfers-summary{
+          ul {
             @extend .col-lg-12;
             @extend .col-md-12;
             @extend .col-sm-12;
             @extend .col-xs-12;
-          }
-          ul {
             list-style: none;
             margin-left: 15px;
+          }
+        }
+        #escrows-documents-summary {
+          ul {
             li {
               @include itps-admins-document;
+            }
+          }
+        }
+        #money-transfers-summary {
+          ul {
+            li {
+              @include itps-admins-money_transfer;
             }
           }
         }

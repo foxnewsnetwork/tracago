@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131011622) do
+ActiveRecord::Schema.define(version: 20140205183409) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -60,10 +60,10 @@ ActiveRecord::Schema.define(version: 20140131011622) do
   add_index "itps_documentations_tags", ["tag_id"], name: "index_itps_documentations_tags_on_tag_id", using: :btree
 
   create_table "itps_escrows", force: true do |t|
-    t.integer  "service_party_id",         null: false
-    t.integer  "payment_party_id",         null: false
-    t.integer  "draft_party_id",           null: false
-    t.string   "permalink",                null: false
+    t.integer  "service_party_id",                                  null: false
+    t.integer  "payment_party_id",                                  null: false
+    t.integer  "draft_party_id",                                    null: false
+    t.string   "permalink",                                         null: false
     t.string   "status_key"
     t.datetime "completed_at"
     t.datetime "deleted_at"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20140131011622) do
     t.datetime "updated_at"
     t.string   "payment_party_agree_key"
     t.string   "service_party_agree_key"
+    t.decimal  "dollar_amount",            precision: 16, scale: 2
+    t.datetime "claimed_at"
   end
 
   add_index "itps_escrows", ["draft_party_id"], name: "index_itps_escrows_on_draft_party_id", using: :btree
@@ -116,6 +118,32 @@ ActiveRecord::Schema.define(version: 20140131011622) do
   add_index "itps_escrows_steps", ["escrow_id"], name: "index_itps_escrows_steps_on_escrow_id", using: :btree
   add_index "itps_escrows_steps", ["permalink"], name: "index_itps_escrows_steps_on_permalink", unique: true, using: :btree
   add_index "itps_escrows_steps", ["previous_id"], name: "index_itps_escrows_steps_on_previous_id", using: :btree
+
+  create_table "itps_money_transfers", force: true do |t|
+    t.integer  "bank_account_id"
+    t.decimal  "dollar_amount",   precision: 16, scale: 2
+    t.boolean  "inbound",                                  default: true, null: false
+    t.string   "memo"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "bank_name"
+    t.string   "name_on_account"
+    t.datetime "claimed_at"
+  end
+
+  add_index "itps_money_transfers", ["bank_account_id"], name: "index_itps_money_transfers_on_bank_account_id", using: :btree
+
+  create_table "itps_money_transfers_escrows", force: true do |t|
+    t.integer  "money_transfer_id"
+    t.integer  "escrow_id"
+    t.string   "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_money_transfers_escrows", ["escrow_id"], name: "index_itps_money_transfers_escrows_on_escrow_id", using: :btree
+  add_index "itps_money_transfers_escrows", ["money_transfer_id"], name: "index_itps_money_transfers_escrows_on_money_transfer_id", using: :btree
 
   create_table "itps_parties", force: true do |t|
     t.string   "company_name"

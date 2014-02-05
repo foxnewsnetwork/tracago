@@ -16,6 +16,7 @@
 #  updated_at               :datetime
 #  payment_party_agree_key  :string(255)
 #  service_party_agree_key  :string(255)
+#  dollar_amount            :decimal(16, 2)
 #
 
 class JewFactory::Escrow < JewFactory::Base

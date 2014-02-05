@@ -23,8 +23,6 @@
       }
     }
     .toggle {
-      @extend .visible-xs;
-      @extend .visible-sm;
       @extend .hidden-md;
       @extend .hidden-lg;
       @extend .col-sm-1;
@@ -51,12 +49,17 @@
         @extend .col-md-2;
         @extend .col-sm-6;
         @extend .col-xs-12;
-        @extend .thumbnail;
+        @extend .really-bland-thumbnail;
         text-align: center;
         margin-bottom: 0px;
         padding-left: 0px;
         padding-right: 0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         a {
+          &:hover {
+            text-decoration: none;
+          }
           width: 100%;
           display: inline-block;
           height: 60px;

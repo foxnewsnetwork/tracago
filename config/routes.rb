@@ -22,6 +22,14 @@ Tracago::Application.routes.draw do
     get '/documentations' => 'doc_tags#index'
 
     resource :admin, only: [] do
+      resources :money_transfers, only: [:edit, :update], controller: 'admins/money_transfers/puts'
+      resources :money_transfers, only: [:destroy], controller: 'admins/money_transfers/deletes'
+      resources :money_transfers, only: [:show, :index], controller: 'admins/money_transfers'
+      resources :inbound_transfers, only: [:destroy], controller: 'admins/inbound_transfers/deletes'
+      resources :inbound_transfers, only: [:new, :create], controller: 'admins/inbound_transfers' do
+        resources :escrows, only: [:index], controller: 'admins/inbound_transfers/escrows'
+        resources :relationships, only: [:create], controller: 'admins/inbound_transfers/relationships'
+      end
       resources :documents, only: [:index], controller: 'admins/documents'
       resources :tags, only: [:edit, :update], controller: 'admins/tags/puts'
       resources :tags, only: [:new, :create], controller: 'admins/tags' do
@@ -59,6 +67,7 @@ Tracago::Application.routes.draw do
       end
     end
     resources :documents, only: [:show, :destroy, :edit]
+    resources :escrows, only: [:edit, :update], controller: 'escrows/puts'
     resources :escrows, only: [:destroy], controller: 'escrows/delete'
     resources :escrows, only: [:new, :create, :show] do
       resources :escrows, only: [:new, :create], controller: 'escrows/escrows'

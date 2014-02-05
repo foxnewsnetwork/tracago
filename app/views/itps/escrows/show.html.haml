@@ -56,6 +56,22 @@
         %dd= @escrow.service_party.routing_number || t(:not_specified)
         %dt= t(:service_party_account_number)
         %dd= @escrow.service_party.account_number || t(:not_specified)
+  #payment-information
+    %h2= t(:payment_information)
+    %dl
+      %dt= t(:funding_status)
+      %dd= t @escrow.funding_status
+      %dt= t(:funded_at)
+      %dd= @escrow.funded_at || t(:never)
+    %dl
+      %dt= t(:request_escrow_funds)
+      %dd
+        %i.dollar
+        = @escrow.dollar_amount || t(:none)
+      %dt= t(:amount_funded)
+      %dd
+        %i.dollar
+        = @escrow.funded_amount || t(:none)
   #actions
     %h2= t(:actions)
     %ul
@@ -70,6 +86,11 @@
             %figure
               %i.mark-ready
             = t(:mark_ready)
+        %li
+          = link_to edit_itps_escrow_path(@escrow.permalink) do
+            %figure
+              %i.edit
+            = t(:edit)
         %li
           = link_to itps_escrow_path(@escrow.permalink), method: :delete, confirm: "Are you sure?" do
             %figure

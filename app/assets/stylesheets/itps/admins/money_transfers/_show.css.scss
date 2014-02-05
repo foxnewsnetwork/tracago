@@ -1,0 +1,71 @@
+@mixin itps-admins-money_transfers-show {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  #content-box {
+    @extend .container;
+    margin-bottom: 20px;
+    #actions, #details {
+      @extend .row;
+      padding-left: 15px;
+      h3 {
+        border-bottom: $standard-border;
+      }
+      i {
+        @extend .fa;
+        &.claim {
+          @extend .fa-flag;
+        }
+        &.unclaim {
+          @extend .fa-flag-o;
+        }
+        &.edit {
+          @extend .fa-pencil;
+        }
+        &.destroy {
+          @extend .fa-trash-o;
+        }
+        &.dollar-sign {
+          @extend .fa-dollar;
+        }
+      }
+    }
+    #actions {
+      article {
+        @extend .col-lg-1;
+        @extend .col-md-2;
+        @extend .col-sm-3;
+        @extend .col-xs-4;
+        @extend .really-bland-thumbnail;
+        text-align: center;
+        a {
+          i {
+            @extend .fa-2x;
+          }
+        }
+      }
+    }
+    #details {
+      dl {
+        @extend .col-lg-2;
+        @extend .col-md-3;
+        @extend .col-sm-4;
+        @extend .col-xs-6;
+        padding-left: 0px;
+      }
+    }
+  }
+}

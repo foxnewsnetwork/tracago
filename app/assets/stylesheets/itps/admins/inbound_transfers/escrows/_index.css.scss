@@ -1,0 +1,123 @@
+@mixin itps-admins-inbound_transfers-escrows-index {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  #content-box {
+    @extend .container;
+    margin-bottom: 20px;
+    #transfer-summary,
+    #actions,
+    #escrows {
+      @extend .row;
+      padding-left: 0px;
+      margin-left: 0px;
+      h4 {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        padding-left: 0px;
+        border-bottom: $standard-border;
+      }
+    }
+    #transfer-summary {
+      dl {
+        @extend .col-lg-3;
+        @extend .col-md-4;
+        @extend .col-sm-6;
+        @extend .col-xs-6;
+        padding-left: 0px;
+      }
+    }
+    #actions {
+      article {
+        @extend .col-lg-1;
+        @extend .col-md-2;
+        @extend .col-sm-3;
+        @extend .col-xs-4;
+        @extend .really-bland-thumbnail;
+        text-align: center;
+
+        i {
+          @extend .fa;
+          @extend .fa-2x;
+          &.all {
+            @extend .fa-eye;
+          }
+          &.unclaimed {
+            @extend .fa-eye-slash;
+          }
+        }
+      }
+    }
+    #escrows {
+      h5 {
+        .dash:after {
+          content: "-";
+        }
+        a:hover {
+          text-decoration: none;
+        }
+        text-transform: capitalize;
+        border-bottom: $standard-border;
+      }
+      ul, h5 {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        list-style: none;
+        padding-left: 0px;
+        li {
+          @extend .row;
+          @extend .thumbnail;
+          margin-left: 0px;
+          padding-left: 15px;
+          h5 {
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .left-button, .mid-explanation, .right-button {
+            @extend .col-lg-3;
+            @extend .col-md-4;
+            @extend .col-sm-4;
+            @extend .col-xs-12;
+            dl {
+              padding-left: 0px;
+            }
+            padding-left: 0px;
+          }
+          .mid-explanation {
+            i {
+              @extend .fa;
+              @extend .fa-dollar;
+            }
+          }
+          .right-button {
+            input[type=submit] {
+              width: 100%;
+              padding-top: 15px;
+              padding-bottom: 15px;
+              height: inherit;
+              font-size: 16px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}

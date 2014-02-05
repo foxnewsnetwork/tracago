@@ -97,6 +97,7 @@
           }
         }
         #actions {
+          padding-left: 0px;
           i {
             @extend .fa;
             @extend .fa-2x;
@@ -126,6 +127,7 @@
         }
         #contracts {
           @extend .row;
+          padding-left: 0px;
           i {
             @extend .fa;
           }

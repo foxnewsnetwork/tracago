@@ -16,38 +16,20 @@
   }
   #escrow-edit-content {
     @extend .container;
-    #cookie-crumbs {
-      @extend .row;
-      padding-top: 15px;
-      ul {
-        @extend .col-lg-12;
-        list-style: none;
-        margin-left: 15px;
-        padding-left: 0px;
-        li {
-          display: inline-block;
-        }
-        li:first-child {
-          &:after {
-            content: " » ";
-          }
-        }
-      }
-    }
     form {
-      @extend .row;
       margin-bottom: 20px;
       
       fieldset {
-        @extend .col-lg-6;
-        @extend .col-md-6;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        &:last-child {
+        @extend .row;
+
+        section {
           @extend .col-lg-6;
           @extend .col-md-6;
           @extend .col-sm-12;
           @extend .col-xs-12;
+          h3, dl {
+            @extend .row;
+          }
         }
         h3 {
           border-bottom: $standard-border;
