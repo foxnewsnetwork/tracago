@@ -14,7 +14,9 @@
       %h5= link_to t(:create_account), asdf 
 
   #basic-information
-    %h2= t(:basic_information)
+    %h2
+      %span.dash= t(:basic_information)
+      = @escrow.full_presentation
     %dl
       %dt= t(:drafted_by)
       %dd
@@ -60,7 +62,10 @@
     %h2= t(:payment_information)
     %dl
       %dt= t(:funding_status)
-      %dd= t @escrow.funding_status
+      %dd
+        = t @escrow.funding_status
+        - if :underfunded == @escrow.funding_status || :overfunded == @escrow.funding_status
+          %span.parantheses= @escrow.funding_difference.abs
       %dt= t(:funded_at)
       %dd= @escrow.funded_at || t(:never)
     %dl

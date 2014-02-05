@@ -21,7 +21,7 @@
 
 class Itps::Escrow < ActiveRecord::Base
   class ThirdPartyDraftingNotImplemeneted < ::StandardError; end
-  IdBuffer = 23134
+  IdBuffer = 193939
   acts_as_paranoid
   has_many :steps,
     class_name: 'Itps::Escrows::Step'
@@ -85,11 +85,11 @@ class Itps::Escrow < ActiveRecord::Base
     end
 
     def bullshitify_id(id)
-      IdBuffer + id.to_i
+      IdBuffer + id.to_i * 7
     end
 
     def unbullshitify_id(bullshit_id)
-      bullshit_id.to_i - IdBuffer
+      (bullshit_id.to_i - IdBuffer) / 7
     end
   end
 
@@ -163,9 +163,13 @@ class Itps::Escrow < ActiveRecord::Base
     funded_amount == dollar_amount
   end
 
+  def funding_difference
+    funded_amount - dollar_amount
+  end
+
   def funded_amount
     return if money_transfers.blank?
-    money_transfers.reduce(-Itps::MoneyTransfer.Fees) { |money, transfer| money + transfer.dollar_amount }
+    money_transfers.reduce(-Itps::MoneyTransfer::Fees) { |money, transfer| money + transfer.dollar_amount }
   end
 
   def funded_at

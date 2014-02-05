@@ -53,6 +53,9 @@
     #warning-messages {
       @extend .row;
       padding-left: 0px;
+      .dash:after {
+        content: '-';
+      }
       h2 {
         @extend .col-lg-12;
         border-bottom: $standard-border;

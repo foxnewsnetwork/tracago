@@ -18,6 +18,8 @@ Calendar for Escrow
 > money transfer show, index, pages
 >money tranfers escrows new create pages
 
+Wednesday Feb 5
+1. inbound transfer claims process
 
 Monday Feb 3
 1. inbound forms, transfers_escrows, create
