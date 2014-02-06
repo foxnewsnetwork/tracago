@@ -24,27 +24,26 @@
   &.error i {
     @extend .fa-exclamation-triangle;
   }
-  a {
-    &:hover {
-      text-decoration: none;
+  a:hover {
+    text-decoration: none;
+  }
+  padding: 0px;
+  h4 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    border-bottom: $standard-border;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+    i {
+      @extend .fa;
     }
-    h4 {
-      @extend .col-lg-12;
-      @extend .col-md-12;
-      @extend .col-sm-12;
-      @extend .col-xs-12;
-      border-bottom: $standard-border;
-      text-transform: capitalize;
-      padding-bottom: 10px;
-      i {
-        @extend .fa;
-      }
-    }
-    dl {
-      @extend .col-lg-4;
-      @extend .col-md-4;
-      @extend .col-sm-6;
-      @extend .col-xs-6;
-    }
+  }
+  dl {
+    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-6;
   }
 }

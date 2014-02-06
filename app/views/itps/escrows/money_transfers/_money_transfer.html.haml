@@ -1,0 +1,15 @@
+%li{ :class => money_transfer.status }
+  %h4
+    %span.colon= t(:status)
+    = t money_transfer.status
+    %i
+    = money_transfer.dollar_amount
+  %dl
+    %dt= t(:routing_number)
+    %dd= money_transfer.routing_number
+  %dl
+    %dt= t(:account_number)
+    %dd= money_transfer.account_number
+  %dl
+    %dt= t(:memo)
+    %dd= money_transfer.memo || t(:nothing_here)

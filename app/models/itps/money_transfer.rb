@@ -22,7 +22,8 @@ class Itps::MoneyTransfer < ActiveRecord::Base
   belongs_to :bank_account,
     class_name: 'Itps::Parties::BankAccount'
   has_many :money_transfers_escrows,
-    class_name: 'Itps::MoneyTransfersEscrows'
+    class_name: 'Itps::MoneyTransfersEscrows',
+    dependent: :destroy
   has_many :escrows,
     through: :money_transfers_escrows,
     class_name: 'Itps::Escrow'
@@ -57,6 +58,18 @@ class Itps::MoneyTransfer < ActiveRecord::Base
         cumsum + transfer.dollar_amount_as_number
       end
     end
+  end
+
+  def attempt_destroy
+    destroy
+  end
+
+  def relationship_with(escrow)
+    relationships.find_by_escrow_id escrow.id
+  end
+
+  def unclaimed?
+    !claimed?
   end
 
   def status

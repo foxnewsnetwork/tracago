@@ -1,0 +1,56 @@
+#hero-banner
+  %section
+    %h1
+      %span.dash= @escrow.full_presentation
+      = t(:money_transfers)
+
+#content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_profile), itps_admin_path(current_account)
+      %li= link_to @escrow.full_presentation, itps_escrow_path(@escrow.permalink)
+      %li= link_to t(:money_transfers)
+  #transfer-summary
+    %h4= t(:escrow_payment_summary)
+    %dl
+      %dt= t(:total_required_funds)
+      %dd
+        %i.dollar-sign
+        = @escrow.dollar_amount
+      %dt= t(:funded_balance)
+      %dd
+        %i.dollar-sign
+        = @escrow.funded_amount
+    %dl
+      %dt= t(:funding_status)
+      %dd= t @escrow.funding_status
+      %dt= t(:funding_difference)
+      %dd
+        %i.dollar-sign
+        = @escrow.funding_difference.try :abs
+    %dl
+      %dt= t(:total_money_transfers)
+      %dd= @escrow.money_transfers.count
+  #actions
+    %h4= t(:toggle_visibility)
+    %article
+      - if 'unclaimed' == params[:show].to_s
+        = link_to itps_admin_escrow_inbound_transfers_path(@escrow) do
+          %figure
+            %i.claimed
+          = t(:show_claimed)
+      - else
+        = link_to itps_admin_escrow_inbound_transfers_path(@escrow, show: 'unclaimed') do
+          %figure
+            %i.unclaimed
+          = t(:show_unclaimed)
+
+  #money-transfers
+    %h4
+      - if 'unclaimed' == params[:show].to_s
+        = t(:unclaimed_transfers)
+      - else
+        = t(:claimed_transfers)
+    
+    %ul= render partial: 'itps/admins/escrows/inbound_transfers/inbound_transfer', collection: @inbound_transfers, locals: { escrow: @escrow }
+    = paginate @inbound_transfers

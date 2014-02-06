@@ -20,7 +20,8 @@
     margin-bottom: 20px;
     #transfer-summary,
     #actions,
-    #escrows {
+    #escrows, 
+    #money-transfers {
       @extend .row;
       padding-left: 0px;
       margin-left: 0px;
@@ -60,10 +61,13 @@
           &.unclaimed {
             @extend .fa-eye-slash;
           }
+          &.claimed {
+            @extend .fa-flag;
+          }
         }
       }
     }
-    #escrows {
+    #escrows, #money-transfers {
       h5 {
         .dash:after {
           content: "-";
@@ -89,6 +93,10 @@
           h5 {
             font-size: 16px;
             font-weight: bold;
+            i {
+              @extend .fa;
+              @extend .fa-dollar;
+            }
           }
           .left-button, .mid-explanation, .right-button {
             @extend .col-lg-3;

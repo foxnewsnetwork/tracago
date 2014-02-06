@@ -1,0 +1,35 @@
+#hero-banner
+  %section
+    %h1
+      %span.dash= t(:money_transfers)
+      = @escrow.full_presentation
+
+#content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to @escrow.full_presentation, itps_escrow_path(@escrow.permalink)
+      %li= link_to t(:money_transfers_index)
+  #money-transfer-summary
+    %dl
+      %dt= t(:total_required_funds)
+      %dd
+        %i.dollar-sign
+        = @escrow.dollar_amount
+      %dt= t(:funded_balance)
+      %dd
+        %i.dollar-sign
+        = @escrow.funded_amount
+    %dl
+      %dt= t(:funding_status)
+      %dd= t @escrow.funding_status
+      %dt= t(:funding_difference)
+      %dd
+        %i.dollar-sign
+        = @escrow.funding_difference.try :abs
+    %dl
+      %dt= t(:total_money_transfers)
+      %dd= @escrow.money_transfers.count
+  #money-transfer-pages
+    %ul
+      = render partial: 'itps/escrows/money_transfers/money_transfer', collection: @money_transfers
+    = paginate @money_transfers

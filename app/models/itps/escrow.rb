@@ -26,7 +26,8 @@ class Itps::Escrow < ActiveRecord::Base
   has_many :steps,
     class_name: 'Itps::Escrows::Step'
   has_many :money_transfers_escrows,
-    class_name: 'Itps::MoneyTransfersEscrows'
+    class_name: 'Itps::MoneyTransfersEscrows',
+    dependent: :destroy
   has_many :money_transfers,
     through: :money_transfers_escrows,
     class_name: 'Itps::MoneyTransfer'
@@ -164,6 +165,7 @@ class Itps::Escrow < ActiveRecord::Base
   end
 
   def funding_difference
+    return if funded_amount.blank? || dollar_amount.blank?
     funded_amount - dollar_amount
   end
 

@@ -19,11 +19,6 @@
           %i.claim
         = t(:claim)
     %article
-      = link_to itps_admin_inbound_transfer_path(@money_transfer), method: :delete, confirm: 'Are you sure?' do
-        %figure
-          %i.unclaim
-        = t(:unclaim)
-    %article
       = link_to edit_itps_admin_money_transfer_path(@money_transfer) do
         %figure
           %i.edit
@@ -62,7 +57,9 @@
       %dt= t(:claiming_escrow)
       %dd
         - if @money_transfer.claimed?
-          = link_to t(:escrow_view), itps_escrow_path(@money_transfer.escrows.first.permalink)
+          - @money_transfer.escrows.each do |es|
+            = link_to es.full_presentation, itps_escrow_path(es.permalink)
+            ,
         - else
           = t(:unclaimed)
       

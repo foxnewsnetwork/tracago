@@ -1,0 +1,28 @@
+%li{ :class => inbound_transfer.status }
+  %h5
+    = link_to itps_admin_money_transfer_path(inbound_transfer) do
+      %span.dash= t inbound_transfer.status
+      %i.dollar
+      = inbound_transfer.dollar_amount
+  .left-button
+    %dl
+      %dt= t(:routing_number)
+      %dd= inbound_transfer.routing_number
+      %dt= t(:account_number)
+      %dd= inbound_transfer.account_number
+
+  .mid-explanation
+    %dt= t(:created_at)
+    %dd= inbound_transfer.updated_at
+    %dt= t(:memo)
+    %dd= inbound_transfer.memo || t(:none)
+
+  .right-button
+    - if inbound_transfer.unclaimed?
+      = form_for :relationship, url: itps_admin_escrow_relationships_path(escrow) do |f|
+        = f.hidden_field :inbound_transfer_id, value: inbound_transfer.id
+        = f.submit value: 'Claim'
+    - else
+      - url = itps_admin_relationship_path(inbound_transfer.relationship_with escrow)
+      = form_for :relationship, url: url, method: :delete do |f|
+        = f.submit value: 'Unclaim'

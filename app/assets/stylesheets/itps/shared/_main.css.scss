@@ -122,7 +122,9 @@
   #bank_accounts-edit, 
   #bank_accounts-update,
   #admins-inbound_transfers-new,
-  #admins-inbound_transfers-create {
+  #admins-inbound_transfers-create,
+  #admins-money_transfers-puts-edit,
+  #admins-money_transfers-puts-update {
     @include itps-parties-bank_accounts-new;
   }
   #admins-documentations-new,
@@ -138,10 +140,12 @@
   #admins-money_transfers-show {
     @include itps-admins-money_transfers-show;
   }
-  #admins-money_transfers-index {
+  #admins-money_transfers-index,
+  #escrows-money_transfers-index {
     @include itps-admins-money_transfers-index;
   }
-  #admins-inbound_transfers-escrows-index {
+  #admins-inbound_transfers-escrows-index,
+  #admins-escrows-inbound_transfers-index {
     @include itps-admins-inbound_transfers-escrows-index;
   }
 }

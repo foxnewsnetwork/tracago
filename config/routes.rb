@@ -25,7 +25,6 @@ Tracago::Application.routes.draw do
       resources :money_transfers, only: [:edit, :update], controller: 'admins/money_transfers/puts'
       resources :money_transfers, only: [:destroy], controller: 'admins/money_transfers/deletes'
       resources :money_transfers, only: [:show, :index], controller: 'admins/money_transfers'
-      resources :inbound_transfers, only: [:destroy], controller: 'admins/inbound_transfers/deletes'
       resources :inbound_transfers, only: [:new, :create], controller: 'admins/inbound_transfers' do
         resources :escrows, only: [:index], controller: 'admins/inbound_transfers/escrows'
         resources :relationships, only: [:create], controller: 'admins/inbound_transfers/relationships'
@@ -36,6 +35,11 @@ Tracago::Application.routes.draw do
         resources :tags, only: [:new, :create], controller: 'admins/tags/tags'
       end
       resources :documentations, only: [:new, :create], controller: 'admins/documentations'
+      resources :escrows, only: [] do
+        resources :inbound_transfers, only: [:index], controller: 'admins/escrows/inbound_transfers'
+        resources :relationships, only: [:create], controller: 'admins/escrows/relationships'
+      end
+      resources :relationships, only: [:destroy], controller: 'admins/relationships'
     end
     resources :doc_tags, only: [:show, :index]
     resources :tags, only: [:show, :index], controller: 'doc_tags' do
@@ -73,6 +77,7 @@ Tracago::Application.routes.draw do
       resources :escrows, only: [:new, :create], controller: 'escrows/escrows'
       resource :agreement, only: [:new, :create], controller: 'escrows/agreements'
       resources :steps, only: [:new, :create], controller: 'escrows/steps'
+      resources :money_transfers, only: [:index], controller: 'escrows/money_transfers'
     end
     resources :accounts, only: [:show] do
       resources :escrows, only: [:index, :new, :create], controller: 'accounts/escrows'

@@ -23,6 +23,7 @@ class Itps::MoneyTransfersEscrows < ActiveRecord::Base
   after_create :_claim_money_transfer, :_claim_escrow
   after_destroy :_unclaim_money_transfer, :_unclaim_escrow
 
+  
   private
   def _claim_escrow
     escrow.update claimed_at: DateTime.now

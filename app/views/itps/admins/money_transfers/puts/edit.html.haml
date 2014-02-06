@@ -1,13 +1,11 @@
 #hero-banner
   %section
-    %h1= t(:new_inbound_transfer)
+    %h1= t(:edit_money_transfer)
 
 #new-bank-account
-  = form_for @form_helper, url: itps_admin_inbound_transfers_path do |f|
+  = form_for @form_helper, url: itps_admin_money_transfer_path(@money_transfer), method: :put do |f|
     %fieldset
       %dl
-        %dt= f.label :escrow_id_by_commas, t(:contract_reference_number)
-        %dd= f.text_field :escrow_id_by_commas
         %dt= f.label :name_on_account, t(:name_on_account_where_money_came_from)
         %dd= f.text_field :name_on_account
         %dt= f.label :bank_name, t(:name_of_bank_where_money_came_from)
@@ -22,7 +20,7 @@
         %dd= f.text_field :memo
       %article
         = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
-        %p Please fill out this form only when you have confirmed with the bank we have received a wire (or deposit) into our account. If you have reference number(s), put them in separated by commas so the computer can try and apply them.
+        %p You're editing money transfer details. You should ONLY do this if you've made a mistake or typo.
         %figure
           = image_tag 'newcheckimg.gif'
         %span.rou-num= f.label :routing_number, t(:bank_routing_number)
@@ -32,6 +30,6 @@
         = button_tag type: :submit do
           %i.submit
           = t(:submit)
-        = link_to itps_admin_path(current_account), type: :reset do
+        = link_to itps_admin_money_transfer_path(@money_transfer), type: :reset do
           %i.reset
           = t(:cancel)

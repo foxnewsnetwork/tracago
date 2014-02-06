@@ -59,13 +59,18 @@
         %dt= t(:service_party_account_number)
         %dd= @escrow.service_party.account_number || t(:not_specified)
   #payment-information
-    %h2= t(:payment_information)
+    %h2
+      = link_to itps_escrow_money_transfers_path(@escrow.permalink) do
+        = t(:payment_information)
+      - if current_account.try(:admin?)
+        = link_to itps_admin_escrow_inbound_transfers_path(@escrow) do
+          %span.parantheses= t(:admin_view)
     %dl
       %dt= t(:funding_status)
       %dd
         = t @escrow.funding_status
         - if :underfunded == @escrow.funding_status || :overfunded == @escrow.funding_status
-          %span.parantheses= @escrow.funding_difference.abs
+          %span.parantheses= @escrow.funding_difference.try :abs
       %dt= t(:funded_at)
       %dd= @escrow.funded_at || t(:never)
     %dl
