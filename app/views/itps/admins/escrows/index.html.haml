@@ -1,0 +1,52 @@
+#hero-banner
+  %section
+    %h1
+      %span.dash= t(:admin_contracts_index)
+      = h params[:q].to_s.camelcase
+
+#content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_profile), itps_admin_path(current_account)
+      %li= link_to t(:contracts_index)
+  #filter-actions
+    %h3= t(:filter_by_types)
+    %article{ :class => activate_class_name_for_this_page(:unclaimed) }
+      = link_to append_query_to_path_for_this_page :unclaimed do
+        %figure
+          %i.unclaimed
+        = t(:need_funding)
+    %article{ :class => activate_class_name_for_this_page(:open) }
+      = link_to append_query_to_path_for_this_page :open do
+        %figure
+          %i.open
+        = t(:activated)
+    %article{ :class => activate_class_name_for_this_page(:archived) }
+      = link_to append_query_to_path_for_this_page :archived do
+        %figure
+          %i.archived
+        = t(:archived)
+    %article{ :class => activate_class_name_for_this_page(:edit_mode) }
+      = link_to append_query_to_path_for_this_page :edit_mode do
+        %figure
+          %i.edit_mode
+        = t(:edit_mode)
+    %article{ :class => activate_class_name_for_this_page(:katame) }
+      = link_to append_query_to_path_for_this_page :katame do
+        %figure
+          %i.katame
+        = t(:one_sided)
+    %article{ :class => activate_class_name_for_this_page }
+      = link_to itps_admin_escrows_path do
+        %figure
+          %i.all
+        = t(:all)
+  #escrows
+    %h3
+      %span.colon= t(:available_escrows)
+      = h params[:q].to_s.camelcase
+    - if @escrows.blank?
+      %p= t(:you_have_none)
+    - else
+      %ul= render partial: 'itps/admins/escrows/escrow', collection: @escrows
+      = paginate @escrows

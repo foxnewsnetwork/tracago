@@ -14,11 +14,17 @@ Calendar for Escrow
 >favicon.ico must be generated
 >get some real bank accounts
 >the rest of the tags and documentations controllers
->deposit and withdrawal models (inbound_transfer, outbound_transfer, money_transfer controller and views)
 > money transfer show, index, pages
+
+Friday Feb 7
+1. admin escrows index page done
+2. gotta fix css bugs on the usage page
+3. pricing page; pretty much done
 
 Thursday Feb 6
 1. edit, delete, whatnot works for money_transfer
+2. outbound transfers operational
+3. deposit and withdrawal models (inbound_transfer, outbound_transfer, money_transfer controller and views)
 
 Wednesday Feb 5
 1. inbound transfer claims process

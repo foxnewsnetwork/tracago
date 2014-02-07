@@ -1,0 +1,100 @@
+@import 'itps/admins/escrows/escrow';
+@mixin itps-admins-escrows-index {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  #content-box {
+    @extend .container;
+    .colon:after {
+      content: ":";
+    }
+    .dash:after {
+      content: "-";
+    }
+    margin-bottom: 20px;
+    #filter-actions, 
+    #escrows {
+      @extend .row;
+      padding-left: 15px;
+      h3 {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        padding-left: 0px;
+        margin-left: 0px;
+        border-bottom: $standard-border;
+      }
+      i {
+        @extend .fa;
+        &.unclaimed {
+          @extend .fa-flag-o;
+        }
+        &.open {
+          @extend .fa-lock;
+        }
+        &.archived {
+          @extend .fa-archive;
+        }
+        &.edit_mode {
+          @extend .fa-pencil;
+        }
+        &.katame {
+          @extend .fa-spinner;
+        }
+        &.all {
+          @extend .fa-globe;
+        }
+        &.dollar {
+          @extend .fa-dollar;
+        }
+      }
+    }
+    #filter-actions {
+      article {
+        @extend .col-lg-2;
+        @extend .col-md-3;
+        @extend .col-sm-4;
+        @extend .col-xs-6;
+        @extend .really-bland-thumbnail;
+        text-align: center;
+        &.active {
+          background-color: $highlight-background;
+          a {
+            color: $highlight-textcolor;
+          }
+        }
+        i {
+          @extend .fa-2x;
+        }
+      }
+    }
+    #escrows {
+      ul {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        list-style: none;
+        padding-left: 0px;
+        margin-left: 15px;
+        li {
+          @include itps-admins-escrows-escrow;
+        }
+      }
+    }
+  }
+}

@@ -68,14 +68,14 @@
             font-size: 14px;
           }
         }
-        #basics, #preferences, #actions, #bank-accounts {
+        #basics, #preferences, #actions {
           @extend .row;
           h3 {
             @extend .col-lg-12;
             @extend .col-md-12;
             @extend .col-sm-12;
             @extend .col-xs-12;
-            margin-left: 15px;
+            margin-left: 0px;
             padding-left: 0px;
           }
           dl {
@@ -85,7 +85,32 @@
             @extend .col-xs-12;
           }
         }
+        #basics {
+          padding-left: 0px;
+          h3, dl {
+            padding-left: 0px;
+            margin-left: 15px;
+          }
+        }
         #bank-accounts {
+          @extend .row;
+          padding-left: 0px;
+          h3 {
+            @extend .col-lg-12;
+            @extend .col-md-12;
+            @extend .col-sm-12;
+            @extend .col-xs-12;
+            padding-left: 0px;
+            margin-left: 15px;
+          }
+          dl {
+            @extend .col-lg-12;
+            @extend .col-md-12;
+            @extend .col-sm-12;
+            @extend .col-xs-12;
+            padding-left: 0px;
+            margin-left: 15px;
+          }
           .bank-account {
             @extend .col-lg-3;
             @extend .col-md-4;
@@ -98,6 +123,7 @@
         }
         #actions {
           padding-left: 0px;
+          margin-left: 0px;
           i {
             @extend .fa;
             @extend .fa-2x;

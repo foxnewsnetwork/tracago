@@ -1,4 +1,8 @@
 @mixin itps-home-usage {
+  span, a {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   #hero-banner {
     background-color: $highlight-background;
     section {
@@ -27,6 +31,9 @@
         padding-left: 0px;
         &:first-child {
           @extend .col-lg-12;
+          @extend .col-md-12;
+          @extend .col-sm-12;
+          @extend .col-xs-12;
           li {
             @extend .row;
             margin-left: 0px;
@@ -42,10 +49,16 @@
             }
             p {
               @extend .col-lg-8;
+              @extend .col-md-8;
+              @extend .col-sm-12;
+              @extend .col-xs-12;
               padding-left: 0px;
             }
             figure {
               @extend .col-lg-4;
+              @extend .col-md-8;
+              @extend .col-sm-12;
+              @extend .col-xs-12;
               img {
                 max-width: 100%;
               }

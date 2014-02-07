@@ -1,0 +1,14 @@
+@mixin itps-admins-escrows-escrow {
+  @extend .row;
+  @extend .really-bland-thumbnail;
+  padding-left: 15px;
+  article {
+    @extend .col-lg-2;
+    @extend .col-md-3;
+    @extend .col-sm-4;
+    @extend .col-xs-6;
+    dl {
+      margin-bottom: 10px;
+    }
+  }
+}

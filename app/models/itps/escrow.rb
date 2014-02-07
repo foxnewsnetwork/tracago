@@ -46,14 +46,18 @@ class Itps::Escrow < ActiveRecord::Base
     class_name: 'Itps::Party',
     foreign_key: 'draft_party_id'
 
+  scope :order_by_latest,
+    -> { order "#{self.table_name}.updated_at desc" }
   scope :unclaimed,
-    -> { active.where "#{self.table_name}.claimed_at is null" }
+    -> { incomplete.where "#{self.table_name}.claimed_at is null" }
   scope :claimed,
-    -> { active.where "#{self.table_name}.claimed_at is not null" }
+    -> { incomplete.where "#{self.table_name}.claimed_at is not null" }
   scope :incomplete,
     -> { where "#{self.table_name}.completed_at is null" }
   scope :completed,
     -> { where "#{self.table_name}.completed_at is not null" }
+  scope :archived,
+    -> { completed }
   scope :service_party_inactive,
     -> { where "#{self.table_name}.serviced_party_agreed_at is null" }
   scope :payment_party_inactive,

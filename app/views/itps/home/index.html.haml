@@ -71,8 +71,9 @@
       %figure
         %i.pricing
       %p
-        = "Flat rate pricing allows for large transactions to be easy and painless."
-      = link_to t(:see_details), itps_terms_path
+        = "Flat rate pricing for all transactions."
+      %p= "$#{Itps::MoneyTransfer::Fees} plus bank fees per contract."
+      = link_to t(:see_details), itps_pricing_path
     %li
       %h1= t(:accessibility)
       %figure

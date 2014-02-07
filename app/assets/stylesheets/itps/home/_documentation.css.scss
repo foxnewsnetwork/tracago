@@ -28,6 +28,10 @@
       @extend .row;
       #left-navigation {
         @extend .col-lg-3;
+        @extend .col-md-3;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        padding-right: 15px;
         .active {
           text-decoration: underline;
         }
@@ -68,8 +72,13 @@
       }
       #right-content {
         @extend .col-lg-9;
+        @extend .col-md-9;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        padding-left: 0px;
         article, #admin-actions {
           @extend .row;
+          margin-left: 0px;
           h3, h4 {
             border-bottom: $standard-border;
             padding-bottom: 5px;

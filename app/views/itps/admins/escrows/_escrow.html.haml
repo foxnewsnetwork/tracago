@@ -1,0 +1,32 @@
+%li
+  = link_to itps_escrow_path(escrow.permalink) do
+    %article
+      %dl
+        %dt= t escrow.status
+        %dd= escrow.full_presentation
+    %article
+      %dl
+        %dt= t(:payment_party)
+        %dd= escrow.payment_party.try :company_name
+    %article
+      %dl
+        %dt= t(:service_party)
+        %dd= escrow.service_party.try :company_name
+    %article
+      %dl
+        %dt
+          %span.dash= t(:fund_status)
+          = t escrow.funding_status
+        %dd
+          %i.dollar
+          = escrow.funded_amount || t(:none)
+    %article
+      %dl
+        %dt= t(:request_dollar_amount)
+        %dd
+          %i.dollar
+          = escrow.dollar_amount || t(:none)
+    %article
+      %dl
+        %dt= t(:real_id_num)
+        %dd= escrow.id

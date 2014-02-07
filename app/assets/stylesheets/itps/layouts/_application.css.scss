@@ -9,7 +9,7 @@
 
 body {
   @include shared-important;
-  background: #e7e7e7;
+  background: $actual-background-color;
   padding: 0px;
   button, a[type=reset] {
     @extend .btn;

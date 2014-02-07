@@ -17,8 +17,7 @@ Tracago::Application.routes.draw do
     get '/terms' => 'home#terms'
     get '/legal' => 'home#legal'
     get '/status' => 'home#status'
-    get '/blog' => 'home#blog'
-    get '/jobs' => 'home#jobs'
+    get '/pricing' => 'home#pricing'
     get '/documentations' => 'doc_tags#index'
 
     resource :admin, only: [] do
@@ -39,7 +38,7 @@ Tracago::Application.routes.draw do
         resources :tags, only: [:new, :create], controller: 'admins/tags/tags'
       end
       resources :documentations, only: [:new, :create], controller: 'admins/documentations'
-      resources :escrows, only: [] do
+      resources :escrows, only: [:index], controller: 'admins/escrows' do
         resources :inbound_transfers, only: [:index], controller: 'admins/escrows/inbound_transfers'
         resources :relationships, only: [:create], controller: 'admins/escrows/relationships'
       end

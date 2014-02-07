@@ -7,12 +7,12 @@ $danger-color: #d2322d;
 $success-color: #3e86ac;
 $hooray-color: #47a447;
 $edit-color: #6e6d71;
-
+$actual-background-color: #e7e7e7;
 .really-bland-thumbnail {
   border-radius: 5px;
   background: white;
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-right: 2.5px;
+  border-right: 2.5px solid $actual-background-color;
   margin-bottom: 5px;
 }

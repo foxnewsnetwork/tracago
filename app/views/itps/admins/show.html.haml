@@ -66,6 +66,11 @@
             %figure
               %i.new-out
             = t(:money_out)
+        %article
+          = link_to itps_admin_escrows_path do
+            %figure
+              %i.escrows
+            = t(:contracts_index)
       #money-transfers-summary
         %h2= link_to t(:money_transfers_summary), itps_admin_money_transfers_path
         %dl

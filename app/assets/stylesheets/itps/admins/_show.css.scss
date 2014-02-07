@@ -110,6 +110,9 @@
                 &.new-out {
                   @extend .fa-reply;
                 }
+                &.escrows {
+                  @extend .fa-book;
+                }
               }
             }
           }

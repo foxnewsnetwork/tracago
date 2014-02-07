@@ -1,0 +1,54 @@
+#hero-banner
+  %section
+    %h1= t(:pricing_example)
+
+#content-box
+  %article
+    %h2= t(:pricing_details_breakdown)
+    %p The fees are shared between the payment party and the service / goods party.
+    %dl
+      %dt GTPC Service Fee
+      %dd= "$#{Itps::MoneyTransfer::Fees}"
+      %dt Bank Wire Fees
+      %dd= "Usually $25 (value may vary depending on the bank)"
+  %article
+    %h2= t(:payment_example)
+    - cost = 400000
+    - in_money = number_with_precision(cost + Itps::MoneyTransfer::Fees / 2 + 12.25, precision: 2, delimiter: ',')
+    - out_money = number_with_precision(cost - Itps::MoneyTransfer::Fees / 2 - 12.25, precision: 2, delimiter: ',')
+    %ol
+      %li Orange Company drafts a contract to to purchase wood from Aria Company.
+      %li Orange Company agrees to pay $1.00 per pound for 10 containers (400,000 pounds) of wood.
+      %li Aria Company agrees to deliver 4 containers of wood to Venice Port.
+      %li 
+        Orange Company wires $400,000 +
+        = "$#{Itps::MoneyTransfer::Fees / 2} +"
+        $12.25
+        = "= $#{in_money}"
+        to GTPC's payment service account
+      %li Aria Company delivers the 4 containers of wood as promised.
+      %li 
+        GTPC wires $400,000 -
+        = "$#{Itps::MoneyTransfer::Fees / 2} -"
+        $12.25
+        = "= $#{out_money}"
+        to Aria Company's account.
+  %article
+    %h2= t(:payment_example_2)
+    %ol
+      %li Davis Company drafts a contract to to purchase electricity from Enron Company.
+      %li Davis Company agrees to pay $1.00 per kilowatt-hour for 400,000 kilowatt-hours of electricity.
+      %li Enron Company agrees to deliver 400,000 kilowatt-hours of electricity to the city of Los Angeles.
+      %li 
+        Davis Company wires $400,000 +
+        = "$#{Itps::MoneyTransfer::Fees / 2} +"
+        $12.25
+        = "= $#{in_money}"
+        to GTPC's payment service account.
+      %li Enron Company defaults, folds, and collapses.
+      %li
+        GTPC wires $400,000 -
+        = "$#{Itps::MoneyTransfer::Fees / 2} -"
+        $12.25
+        = "= $#{out_money}"
+        back into Davis Company's account.

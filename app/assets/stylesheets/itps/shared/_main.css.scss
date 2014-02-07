@@ -4,6 +4,7 @@
 @import 'itps/home/aboutus';
 @import 'itps/home/terms';
 @import 'itps/home/documentation';
+@import 'itps/home/pricing';
 @import 'itps/escrows/new';
 @import 'itps/escrows/steps/new';
 @import 'itps/escrows/show';
@@ -26,6 +27,7 @@
 @import 'itps/admins/money_transfers/index';
 @import 'itps/admins/inbound_transfers/escrows/index';
 @import 'itps/escrows/edit';
+@import 'itps/admins/escrows/index';
 
 @mixin shared-main {
   padding: 0px;
@@ -44,6 +46,9 @@
   }
   #home-terms, #home-legal {
     @include itps-home-terms;
+  }
+  #home-pricing {
+    @include itps-home-pricing;
   }
   #doc_tags-index, 
   #doc_tags-show, 
@@ -150,5 +155,8 @@
   #admins-outbound_transfers-escrows-index,
   #admins-escrows-inbound_transfers-index {
     @include itps-admins-inbound_transfers-escrows-index;
+  }
+  #admins-escrows-index {
+    @include itps-admins-escrows-index;
   }
 }
