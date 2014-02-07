@@ -29,6 +29,11 @@ class Itps::Escrow < ActiveRecord::Base
     class_name: 'Itps::MoneyTransfersEscrows',
     dependent: :destroy
   has_many :money_transfers,
+    -> { inbound },
+    through: :money_transfers_escrows,
+    class_name: 'Itps::MoneyTransfer'
+  has_many :outbound_money_transfers,
+    -> { outbound },
     through: :money_transfers_escrows,
     class_name: 'Itps::MoneyTransfer'
   belongs_to :payment_party,

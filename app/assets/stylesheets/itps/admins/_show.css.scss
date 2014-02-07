@@ -83,6 +83,10 @@
           }
         }
         #documentation-summary {
+          padding-left: 15px;
+          h2 {
+            margin-left: 0px;
+          }
           article {
             @extend .col-lg-2;
             @extend .col-md-3;
@@ -102,6 +106,9 @@
                 }
                 &.new-deposit {
                   @extend .fa-dollar;
+                }
+                &.new-out {
+                  @extend .fa-reply;
                 }
               }
             }

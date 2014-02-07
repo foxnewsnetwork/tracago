@@ -61,6 +61,11 @@
             %figure
               %i.new-deposit
             = t(:money_in)
+        %article
+          = link_to new_itps_admin_outbound_transfer_path do
+            %figure
+              %i.new-out
+            = t(:money_out)
       #money-transfers-summary
         %h2= link_to t(:money_transfers_summary), itps_admin_money_transfers_path
         %dl

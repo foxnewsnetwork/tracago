@@ -9,6 +9,7 @@
       %li= link_to t(:admin_profile), itps_admin_path(current_account)
       %li= link_to t(:money_transfers_index)
   #money-transfer-summary
+    %h2= t(:financial_summary)
     %dl
       %dt= t(:total_bank_balance)
       %dd
@@ -31,6 +32,9 @@
       %dt= t(:claimed_transfers)
       %dd= Itps::MoneyTransfer.claimed.count
   #money-transfer-pages
+    %h2= t(:money_transfers)
+    - if @money_transfers.blank?
+      %p= t(:nothing_here_yet)
     %ul
       = render partial: 'itps/admins/money_transfer', collection: @money_transfers
     = paginate @money_transfers

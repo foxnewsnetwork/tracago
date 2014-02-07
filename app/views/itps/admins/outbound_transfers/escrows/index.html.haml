@@ -1,0 +1,51 @@
+#hero-banner
+  %section
+    %h1
+      = t(:outbond_money_transfer)
+      = '#'
+      = @outbound_transfer.id
+
+#content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_profile), itps_admin_path(current_account)
+      %li= link_to t(:money_transfers_index), itps_admin_money_transfers_path
+      %li= link_to t(:money_transfer), itps_admin_money_transfer_path(@outbound_transfer)
+      %li= link_to t(:claim_against_escrow)
+  #transfer-summary
+    %h4= t(:transfer_summary)
+    %dl
+      %dt= t(:dollar_amount)
+      %dd= @outbound_transfer.dollar_amount
+    %dl
+      %dt= t(:rounting_number)
+      %dd= @outbound_transfer.routing_number
+    %dl
+      %dt= t(:account_number)
+      %dd= @outbound_transfer.account_number
+    %dl
+      %dt= t(:memo)
+      %dd= @outbound_transfer.memo || t(:nothing)
+  #actions
+    %h4= t(:toggle_visibility)
+    %article
+      - if 'all' == params[:show].to_s
+        = link_to itps_admin_outbound_transfer_escrows_path(@outbound_transfer) do
+          %figure
+            %i.unclaimed
+          = t(:show_unclaimed)
+      - else
+        = link_to itps_admin_outbound_transfer_escrows_path(@outbound_transfer, show: 'all') do
+          %figure
+            %i.all
+          = t(:show_all)
+
+  #escrows
+    %h4
+      - if 'all' == params[:show].to_s
+        = t(:all_escrows)
+      - else
+        = t(:unclaimed_escrows)
+  
+    %ul= render partial: 'itps/admins/inbound_transfers/escrows/escrow', collection: @escrows, locals: { inbound_transfer: @outbound_transfer }
+    = paginate @escrows

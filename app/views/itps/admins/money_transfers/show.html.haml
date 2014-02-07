@@ -13,11 +13,12 @@
       %li= link_to "transfer##{@money_transfer.id}"
   #actions
     %h3= t(:available_actions)
-    %article
-      = link_to itps_admin_inbound_transfer_escrows_path(@money_transfer) do
-        %figure
-          %i.claim
-        = t(:claim)
+    - if @money_transfer.inbound?
+      %article
+        = link_to itps_admin_inbound_transfer_escrows_path(@money_transfer) do
+          %figure
+            %i.claim
+          = t(:claim)
     %article
       = link_to edit_itps_admin_money_transfer_path(@money_transfer) do
         %figure

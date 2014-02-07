@@ -32,7 +32,10 @@ class Itps::MoneyTransfer < ActiveRecord::Base
   delegate :routing_number,
     :account_number,
     to: :bank_account
-
+  scope :inbound,
+    -> { where "#{self.table_name}.inbound is true" }
+  scope :outbound,
+    -> { where "#{self.table_name}.inbound is false"}
   scope :unclaimed,
     -> { where("#{self.table_name}.claimed_at is null") }
   scope :claimed,

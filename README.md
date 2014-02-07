@@ -16,10 +16,13 @@ Calendar for Escrow
 >the rest of the tags and documentations controllers
 >deposit and withdrawal models (inbound_transfer, outbound_transfer, money_transfer controller and views)
 > money transfer show, index, pages
->money tranfers escrows new create pages
+
+Thursday Feb 6
+1. edit, delete, whatnot works for money_transfer
 
 Wednesday Feb 5
 1. inbound transfer claims process
+2. money tranfers escrows new create pages
 
 Monday Feb 3
 1. inbound forms, transfers_escrows, create

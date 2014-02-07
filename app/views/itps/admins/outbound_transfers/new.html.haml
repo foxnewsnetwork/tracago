@@ -1,0 +1,37 @@
+#hero-banner
+  %section
+    %h1= t(:new_outbound_transfer)
+
+#new-bank-account
+  = form_for @form_helper, url: itps_admin_outbound_transfers_path do |f|
+    %fieldset
+      %dl
+        %dt= f.label :escrow_id_by_commas, t(:contract_reference_number)
+        %dd= f.text_field :escrow_id_by_commas
+        %dt= f.label :name_on_account, t(:name_on_account_where_money_came_from)
+        %dd= f.text_field :name_on_account
+        %dt= f.label :bank_name, t(:name_of_bank_where_money_came_from)
+        %dd= f.text_field :bank_name
+        %dt.required= f.label :routing_number, t(:bank_routing_number)
+        %dd= f.text_field :routing_number
+        %dt.required= f.label :account_number, t(:account_number)
+        %dd= f.text_field :account_number
+        %dt.required= f.label :dollar_amount, t(:amount_paid)
+        %dd= f.number_field :dollar_amount, min: 0, step: 0.01
+        %dt= f.label :memo, t(:memo)
+        %dd= f.text_field :memo
+      %article
+        = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
+        %p You should fill out this form only when you're going to desposit / wire money into someone else's account. You will need the other party's bank account information. After that, make sure you properly apply this outbound money transfer to the correct contracts (so the computer will know who got paid).
+        %figure
+          = image_tag 'newcheckimg.gif'
+        %span.rou-num= f.label :routing_number, t(:bank_routing_number)
+        %span.acc-num= f.label :account_number, t(:account_number)
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        = link_to itps_admin_path(current_account), type: :reset do
+          %i.reset
+          = t(:cancel)

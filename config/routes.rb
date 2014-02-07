@@ -25,6 +25,10 @@ Tracago::Application.routes.draw do
       resources :money_transfers, only: [:edit, :update], controller: 'admins/money_transfers/puts'
       resources :money_transfers, only: [:destroy], controller: 'admins/money_transfers/deletes'
       resources :money_transfers, only: [:show, :index], controller: 'admins/money_transfers'
+      resources :outbound_transfers, only: [:new, :create], controller: 'admins/outbound_transfers' do
+        resources :escrows, only: [:index], controller: 'admins/outbound_transfers/escrows'
+        resources :relationships, only: [:create], controller: 'admins/outbound_transfers/relationships'
+      end
       resources :inbound_transfers, only: [:new, :create], controller: 'admins/inbound_transfers' do
         resources :escrows, only: [:index], controller: 'admins/inbound_transfers/escrows'
         resources :relationships, only: [:create], controller: 'admins/inbound_transfers/relationships'

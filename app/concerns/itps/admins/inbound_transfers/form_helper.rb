@@ -53,8 +53,14 @@ class Itps::Admins::InboundTransfers::FormHelper < Spree::FormHelperBase
 
 
   def _create_money_transfer
-    _bank_acount.money_transfers.create! dollar_amount: dollar_amount,
+    _bank_acount.money_transfers.create! _money_params
+  end
+
+  def _money_params
+    { 
+      dollar_amount: dollar_amount,
       memo: memo
+    }
   end
 
   def _bank_acount

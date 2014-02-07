@@ -124,7 +124,9 @@
   #admins-inbound_transfers-new,
   #admins-inbound_transfers-create,
   #admins-money_transfers-puts-edit,
-  #admins-money_transfers-puts-update {
+  #admins-money_transfers-puts-update,
+  #admins-outbound_transfers-new,
+  #admins-outbound_transfers-create {
     @include itps-parties-bank_accounts-new;
   }
   #admins-documentations-new,
@@ -145,6 +147,7 @@
     @include itps-admins-money_transfers-index;
   }
   #admins-inbound_transfers-escrows-index,
+  #admins-outbound_transfers-escrows-index,
   #admins-escrows-inbound_transfers-index {
     @include itps-admins-inbound_transfers-escrows-index;
   }

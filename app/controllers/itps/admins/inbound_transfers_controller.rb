@@ -10,6 +10,7 @@ class Itps::Admins::InboundTransfersController < Itps::AdminBaseController
   end
 
   private
+
   def _create_money_transfer!
     @money_transfer ||= _creative_form_helper.money_transfer
   end
