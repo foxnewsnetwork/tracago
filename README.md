@@ -7,19 +7,19 @@ Calendar for Escrow
 >airbrake (or squash for exception tracking)
 >mandrillapp (or sendgrid for emails)
 >s3 (for production-tier document hosting)
+>the rest of the tags and documentations controllers
+>doc tags controller & show page
 
 (critical)
 >replace all dog pictures with real pictures
->doc tags controller & show page
 >favicon.ico must be generated
 >get some real bank accounts
->the rest of the tags and documentations controllers
-> money transfer show, index, pages
 
 Friday Feb 7
 1. admin escrows index page done
 2. gotta fix css bugs on the usage page
 3. pricing page; pretty much done
+4. money transfer show, index, pages
 
 Thursday Feb 6
 1. edit, delete, whatnot works for money_transfer
