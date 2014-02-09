@@ -143,6 +143,7 @@
               @extend .col-sm-4;
               @extend .col-xs-6;
               text-align: center;
+              padding-left: 0px;
               a {
                 @extend .thumbnail;
                 text-transform: capitalize;

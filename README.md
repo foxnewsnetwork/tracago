@@ -19,10 +19,10 @@ Calendar for Escrow
 
 Sunday Feb 9
 1. Split admin and vanilla stylesheets and fixed a lot of shitty css bugs
+2. Signup doesn't automatically log user in; fixed friday (this is an nginx issue)
 
 Friday Feb 7 Live Test Problems Log
 =
-1. Signup doesn't automatically log user in
 2. get some real bank accounts
 3. mobile homepage actions links missing
 4. text alignment completely fucked on escrows / steps / new
