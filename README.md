@@ -17,8 +17,8 @@ Calendar for Escrow
 >update site with real bank account info from BoA
 >missing translations
 
-Saturday Feb 8
-
+Sunday Feb 9
+1. Split admin and vanilla stylesheets and fixed a lot of shitty css bugs
 
 Friday Feb 7 Live Test Problems Log
 =
