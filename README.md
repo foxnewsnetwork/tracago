@@ -13,7 +13,25 @@ Calendar for Escrow
 (critical)
 >replace all dog pictures with real pictures
 >favicon.ico must be generated
->get some real bank accounts
+>fix usage page css and dogs
+>update site with real bank account info from BoA
+>missing translations
+
+Saturday Feb 8
+
+
+Friday Feb 7 Live Test Problems Log
+=
+1. Signup doesn't automatically log user in
+2. get some real bank accounts
+3. mobile homepage actions links missing
+4. text alignment completely fucked on escrows / steps / new
+4. actions + docs alignment fucked on steps / show
+4. cookie crumbs and actions alignment fucked on documents / show
+4. header logo alignment
+4. escrows show steps title alignment
+5. need document that can hold a bunch of pictures
+
 
 Friday Feb 7
 1. admin escrows index page done

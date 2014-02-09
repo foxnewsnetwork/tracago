@@ -1,0 +1,63 @@
+@import 'itps/shared/variables';
+@import 'itps/shared/header';
+@import 'itps/shared/admin_main';
+@import 'itps/shared/footer';
+@import 'itps/shared/flash';
+@import 'shared/important';
+@import 'itps/shared/errors';
+@import 'itps/shared/cookiecrumbs';
+
+body {
+  @include shared-important;
+  background: $actual-background-color;
+  padding: 0px;
+  button, a[type=reset] {
+    @extend .btn;
+    &[type=submit] {
+      @extend .btn-block;
+      @extend .btn-primary;
+    }
+    &[type=reset] {
+      @extend .btn-block;
+      @extend .btn-default;
+    }
+    i {
+      @extend .fa;
+      &.submit {
+        @extend .fa-check;
+      }
+      &.reset {
+        @extend .fa-ban;
+      }
+    }
+  }
+  .parantheses {
+    &:before {
+      content: "(";
+    }
+    &:after {
+      content: ")";
+    }
+  }
+  #the-flash {
+    @include shared-flash;
+  }
+  #error-explanation {
+    @include shared-errors;
+  }
+  #cookie-crumbs {
+    @include shared-cookiecrumbs;
+  }
+  header {
+    @include shared-header;
+  }
+  main {
+    @include shared-admin_main;
+  }
+  footer {
+    @include shared-footer;
+  }
+  #misc-invisible-crap {
+    display: none;
+  }
+}
