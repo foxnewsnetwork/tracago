@@ -1,0 +1,37 @@
+.example_check
+  .row
+    .logo
+      .bank-name= t(:my_company_name)
+      .bank-address 4 Work Street
+      .bank-address Anytown, CA 92010
+    .date
+      %span.colon Date
+      %span.underline= Date.today
+  .row
+    .written-section
+      .pay-to
+        .colon= t(:pay)
+        .underline Global Trade Payment Corporation
+      .words
+        %span.amount= escrow.dollar_amount.try(:to_words) || "Some Amount of"
+        %span.dollar Dollars
+    .number-section
+      %i.dollar
+      .dollar-box= escrow.dollar_amount || "?"
+  .row
+    .logo
+      .bank-name= t(:my_bank_name)
+      .bank-address 2 Much Money Ave.
+      .bank-address Beverly Hills, CA 90210
+  .row
+    .memo
+      .colon Memo
+      .underline
+        For
+        = escrow.full_presentation
+    .signature= t(:my_signature)
+  .row
+    %ul.bank-numbers
+      %li 1234
+      %li 1233456
+      %li 1233455678

@@ -20,7 +20,8 @@
     %dl
       %dt= t(:drafted_by)
       %dd
-        = @escrow.draft_party.company_name
+        = link_to itps_party_path(@escrow.draft_party.permalink) do 
+          = @escrow.draft_party.company_name
         %span.parantheses
           - if @escrow.drafted_by_payer?
             = t(:same_as_payment_party) 
@@ -30,34 +31,26 @@
       %dd= mail_to @escrow.drafting_party.email
       %dt= t(:document_last_updated_at)
       %dd= @escrow.updated_at
-      %dt= t(:escrow_party_routing_number)
-      %dd= Itps::Parties::BankAccount.itps_routing_number
-      %dt= t(:escrow_party_account_number)
-      %dd= Itps::Parties::BankAccount.itps_account_number
     %dl
       %dt= t(:payment_party)
-      %dd= @escrow.payment_party.company_name
+      %dd
+        = link_to itps_party_path @escrow.payment_party.permalink do
+          = @escrow.payment_party.company_name
       %dt= t(:payment_party_email)
       %dd= mail_to @escrow.payment_party.email
       %dt= t(:payment_party_agreed_at)
       %dd= @escrow.payment_party_agreed_at || t(:not_yet)
-      - if current_account.try :admin?
-        %dt= t(:payment_party_routing_number)
-        %dd= @escrow.payment_party.routing_number || t(:not_specified)
-        %dt= t(:payment_party_account_number)
-        %dd= @escrow.payment_party.account_number || t(:not_specified)
+      
     %dl
       %dt= t(:goods_or_service_party)
-      %dd= @escrow.service_party.company_name
+      %dd
+        = link_to itps_party_path @escrow.service_party.permalink do
+          = @escrow.service_party.company_name
       %dt= t(:goods_or_service_party_email)
       %dd= mail_to @escrow.service_party.email
       %dt= t(:goods_or_service_party_agreed_at)
       %dd= @escrow.serviced_party_agreed_at || t(:not_yet)
-      - if current_account.try :admin?
-        %dt= t(:service_party_routing_number)
-        %dd= @escrow.service_party.routing_number || t(:not_specified)
-        %dt= t(:service_party_account_number)
-        %dd= @escrow.service_party.account_number || t(:not_specified)
+      
   #payment-information
     %h2
       = link_to itps_escrow_money_transfers_path(@escrow.permalink) do
@@ -65,6 +58,10 @@
       - if current_account.try(:admin?)
         = link_to itps_admin_escrow_inbound_transfers_path(@escrow) do
           %span.parantheses= t(:admin_view)
+    .big-info-button
+      = link_to payment_instructions_itps_escrow_path(@escrow.permalink), :class => 'btn' do
+        %i.info
+        = t(:payment_instructions)
     %dl
       %dt= t(:funding_status)
       %dd

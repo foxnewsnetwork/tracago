@@ -1,6 +1,11 @@
 class Itps::PartiesController < Itps::BaseController
   before_filter :filter_anonymous_account,
-    :filter_wrong_account
+    :filter_wrong_account,
+    only: [:edit, :update]
+  def show
+    _party
+  end
+
   def edit
     _party
   end
@@ -16,7 +21,7 @@ class Itps::PartiesController < Itps::BaseController
   end
   
   def _party
-    @party ||= Itps::Party.find params[:id]
+    @party ||= Itps::Party.find_by_permalink_or_id! params[:id]
   end
 
   def _update_party!

@@ -1,0 +1,18 @@
+@mixin itps-escrows-bank_account {
+  .bank_account {
+    border: $standard-border;
+    padding: 0px;
+    dl, h5 {
+      padding-left: 15px;
+    }
+    h5 {
+      margin: 0px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      background-color: $success-color;
+      color: $highlight-textcolor;
+    }
+  }
+}

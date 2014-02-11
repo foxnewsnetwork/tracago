@@ -1,0 +1,28 @@
+#hero-banner
+  %section
+    %h1= @party.company_name || @party.permalink
+
+.container
+  .row
+    %h2= t(:profile_summary)
+    %dl
+      %dt= t(:company_name)
+      %dd= @party.company_name
+      %dt= t(:contact_email)
+      %dd= mail_to @party.email
+  .row
+    %h2= t(:available_actions)
+    - if @party.unclaimed?
+      .action
+        = link_to new_itps_party_account_path(@party.permalink) do
+          %figure
+            %i.claim
+          = t(:claim_profile)
+    - elsif correct_account?(@party.account) || current_account.try(:admin?)
+      .action
+        = link_to itps_account_path(@party.account) do
+          %figure
+            %i.owner-profile
+          = t(:owner_profile)
+    - else
+      %p= t(:nothing_available)  

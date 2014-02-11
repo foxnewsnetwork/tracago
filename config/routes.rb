@@ -61,7 +61,7 @@ Tracago::Application.routes.draw do
       resources :documents, only: [:new, :create], controller: 'steps/documents'
     end
     resources :bank_accounts, only: [:edit, :update, :destroy]
-    resources :parties, only: [:edit, :update] do
+    resources :parties, only: [:show, :edit, :update] do
       resources :escrows, only: [:index], controller: 'parties/escrows'
       resources :accounts, only: [:new, :create], controller: 'parties/accounts'
       resources :bank_accounts, only: [:new, :create, :index], controller: 'parties/bank_accounts'
@@ -77,6 +77,9 @@ Tracago::Application.routes.draw do
     resources :escrows, only: [:edit, :update], controller: 'escrows/puts'
     resources :escrows, only: [:destroy], controller: 'escrows/delete'
     resources :escrows, only: [:new, :create, :show] do
+      member do
+        get 'payment_instructions'
+      end
       resources :escrows, only: [:new, :create], controller: 'escrows/escrows'
       resource :agreement, only: [:new, :create], controller: 'escrows/agreements'
       resources :steps, only: [:new, :create], controller: 'escrows/steps'

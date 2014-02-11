@@ -32,3 +32,15 @@
 #  shop_id                :integer
 #
 
+require 'spec_helper'
+
+describe Itps::Account do
+  describe '::id_to_permalink' do
+    it 'should commute back and forth with perma_link to id' do
+      100.times do
+        num = rand(9999999)
+        num.should eq Itps::Account.permalink_to_id Itps::Account.id_to_permalink num
+      end
+    end
+  end
+end

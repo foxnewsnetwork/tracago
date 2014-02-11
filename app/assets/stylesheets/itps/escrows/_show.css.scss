@@ -72,15 +72,25 @@
       }
     }
     #payment-information {
-      dl {
+      dl,.big-info-button {
         @extend .col-lg-4;
         @extend .col-md-6;
         @extend .col-sm-6;
         @extend .col-xs-12;
       }
+      .big-info-button {
+        a {
+          @extend .btn-lg;
+          @extend .btn-info;
+          @extend .btn-block;
+        }
+      }
       i {
         @extend .fa;
         @extend .fa-dollar;
+        &.info {
+          @extend .fa-info-circle;
+        }
       }
     }
     #basic-information {

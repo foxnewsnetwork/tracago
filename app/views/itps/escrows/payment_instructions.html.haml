@@ -1,0 +1,94 @@
+#hero-banner{ :class => @escrow.status }
+  %section
+    %h1= t(:payment_instructions)
+
+#content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to @escrow.full_presentation, itps_escrow_path(@escrow.permalink)
+      %li= link_to t(:payment_instructions)
+
+  - if @escrow.dollar_amount.blank?
+    #big-notice
+      %h2= t(:you_have_not_yet_determined_a_payment_amount)
+      .action
+        = link_to itps_escrow_path(@escrow.permalink) do
+          %figure
+            %i.go-back
+          = t(:go_back)
+      .action
+        = link_to edit_itps_escrow_path(@escrow.permalink) do
+          %figure
+            %i.edit
+          = t(:alter_payment)
+
+  #homework
+    %h2= t(:before_you_goto_the_bank)
+    %p
+      In order for us to properly match your payment against the correct contract
+      %span.parantheses= link_to @escrow.full_presentation, itps_escrow_path(@escrow.permalink)
+      , you need to let us know what bank account you will be paying us from. 
+    %p You have set the following bank account as your primary account with us:
+    %article
+      .row
+        .left-content
+          - if @escrow.payment_party.try(:main_bank_account).present?
+            = render partial: 'itps/escrows/bank_account', locals: { bank_account: @escrow.payment_party.main_bank_account }
+          - else
+            %figure
+              %h5= t(:none)
+        .right-content
+          .modify-button
+            = link_to itps_party_bank_accounts_path(current_account.party), :class => 'btn' do
+              %i.modify
+              = t(:modify_bank_accounts)
+
+  #cheque
+    %h2= t(:deposit_via_check_instructions)
+    %p 
+      Our payment information is as follows. Make the check out to "Global Trade Payment Corporation" and be sure to reference
+      = @escrow.full_presentation
+      in the memo section.
+    %figure.account
+      .bank_account
+        %h5 GTPC Account Information
+        %dl
+          %dt= t(:pay_to_order_of)
+          %dd Global Trade Payment Corporation
+          %dt= t(:bank_name)
+          %dd= Itps::Parties::BankAccount::BankName
+          %dt= t(:routing_number)
+          %dd= Itps::Parties::BankAccount::RoutingNumber
+          %dt= t(:account_number)
+          %dd= Itps::Parties::BankAccount::AccountNumber
+      %h4.notice Be sure to write
+      %h4.important= @escrow.full_presentation
+      %h4.notice in the memo section of the check.
+    %figure.cheque
+      = render partial: 'itps/escrows/example_cheque', locals: { escrow: @escrow }  
+
+  #cheque
+    %h2= t(:wire_in_instructions)
+    %p
+      Wire forms differ slightly from bank to bank. Consult the information below to fill out the wire form at your local bank.
+    %figure.account
+      .bank_account
+        %h5= t(:example_wire_form)
+        %dl
+          %dt= t(:beneficiary_bank_routing_number)
+          %dd= Itps::Parties::BankAccount::RoutingNumber
+          %dt= t(:beneficiary_bank_name)
+          %dd= Itps::Parties::BankAccount::BankName
+          %dt= t(:beneficiary_account_holder_name)
+          %dd Global Trade Payment Corporation
+          %dt= t(:beneficiary_account_number)
+          %dd= Itps::Parties::BankAccount::AccountNumber
+          %dt= t(:beneficiary_account_holder_address)
+          %dd= Itps::Parties::BankAccount::CorporateAddress
+          %dt= t(:other_instructions)
+          %dd= @escrow.full_presentation
+      %h4.notice Be sure to write
+      %h4.important= @escrow.full_presentation
+      %h4.notice in the other instructions section of the wire page.
+
+

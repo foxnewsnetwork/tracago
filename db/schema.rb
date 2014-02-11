@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205183409) do
+ActiveRecord::Schema.define(version: 20140211202756) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -151,9 +151,11 @@ ActiveRecord::Schema.define(version: 20140205183409) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink",    null: false
   end
 
   add_index "itps_parties", ["email"], name: "index_itps_parties_on_email", unique: true, using: :btree
+  add_index "itps_parties", ["permalink"], name: "index_itps_parties_on_permalink", unique: true, using: :btree
 
   create_table "itps_parties_bank_accounts", force: true do |t|
     t.string   "account_number", null: false

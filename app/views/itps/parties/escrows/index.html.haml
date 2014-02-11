@@ -41,6 +41,10 @@
                 %span.counter= counter(type: :archive, show: :service)
 
     #meat-and-bones
+      #cookie-crumbs
+        %ol
+          %li= link_to @party.company_name, itps_party_path(@party.permalink) 
+          %li= link_to t(:contract_index)
       %article
         %h3
           = h params[:type]

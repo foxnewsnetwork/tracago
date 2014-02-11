@@ -79,6 +79,8 @@ class Itps::Escrow < ActiveRecord::Base
     :payment_party, 
     :service_party, 
     presence: true
+  validates :dollar_amount,
+    numericality: true
 
   class << self
     def find_by_mysteriously_encryped_key!(mysterious_key: '', work: false)

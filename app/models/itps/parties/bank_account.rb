@@ -14,6 +14,10 @@
 #
 
 class Itps::Parties::BankAccount < ActiveRecord::Base
+  BankName = 'Bank of America'.freeze
+  RoutingNumber = '121000358'.freeze
+  AccountNumber = '325020894955'.freeze
+  CorporateAddress = '1810 Pippin LN, San Luis Obispo, CA 93405-8043'
   belongs_to :party,
     class_name: 'Itps::Party'
 
@@ -32,11 +36,11 @@ class Itps::Parties::BankAccount < ActiveRecord::Base
   
   class << self
     def itps_routing_number
-      "no itps_routing_number yet"
+      RoutingNumber
     end
 
     def itps_account_number
-      "no itps_account_number yet"
+      AccountNumber
     end
 
     def find_by_bullshit_id!(number)

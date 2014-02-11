@@ -52,7 +52,7 @@ class Itps::Parties::BankAccountsController < Itps::BaseController
   end
 
   def _party
-    @party ||= Itps::Party.find params[:party_id]
+    @party ||= Itps::Party.find_by_permalink_or_id! params[:party_id]
   end
 
 end

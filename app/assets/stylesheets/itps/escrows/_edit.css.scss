@@ -27,9 +27,7 @@
           @extend .col-md-6;
           @extend .col-sm-12;
           @extend .col-xs-12;
-          h3, dl {
-            @extend .row;
-          }
+          
         }
         h3 {
           border-bottom: $standard-border;

@@ -14,6 +14,9 @@ class Itps::Party < ActiveRecord::Base
   self.table_name = 'itps_parties'
   has_many :bank_accounts,
     class_name: 'Itps::Parties::BankAccount'
+  has_many :money_transfers,
+    through: :bank_accounts,
+    class_name: 'Itps::MoneyTransfer'
   has_one :main_bank_account,
     -> { ordered_by_defaulted_at.limit(1) },
     class_name: 'Itps::Parties::BankAccount'
@@ -76,6 +79,7 @@ class Itps::Party < ActiveRecord::Base
     presence: true,
     format: { with: Devise.email_regexp }
   validates :company_name,
+    :permalink,
     presence: true
 
   delegate :routing_number, 
@@ -83,8 +87,18 @@ class Itps::Party < ActiveRecord::Base
     to: :main_bank_account,
     allow_nil: true
 
-  def permalink
-    email.to_url
+  before_validation :_create_permalink
+
+  class << self
+    def find_by_permalink_or_id!(permalink_or_id)
+      find_by_permalink(permalink_or_id) || find(permalink_or_id)
+    end
+  end
+
+  def money_balance
+    money_transfers.inject(0) do |balance, transfer|
+      balance - transfer.dollar_amount_as_number
+    end
   end
 
   def active_escrows(n=3)
@@ -111,6 +125,10 @@ class Itps::Party < ActiveRecord::Base
     account.present?
   end
 
+  def unclaimed?
+    !claimed?
+  end
+
   private
   def _limit_flatten_sort_merge(n, *es)
     (_limit_sort_merge n).call (_limit_flatten n).call es
@@ -130,6 +148,10 @@ class Itps::Party < ActiveRecord::Base
         b.updated_at <=> a.updated_at
       end.take n
     end
+  end
+
+  def _create_permalink
+    self.permalink ||= "#{company_name.to_s.to_url}-#{rand 99999}-#{DateTime.now.to_i.to_alphabet}"
   end
 
 end

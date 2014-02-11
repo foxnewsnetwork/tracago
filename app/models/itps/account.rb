@@ -34,7 +34,7 @@
 
 class Itps::Account < ActiveRecord::Base
   self.table_name = 'spree_users'
-
+  IdBuffer = 1873
   class << self
     def admins
       _admin_hashes.map do |hash|
@@ -45,6 +45,21 @@ class Itps::Account < ActiveRecord::Base
       end
     end
 
+    def find_by_id_or_permalink!(id_or_permalink)
+      find_by_permalink(id_or_permalink) || find(id_or_permalink)
+    end
+
+    def find_by_permalink(permalink)
+      find_by_id permalink_to_id permalink
+    end
+
+    def permalink_to_id(permalink)
+      permalink.to_s.split("-").second.to_i / IdBuffer
+    end
+
+    def id_to_permalink(id)
+      "acc-#{id * IdBuffer}-#{Faker::Lorem.words(2).join('-')}"
+    end
     private
     def _admin_hashes
       YAML.load(File.read Rails.root.join('config', 'admins.yml'))["admins"]
@@ -71,7 +86,7 @@ class Itps::Account < ActiveRecord::Base
   validates :email,
     presence: true,
     format: { with: Devise.email_regexp }
-    
+  
   def party_with_defaults
     return _generate_party if party_without_defaults.blank?
     party_without_defaults
@@ -82,6 +97,9 @@ class Itps::Account < ActiveRecord::Base
     roles.find_or_create_by role_name: :admin
   end
 
+  def permalink
+    self.class.id_to_permalink id
+  end
   def admin?
     roles.map(&:role_name).include? 'admin'
   end

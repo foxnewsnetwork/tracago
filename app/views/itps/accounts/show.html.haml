@@ -35,6 +35,12 @@
         - if @account.bank_accounts.blank?
           %p= t(:you_have_no_bank_accounts)
         - bank_accounts = @account.bank_accounts.order('created_at desc').limit(3)
+        %dl
+          %dt
+            = t(:balance)
+          %dd
+            $
+            = @account.party.money_balance
         = render partial: 'itps/accounts/bank_account', collection: bank_accounts
       #actions
         %h3= t(:actions)

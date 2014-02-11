@@ -10,6 +10,6 @@ class Itps::AccountsController < Itps::BaseController
     [_account]
   end
   def _account
-    @account ||= Itps::Account.find params[:id]
+    @account ||= Itps::Account.find_by_id_or_permalink! params[:id]
   end
 end

@@ -4,13 +4,17 @@ class Itps::Escrows::EscrowFormHelper < Spree::FormHelperBase
     :paying_company_email, 
     :working_company_name, 
     :working_company_email,
-    :drafted_by_paying
+    :drafted_by_paying,
+    :dollar_amount
   ]
 
   attr_hash_accessor *Fields
   attr_accessor :attributes
   validates *Fields,
     presence: true
+  validates :dollar_amount,
+    numericality: true
+
 
   def escrow!
     Itps::Escrow.create! _escrow_params
@@ -22,7 +26,8 @@ class Itps::Escrows::EscrowFormHelper < Spree::FormHelperBase
     {
       payment_party: _payment_party,
       service_party: _service_party,
-      draft_party: _draft_party
+      draft_party: _draft_party,
+      dollar_amount: dollar_amount
     }
   end
 

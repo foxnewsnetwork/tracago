@@ -1,0 +1,43 @@
+@mixin itps-parties-show {
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        padding-left: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    border-bottom: $standard-border;
+  }
+  dl, p {
+    @extend .col-lg-3;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+  }
+  .action {
+    @extend .col-lg-2;
+    @extend .col-md-3;
+    @extend .col-sm-4;
+    @extend .col-xs-6;
+    @extend .really-bland-thumbnail;
+    text-align: center;
+  }
+  i {
+    @extend .fa;
+    @extend .fa-2x;
+    @extend .fa-user;
+  }
+}

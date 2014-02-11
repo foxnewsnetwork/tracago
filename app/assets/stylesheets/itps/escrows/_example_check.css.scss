@@ -1,0 +1,125 @@
+@mixin itps-escrows-example_check {
+  .example_check {
+    border: $standard-border;
+    background: #c3d8eb;
+    .logo, .date {
+      @extend .col-md-3;
+      @extend .col-sm-4;
+      @extend .col-xs-6;
+      padding-top: 10px;
+    }
+    .logo {
+      @extend .col-lg-3;
+      padding-left: 30px;
+      .bank-name {
+        font-size: 16px;
+      }
+    }
+    .colon:after {
+      content: ':';
+    }
+    .underline {
+      width: 100%;
+      border-bottom: 1px solid black;
+    }
+    .date {
+      @extend .col-lg-3;
+      @extend .col-lg-offset-6;
+      @extend .col-md-offset-6;
+      @extend .col-sm-offset-4;
+      text-align: left;
+      padding-right: 15px;
+      .colon {
+        font-weight: bold;
+      }
+    }
+    .written-section, .number-section {
+      margin-top: 15px;
+    }
+    .written-section {
+      @extend .col-lg-10;
+      @extend .col-md-10;
+      @extend .col-sm-10;
+      @extend .col-xs-10;
+      .pay-to {
+        @extend .row;
+        padding-left: 30px;
+        .colon {
+          display: inline-block;
+          font-weight: bold;
+          text-align: right;
+        }
+        .underline {
+          display: inline-block;
+          width: 90%;
+        }
+      }
+      .words {
+        @extend .row;
+        margin-top: 10px;
+        padding-left: 30px;
+        .amount {
+          display: inline-block;
+          width: 90%;
+          border-bottom: 1px solid black;
+        }
+        .dollar {
+          display: inline-block;
+          text-transform: capitalize;
+          font-weight: bold;
+        }
+      }
+    }
+    .number-section {
+      @extend .col-lg-2;
+      @extend .col-md-2;
+      @extend .col-sm-2;
+      @extend .col-xs-2;
+      i {
+        @extend .fa;
+        @extend .fa-dollar;
+      }
+      .dollar-box {
+        display: inline-block;
+        width: 60%;
+        border: 1px solid black;
+      }
+    }
+    ul.bank-numbers  {
+      padding-left: 0px;
+      padding-right: 30px;
+      text-align: center;
+      list-style: none;
+      li {
+        display: inline-block;
+        margin-left: 15px;
+        font-weight: bold;
+      }
+    }
+    .memo {
+      @extend .col-lg-5;
+      @extend .col-md-5;
+      @extend .col-sm-5;
+      @extend .col-xs-5;
+      margin-top: 15px;
+      padding-left: 30px;
+      .colon {
+        display: inline-block;
+        font-weight: bold;
+      }
+      .underline {
+        display: inline-block;
+        width: 80%;
+      }
+    }
+    .signature {
+      @extend .col-lg-5;
+      @extend .col-md-5;
+      @extend .col-sm-5;
+      @extend .col-xs-5;
+      margin-top: 15px;
+      text-align: center;
+      border-bottom: 1px solid black;
+    }
+  }
+}

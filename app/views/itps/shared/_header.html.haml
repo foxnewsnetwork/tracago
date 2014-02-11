@@ -19,11 +19,13 @@
     %li{ :class => activation.call(itps_faq_path) }
       = link_to t(:faq), itps_faq_path
     - if user_signed_in?
-      %li{ :class => activation.call(itps_account_path current_user)}
-        = link_to t(:me), itps_account_path(current_user)
+      %li{ :class => activation.call(itps_account_path current_account.permalink)}
+        = link_to t(:me), itps_account_path(current_account.permalink)
     - else
       %li{ :class => activation.call(itps_login_path)}
-        = link_to t(:sign_in), itps_login_path(back: back_path)
+        = link_to t(:log_in), itps_login_path(back: back_path)
+      %li{ :class => activation.call(itps_signup_path)}
+        = link_to t(:sign_up), itps_signup_path(back: back_path)
     %li{ :class => activation.call(itps_documentations_path)}
       = link_to t(:help), itps_documentations_path
     - if current_account.try(:admin?)

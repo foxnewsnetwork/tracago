@@ -1,0 +1,111 @@
+@import 'itps/escrows/bank_account';
+@import 'itps/escrows/example_check';
+@mixin itps-escrows-payment_instructions {
+  @include itps-escrows-bank_account;
+  @include itps-escrows-example_check;
+  #hero-banner {
+    background-color: $highlight-background;
+    section {
+      @extend .container;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      h1 {
+        @extend .row;
+        text-transform: uppercase;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: bold;
+        color: $highlight-textcolor;
+      }
+    }
+  }
+  i {
+    @extend .fa;
+  }
+  #big-notice {
+    @extend .row;
+    padding-left: 15px;
+    h2 {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      background: $warning-color;
+      color: $highlight-textcolor;
+    }
+    .action {
+      @extend .col-lg-2;
+      @extend .col-md-3;
+      @extend .col-sm-4;
+      @extend .col-xs-6;
+      @extend .really-bland-thumbnail;
+      text-align: center;
+    }
+    i {
+      @extend .fa-2x;
+      &.go-back {
+        @extend .fa-chevron-left;
+      }
+      &.edit {
+        @extend .fa-pencil;
+      }
+    }
+  }
+  #content-box {
+    @extend .container;
+    #homework, #cheque, #wire {
+      @extend .row;
+      h2, article, p, aside {
+        @extend .col-lg-12;
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+      }
+      h2 {
+        border-bottom: $standard-border;
+      }
+    }
+    #homework {
+      .left-content, .right-content {
+        @extend .col-lg-4;
+        @extend .col-md-6;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+      }
+      .modify-button {
+        a {
+          @extend .btn-lg;
+          @extend .btn-info;
+          @extend .btn-block;
+        }
+        i {
+          @extend .fa;
+          @extend .fa-edit;
+        }
+      }
+    }
+    #cheque {
+      .notice {
+        font-size: 20px;
+      }
+      .important {
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      figure.account {
+        @extend .col-lg-4;
+        @extend .col-md-4;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+      }
+      figure.cheque {
+        @extend .col-lg-8;
+        @extend .col-md-8;
+        @extend .col-sm-12;
+        @extend .col-xs-12;     
+      }
+    }
+  }
+}

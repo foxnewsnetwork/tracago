@@ -9,6 +9,7 @@ Calendar for Escrow
 >s3 (for production-tier document hosting)
 >the rest of the tags and documentations controllers
 >doc tags controller & show page
+>internationalization
 
 (critical)
 >replace all dog pictures with real pictures
@@ -16,20 +17,27 @@ Calendar for Escrow
 >fix usage page css and dogs
 >update site with real bank account info from BoA
 >missing translations
+>payment instructions & overhaul payment step
+>parties bank_accounts#index
+
+Tuesday Feb 11
+1. payment instruction section done
+2. fixed a lot of various junk
+3. still need email
 
 Sunday Feb 9
 1. Split admin and vanilla stylesheets and fixed a lot of shitty css bugs
 2. Signup doesn't automatically log user in; fixed friday (this is an nginx issue)
-
-Friday Feb 7 Live Test Problems Log
-=
-2. get some real bank accounts
-3. mobile homepage actions links missing
 4. text alignment completely fucked on escrows / steps / new
 4. actions + docs alignment fucked on steps / show
 4. cookie crumbs and actions alignment fucked on documents / show
 4. header logo alignment
 4. escrows show steps title alignment
+2. get some real bank accounts
+3. mobile homepage actions links missing
+
+Friday Feb 7 Live Test Problems Log
+=
 5. need document that can hold a bunch of pictures
 
 

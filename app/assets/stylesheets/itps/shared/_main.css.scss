@@ -20,7 +20,8 @@
 @import 'itps/home/status';
 @import 'itps/parties/bank_accounts/new';
 @import 'itps/escrows/edit';
-
+@import 'itps/escrows/payment_instructions';
+@import 'itps/parties/show';
 @mixin shared-main {
   padding: 0px;
   
@@ -113,5 +114,11 @@
   #bank_accounts-edit, 
   #bank_accounts-update {
     @include itps-parties-bank_accounts-new;
+  }
+  #escrows-payment_instructions {
+    @include itps-escrows-payment_instructions;
+  }
+  #parties-show {
+    @include itps-parties-show;
   }
 }
