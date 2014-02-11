@@ -6,6 +6,10 @@ class Itps::Parties::BankAccountsController < Itps::BaseController
     @bank_account = _party.bank_accounts.new
   end
 
+  def index
+    @bank_accounts = _party.bank_accounts
+  end
+
   def create
     _bank_account!
     _render_flash!

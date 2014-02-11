@@ -118,7 +118,8 @@
   #escrows-payment_instructions {
     @include itps-escrows-payment_instructions;
   }
-  #parties-show {
+  #parties-show,
+  #parties-bank_accounts-index {
     @include itps-parties-show;
   }
 }

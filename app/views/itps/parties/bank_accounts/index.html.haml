@@ -1,0 +1,29 @@
+#hero-banner
+  %section
+    %h1
+      = @party.company_name || @party.permalink
+      = t(:bank_accounts)
+
+.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:my_account), itps_account_path(current_account)
+      %li= link_to t(:my_bank_accounts)
+  .row
+    %h2= t(:bank_account_summary)
+    %dl
+      %dt= t(:bank_accounts)
+      %dd= @bank_accounts.count
+      %dt= t(:balance)
+      %dd
+        $
+        = @party.money_balance
+  .row
+    = render partial: 'itps/accounts/bank_account', collection: @bank_accounts
+  .row
+    %h2= t(:available_actions)
+    .action
+      = link_to new_itps_party_bank_account_path(@party.permalink) do
+        %figure
+          %i.new-bank-account
+        = t(:add_bank)

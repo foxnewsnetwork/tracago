@@ -33,11 +33,20 @@
     @extend .col-sm-4;
     @extend .col-xs-6;
     @extend .really-bland-thumbnail;
+    margin-left: 15px;
     text-align: center;
   }
   i {
     @extend .fa;
     @extend .fa-2x;
-    @extend .fa-user;
+    &.new-bank-account {
+      @extend .fa-money;
+    }
+    &.claim {
+      @extend .fa-flag-o;
+    }
+    &.owner-profile {
+      @extend .fa-user;
+    }
   }
 }
