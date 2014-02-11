@@ -13,7 +13,7 @@ class Itps::Escrows::EscrowFormHelper < Spree::FormHelperBase
   validates *Fields,
     presence: true
   validates :dollar_amount,
-    numericality: true
+    numericality: { greater_than_or_equal_to: 0 }
 
 
   def escrow!

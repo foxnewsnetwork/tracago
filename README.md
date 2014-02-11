@@ -15,7 +15,6 @@ Calendar for Escrow
 >replace all dog pictures with real pictures
 >favicon.ico must be generated
 >fix usage page css and dogs
->update site with real bank account info from BoA
 >missing translations
 >payment instructions & overhaul payment step
 >parties bank_accounts#index
@@ -24,6 +23,7 @@ Tuesday Feb 11
 1. payment instruction section done
 2. fixed a lot of various junk
 3. still need email
+4. update site with real bank account info from BoA
 
 Sunday Feb 9
 1. Split admin and vanilla stylesheets and fixed a lot of shitty css bugs

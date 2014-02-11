@@ -2,7 +2,8 @@ class Itps::Accounts::Escrows::EscrowFormHelper < Spree::FormHelperBase
   Fields = [
     :other_party_email,
     :other_party_company_name,
-    :my_role
+    :my_role,
+    :dollar_amount
   ]
   attr_hash_accessor *Fields
   attr_accessor :attributes, :account
@@ -10,12 +11,14 @@ class Itps::Accounts::Escrows::EscrowFormHelper < Spree::FormHelperBase
   validates *Fields,
     :account,
     presence: true
-
+  validates :dollar_amount,
+    numericality: { greater_than_or_equal_to: 0 }
 
   def escrow!
     @escrow ||= Itps::Escrow.create! service_party: _service_party,
       payment_party: _payment_party,
-      draft_party: _draft_party
+      draft_party: _draft_party,
+      dollar_amount: dollar_amount
   end
 
   def created?

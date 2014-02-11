@@ -15,6 +15,8 @@
         %dd= f.text_field :other_party_company_name
         %dt= f.label :other_party_email, t(:other_company_email)
         %dd= f.email_field :other_party_email
+        %dt= f.label :dollar_amount, t(:payment_amount)
+        %dd= f.number_field :dollar_amount, minimum: 0
       %dl
         %dt= f.label :my_role, t(:i_am_the_payment_party)
         %dd= f.radio_button :my_role, :payment_party, checked: true
