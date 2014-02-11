@@ -1,4 +1,9 @@
 namespace :emails do
+  desc 'Batch tests all the emails to me'
+  task batch_test: :environment do
+    Itps::Escrows::AgreementMailer.create_email Itps::Escrow.last, 'doitfaggot@mailinator.com'
+  end
+
   desc "Sends out a test email to me"
   task test: :environment do
     male = Itps::TestMailer.test_email 'hell@mailinator.com'

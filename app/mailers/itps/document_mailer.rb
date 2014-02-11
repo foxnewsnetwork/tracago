@@ -19,5 +19,6 @@ class Itps::DocumentMailer < Itps::BaseMailer
       subject: "#{@document.full_presentation} has been rejected."
     m.deliver!
   end
+
 end
 

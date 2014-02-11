@@ -1,8 +1,7 @@
-class Itps::Escrows::AgreementMailer < ActionMailer::Base
-  default from: 'mail.clerk@someemailaccount.com'
-  def create_email(escrow)
+class Itps::Escrows::AgreementMailer < Itps::BaseMailer
+  def create_email(escrow, to=nil)
     @escrow = escrow
-    m = mail_to to: @escrow.draft_party.email,
+    m = mail to: (to || @escrow.draft_party.email),
       subject: 'Contract accepted by other party'
     m.deliver!
   end

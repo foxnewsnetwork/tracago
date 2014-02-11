@@ -15,6 +15,8 @@ Calendar for Escrow
 >replace all dog pictures with real pictures
 >favicon.ico must be generated
 >missing translations
+>email fix
+>ability to upload lots of pictures at once to the site
 
 Tuesday Feb 11
 1. payment instruction section done
