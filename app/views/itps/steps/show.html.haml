@@ -25,18 +25,12 @@
           = @step.instructions
         - else
           = t(:none_given)
-      - if @step.pay_step?
-        %dt= t(:escrow_routing_number)
-        %dd= Itps::Parties::BankAccount.itps_routing_number
-        %dt= t(:escrow_account_number)
-        %dd= Itps::Parties::BankAccount.itps_account_number
     %dl
-      %dt= t(:previous_step)
-      %dd= t(:none)
-      %dt= t(:next_step)
-      %dd= t(:none)
       %dt= t(:step_position)
       %dd= @step.position
+      - if @step.pay_step?
+        %dt= t(:special_notice)
+        %dd The payment step requires the payment party to fund the contract escrow account.
   #executive-actions
     %h2= t(:actions)
     %ul
@@ -45,6 +39,11 @@
           %figure
             %i.back
           = t(:back)
+      %li
+        = link_to payment_instructions_itps_escrow_path(@step.escrow.permalink) do
+          %figure
+            %i.fa-book
+          = t(:view_instructions)
       - if @step.escrow.locked?
         %li
           = link_to approve_itps_step_path(@step.permalink), method: :put do
