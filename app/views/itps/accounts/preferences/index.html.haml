@@ -3,10 +3,6 @@
     %h1= t(:my_account_preferences)
 
 #preferneces-container
-  #cookie-crumbs
-    %ol
-      %li= link_to t(:my_account), itps_account_path(@account)
-      %li= link_to t(:preferences)
   #dashboard-content
     #table-of-contents
       %ul
@@ -14,6 +10,10 @@
         %li= link_to t(:email_preferences), '#email-preferences'
         %li= link_to t(:site_preferences), '#site-preferences'
     #actual-content
+      #cookie-crumbs
+        %ol
+          %li= link_to t(:my_account), itps_account_path(@account)
+          %li= link_to t(:preferences)
       #notification-preferences
         %h2= t(:notification_preferences)
         %p= t(:preference_selection_is_currently_locked_sitewide)

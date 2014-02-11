@@ -22,7 +22,7 @@
       #basics
         %h3
           = t(:basic_information)
-          = link_to t(:edit), edit_itps_party_path(@account.party)
+          = link_to t(:edit), edit_itps_party_path(@account.party.permalink)
         %dl
           %dt= t(:company_name)
           %dd= @account.company_name
@@ -31,7 +31,7 @@
       #bank-accounts
         %h3
           = t(:bank_accounts)
-          = link_to t(:see_all), itps_party_bank_accounts_path(@account.party)
+          = link_to t(:see_all), itps_party_bank_accounts_path(@account.party.permalink)
         - if @account.bank_accounts.blank?
           %p= t(:you_have_no_bank_accounts)
         - bank_accounts = @account.bank_accounts.order('created_at desc').limit(3)
@@ -51,7 +51,7 @@
                 %i.new-contract
               = t(:new_contract)
           %li
-            = link_to new_itps_party_bank_account_path(@account.party) do
+            = link_to new_itps_party_bank_account_path(@account.party.permalink) do
               %figure
                 %i.new-bank-account
               = t(:add_bank)
@@ -59,28 +59,28 @@
         #contracts-active
           %h3
             = t(:active_contracts)
-            = link_to t(:show_all), itps_party_escrows_path(@account.party, type: :active)
+            = link_to t(:show_all), itps_party_escrows_path(@account.party.permalink, type: :active)
           %ul= render partial: 'itps/accounts/escrow', collection: @account.active_escrows
           - if @account.active_escrows.blank?
             %p= t(:none)
         #contracts-in-progress
           %h3
             = t(:in_progress_contracts)
-            = link_to t(:show_all), itps_party_escrows_path(@account.party, type: :unready)
+            = link_to t(:show_all), itps_party_escrows_path(@account.party.permalink, type: :unready)
           %ul= render partial: 'itps/accounts/escrow', collection: @account.in_progress_escrows
           - if @account.in_progress_escrows.blank?
             %p= t(:none)
         #contracts-archived
           %h3
             = t(:archived_contracts)
-            = link_to t(:show_all), itps_party_escrows_path(@account.party, type: :archive)
+            = link_to t(:show_all), itps_party_escrows_path(@account.party.permalink, type: :archive)
           %ul= render partial: 'itps/accounts/escrow', collection: @account.archived_escrows
           - if @account.archived_escrows.blank?
             %p= t(:none)
       #preferences
         %h3
           = t(:preferences)
-          = link_to t(:show_all), itps_account_preferences_path(@account)
+          = link_to t(:show_all), itps_account_preferences_path(@account.permalink)
         %dl
           %dt= t(:some_preference)
           %dd= t(:some_option)

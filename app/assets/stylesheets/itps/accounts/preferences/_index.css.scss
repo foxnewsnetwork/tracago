@@ -15,20 +15,14 @@
       }
     }
   }
+  #cookie-crumbs {
+    padding-top: 0px;
+  } 
   #preferneces-container {
     @extend .container;
-    #cookie-crumbs, #dashboard-content {
+    #dashboard-content {
       @extend .row;
-    }
-    #cookie-crumbs {
       margin-top: 20px;
-      ol {
-        @extend .col-lg-12;
-        @extend .col-md-12;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        @extend .breadcrumb;
-      }
     }
     #dashboard-content {
       margin-bottom: 20px;

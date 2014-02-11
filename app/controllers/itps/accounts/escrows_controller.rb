@@ -54,7 +54,7 @@ class Itps::Accounts::EscrowsController < Itps::BaseController
   end
 
   def _account
-    @account ||= Itps::Account.find params[:account_id]
+    @account ||= Itps::Account.find_by_id_or_permalink! params[:account_id]
   end
 
   def _filter_anonymous_user
