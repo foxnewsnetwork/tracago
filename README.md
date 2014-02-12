@@ -18,6 +18,9 @@ Calendar for Escrow
 >email fix
 >ability to upload lots of pictures at once to the site
 
+Wednesday Feb 12
+
+
 Tuesday Feb 11
 1. payment instruction section done
 2. fixed a lot of various junk
