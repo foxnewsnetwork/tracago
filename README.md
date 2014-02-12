@@ -12,14 +12,14 @@ Calendar for Escrow
 >internationalization
 
 (critical)
->replace all dog pictures with real pictures
 >favicon.ico must be generated
 >missing translations
 >email fix
 >ability to upload lots of pictures at once to the site
 
 Wednesday Feb 12
-
+1. replace all dog pictures with real pictures
+2. overhauled usage page css nesting to get rid of some severe problems
 
 Tuesday Feb 11
 1. payment instruction section done
