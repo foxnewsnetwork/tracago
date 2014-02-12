@@ -151,7 +151,9 @@ class Itps::Party < ActiveRecord::Base
   end
 
   def _create_permalink
-    self.permalink ||= "#{company_name.to_s.to_url}-#{rand 99999}-#{DateTime.now.to_i.to_alphabet}"
+    if permalink.blank? 
+      self.permalink ||= "#{company_name.to_s.to_url}-#{rand 99999}-#{DateTime.now.to_i.to_alphabet}" 
+    end
   end
 
 end
