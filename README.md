@@ -17,6 +17,20 @@ Calendar for Escrow
 >email fix
 >ability to upload lots of pictures at once to the site
 
+Thursday Feb 13
+=
+Sales Notes:
+Wuyi + Memax buys drip tapes
+Hengyi buys supersex
+Christina buys #1-7 (need more buyers)
+Jacky buys good film (from arthur)
+Jack buys shit film (from arthur and jacky)
+1. Email archive setup
+
+
+888 287 4637 - BoA fraud services department
+temp pass code: H343637F (deprecated already, don't bother stealing)
+
 Wednesday Feb 12
 1. replace all dog pictures with real pictures
 2. overhauled usage page css nesting to get rid of some severe problems

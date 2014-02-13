@@ -17,11 +17,12 @@
 #  payment_party_agree_key  :string(255)
 #  service_party_agree_key  :string(255)
 #  dollar_amount            :decimal(16, 2)
+#  claimed_at               :datetime
 #
 
 class JewFactory::Escrow < JewFactory::Base
   attr_accessor :attributes
-  attr_hash_accessor :payment_party, :service_party, :draft_party
+  attr_hash_accessor :payment_party, :service_party, :draft_party, :dollar_amount
   def belongs_to(thing)
     tap do |f|
       f.draft_party = thing if thing.is_a? Itps::Party
@@ -33,6 +34,7 @@ class JewFactory::Escrow < JewFactory::Base
     self.payment_party = JewFactory::Party.mock
     self.draft_party = payment_party
     self.service_party = JewFactory::Party.mock
+    self.dollar_amount = rand(24593278)
   end
 
 end

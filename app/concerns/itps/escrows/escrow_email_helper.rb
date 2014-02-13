@@ -5,11 +5,11 @@ class Itps::Escrows::EscrowEmailHelper
   end
 
   def inform_remaining_party_contract_is_ready!
-    Itps::EscrowMailer.single_ready_email(@escrow)
+    Itps::EscrowMailer.single_ready_email(@escrow).deliver!
   end
 
   def inform_both_parties_of_mutual_agreement!
-    Itps::EscrowMailer.both_ready_email(@escrow)
+    Itps::EscrowMailer.both_ready_email(@escrow).deliver!
   end
 
 end

@@ -1,7 +1,7 @@
 module Itps::BaseHelper
   class << self
     def itps_app_host
-      'international-trade-payment-service.com'
+      'globaltradepayment.co'
     end
   end
   def back_path

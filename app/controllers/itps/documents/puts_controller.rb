@@ -128,8 +128,15 @@ class Itps::Documents::PutsController < Itps::BaseController
   end
 
   def _dispatch_emails!
-    Itps::DocumentMailer.approve_success_email _document if _approve_success?
-    Itps::DocumentMailer.reject_success_email _document if _rejection_success?
+     _approve_success_email.deliver! if _approve_success?
+     _reject_success_email.deliver! if _rejection_success?
+  end
+
+  def _approve_success_email
+    Itps::DocumentMailer.approve_success_email(_document)
+  end
+  def _reject_success_email
+    Itps::DocumentMailer.reject_success_email(_document)
   end
 
   def _document

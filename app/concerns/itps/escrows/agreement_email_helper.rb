@@ -5,6 +5,6 @@ class Itps::Escrows::EscrowEmailHelper
   end
 
   def dispatch!
-    Itps::Escrows::AgreementMailer.create_email(@escrow)
+    Itps::Escrows::AgreementMailer.create_email(@escrow).deliver!
   end  
 end

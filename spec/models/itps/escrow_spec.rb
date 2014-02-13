@@ -17,6 +17,7 @@
 #  payment_party_agree_key  :string(255)
 #  service_party_agree_key  :string(255)
 #  dollar_amount            :decimal(16, 2)
+#  claimed_at               :datetime
 #
 
 require 'spec_helper'

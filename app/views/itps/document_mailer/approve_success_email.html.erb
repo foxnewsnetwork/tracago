@@ -1,16 +1,16 @@
 Dear All,
 
 The document:
-<%= @document.full_presentation %>
+<%= @attributes[:document].full_presentation %>
 
 Submitted for Step: 
-<%= @step.full_presentation %>
+<%= @attributes[:step].full_presentation %>
 
 of Escrow:
-<%= @escrow.full_presentation %>
+<%= @attributes[:escrow].full_presentation %>
 
 has been approved. Escrow contract details are found at the following link:
-<%= itps_escrow_path @escrow.permalink, host: Itps::BaseHelper.itps_app_host %>
+<%= itps_escrow_path @attributes[:escrow].permalink, host: Itps::BaseHelper.itps_app_host %>
 
 Sincerely,
 

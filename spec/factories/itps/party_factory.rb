@@ -8,6 +8,7 @@
 #  deleted_at   :datetime
 #  created_at   :datetime
 #  updated_at   :datetime
+#  permalink    :string(255)      not null
 #
 
 class JewFactory::Party < JewFactory::Base

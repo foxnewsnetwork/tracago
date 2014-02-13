@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211202756) do
+ActiveRecord::Schema.define(version: 20140212180901) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -58,6 +58,28 @@ ActiveRecord::Schema.define(version: 20140211202756) do
 
   add_index "itps_documentations_tags", ["documentation_id"], name: "index_itps_documentations_tags_on_documentation_id", using: :btree
   add_index "itps_documentations_tags", ["tag_id"], name: "index_itps_documentations_tags_on_tag_id", using: :btree
+
+  create_table "itps_email_archives", force: true do |t|
+    t.string   "mailer_name",   null: false
+    t.string   "mailer_method", null: false
+    t.string   "destination",   null: false
+    t.string   "origination"
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_email_archives", ["destination"], name: "index_itps_email_archives_on_destination", using: :btree
+
+  create_table "itps_email_archives_serialized_objects", force: true do |t|
+    t.integer "email_archive_id",              null: false
+    t.integer "order_number",      default: 0, null: false
+    t.string  "name_of_model",                 null: false
+    t.string  "variable_namekey",              null: false
+    t.string  "external_model_id",             null: false
+  end
+
+  add_index "itps_email_archives_serialized_objects", ["email_archive_id"], name: "index_itps_email_archives_serialized_objects_on_email_archive_id", using: :btree
 
   create_table "itps_escrows", force: true do |t|
     t.integer  "service_party_id",                                  null: false
