@@ -4,7 +4,7 @@ class Itps::Escrows::AgreementMailer < Itps::BaseMailer
     self.mailer_method = 'create_email'
     self.escrow = escrow
     self.to = to || escrow.draft_party.email
-    self.subject = '#{escrow.full_presentation} accepted by other party'
+    self.subject = "#{escrow.full_presentation} accepted by other party"
     mail _mail_params
   end
 end
