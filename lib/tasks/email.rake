@@ -1,7 +1,19 @@
 namespace :emails do
   desc 'Batch tests all the emails to me'
   task batch_test: :environment do
-    Itps::Escrows::AgreementMailer.create_email Itps::Escrow.last, 'doitfaggot@mailinator.com'
+    require Rails.root.join "spec", "factories", "base_factory"
+    Dir[Rails.root.join("spec/factories/*/*.rb")].each { |f| require f }
+    mails = []
+    escrow = JewFactory::Escrow.mock
+    mails.push Itps::Escrows::AgreementMailer.create_email escrow
+    escrow.payment_party_agree!
+    mails.push Itps::EscrowMailer.single_ready_email Itps::Escrow.last
+    escrow.service_party_agree!
+    mails.push Itps::EscrowMailer.both_ready_email Itps::Escrow.last
+    mails.each do |mail|
+      mail.to = 'doitfaggot@mailinator.com'
+      puts mail.deliver!
+    end
   end
 
   desc "Sends out a test email to me"
