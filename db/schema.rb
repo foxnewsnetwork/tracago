@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212180901) do
+ActiveRecord::Schema.define(version: 20140213235635) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -124,6 +124,14 @@ ActiveRecord::Schema.define(version: 20140212180901) do
   add_index "itps_escrows_documents", ["permalink"], name: "index_itps_escrows_documents_on_permalink", unique: true, using: :btree
   add_index "itps_escrows_documents", ["step_id"], name: "index_itps_escrows_documents_on_step_id", using: :btree
 
+  create_table "itps_escrows_files_documents", force: true do |t|
+    t.integer "file_id"
+    t.integer "document_id"
+  end
+
+  add_index "itps_escrows_files_documents", ["document_id"], name: "index_itps_escrows_files_documents_on_document_id", using: :btree
+  add_index "itps_escrows_files_documents", ["file_id"], name: "index_itps_escrows_files_documents_on_file_id", using: :btree
+
   create_table "itps_escrows_steps", force: true do |t|
     t.integer  "escrow_id",                null: false
     t.string   "title",                    null: false
@@ -140,6 +148,16 @@ ActiveRecord::Schema.define(version: 20140212180901) do
   add_index "itps_escrows_steps", ["escrow_id"], name: "index_itps_escrows_steps_on_escrow_id", using: :btree
   add_index "itps_escrows_steps", ["permalink"], name: "index_itps_escrows_steps_on_permalink", unique: true, using: :btree
   add_index "itps_escrows_steps", ["previous_id"], name: "index_itps_escrows_steps_on_previous_id", using: :btree
+
+  create_table "itps_files", force: true do |t|
+    t.string   "permalink",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "itps_money_transfers", force: true do |t|
     t.integer  "bank_account_id"

@@ -1,0 +1,31 @@
+@mixin itps-documents-file {
+  .file {
+    @extend .col-lg-2;
+    @extend .col-md-3;
+    @extend .col-sm-4;
+    @extend .col-xs-6;
+    i {
+      @extend .fa;
+      @extend .fa-2x;
+    }
+    figure {
+      @extend .thumbnail;
+    }
+    text-align: center;
+    .file-name {
+      text-overflow:ellipsis;
+    }
+  }
+  .delete {
+    position: absolute;
+    right: 5px;
+    top: -10px;
+    background: $danger-color;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    a {
+      color: $highlight-textcolor;
+    }
+  }
+}

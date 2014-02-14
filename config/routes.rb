@@ -66,6 +66,7 @@ Tracago::Application.routes.draw do
       resources :accounts, only: [:new, :create], controller: 'parties/accounts'
       resources :bank_accounts, only: [:new, :create, :index], controller: 'parties/bank_accounts'
     end
+    resources :files, only: [:destroy]
     resources :documents, only: [:update], controller: 'documents/puts' do
       member do
         put :approve
@@ -73,6 +74,7 @@ Tracago::Application.routes.draw do
         put :upload
       end
     end
+    resources :document_batches, only: [:show, :destroy, :edit]
     resources :documents, only: [:show, :destroy, :edit]
     resources :escrows, only: [:edit, :update], controller: 'escrows/puts'
     resources :escrows, only: [:destroy], controller: 'escrows/delete'

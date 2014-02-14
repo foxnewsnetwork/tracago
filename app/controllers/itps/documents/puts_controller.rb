@@ -1,5 +1,5 @@
 class Itps::Documents::PutsController < Itps::BaseController
-  before_filter :filter_anonymous_accounts
+  before_filter :filter_anonymous_account
   before_filter :_filter_edit_mode_escrows,
     only: [:approve, :reject]
   before_filter :filter_wrong_account
@@ -64,11 +64,17 @@ class Itps::Documents::PutsController < Itps::BaseController
   end
 
   def _upload_to_document!
-    @upload_result = _document.update _file_upload_params
+    @upload_result = _document.files.create! _file_upload_array
+  end
+
+  def _file_upload_array
+    _file_upload_params.to_a.map do |image|
+      { image: image }
+    end
   end
 
   def _file_upload_params
-    params.require(:document).permit(:attached_file)
+    params.require(:document)[:images]
   end
 
   def _approve_document!
@@ -100,11 +106,11 @@ class Itps::Documents::PutsController < Itps::BaseController
 
 
   def _upload_failed?
-    false == @upload_result
+    !_upload_success?
   end
 
   def _upload_success?
-    true == @upload_result
+    @upload_result.present? && @upload_result.all?(&:persisted?)
   end
 
   def _approve_failed?

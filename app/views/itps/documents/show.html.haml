@@ -9,73 +9,64 @@
 #document-content
   #cookie-crumbs
     %ol
-      %li= link_to t(:escrow), itps_escrow_path(@document.escrow.permalink)
+      %li= link_to @document.escrow.full_presentation, itps_escrow_path(@document.escrow.permalink)
+      %li= link_to @document.step.full_presentation, itps_step_path(@document.step.permalink)
+      %li= link_to @document.full_presentation
+  #document-other-actions.row
+    %h2= t(:available_actions)
+    %ul
       %li
         = link_to itps_step_path(@document.step.permalink) do
-          = t(:step)
-          = @document.step.position
-      %li= link_to @document.title, itps_document_path(@document.permalink)
-  #document-other-actions
-    %fieldset
-      %legend= t(:available_actions)
-    %fieldset
-      %ul
+          %figure
+            %i.back
+          = t(:back)
+      - if @document.edit_mode?
         %li
-          = link_to itps_step_path(@document.step.permalink) do
+          = link_to edit_itps_document_path(@document.permalink) do
             %figure
-              %i.back
-            = t(:back)
-        - if @document.edit_mode?
-          %li
-            = link_to edit_itps_document_path(@document.permalink) do
-              %figure
-                %i.edit
-              = t(:edit)
-          %li
-            = link_to itps_document_path(@document.permalink), method: :delete do
-              %figure
-                %i.destroy
-              = t(:destroy)
-        - if @document.escrow.locked?
-          %li
-            = link_to reject_itps_document_path(@document.permalink), method: :put do
-              %figure
-                %i.reject
-              = t(:reject)
-          %li
-            = link_to approve_itps_document_path(@document.permalink), method: :put do
-              %figure
-                %i.approve
-              = t(:approve)
-  #document-form
+              %i.edit
+            = t(:edit)
+        %li
+          = link_to itps_document_path(@document.permalink), method: :delete do
+            %figure
+              %i.destroy
+            = t(:destroy)
+      - if @document.escrow.locked?
+        %li
+          = link_to reject_itps_document_path(@document.permalink), method: :put do
+            %figure
+              %i.reject
+            = t(:reject)
+        %li
+          = link_to approve_itps_document_path(@document.permalink), method: :put do
+            %figure
+              %i.approve
+            = t(:approve)
+  #documents.row
+    %h2= t(:documents)
+    %dl.vanilla
+      %dt= t(:status)
+      %dd= t @document.status
+    %dl.vanilla
+      %dt= t(:total_files)
+      %dd= @document.files.count
+    %dl.description
+      %dt= t(:description)
+      %dd= @document.description
+  .row
+    = render partial: 'itps/documents/file', collection: @document.files
+  #document-form.row
+    %h2= t(:document_upload)
     - out_url = upload_itps_document_path(@document.permalink)
     = form_for :document, url: out_url, method: :put, multipart: true do |f|
-      %fieldset
-        %legend= t(:document_upload)
-      %fieldset
-        %dl
-          %dt= t(:status)
-          %dd= t @document.status
-          %dt= t(:description)
-          %dd= @document.description
-          %dt= t(:last_updated_at)
-          %dd= @document.updated_at
-          %dt= t(:previously_uploaded_document)
-          %dd
-            - if @document.attached_file.present?
-              = link_to @document.attached_file.url, target: '_blank' do
-                %i.file
-                = h @document.title
-            - else
-              = t(:no_files_uploaded)
-          %dt= f.label :attached_file, t(:document_file_upload)
-          %dd
-            = f.file_field :attached_file
-      %fieldset
-        %section
-          = button_tag type: :submit do
-            %i.submit
-            = t(:submit)
-          = link_to itps_step_path(@document.step.permalink), type: :reset do
-            %i.reset
-            = t(:cancel)
+      %dl
+        %dt= f.label :images, t(:document_files_upload)
+        %dd= f.file_field :images, multiple: true
+      %p= t(:selected_multiple_files_with_the_shift_keys)
+      %section
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        = link_to itps_step_path(@document.step.permalink), type: :reset do
+          %i.reset
+          = t(:cancel)

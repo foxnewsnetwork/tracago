@@ -14,8 +14,11 @@ Calendar for Escrow
 (critical)
 >favicon.ico must be generated
 >missing translations
->email fix
->ability to upload lots of pictures at once to the site
+
+Fiday Feb 14
+=
+1. ability to upload lots of pictures at once to the site
+
 
 Thursday Feb 13
 =
@@ -26,7 +29,7 @@ Christina buys #1-7 (need more buyers)
 Jacky buys good film (from arthur)
 Jack buys shit film (from arthur and jacky)
 1. Email archive setup
-
+2. email fix
 
 888 287 4637 - BoA fraud services department
 temp pass code: H343637F (deprecated already, don't bother stealing)

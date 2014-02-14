@@ -3,13 +3,18 @@
     %h1= t(:require_new_documents)
 
 = form_for @document, url: itps_step_documents_path(@document.step.permalink) do |f|
+  #cookie-crumbs
+    %ol
+      %li= link_to @document.escrow.full_presentation, itps_escrow_path(@document.escrow.permalink)
+      %li= link_to @document.step.full_presentation, itps_step_path(@document.step.permalink)
+      %li= link_to t(:new_document_requirement)
   %fieldset
     %section= render partial: 'itps/shared/errors', locals: { errors: @document.errors }
   %fieldset
     %dl
       %dt= f.label :title, t(:document_name)
       %dd= f.text_field :title
-    %p Please specify a title which describes the document
+    %p Please specify a title which describes the document.
   %fieldset
     %dl
       %dt= f.label :description, t(:document_description)

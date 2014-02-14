@@ -25,10 +25,17 @@ class Itps::Escrows::Document < ActiveRecord::Base
   has_one :escrow,
     through: :step,
     class_name: 'Itps::Escrow'
+  has_many :relationships,
+    class_name: 'Itps::Escrows::FilesDocuments'
+  has_many :files,
+    through: :relationships,
+    class_name: 'Itps::File'
   before_validation :_create_permalink
 
   scope :has_attachment,
     -> { where "#{self.table_name}.attached_file_file_name is not null" }
+  scope :has_file_attachments,
+    -> { joins(:relationships).where "#{self.table_name}.id = relationships.batch_document_id" }
   scope :not_approved,
     -> { where "#{self.table_name}.approved_at is null or #{self.table_name}.approved_at < #{self.table_name}.rejected_at"}
   scope :waiting_approval,

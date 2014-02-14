@@ -95,18 +95,22 @@ class Itps::Escrows::Step < ActiveRecord::Base
     self.class.swap_positions(stepa, stepb)
   end
 
+  alias_method :all_documents, :documents
+  alias_method :all_approved_documents, :approved_documents
+  alias_method :all_rejected_documents, :rejected_documents
+
   def required_documents_presentation
-    p = documents.map(&:title).join(", ")
+    p = all_documents.map(&:title).join(", ")
     p.present? ? p : I18n.t(:none)
   end
 
   def approved_documents_presentation
-    p = approved_documents.map(&:title).join(", ")
+    p = all_approved_documents.map(&:title).join(", ")
     p.present? ? p : I18n.t(:none)
   end
 
   def rejected_documents_presentation
-    p = rejected_documents.map(&:title).join(", ")
+    p = all_rejected_documents.map(&:title).join(", ")
     p.present? ? p : I18n.t(:none)
   end
 
@@ -119,19 +123,19 @@ class Itps::Escrows::Step < ActiveRecord::Base
   end
 
   def waiting_documents?
-    documents.any?(&:waiting_upload?)
+    all_documents.any?(&:waiting_upload?)
   end
 
   def rejected_documents?
-    documents.any?(&:rejected?)
+    all_documents.any?(&:rejected?)
   end
 
   def needs_approval?
-    documents.any?(&:waiting_approval?) && !completed?
+    all_documents.any?(&:waiting_approval?) && !completed?
   end
 
   def waiting_final_approval?
-    documents.all(&:approved?) && !completed?
+    all_documents.all(&:approved?) && !completed?
   end
 
   private

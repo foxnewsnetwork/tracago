@@ -1,4 +1,13 @@
+@import 'itps/documents/file';
 @mixin itps-documents-show {
+  @include itps-documents-file;
+  h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    border-bottom: $standard-border;
+  }
   #hero-banner {
     background-color: $highlight-background;
     &.approved {
@@ -36,107 +45,78 @@
       }
     }
   }
+  #documents {
+    dl {
+      &.vanilla {
+        @extend .col-lg-2;
+        @extend .col-md-3;
+        @extend .col-sm-3;
+        @extend .col-xs-3;
+      }
+      &.description {
+        @extend .col-lg-3;
+        @extend .col-md-3;
+        @extend .col-sm-6;
+        @extend .col-xs-6;
+      }
+    }
+  }
+  #document-other-actions {
+    ul {
+      list-style: none;
+      padding-left: 15px;
+    }
+    li {
+      @extend .col-lg-2;
+      @extend .col-md-3;
+      @extend .col-sm-4;
+      @extend .col-xs-6;
+      @extend .really-bland-thumbnail;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      margin-right: 5px;
+      text-align: center;
+      i {
+        @extend .fa;
+        @extend .fa-2x;
+        &.back {
+          @extend .fa-chevron-left;
+        }
+        &.edit {
+          @extend .fa-edit;
+        }
+        &.destroy {
+          @extend .fa-times;
+        }
+        &.reject {
+          @extend .fa-thumbs-o-down;
+        }
+        &.approve {
+          @extend .fa-check-square-o;
+        }
+      }
+    }
+  }
+  #document-form {
+    dl, p, section {
+      @extend .col-lg-7;
+      @extend .col-md-8;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+    }
+    dd {
+      @extend .form-group;
+      i {
+        @extend .fa;
+        @extend .fa-file-o;
+      }
+      input {
+        @extend .form-control;
+      }
+    }
+  }
   #document-content {
     @extend .container;
     margin-bottom: 15px;
-    #cookie-crumbs {
-      @extend .row;
-      ol {
-        @extend .col-lg-8;
-        @extend .col-md-10;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        @extend .breadcrumb;
-        margin-top: 15px;
-        margin-left: 15px;
-      }
-    }
-    #document-other-actions {
-      fieldset {
-        @extend .row;
-        legend {
-          @extend .col-lg-8;
-          @extend .col-md-10;
-          @extend .col-sm-12;
-          @extend .col-xs-12;
-          margin-left: 15px;
-          padding-left: 0px;
-          margin-bottom: 5px;
-          border-bottom: $standard-border;
-        }
-        ul {
-          list-style: none;
-          padding-left: 15px;
-        }
-        li {
-          @extend .col-lg-2;
-          @extend .col-md-3;
-          @extend .col-sm-4;
-          @extend .col-xs-6;
-          @extend .really-bland-thumbnail;
-          padding-top: 5px;
-          padding-bottom: 5px;
-          margin-right: 5px;
-          text-align: center;
-          i {
-            @extend .fa;
-            @extend .fa-2x;
-            &.back {
-              @extend .fa-chevron-left;
-            }
-            &.edit {
-              @extend .fa-edit;
-            }
-            &.destroy {
-              @extend .fa-times;
-            }
-            &.reject {
-              @extend .fa-thumbs-o-down;
-            }
-            &.approve {
-              @extend .fa-check-square-o;
-            }
-          }
-        }
-      }
-    }
-    #document-form {
-      @extend .row;
-      form {
-        @extend .col-lg-12;
-        padding-left: 0px;
-
-        fieldset {
-          @extend .row;
-          legend, section, dl {
-            @extend .col-lg-8;
-            @extend .col-md-10;
-            @extend .col-sm-12;
-            @extend .col-xs-12;
-          }
-          legend {
-            margin-left: 15px;
-            padding-left: 0px;
-            margin-bottom: 5px;
-            border-bottom: $standard-border;
-          }
-          dl {
-            dd {
-              @extend .form-group;
-              i {
-                @extend .fa;
-                @extend .fa-file-o;
-              }
-              input {
-                @extend .form-control;
-              }
-              p {
-                @extend .help-block;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }

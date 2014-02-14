@@ -1,0 +1,11 @@
+.file
+  %span.delete
+    = link_to itps_file_path(file.permalink), method: :delete do
+      %i.fa-times
+  = link_to file.image.url, target: '_blank' do
+    %figure
+      - if file.picture?
+        = image_tag file.image.url
+      - else
+        %i.fa-file-o
+        .file-name= file.image_file_name

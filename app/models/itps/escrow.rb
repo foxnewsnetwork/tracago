@@ -316,6 +316,7 @@ class Itps::Escrow < ActiveRecord::Base
     completed_at.present?
   end
   alias_method :closed?, :completed?
+  alias_method :archived?, :completed?
 
   private
   def _create_permalink
