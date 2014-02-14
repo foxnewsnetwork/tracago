@@ -20,6 +20,8 @@ gem "bluecloth", "~> 2.2.0"
 gem 'ffaker', ">=1.20.0"
 gem 'kramdown', '~>1.3.1'
 gem 'numbers_and_words', "~> 0.10.0"
+gem 'squash_ruby', '~>1.4.0', :require => 'squash/ruby'
+gem 'squash_rails', '~>1.3.2', :require => 'squash/rails'
 group :development do
   gem "rspec", '~>2.13.0'
   gem 'rspec-rails', '~>2.13.0'
