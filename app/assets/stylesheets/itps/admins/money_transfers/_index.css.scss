@@ -20,44 +20,44 @@
   #content-box {
     @extend .container;
     margin-bottom: 20px;
-    #money-transfer-summary,
-    #money-transfer-pages {
-      @extend .row;
-      padding-left: 0px;
-      h2 {
-        @extend .col-lg-12;
-        @extend .col-md-12;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        border-bottom: $standard-border;
-      }
+  }
+  #money-transfer-summary,
+  #money-transfer-pages {
+    @extend .row;
+    padding-left: 0px;
+    h2 {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      border-bottom: $standard-border;
     }
-    #money-transfer-summary {
-      dl {
-        @extend .col-lg-2;
-        @extend .col-md-3;
-        @extend .col-sm-4;
-        @extend .col-xs-6;
-        margin-left: 15px;
-        i {
-          @extend .fa;
-          &.dollar-sign {
-            @extend .fa-dollar;
-          }
+  }
+  #money-transfer-summary {
+    dl {
+      @extend .col-lg-2;
+      @extend .col-md-3;
+      @extend .col-sm-4;
+      @extend .col-xs-6;
+      margin-left: 15px;
+      i {
+        @extend .fa;
+        &.dollar-sign {
+          @extend .fa-dollar;
         }
       }
     }
-    #money-transfer-pages {
-      ul, p {
-        @extend .col-lg-8;
-        @extend .col-md-12;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        list-style: none;
-        margin-left: 15px;
-        li {
-          @include itps-admins-money_transfers-money_transfer;
-        }
+  }
+  #money-transfer-pages {
+    ul, p {
+      @extend .col-lg-8;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      list-style: none;
+      margin-left: 15px;
+      li {
+        @include itps-admins-money_transfers-money_transfer;
       }
     }
   }

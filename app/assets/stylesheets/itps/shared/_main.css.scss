@@ -22,6 +22,7 @@
 @import 'itps/escrows/edit';
 @import 'itps/escrows/payment_instructions';
 @import 'itps/parties/show';
+@import 'itps/admins/money_transfers/index';
 @mixin shared-main {
   padding: 0px;
   
@@ -121,5 +122,8 @@
   #parties-show,
   #parties-bank_accounts-index {
     @include itps-parties-show;
+  }
+  #escrows-money_transfers-index {
+    @include itps-admins-money_transfers-index;
   }
 }
