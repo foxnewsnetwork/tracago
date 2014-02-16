@@ -18,7 +18,6 @@ Calendar for Escrow
 Saturday Feb 15
 =
 Live run tests
-1. account page fix no-bank account %p alignment
 2. registration should allow user to input company name
 3. introduce a page before new escrows that ask the user to select what sort of contract
 4. introduce new shipping deal contract
@@ -35,11 +34,12 @@ Live run tests
 15(high priority). uploaded images don't show up; resolve this by either renting s3 or something
 16(high priority). change the way documents consider if they have attachments or not
 17. resolve the double flash error for document rejection and approval
-18. admin stylesheets missing for some reason; resolve
 
 Fixes
 1. escrows / money_transfers path fixed
 2. itps/admin/outbound_transfers/1/escrows is a redirect loop (fuck) fixed
+3. admin stylesheets missing for some reason; resolved by following asset pipeline standards and refactoring
+4. account page fix no-bank account %p alignment
 
 Fiday Feb 14
 =

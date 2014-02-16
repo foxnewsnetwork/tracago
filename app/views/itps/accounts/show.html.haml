@@ -32,8 +32,8 @@
         %h3
           = t(:bank_accounts)
           = link_to t(:see_all), itps_party_bank_accounts_path(@account.party.permalink)
-        - if @account.bank_accounts.blank?
-          %p= t(:you_have_no_bank_accounts)
+          - if @account.bank_accounts.blank?
+            %span.parantheses= t(:you_have_none)
         - bank_accounts = @account.bank_accounts.order('created_at desc').limit(3)
         %dl
           %dt
