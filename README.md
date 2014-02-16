@@ -23,7 +23,6 @@ Live run tests
 4. introduce new shipping deal contract
 5. payment instructions page's check should reflect the given company's name
 6. Provide a way to change step type (from payment step to vanilla, for instance)
-7. Step initial h2 title needs to make sense
 8. Change payment step to pay-in step and pay-out step
 9. provide a way for users to request to have their left-over money back
 10. contract types should be implemented (international shipping contract, etc.)
@@ -40,6 +39,7 @@ Fixes
 4. account page fix no-bank account %p alignment
 5(high priority). uploaded images don't show up; resolve this by either renting s3 or something; resolved by fixing the nginx conf and where attachment go in the public folder
 6(high priority). change the way documents consider if they have attachments or not
+7. Step initial h2 title needs to make sense
 
 Fiday Feb 14
 =

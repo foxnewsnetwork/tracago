@@ -14,11 +14,10 @@
       %li= link_to @step.title, itps_step_path(@step.permalink)
   #basic-information
     %h2
-      = t(:basic_information)
-      %span.parantheses= t(:payment_step)
+      = h @step.title
     %dl
       %dt= t(:title)
-      %dd= @step.title
+      %dd= h @step.title
       %dt= t(:instructions)
       %dd
         - if @step.instructions.present?
