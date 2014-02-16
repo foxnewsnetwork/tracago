@@ -1,7 +1,7 @@
 .example_check
   .row
     .logo
-      .bank-name= t(:my_company_name)
+      .bank-name= escrow.payment_party.try(:company_name) || t(:my_company_name)
       .bank-address 4 Work Street
       .bank-address Anytown, CA 92010
     .date
