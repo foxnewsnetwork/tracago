@@ -6,7 +6,7 @@ class Itps::Admins::InboundTransfers::EscrowsController < Itps::AdminBaseControl
   end
   private
   def _filter_inbound_outbound
-    redirect_to itps_admin_outbound_transfer_escrows_path _inbound_transfer if _inbound_transfer.inbound?
+    redirect_to itps_admin_outbound_transfer_escrows_path _inbound_transfer unless _inbound_transfer.inbound?
   end
   def _inbound_transfer
     @inbound_transfer ||= Itps::MoneyTransfer.find params[:inbound_transfer_id]
