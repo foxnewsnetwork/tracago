@@ -32,10 +32,10 @@ class Itps::Escrows::Document < ActiveRecord::Base
     class_name: 'Itps::File'
   before_validation :_create_permalink
 
-  scope :has_attachment,
-    -> { where "#{self.table_name}.attached_file_file_name is not null" }
+  scope :doesnt_have_attachment,
+    -> { where "#{self.table_name}.file_count is null or #{self.table_name}.file_count <= 0" }
   scope :has_file_attachments,
-    -> { joins(:relationships).where "#{self.table_name}.id = relationships.batch_document_id" }
+    -> { joins(:relationships).where "#{self.table_name}.id = #{Itps::Escrows::FilesDocuments.table_name}.document_id" }
   scope :not_approved,
     -> { where "#{self.table_name}.approved_at is null or #{self.table_name}.approved_at < #{self.table_name}.rejected_at"}
   scope :waiting_approval,
@@ -75,7 +75,7 @@ class Itps::Escrows::Document < ActiveRecord::Base
   end
 
   def waiting_upload?
-    attached_file.blank?
+    files.blank?
   end
 
   def approve!

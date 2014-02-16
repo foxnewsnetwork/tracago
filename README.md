@@ -31,7 +31,6 @@ Live run tests
 12. Make it so that the agreement page also forces login if the user isn't logged in
 13. Make it so that, if both parties have already agreed, they are just forwarded to the contract
 14. find some way to get really long file names to not break the boundary on document show
-16(high priority). change the way documents consider if they have attachments or not
 17. resolve the double flash error for document rejection and approval
 
 Fixes
@@ -40,6 +39,7 @@ Fixes
 3. admin stylesheets missing for some reason; resolved by following asset pipeline standards and refactoring
 4. account page fix no-bank account %p alignment
 5(high priority). uploaded images don't show up; resolve this by either renting s3 or something; resolved by fixing the nginx conf and where attachment go in the public folder
+6(high priority). change the way documents consider if they have attachments or not
 
 Fiday Feb 14
 =

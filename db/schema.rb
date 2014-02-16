@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213235635) do
+ActiveRecord::Schema.define(version: 20140216192956) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -109,16 +109,17 @@ ActiveRecord::Schema.define(version: 20140213235635) do
   create_table "itps_escrows_documents", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "permalink",                  null: false
+    t.string   "permalink",                              null: false
     t.datetime "approved_at"
     t.datetime "rejected_at"
-    t.integer  "step_id",                    null: false
+    t.integer  "step_id",                                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attached_file_file_name"
     t.string   "attached_file_content_type"
     t.integer  "attached_file_file_size"
     t.datetime "attached_file_updated_at"
+    t.integer  "file_count",                 default: 0, null: false
   end
 
   add_index "itps_escrows_documents", ["permalink"], name: "index_itps_escrows_documents_on_permalink", unique: true, using: :btree
