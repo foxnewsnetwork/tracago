@@ -23,8 +23,8 @@ class Itps::File < ActiveRecord::Base
     class_name: 'Itps::Escrows::Document'
 
   has_attached_file :image,
-    url: '/itps/files/:id/:access_token/:basename.:extension',
-    path: ':rails_root/public/itps/files/:id/:access_token/:basename.:extension'
+    url: '/itps/files/:id/:basename.:extension',
+    path: ':rails_root/public/itps/files/:id/:basename.:extension'
 
   before_create :_create_permalink
 
