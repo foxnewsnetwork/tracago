@@ -23,13 +23,17 @@ class Itps::File < ActiveRecord::Base
     class_name: 'Itps::Escrows::Document'
 
   has_attached_file :image,
-    url: '/itps/files/:id/:basename.:extension',
-    path: ':rails_root/public/itps/files/:id/:basename.:extension'
+    url: '/storage/files/:id/:basename.:extension',
+    path: ':rails_root/public/storage/files/:id/:basename.:extension'
 
   before_create :_create_permalink
 
   def picture?
-    Image == image_content_type.to_s.split('/').first
+    Image == attachment_type
+  end
+
+  def attachment_type
+    image_content_type.to_s.split('/').first
   end
 
   private

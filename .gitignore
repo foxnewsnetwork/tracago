@@ -17,7 +17,10 @@
 
 public/spree
 public/itps
+public/storage
 
 sutf
 
 config/database.yml
+
+shared
