@@ -15,6 +15,31 @@ Calendar for Escrow
 >favicon.ico must be generated
 >missing translations
 
+Saturday Feb 15
+=
+Live run tests
+1. account page fix no-bank account %p alignment
+2. registration should allow user to input company name
+3. introduce a page before new escrows that ask the user to select what sort of contract
+4. introduce new shipping deal contract
+5. payment instructions page's check should reflect the given company's name
+6. Provide a way to change step type (from payment step to vanilla, for instance)
+7. Step initial h2 title needs to make sense
+8. Change payment step to pay-in step and pay-out step
+9. provide a way for users to request to have their left-over money back
+10. contract types should be implemented (international shipping contract, etc.)
+11. Allows the other person to view the contract if he has the view-key
+12. Make it so that the agreement page also forces login if the user isn't logged in
+13. Make it so that, if both parties have already agreed, they are just forwarded to the contract
+14. find some way to get really long file names to not break the boundary on document show
+15(high priority). uploaded images don't show up; resolve this by either renting s3 or something
+16(high priority). change the way documents consider if they have attachments or not
+17. resolve the double flash error for document rejection and approval
+18. admin stylesheets missing for some reason; reasolve
+
+Fixes
+1. escrows / money_transfers path fixed
+
 Fiday Feb 14
 =
 1. ability to upload lots of pictures at once to the site

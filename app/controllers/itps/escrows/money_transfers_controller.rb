@@ -8,7 +8,7 @@ class Itps::Escrows::MoneyTransfersController < Itps::BaseController
 
   private
   def _correct_accounts
-    _escrow.relevant_parties.map(&:account)
+    _escrow.relevant_accounts
   end
 
   def _money_transfers
