@@ -95,7 +95,7 @@ class Itps::Steps::PutsController < Itps::BaseController
   end
 
   def _steps_params
-    params.require(:itps_escrows_step).permit(:title, :instructions, :position)
+    params.require(:itps_escrows_step).permit(:title, :instructions, :position, :class_name)
   end
 
   def _swap_down!

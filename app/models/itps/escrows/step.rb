@@ -13,9 +13,12 @@
 #  updated_at   :datetime
 #  previous_id  :integer
 #  class_name   :string(255)
+#  memo         :text
 #
 
 class Itps::Escrows::Step < ActiveRecord::Base
+  AllTypes = ['payin_step', 'payout_step'].freeze
+
   class AbandonedFeature < StandardError; end
   class << self
     def swap_positions(stepa, stepb)
@@ -56,8 +59,23 @@ class Itps::Escrows::Step < ActiveRecord::Base
     self
   end
 
+  # Hey, why don't we use meta-programming to automate bool methods for step type?
+  # Because we don't need to and using meta-programming without absolutely good reason
+  # causes endless cancer in the greater scheme of things
+  def payin_step?
+    'payin_step' == class_name
+  end 
+
+  def payout_step?
+    'payout_step' == class_name
+  end
+
   def pay_step?
-    'pay_step' == class_name.to_s
+    'pay_step' == class_name
+  end
+
+  def memo_markedown
+    BlueClothe.new(memo).to_html.html_safe
   end
 
   def status

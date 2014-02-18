@@ -4,7 +4,7 @@ class Itps::Escrows::Steps::StepFormHelper < Spree::FormHelperBase
     :instructions,
     :document_name,
     :document_description,
-    :payment_step
+    :step_type
   ]
   attr_accessor :attributes
   attr_hash_accessor *Fields
@@ -35,12 +35,12 @@ class Itps::Escrows::Steps::StepFormHelper < Spree::FormHelperBase
   end
 
   def _class_name_params
-    return { class_name: 'pay_step' } if _payment_step?
+    return { class_name: step_type } if _payment_step?
     return {}
   end
 
   def _payment_step?
-    "1" == payment_step.to_s
+    Itps::Escrows::Step::AllTypes.include? step_type
   end
 
   def _document_params

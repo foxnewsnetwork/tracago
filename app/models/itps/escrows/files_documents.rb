@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: itps_escrows_files_batch_documents
+# Table name: itps_escrows_files_documents
 #
-#  id                :integer          not null, primary key
-#  file_id           :integer
-#  batch_document_id :integer
+#  id          :integer          not null, primary key
+#  file_id     :integer
+#  document_id :integer
 #
 
 class Itps::Escrows::FilesDocuments < ActiveRecord::Base

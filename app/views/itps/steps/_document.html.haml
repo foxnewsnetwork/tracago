@@ -1,7 +1,7 @@
 %li
   = link_to itps_document_path(document.permalink) do
-    %h4{ :class => document.status }
-      %i
+    %h4.document{ :class => document.status }
+      %i{ :class => document.status }
       = document.title
     %dl
       %dt= t(:status)

@@ -16,12 +16,10 @@
 #  memo         :text
 #
 
-class Itps::Escrows::PayStep < Itps::Escrows::Step
+class Itps::Escrows::PayinStep < Itps::Escrows::PayStep
   self.table_name = 'itps_escrows_steps'
-  before_save :_establish_stepname
-
   private
   def _establish_stepname
-    self.class_name = 'pay_step'
+    self.class_name = 'payin_step'
   end
 end

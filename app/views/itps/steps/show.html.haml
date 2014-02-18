@@ -15,6 +15,7 @@
   #basic-information
     %h2
       = h @step.title
+      %span.parantheses= t @step.class_name
     %dl
       %dt= t(:title)
       %dd= h @step.title
@@ -27,9 +28,16 @@
     %dl
       %dt= t(:step_position)
       %dd= @step.position
-      - if @step.pay_step?
+      - if @step.payin_step?
         %dt= t(:special_notice)
-        %dd The payment step requires the payment party to fund the contract escrow account.
+        %dd= t(:the_payin_step_requires_the_buyer_to_fund_the_contract_escrow_account)
+      - if @step.payout_step?
+        %dt= t(:special_notice)
+        %dd= t(:the_seller_may_receive_funds_from_the_escrow_account_upon_completion_upto_the_payout_step)
+  - if @step.memo.present?
+    #memo.row
+      %h2= t(:memo_notes)
+      .memo-notes= @step.memo_markedown
   #executive-actions
     %h2= t(:actions)
     %ul

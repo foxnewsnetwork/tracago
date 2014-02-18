@@ -15,6 +15,7 @@
 #  attached_file_content_type :string(255)
 #  attached_file_file_size    :integer
 #  attached_file_updated_at   :datetime
+#  file_count                 :integer          default(0), not null
 #
 
 class Itps::Escrows::Document < ActiveRecord::Base

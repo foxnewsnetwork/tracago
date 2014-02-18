@@ -8,6 +8,9 @@
     @extend .col-xs-12;
     border-bottom: $standard-border;
   }
+  i {
+    @extend .fa;
+  }
   #hero-banner {
     background-color: $highlight-background;
     &.approved {
@@ -47,6 +50,7 @@
   }
   #documents {
     dl {
+      padding-left: 15px;
       &.vanilla {
         @extend .col-lg-2;
         @extend .col-md-3;
@@ -66,6 +70,24 @@
       list-style: none;
       padding-left: 15px;
     }
+    i {
+      @extend .fa-2x;
+      &.back {
+        @extend .fa-chevron-left;
+      }
+      &.edit {
+        @extend .fa-edit;
+      }
+      &.destroy {
+        @extend .fa-times;
+      }
+      &.reject {
+        @extend .fa-thumbs-o-down;
+      }
+      &.approve {
+        @extend .fa-check-square-o;
+      }
+    }
     li {
       @extend .col-lg-2;
       @extend .col-md-3;
@@ -76,43 +98,21 @@
       padding-bottom: 5px;
       margin-right: 5px;
       text-align: center;
-      i {
-        @extend .fa;
-        @extend .fa-2x;
-        &.back {
-          @extend .fa-chevron-left;
-        }
-        &.edit {
-          @extend .fa-edit;
-        }
-        &.destroy {
-          @extend .fa-times;
-        }
-        &.reject {
-          @extend .fa-thumbs-o-down;
-        }
-        &.approve {
-          @extend .fa-check-square-o;
-        }
-      }
     }
   }
   #document-form {
+    padding-left: 0px;
     dl, p, section {
       @extend .col-lg-7;
       @extend .col-md-8;
       @extend .col-sm-12;
       @extend .col-xs-12;
     }
+    input {
+      @extend .form-control;
+    }
     dd {
       @extend .form-group;
-      i {
-        @extend .fa;
-        @extend .fa-file-o;
-      }
-      input {
-        @extend .form-control;
-      }
     }
   }
   #document-content {

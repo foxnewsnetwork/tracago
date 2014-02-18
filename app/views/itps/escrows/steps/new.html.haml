@@ -14,9 +14,11 @@
       %dd= f.text_field :title
       %dt= f.label :instructions
       %dd= f.text_area :instructions
-      %dt= f.label :payment_step, t(:payment_step)
-      %dd= f.check_box :payment_step
-    %p Please provide a reasonable title and some instructions to specify this step or term. Although the payment step happens last in an escrow agreement, you may specify the payment step to happen earlier (or multiple times) as appropriate in your particular application.
+      %dt= f.label :step_type, t(:step_type)
+      %dd= f.select :step_type, options_for_select(Itps::Escrows::Step::AllTypes), include_blank: 'standard'
+    %p
+      = t(:please_provide_a_reasonable_title_and_instructions_to_specify_this_step_or_term)
+      = t(:specifing_payin_or_payout_steps_to_indictate_when_the_escrow_account_should_be_funded_or_released)
   %fieldset
     %h3= t(:required_documents)
     %dl

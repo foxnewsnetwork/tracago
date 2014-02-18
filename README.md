@@ -10,10 +10,18 @@ Calendar for Escrow
 >the rest of the tags and documentations controllers
 >doc tags controller & show page
 >internationalization
+>need way to update memo on step
 
 (critical)
 >favicon.ico must be generated
 >missing translations
+
+
+Monday February 17
+=
+1. added memo to step, but still need a way to edit it
+8. Change payment step to pay-in step and pay-out step
+
 
 Saturday Feb 15
 =
@@ -22,7 +30,6 @@ Live run tests
 3. introduce a page before new escrows that ask the user to select what sort of contract
 4. introduce new shipping deal contract
 6. Provide a way to change step type (from payment step to vanilla, for instance)
-8. Change payment step to pay-in step and pay-out step
 9. provide a way for users to request to have their left-over money back
 10. contract types should be implemented (international shipping contract, etc.)
 11. Allows the other person to view the contract if he has the view-key

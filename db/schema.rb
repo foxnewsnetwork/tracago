@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216192956) do
+ActiveRecord::Schema.define(version: 20140218020421) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20140216192956) do
     t.datetime "updated_at"
     t.integer  "previous_id"
     t.string   "class_name"
+    t.text     "memo"
   end
 
   add_index "itps_escrows_steps", ["escrow_id"], name: "index_itps_escrows_steps_on_escrow_id", using: :btree

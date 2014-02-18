@@ -17,6 +17,8 @@
       %dd= f.number_field :position
       %dt= f.label :instructions
       %dd= f.text_area :instructions
+      %dt= f.label :class_name, t(:step_type)
+      %dd= f.select :class_name, options_for_select(Itps::Escrows::Step::AllTypes), include_blank: 'standard'
     %p= "You can edit the title, instructions, and relative positions of this step."
   %fieldset
     %section

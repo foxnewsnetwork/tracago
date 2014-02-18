@@ -13,6 +13,7 @@
 #  updated_at   :datetime
 #  previous_id  :integer
 #  class_name   :string(255)
+#  memo         :text
 #
 
 require 'spec_helper'

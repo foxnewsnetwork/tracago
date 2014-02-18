@@ -74,7 +74,6 @@ Tracago::Application.routes.draw do
         put :upload
       end
     end
-    resources :document_batches, only: [:show, :destroy, :edit]
     resources :documents, only: [:show, :destroy, :edit]
     resources :escrows, only: [:edit, :update], controller: 'escrows/puts'
     resources :escrows, only: [:destroy], controller: 'escrows/delete'
@@ -89,6 +88,8 @@ Tracago::Application.routes.draw do
     end
     resources :accounts, only: [:show] do
       resources :escrows, only: [:index, :new, :create], controller: 'accounts/escrows'
+      resources :shipping_contracts, only: [:new, :create], controller: 'accounts/shipping_contracts'
+      resources :general_contracts, only: [:new, :create], controller: 'accounts/general_contracts'
       resources :preferences, only: [:index], controller: 'accounts/preferences'
     end
     devise_scope :users do

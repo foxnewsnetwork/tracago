@@ -38,8 +38,14 @@
         @extend .col-lg-6;
         dd {
           @extend .form-group;
-          input[type='text'], textarea {
+          input[type='text'],
+          input[type='number'],
+          textarea,
+          select {
             @extend .form-control;
+          }
+          select {
+            text-transform: capitalize;
           }
           input[type='checkbox'] {
             width: 65px;
