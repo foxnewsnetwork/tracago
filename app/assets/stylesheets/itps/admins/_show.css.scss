@@ -2,146 +2,117 @@
 @import 'itps/admins/money_transfer';
 
 @mixin itps-admins-show {
-  #hero-banner {
-    background-color: $highlight-background;
-    section {
-      @extend .container;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      h1 {
-        @extend .row;
-        padding-left: 15px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        text-transform: capitalize;
-        color: $highlight-textcolor;
+  #table-of-contents {
+    @extend .col-lg-3;
+    @extend .col-md-3;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    background: #fff;
+    margin-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    ul {
+      @extend .nav;
+      @extend .nav-pills;
+      @extend .nav-stacked;
+      li {
+        a {
+          font-size: 16px;
+          text-transform: capitalize;
+        }
+        ul {
+          li {
+            a {
+              padding-left: 30px;
+              font-size: 14px;
+            }
+          }
+        }
       }
     }
   }
-  #admin-container {
-    @extend .container;
-    .nine-to-three {
-      @extend .row;
-      #table-of-contents {
-        @extend .col-lg-3;
-        @extend .col-md-3;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        background: #fff;
-        margin-top: 20px;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        ul {
-          @extend .nav;
-          @extend .nav-pills;
-          @extend .nav-stacked;
-          li {
-            a {
-              font-size: 16px;
-              text-transform: capitalize;
-            }
-            ul {
-              li {
-                a {
-                  padding-left: 30px;
-                  font-size: 14px;
-                }
-              }
-            }
-          }
-        }
+  #site-statistics, 
+  #about-this-account, 
+  #escrow-documents-summary, 
+  #documentation-summary,
+  #money-transfers-summary  {
+    @extend .row;
+    padding-left: 0px;
+    h2 {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      border-bottom: $standard-border;
+      margin-left: 15px;
+      padding-left: 0px;
+    }
+    dl {
+      @extend .col-lg-3;
+      @extend .col-md-4;
+      @extend .col-sm-6;
+      @extend .col-xs-12;
+    }
+  }
+  #documentation-summary {
+    i {
+      @extend .fa;
+      @extend .fa-2x;
+      &.new-doc {
+        @extend .fa-file;
       }
-      #dashboard {
-        @extend .col-lg-9;
-        @extend .col-md-9;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-        margin-bottom: 20px;
-        #site-statistics, 
-        #about-this-account, 
-        #escrow-documents-summary, 
-        #documentation-summary,
-        #money-transfers-summary  {
-          @extend .row;
-          padding-left: 0px;
-          h2 {
-            @extend .col-lg-12;
-            @extend .col-md-12;
-            @extend .col-sm-12;
-            @extend .col-xs-12;
-            border-bottom: $standard-border;
-            margin-left: 15px;
-            padding-left: 0px;
-          }
-          dl {
-            @extend .col-lg-3;
-            @extend .col-md-4;
-            @extend .col-sm-6;
-            @extend .col-xs-12;
-          }
-        }
-        #documentation-summary {
-          padding-left: 15px;
-          h2 {
-            margin-left: 0px;
-          }
-          article {
-            @extend .col-lg-2;
-            @extend .col-md-3;
-            @extend .col-sm-4;
-            @extend .col-xs-6;
-            a {
-              @extend .thumbnail;
-              text-align: center;
-              i {
-                @extend .fa;
-                @extend .fa-2x;
-                &.new-doc {
-                  @extend .fa-file;
-                }
-                &.new-tag {
-                  @extend .fa-tag;
-                }
-                &.new-deposit {
-                  @extend .fa-dollar;
-                }
-                &.new-out {
-                  @extend .fa-reply;
-                }
-                &.escrows {
-                  @extend .fa-book;
-                }
-              }
-            }
-          }
-        }
-        #escrow-documents-summary, #money-transfers-summary{
-          ul {
-            @extend .col-lg-12;
-            @extend .col-md-12;
-            @extend .col-sm-12;
-            @extend .col-xs-12;
-            list-style: none;
-            margin-left: 15px;
-          }
-        }
-        #escrows-documents-summary {
-          ul {
-            li {
-              @include itps-admins-document;
-            }
-          }
-        }
-        #money-transfers-summary {
-          ul {
-            li {
-              @include itps-admins-money_transfer;
-            }
-          }
-        }
+      &.new-tag {
+        @extend .fa-tag;
+      }
+      &.new-deposit {
+        @extend .fa-dollar;
+      }
+      &.new-out {
+        @extend .fa-reply;
+      }
+      &.escrows {
+        @extend .fa-book;
       }
     }
+    a {
+      @extend .thumbnail;
+      text-align: center;
+    }
+    article {
+      @extend .col-lg-2;
+      @extend .col-md-3;
+      @extend .col-sm-4;
+      @extend .col-xs-6;
+    }
+  }
+  #escrow-documents-summary, 
+  #money-transfers-summary {
+    ul {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      list-style: none;
+      margin-left: 15px;
+    }
+  }
+  #escrow-documents-summary {
+    li {
+      @include itps-admins-document;
+    }
+  }
+  #money-transfers-summary {
+    li {
+      @include itps-admins-money_transfer;
+    }
+  }
+  #dashboard {
+    @extend .col-lg-9;
+    @extend .col-md-9;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    margin-bottom: 20px;
   }
 }

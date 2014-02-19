@@ -1,0 +1,28 @@
+@mixin itps-admins-fund_requests-index {
+  #content-box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  i {
+    @extend .fa;
+  }
+  h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  dl {
+    @extend .col-lg-3;
+    @extend .col-md-4;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .fund-request {
+    @extend .really-bland-thumbnail;
+    @extend .col-lg-6;
+    @extend .col-md-8;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+}

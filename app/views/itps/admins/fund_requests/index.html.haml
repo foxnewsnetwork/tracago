@@ -1,0 +1,21 @@
+#hero-banner
+  %section
+    %h1= t(:fund_requests_index)
+
+#content-box.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_page), itps_admin_path(current_account)
+      %li= link_to t(:fund_requests_index)
+  #summary.row
+    %h2= t(:summary)
+    %dl
+      %dt= t(:total_unfilled_requests)
+      %dd= Itps::Accounts::FundRequest.unfulfilled.count
+    %dl
+      %dt= t(:total_requests)
+      %dd= Itps::Accounts::FundRequest.count
+  #requests.row
+    = render partial: 'itps/admins/fund_requests/fund_request', collection: @fund_requests
+  #pagination.row
+    = paginate @fund_requests

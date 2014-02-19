@@ -40,7 +40,7 @@ class Itps::Escrows::Document < ActiveRecord::Base
   scope :not_approved,
     -> { where "#{self.table_name}.approved_at is null or #{self.table_name}.approved_at < #{self.table_name}.rejected_at"}
   scope :waiting_approval,
-    -> { has_attachment.not_approved }
+    -> { has_file_attachments.not_approved }
   scope :approved,
     -> { where("#{self.table_name}.approved_at is not null") }
   scope :rejected,

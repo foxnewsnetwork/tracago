@@ -131,7 +131,9 @@
     @include itps-admins-money_transfers-index;
   }
   #accounts-fund_requests-new,
-  #accounts-fund_requests-create {
+  #accounts-fund_requests-create,
+  #fund_requests-edit,
+  #fund_requests-update {
     @include itps-accounts-fund_requests-new;
   }
 }

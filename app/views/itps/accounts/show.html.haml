@@ -56,7 +56,11 @@
                 %i.new-bank-account
               = t(:add_bank)
           %li
-            = link_to new_itps_account_fund_request_path(@account.permalink) do
+            - if @account.active_fund_request.blank?
+              - out_link = new_itps_account_fund_request_path(@account.permalink)
+            - else
+              - out_link = edit_itps_fund_request_path(@account.active_fund_request)
+            = link_to out_link do
               %figure
                 %i.fa-mail-reply
               = t(:return_funds)

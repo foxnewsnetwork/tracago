@@ -1,0 +1,50 @@
+#hero-banner
+  %section
+    %h1
+      = t(:fulfill_fund_transfer_request)
+
+#content-box.container
+  = form_for @fund_request, url: itps_admin_fund_request_path(@fund_request), method: :put, multipart: true do |f|
+    .row
+      .left-block= render partial: 'itps/shared/errors', locals: { errors: @fund_request.errors }
+    .row
+      %dl.left-block
+        %dt= t(:status)
+        %dd= t @fund_request.status
+        %dt= t(:request_amount)
+        %dd
+          %i.fa-dollar
+          = @fund_request.dollar_amount
+        %dt= t(:requested_company)
+        %dd
+          = link_to itps_account_path @fund_request.account do
+            = @fund_request.account.party.company_name
+        %dt= t(:requested_company_email)
+        %dd
+          = link_to itps_account_path @fund_request.account do
+            = @fund_request.account.email
+      %aside.right-block
+        = t(:we_own_this_user)
+        %i.fa-dollar
+        = @fund_request.account.credit
+        .memo= h @fund_request.memo
+    .row
+      %dl.left-block
+        %dt= f.label :files, t(:files)
+        %dd= f.file_field :files, multiple: true
+      %aside.right-block
+        = t(:if_you_have_proof_of_returning_refund_upload_them_here)
+        %ul.attached-files
+          - @fund_request.files.each do |file|
+            %li= link_to file.permalink, file.image.url
+    .row
+      .left-block
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        - back_path = itps_admin_fund_request_path @fund_request
+        = link_to back_path, type: :reset do
+          %i.reset
+          = t(:cancel)
+
+

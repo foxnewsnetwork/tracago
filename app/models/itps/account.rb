@@ -76,6 +76,18 @@ class Itps::Account < ActiveRecord::Base
 
   has_many :fund_requests,
     class_name: 'Itps::Accounts::FundRequest'
+
+  has_one :active_fund_request,
+    -> { unfulfilled.order('updated_at desc').limit 1 },
+    class_name: 'Itps::Accounts::FundRequest'
+
+  has_many :unfulfilled_fund_requests,
+    -> { unfulfilled },
+    class_name: 'Itps::Accounts::FundRequest'
+
+  has_many :fulfilled_fund_requests,
+    -> { fulfilled },
+    class_name: 'Itps::Accounts::FundRequest'
     
   has_many :roles,
     class_name: 'Itps::Accounts::Role'
@@ -98,6 +110,10 @@ class Itps::Account < ActiveRecord::Base
 
   def adminify!
     roles.find_or_create_by role_name: :admin
+  end
+
+  def full_presentation
+    "User##{email}-#{party.company_name}"
   end
 
   def credit

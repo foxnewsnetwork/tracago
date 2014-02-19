@@ -1,0 +1,41 @@
+#hero-banner
+  %section
+    %h1
+      = t(:edit_fund_transfer_request)
+
+#content-box.container
+  = form_for @fund_request, url: itps_fund_request_path(@fund_request), method: :put do |f|
+    .row
+      .left-block= render partial: 'itps/shared/errors', locals: { errors: @fund_request.errors }
+    .row
+      %dl.left-block
+        %dt= t(:status)
+        %dd= t @fund_request.status
+        %dt= f.label :dollar_amount, t(:request_amount)
+        %dd.form-group= f.number_field :dollar_amount, minimum: 0, maximum: @fund_request.account.credit
+      %aside.right-block
+        = t(:request_whatever_credit_you_have_with_us_to_be_returned)
+        = t(:you_have)
+        %i.fa-dollar
+        = @fund_request.account.credit
+    .row
+      %dl.left-block
+        %dt= f.label :memo, t(:special_instructions)
+        %dd.form-group= f.text_field :memo
+      %aside.right-block
+        = t(:if_you_any_special_instructions)
+        %span.parantheses= t(:please_keep_it_brief)
+        %ul.attached-files
+          - @fund_request.files.each do |file|
+            %li= link_to file.permalink, file.image.url
+    .row
+      .left-block
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        - back_path = itps_account_path @fund_request.account
+        = link_to back_path, type: :reset do
+          %i.reset
+          = t(:cancel)
+
+

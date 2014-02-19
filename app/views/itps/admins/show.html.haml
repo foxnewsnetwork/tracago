@@ -2,8 +2,8 @@
   %section
     %h1= t(:my_account_profile)
 
-#admin-container
-  .nine-to-three
+#admin-container.container
+  .row
     #table-of-contents
       %ul
         %li= link_to t(:site_statistics), '#site-statistics'
@@ -11,6 +11,7 @@
         %li= link_to t(:executive_actions), '#documentation-summary'
         %li= link_to t(:money_transfer_summary), itps_admin_money_transfers_path
         %li= link_to t(:escrow_documents), itps_admin_documents_path
+        %li= link_to t(:fund_requests), itps_admin_fund_requests_path
 
     #dashboard
       #site-statistics

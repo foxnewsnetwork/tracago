@@ -1,0 +1,18 @@
+.fund-request
+  .row
+    = link_to edit_itps_admin_fund_request_path(fund_request) do
+      %dl
+        %dt= t(:requested_by)
+        %dd= fund_request.account.party.company_name
+      %dl
+        %dt= t(:requested_amount)
+        %dd
+          %i.fa-dollar
+          = fund_request.dollar_amount
+      %dl
+        %dt= t(:memo)
+        %dd
+          - if fund_request.memo.present?
+            = h fund_request.memo
+          - else
+            = t(:none)

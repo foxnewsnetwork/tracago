@@ -1,6 +1,7 @@
 class Itps::Accounts::FundRequestsController < Itps::BaseController
   before_filter :filter_anonymous_account,
-    :filter_wrong_account
+    :filter_wrong_account,
+    :_filter_already_requested_account
 
   def new
     _fund_request
@@ -12,6 +13,15 @@ class Itps::Accounts::FundRequestsController < Itps::BaseController
     _get_out_of_here!
   end
   private
+  def _filter_already_requested_account
+    if _account.active_fund_request.present?
+      redirect_to edit_itps_fund_request_path _fund_request
+      flash[:notice] = t(:you_already_have_an_active_fund_request)
+    end
+  end
+  def _correct_accounts
+    [_account]
+  end
   def _fund_request
     @fund_request ||= _account.fund_requests.new
   end
