@@ -1,5 +1,5 @@
 To <%= @attributes[:escrow].draft_party.company_name %>,
 
-<%= @attributes[:escrow].other_party.company_name %> has accepted all the terms of the contract. It is now a locked and fully legal document. See it here:
+<%= @attributes[:escrow].other_party.company_name %> has accepted all the terms of the contract. Please proceed to fund the provided escrow account if you have not already done so.
 
 <%= itps_escrow_url(@attributes[:escrow].permalink, host: 'globaltradepayment.co') %>

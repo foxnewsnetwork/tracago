@@ -147,6 +147,12 @@ class Itps::Escrow < ActiveRecord::Base
     return service_party if service_party_agree_key == key
   end
 
+  def account_party_agree!(account)
+    return false if account.blank?
+    return payment_party if payment_party == account.party && payment_party_agree!
+    return service_party if service_party == account.party && service_party_agree!
+  end
+
   def secret_key_party_agree!(key)
     return false if key.blank?
     return payment_party if (payment_party_agree_key == key) && payment_party_agree!
@@ -257,9 +263,24 @@ class Itps::Escrow < ActiveRecord::Base
   def service_party_agree!
     update serviced_party_agreed_at: DateTime.now
   end
+  alias_method :service_party_agrees!, :service_party_agree!
 
   def payment_party_agree!
     update payment_party_agreed_at: DateTime.now
+  end
+  alias_method :payment_party_agrees!, :payment_party_agree!
+
+  def already_agreed_parties
+    Array.new.tap do |ps|
+      ps << payment_party if payment_party_agreed?
+      ps << service_party if service_party_agreed?
+    end
+  end
+
+  def already_agreed?(party)
+    return true if party == payment_party && payment_party_agreed?
+    return true if party == service_party && service_party_agreed?
+    false
   end
 
   def already_agreed_party
@@ -320,11 +341,11 @@ class Itps::Escrow < ActiveRecord::Base
 
   private
   def _create_permalink
-    self.permalink ||= "#{DateTime.now.to_s}-#{payment_party.permalink}-#{service_party.permalink}".to_url
+    self.permalink ||= "#{DateTime.now.to_i.to_alphabet}-#{payment_party.permalink}-#{rand(999999).to_alphabet}".to_url
   end
 
   def _create_secret_hashes
-    self.service_party_agree_key ||= Digest::SHA256.new.hexdigest( _create_permalink + "-service")
-    self.payment_party_agree_key ||= Digest::SHA256.new.hexdigest( _create_permalink + "-payment")
+    self.service_party_agree_key ||= Digest::MD5.new.hexdigest( _create_permalink + "-service")
+    self.payment_party_agree_key ||= Digest::MD5.new.hexdigest( _create_permalink + "-payment")
   end
 end

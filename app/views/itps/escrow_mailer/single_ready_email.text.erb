@@ -3,7 +3,7 @@ Contract with <%= @attributes[:escrow].already_agreed_party.company_name %> requ
 
 Visit the following link to review the contract:
 
-<%= new_itps_escrow_agreement_url @attributes[:escrow].permalink, secret_key: @attributes[:escrow].not_agreed_party_secret_key, host: Itps::BaseHelper.itps_app_host %>
+<%= new_itps_secret_key_escrow_agreement_url @attributes[:escrow].not_agreed_party_secret_key, @attributes[:escrow].permalink, host: Itps::BaseHelper.itps_app_host %>
 
 The other party's contact details are reproduced here for your convenience:
 

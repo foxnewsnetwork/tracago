@@ -44,6 +44,13 @@ Tracago::Application.routes.draw do
       end
       resources :relationships, only: [:destroy], controller: 'admins/relationships'
     end
+    resources :secret_keys, only: [] do
+      resources :escrows, only: [:show], controller: 'secret_keys/escrows' do
+        resources :sessions, only: [:new, :create], controller: 'secret_keys/escrows/sessions'
+        resources :registrations, only: [:new, :create], controller: 'secret_keys/escrows/registrations'
+        resources :agreements, only: [:new], controller: 'secret_keys/escrows/agreements'
+      end
+    end
     resources :doc_tags, only: [:show, :index]
     resources :tags, only: [:show, :index], controller: 'doc_tags' do
       resources :tags, only: [:index], controller: 'doc_tags/tags'

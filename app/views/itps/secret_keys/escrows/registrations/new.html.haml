@@ -1,0 +1,34 @@
+#hero-banner
+  %section
+    %h1= t(:account_creation)
+
+#new-session-new
+  = form_for :user, url: user_registration_path do |f|
+    %fieldset
+      = f.hidden_field :origin, value: :itps
+      = f.hidden_field :back, value: new_itps_escrow_agreement_path(@escrow.permalink)
+      = f.hidden_field :email, value: @party.email
+      %dl
+        %dt= t(:company_name)
+        %dd= @party.company_name
+        %dt= t(:login_email)
+        %dd= @party.email
+        %dt= f.label :password, t(:password)
+        %dd= f.password_field :password
+        %dt= f.label :password_confirmation, t(:password_confirmation)
+        %dd= f.password_field :password_confirmation
+      %article
+        %h4
+          %span.parantheses= @escrow.full_presentation
+          = t(:you_need_to_create_an_account)
+        %h4
+          = t(:you_can_change_your_company_name_later)
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:submit)
+        - back_path = new_itps_secret_key_escrow_agreement_path params[:secret_key_id], @escrow.permalink
+        = link_to back_path, type: :reset do
+          %i.reset
+          = t(:cancel)

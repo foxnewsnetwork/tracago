@@ -27,6 +27,9 @@
             = t(:same_as_payment_party) 
           - elsif @escrow.drafted_by_worker?
             = t(:same_as_service_party)
+        - if @escrow.drafting_party == current_account.try(:party)
+          %span.parantheses
+            = t(:me!)
       %dt= t(:drafting_party_email)
       %dd= mail_to @escrow.drafting_party.email
       %dt= t(:document_last_updated_at)
@@ -36,6 +39,10 @@
       %dd
         = link_to itps_party_path @escrow.payment_party.permalink do
           = @escrow.payment_party.company_name
+          - if @escrow.payment_party == current_account.try(:party)
+            %span.parantheses
+              = t(:me!)
+
       %dt= t(:payment_party_email)
       %dd= mail_to @escrow.payment_party.email
       %dt= t(:payment_party_agreed_at)
@@ -46,6 +53,9 @@
       %dd
         = link_to itps_party_path @escrow.service_party.permalink do
           = @escrow.service_party.company_name
+          - if @escrow.service_party == current_account.try(:party)
+            %span.parantheses
+              = t(:me!)
       %dt= t(:goods_or_service_party_email)
       %dd= mail_to @escrow.service_party.email
       %dt= t(:goods_or_service_party_agreed_at)

@@ -18,41 +18,57 @@
       }
     }
   }
-  #agreement-content {
-    @extend .container;
-    margin-bottom: 20px;
-    #backwards-thing-whatever {
-      @extend .row;
-      margin-top: 15px;
-      margin-left: 0px;
-      a {
-        font-size: 18px;
-        font-weight: bold;
-      }
+  i {
+    @extend .fa;
+    &.login {
+      @extend .fa-user;
     }
-    section {
-      @extend .row;
-      article {
-        @extend .col-lg-8;
-        @extend .col-md-12;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-      }
+    &.signup {
+      @extend .fa-edit;
     }
-    form {
-      @extend .row;
-      margin-top: 5px;
-      fieldset {
-        @extend .col-lg-8;
-        @extend .col-md-12;
-        @extend .col-sm-12;
-        @extend .col-xs-12; 
+  }
+  #backwards-thing-whatever {
+    margin-top: 15px;
+    margin-left: 0px;
+    a {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+  #terms {
+    article {
+      @extend .col-lg-8;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+    }
+  }
+  form {
+    margin-top: 5px;
+    fieldset {
+      @extend .col-lg-8;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12; 
 
-        &:first-child { 
-          padding-top: 10px;
-          border-top: $standard-border;
-        }
+      &:first-child { 
+        padding-top: 10px;
+        border-top: $standard-border;
       }
     }
+  }
+  #agreement-content {
+    margin-bottom: 20px;
+  }
+  #actions {
+    h2 {
+      padding-left: 15px;
+    }
+  }
+  .action {
+    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-6;
   }
 }

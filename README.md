@@ -17,6 +17,38 @@ Calendar for Escrow
 >missing translations
 
 
+Tuesday February 18
+=
+Secret key specs
+Entrace path (from email)
+1. secret_keys/escrows#show
+2. secret_keys/escrows/agreeements#new (skipped if session exists)
+3. secret_keys/escrows/sessions#new or secret_keys/escrows/registrations#new (skipped if session exists)
+4. escrows/agreements#new
+
+# case 1: user with account invited to first-time contract
+expected behavior:
+> user goes directly to agreement page if logged in
+> user asked to sign in to first, then redirected to agreement page
+> agreement page presents link to review contract
+
+# case 2: user without account invited to first-time contract
+> user asked to make account, then redirect to agreement page
+> agreement page presents link to review contract
+
+# case 3: user with account revisits already-agreed contract
+> user goes directly to contract show if logged in
+> user asked to log in first, then redirected to contracts show
+
+# case 4: user without account revisits already-agreed contract
+> this case should not happen
+> in the future, it may be reasonable to implement collaborators to parties
+1. implemented secret key agreement steps
+6. Provide a way to change step type (from payment step to vanilla, for instance)
+13. Make it so that, if both parties have already agreed, they are just forwarded to the contract
+11. Allows the other person to view the contract if he has the view-key
+12. Make it so that the agreement page also forces login if the user isn't logged in
+
 Monday February 17
 =
 1. added memo to step, but still need a way to edit it
@@ -29,12 +61,8 @@ Live run tests
 2. registration should allow user to input company name
 3. introduce a page before new escrows that ask the user to select what sort of contract
 4. introduce new shipping deal contract
-6. Provide a way to change step type (from payment step to vanilla, for instance)
 9. provide a way for users to request to have their left-over money back
 10. contract types should be implemented (international shipping contract, etc.)
-11. Allows the other person to view the contract if he has the view-key
-12. Make it so that the agreement page also forces login if the user isn't logged in
-13. Make it so that, if both parties have already agreed, they are just forwarded to the contract
 14. find some way to get really long file names to not break the boundary on document show
 17. resolve the double flash error for document rejection and approval
 

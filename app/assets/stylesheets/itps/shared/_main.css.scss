@@ -25,7 +25,6 @@
 @import 'itps/admins/money_transfers/index';
 @mixin shared-main {
   padding: 0px;
-  
   #home-index {
     @include itps-home-index;
   }
@@ -65,7 +64,9 @@
   #documents-show {
     @include itps-documents-show;
   }
-  #escrows-agreements-new, #escrows-agreements-create {
+  #escrows-agreements-new, 
+  #escrows-agreements-create,
+  #secret_keys-escrows-agreements-new {
     @include itps-escrows-agreements-new;
   }
   #steps-documents-new, #steps-documents-create {
@@ -89,7 +90,9 @@
     @include itps-escrows-new;
   }
   #parties-accounts-new, 
-  #parties-accounts-create {
+  #parties-accounts-create,
+  #secret_keys-escrows-sessions-new,
+  #secret_keys-escrows-registrations-new {
     @include itps-sessions-new;
   }
   #steps-edit {

@@ -1,0 +1,24 @@
+#hero-banner
+  %section
+    %h1= t(:open_escrow_user_agreement)
+
+#agreement-content.container
+  #backwards-thing-whatever.row
+    - out_link = itps_secret_key_escrow_path(params[:secret_key_id], @escrow.permalink)
+    = link_to t(:contract_details), out_link, target: '_blank'
+  .row
+    = render partial: 'itps/escrows/agreements/terms'
+  #actions.row
+    %h2= t(:you_need_to_login_to_your_account_to_continue)
+    - if @party.account.present?
+      .action
+        - out_link = new_itps_secret_key_escrow_session_path(params[:secret_key_id], @escrow.permalink)
+        = link_to out_link, :class => 'btn btn-lg btn-block btn-primary' do
+          %i.login
+          = t(:login_to_existing_account)
+    - else
+      .action
+        - out_link = new_itps_secret_key_escrow_registration_path(params[:secret_key_id], @escrow.permalink)
+        = link_to out_link, :class => 'btn btn-lg btn-block btn-primary' do
+          %i.signup
+          = t(:create_a_new_account)

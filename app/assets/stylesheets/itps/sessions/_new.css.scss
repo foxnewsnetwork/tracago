@@ -20,26 +20,25 @@
   }
   #new-session-new {
     @extend .container;
+    padding-top: 10px;
     padding-bottom: 20px;
-    form {
-      fieldset {
-        @extend .row;
-        dl, article {
-          @extend .col-lg-4;
-          @extend .col-md-6;
-          @extend .col-sm-12;
-          @extend .col-xs-12;
-          dd {
-            @extend .form-group;
-            input {
-              @extend .form-control;
-            }
-          }
-        }
-        h4 {
-          margin-top: 15px;
-        }
-      }
+    dl, article {
+      @extend .col-lg-4;
+      @extend .col-md-6;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+    }
+    dd {
+      @extend .form-group;
+    }
+    input {
+      @extend .form-control;
+    }
+    h4 {
+      margin-top: 15px;
+    }
+    fieldset {
+      @extend .row;
     }
   }
 }

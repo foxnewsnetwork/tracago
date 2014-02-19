@@ -2,39 +2,24 @@
   %section
     %h1= t(:open_escrow_user_agreement)
 
-#agreement-content
-  #backwards-thing-whatever
+#agreement-content.container
+  #backwards-thing-whatever.row
     - out_link = itps_escrow_path(@escrow.permalink, secret_key: params[:secret_key])
     = link_to t(:contract_details), out_link, target: '_blank'
-  %section
+  .row
+    = render partial: 'itps/escrows/agreements/terms'
     %article
-      %h3 Human Readable Terms of Service Agreement
-      %p
-        = "The following is an easily-readable terms of service agreement."
-        = link_to "the full legal version can be found here.", itps_terms_path, target: '_blank'
-    %article
-      %h3 Good Faith
-      %p You agree to abide by the escrow contract, be reasonable, uphold your part of the bargain, and keep good faith in both negotiation and fulfillment of the terms of the contract.
-    %article
-      %h3 Legality
-      %p You agree to not doing anything illegal, or force the other party to do anything illegal through this contract.
-    %article
-      %h3 Consequences
-      %p In the event of extenuating circumstances such that prevents the fulfillment of the party, you agree that you may be forced to pay the consequences as specified by the contract.
-    %article
-      %h3 This is a Contract With The Other Party, Not Us
-      %p GTPC merely provides you a platform for you to host your contracts. We do not enforce the contracts in anyway, nor do we participate in arbitration of legal problems should they arise between you and the other party.
-    %article
-      %h3 by agreeing and clicking submit, you acknowledge you have read and understood the GTPC terms of service agreement.
-  = form_for :escrows, url: itps_escrow_agreement_path(@escrow.permalink) do |f|
-    %fieldset
-      = f.check_box :agree
-      = f.label :agree, t(:agree_to_terms_of_usage)
-      - super_secret_key = params[:secret_key]
-      - if correct_account? @escrow.drafting_party.try :account
-        - super_secret_key ||= @escrow.drafting_party_secret_key
-      = f.hidden_field :secret_key, value: super_secret_key
-    %fieldset
-      = button_tag type: :submit do
-        %i.submit
-        = t(:commit_to_contract)
+    %h3 by agreeing and clicking submit, you acknowledge you have read and understood the GTPC terms of service agreement.
+  .row
+    = form_for :escrows, url: itps_escrow_agreement_path(@escrow.permalink) do |f|
+      %fieldset
+        = f.check_box :agree
+        = f.label :agree, t(:agree_to_terms_of_usage)
+        - super_secret_key = params[:secret_key]
+        - if correct_account? @escrow.drafting_party.try :account
+          - super_secret_key ||= @escrow.drafting_party_secret_key
+        = f.hidden_field :secret_key, value: super_secret_key
+      %fieldset
+        = button_tag type: :submit do
+          %i.submit
+          = t(:commit_to_contract)

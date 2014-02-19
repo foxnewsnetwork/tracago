@@ -1,5 +1,7 @@
 class Itps::Escrows::AgreementsController < Itps::BaseController
-  before_filter :_filter_inappropriate_users
+  before_filter :_filter_inappropriate_users  
+  before_filter :_filter_already_agreed_account, only: [:create]
+
   def new
     _escrow
   end
@@ -12,8 +14,15 @@ class Itps::Escrows::AgreementsController < Itps::BaseController
   end
 
   private
+  def _filter_already_agreed_account
+    if _escrow.already_agreed? current_account.party
+      redirect_to itps_escrow_path _escrow.permalink
+      flash[:notice] = t(:you_have_already_agreed_to_the_contract)
+    end
+  end
+
   def _filter_inappropriate_users
-    unless _relevant_party? || _has_secret_key?
+    unless _relevant_party?
       redirect_to itps_escrow_path _escrow.permalink
       flash[:error] = t(:you_are_not_among_the_relevant_party)
     end
@@ -31,25 +40,16 @@ class Itps::Escrows::AgreementsController < Itps::BaseController
     _escrow.matches_service_account? current_account
   end
 
-  def _has_secret_key?
-    params[:secret_key].present? || params[:escrows][:secret_key].present?
-  end
-
   def _escrow
     @escrow ||= Itps::Escrow.find_by_permalink params[:escrow_id]
   end
 
   def _escrow_ready!
-    @agreed_party ||= _escrow.secret_key_party_agree! _secret_key if _in_position_to_agree?
+    @agreed_party ||= _escrow.account_party_agree! current_account if _in_position_to_agree?
   end
 
   def _agreement_successful?
-    @agreed_party.present?
-  end
-
-  def _secret_key
-    params[:escrows].try(:[], :secret_key) || 
-      _escrow.secret_key_for_account(current_account)
+    @agreed_party.is_a? Itps::Party
   end
 
   def _in_position_to_agree?
@@ -67,7 +67,7 @@ class Itps::Escrows::AgreementsController < Itps::BaseController
 
   def _get_out_of_here!
     return redirect_to itps_escrow_path _escrow.permalink if _agreement_successful?
-    return render :new
+    return redirect_to new_itps_escrow_agreement_path _escrow.permalink
   end
 
   def _dispatch_emails!

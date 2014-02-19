@@ -1,0 +1,31 @@
+#hero-banner
+  %section
+    %h1= t(:account_login)
+
+#new-session-new
+  = form_for :user, url: user_session_path do |f|
+    = f.hidden_field :origin, value: :itps
+    = f.hidden_field :back, value: new_itps_escrow_agreement_path(@escrow.permalink)
+    = f.hidden_field :email, value: @party.email
+    %fieldset
+      %dl
+        %dt= t(:login_email)
+        %dd= @party.email
+        %dt= f.label :password, t(:password)
+        %dd= f.password_field :password
+      %article
+        %h4
+          = "Login to visit the details for"
+          = @escrow.full_presentation
+        %h4
+          = "If you've forgotten your password for this account"
+          = link_to t(:please_reset_your_account), '#reset_account'
+    %fieldset
+      %article
+        = button_tag type: :submit do
+          %i.submit
+          = t(:login)
+        - back_path = new_itps_secret_key_escrow_agreement_path params[:secret_key_id], @escrow.permalink
+        = link_to back_path, type: :reset do
+          %i.reset
+          = t(:cancel)
