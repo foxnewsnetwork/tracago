@@ -55,6 +55,11 @@
               %figure
                 %i.new-bank-account
               = t(:add_bank)
+          %li
+            = link_to new_itps_account_fund_request_path(@account.permalink) do
+              %figure
+                %i.fa-mail-reply
+              = t(:return_funds)
       #contracts
         #contracts-active
           %h3

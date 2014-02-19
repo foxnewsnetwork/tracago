@@ -23,6 +23,7 @@
 @import 'itps/escrows/payment_instructions';
 @import 'itps/parties/show';
 @import 'itps/admins/money_transfers/index';
+@import 'itps/accounts/fund_requests/new';
 @mixin shared-main {
   padding: 0px;
   #home-index {
@@ -128,5 +129,9 @@
   }
   #escrows-money_transfers-index {
     @include itps-admins-money_transfers-index;
+  }
+  #accounts-fund_requests-new,
+  #accounts-fund_requests-create {
+    @include itps-accounts-fund_requests-new;
   }
 }

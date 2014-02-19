@@ -73,6 +73,9 @@ class Itps::Account < ActiveRecord::Base
   has_many :bank_accounts,
     class_name: 'Itps::Parties::BankAccount',
     through: :party
+
+  has_many :fund_requests,
+    class_name: 'Itps::Accounts::FundRequest'
     
   has_many :roles,
     class_name: 'Itps::Accounts::Role'
@@ -95,6 +98,10 @@ class Itps::Account < ActiveRecord::Base
 
   def adminify!
     roles.find_or_create_by role_name: :admin
+  end
+
+  def credit
+    party.money_balance
   end
 
   def permalink

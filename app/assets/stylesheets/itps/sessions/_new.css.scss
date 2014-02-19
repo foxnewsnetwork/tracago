@@ -1,23 +1,4 @@
 @mixin itps-sessions-new {
-  #hero-banner {
-    background-color: $highlight-background;
-    section {
-      @extend .container;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      h1 {
-        @extend .row;
-        padding-left: 15px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        text-transform: capitalize;
-        color: $highlight-textcolor;
-      }
-      .colon:after {
-        content: ":";
-      }
-    }
-  }
   #new-session-new {
     @extend .container;
     padding-top: 10px;

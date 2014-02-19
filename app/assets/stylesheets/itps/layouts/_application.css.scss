@@ -3,6 +3,7 @@
 @import 'itps/shared/main';
 @import 'itps/shared/footer';
 @import 'itps/shared/flash';
+@import 'itps/shared/hero_banner';
 @import 'shared/important';
 @import 'itps/shared/errors';
 @import 'itps/shared/cookiecrumbs';
@@ -47,6 +48,9 @@ body {
   }
   #cookie-crumbs {
     @include shared-cookiecrumbs;
+  }
+  #hero-banner {
+    @include shared-hero-banner;
   }
   header {
     @include shared-header;

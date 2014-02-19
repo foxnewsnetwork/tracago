@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219003007) do
+ActiveRecord::Schema.define(version: 20140219010802) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140219003007) do
     t.datetime "fulfilled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "memo"
   end
 
   add_index "itps_accounts_fund_requests", ["account_id"], name: "index_itps_accounts_fund_requests_on_account_id", using: :btree

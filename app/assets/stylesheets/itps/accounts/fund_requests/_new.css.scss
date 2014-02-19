@@ -1,0 +1,24 @@
+@mixin itps-accounts-fund_requests-new {
+  #content-box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  i {
+    @extend .fa;
+  }
+  .left-block, 
+  .right-block {
+    @extend .col-lg-6;
+    @extend .col-md-6;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+  }
+  aside {
+    padding-top: 10px;
+  }
+  dd {
+    input {
+      @extend .form-control;
+    }
+  }
+}
