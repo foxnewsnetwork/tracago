@@ -17,7 +17,6 @@ Live run tests
 4. introduce new shipping deal contract
 10. contract types should be implemented (international shipping contract, etc.)
 14. find some way to get really long file names to not break the boundary on document show
-17. resolve the double flash error for document rejection and approval
 
 (critical)
 >favicon.ico must be generated
@@ -26,7 +25,9 @@ Live run tests
 Wednesday February 19
 =
 1. email archives index and show
-
+2. fixed registration now properly redirecting users
+17. resolve the double flash error for document rejection and approval
+3. fixed bug with error documents
 
 Tuesday February 18
 =

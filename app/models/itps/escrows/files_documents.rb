@@ -12,7 +12,8 @@ class Itps::Escrows::FilesDocuments < ActiveRecord::Base
   belongs_to :file,
     class_name: 'Itps::File'
   belongs_to :document,
-    class_name: 'Itps::Escrows::Document'
+    class_name: 'Itps::Escrows::Document',
+    touch: true
 
   before_create :_document_attachment_status_update
   before_destroy :_destroy_document_attachment_status_update

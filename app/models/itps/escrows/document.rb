@@ -97,7 +97,7 @@ class Itps::Escrows::Document < ActiveRecord::Base
 
   private
   def _n(datetime)
-    Spree::DateTime.normalize_against_never datetime
+    datetime.to_i
   end
 
   def _create_permalink

@@ -47,9 +47,17 @@
     %dl.vanilla
       %dt= t(:status)
       %dd= t @document.status
-    %dl.vanilla
       %dt= t(:total_files)
       %dd= @document.files.count
+    %dl.vanilla
+      %dt= t(:updated_at)
+      %dd= @document.updated_at
+      - if @document.approved_at.present?
+        %dt= t(:approved_at)
+        %dd= @document.approved_at
+      - if @document.rejected_at.present?
+        %dt= t(:rejected_at)
+        %dd= @document.rejected_at
     %dl.description
       %dt= t(:description)
       %dd= @document.description

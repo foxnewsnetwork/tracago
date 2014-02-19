@@ -1,5 +1,5 @@
 class Itps::RegistrationsController < Itps::BaseController
-  include Itps::BaseHelper
+  before_filter :_filter_logged_in_user
   def new
     _form_helper
   end
@@ -12,6 +12,11 @@ class Itps::RegistrationsController < Itps::BaseController
   end
 
   private
+  def _filter_logged_in_user
+    if user_signed_in?
+      redirect_to itps_account_path current_account.permalink
+    end
+  end
   def _form_helper
     @form_helper ||= Itps::Accounts::RegistrationFormHelper.new
   end

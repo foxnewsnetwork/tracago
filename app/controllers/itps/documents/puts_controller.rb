@@ -106,7 +106,7 @@ class Itps::Documents::PutsController < Itps::BaseController
 
 
   def _upload_failed?
-    !_upload_success?
+    !@upload_result.nil? && @update_result.empty?
   end
 
   def _upload_success?
