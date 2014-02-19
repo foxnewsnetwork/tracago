@@ -94,6 +94,7 @@ Tracago::Application.routes.draw do
       resources :money_transfers, only: [:index], controller: 'escrows/money_transfers'
     end
     resources :accounts, only: [:show] do
+      resources :fund_request, only: [:new, :create], controller: 'accounts/fund_request'
       resources :escrows, only: [:index, :new, :create], controller: 'accounts/escrows'
       resources :shipping_contracts, only: [:new, :create], controller: 'accounts/shipping_contracts'
       resources :general_contracts, only: [:new, :create], controller: 'accounts/general_contracts'

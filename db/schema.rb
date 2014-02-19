@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218020421) do
+ActiveRecord::Schema.define(version: 20140219003007) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 20140218020421) do
 
   add_index "itps_accounts", ["email"], name: "index_itps_accounts_on_email", unique: true, using: :btree
   add_index "itps_accounts", ["reset_password_token"], name: "index_itps_accounts_on_reset_password_token", unique: true, using: :btree
+
+  create_table "itps_accounts_fund_requests", force: true do |t|
+    t.integer  "account_id"
+    t.decimal  "dollar_amount", precision: 16, scale: 2
+    t.datetime "fulfilled_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_accounts_fund_requests", ["account_id"], name: "index_itps_accounts_fund_requests_on_account_id", using: :btree
+
+  create_table "itps_accounts_fund_requests_files", force: true do |t|
+    t.integer "fund_request_id"
+    t.integer "file_id"
+  end
+
+  add_index "itps_accounts_fund_requests_files", ["file_id"], name: "index_itps_accounts_fund_requests_files_on_file_id", using: :btree
+  add_index "itps_accounts_fund_requests_files", ["fund_request_id"], name: "index_itps_accounts_fund_requests_files_on_fund_request_id", using: :btree
 
   create_table "itps_accounts_roles", force: true do |t|
     t.string   "role_name",  null: false
