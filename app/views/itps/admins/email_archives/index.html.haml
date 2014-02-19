@@ -1,0 +1,21 @@
+#hero-banner
+  %section
+    %h1= t(:email_archives_index)
+
+#content-box.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:admin_page), itps_admin_path(current_account)
+      %li= link_to t(:email_archives_index)
+  #summary.row
+    %h2= t(:summary)
+    %dl
+      %dt= t(:total_archived_emails)
+      %dd= Itps::EmailArchive.count
+    %dl
+      %dt= t(:total_serialized_objects)
+      %dd= Itps::EmailArchives::SerializedObject.count
+  #archives.row
+    = render partial: 'itps/admins/email_archives/email_archive', collection: @email_archives
+  #pagination.row
+    = paginate @email_archives

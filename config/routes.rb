@@ -21,6 +21,7 @@ Tracago::Application.routes.draw do
     get '/documentations' => 'doc_tags#index'
 
     resource :admin, only: [] do
+      resources :email_archives, only: [:index, :show], controller: 'admins/email_archives'
       resources :fund_requests, only: [:index, :edit, :update], controller: 'admins/fund_requests'
       resources :money_transfers, only: [:edit, :update], controller: 'admins/money_transfers/puts'
       resources :money_transfers, only: [:destroy], controller: 'admins/money_transfers/deletes'

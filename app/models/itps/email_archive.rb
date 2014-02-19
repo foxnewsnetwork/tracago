@@ -18,8 +18,8 @@ class Itps::EmailArchive < ActiveRecord::Base
   has_many :serialized_objects,
     class_name: 'Itps::EmailArchives::SerializedObject'
 
-  def to_mail!
-    Itps.const_get(mailer_name).send(mailer_method, *unserialized_objects).tap do |email|
+  def to_mail
+    Itps.const_get(mailer_name).generate_email_without_archiving(mailer_method, *unserialized_objects).tap do |email|
       email.to = destination
     end
   end

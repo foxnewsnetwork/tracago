@@ -9,6 +9,7 @@
 @import 'itps/admins/escrows/index';
 @import 'itps/admins/fund_requests/index';
 @import 'itps/accounts/fund_requests/new';
+@import 'itps/admins/email_archives/index';
 @mixin shared-admin_main {
   padding: 0px;
   #admins-show {
@@ -56,5 +57,8 @@
   #admins-fund_requests-edit,
   #admins-fund_requests-update {
     @include itps-accounts-fund_requests-new;
+  }
+  #admins-email_archives-index {
+    @include itps-admins-email_archives-index;
   }
 }

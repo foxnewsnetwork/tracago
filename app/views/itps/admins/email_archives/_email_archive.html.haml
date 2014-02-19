@@ -1,0 +1,23 @@
+- e = email_archive
+.email-archive
+  = link_to itps_admin_email_archive_path(e), target: '_blank' do
+    %dl
+      %dt= t(:mailer_name)
+      %dd= "#{e.id} - #{e.mailer_name}"
+      %dt= t(:mailer_method)
+      %dd= e.mailer_method
+    %dl
+      %dt= t(:destination)
+      %dd= e.destination
+      %dt= t(:origination)
+      %dd= e.origination
+    %dl
+      %dt= t(:created_at)
+      %dd= e.created_at
+      %dt= t(:subject)
+      %dd= e.subject
+    %dl
+      %dt= t(:serialized_objects_count)
+      %dd= e.serialized_objects.count
+      %dt= t(:object_names_by_commas)
+      %dd= e.serialized_objects.map(&:name_of_model).join(", ")

@@ -1,0 +1,36 @@
+@mixin itps-admins-email_archives-index {
+  #content-box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  i {
+    @extend .fa;
+  }
+  h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  #summary {
+    dl {
+      @extend .col-lg-3;
+      @extend .col-md-4;
+      @extend .col-sm-6;
+      @extend .col-xs-6;
+    }
+  }
+  .email-archive {
+    @extend .really-bland-thumbnail;
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    dl {
+      @extend .col-lg-3;
+      @extend .col-md-4;
+      @extend .col-sm-6;
+      @extend .col-xs-6;
+    }
+  }
+}

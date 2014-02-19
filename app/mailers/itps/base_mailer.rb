@@ -4,7 +4,21 @@ class Itps::BaseMailer < ActionMailer::Base
   attr_hash_accessor :to, :subject, :mailer_method
   attr_hash_writer :from
   attr_writer :attributes
-  
+
+  class << self
+    def generate_email_without_archiving(method_name, *args)
+      new(method_name, *args) do |mailer|
+        mailer.do_not_archive!
+      end.message
+    end
+  end
+
+  def initialize(method_name=nil, *args, &block)
+    super(nil, *args)
+    yield(self) if block_given?
+    process(method_name, *args) if method_name
+  end
+
   def attributes
     @attributes ||= ActiveSupport::OrderedHash.new
   end
@@ -12,11 +26,24 @@ class Itps::BaseMailer < ActionMailer::Base
   def from
     self.attributes[:from] ||= 'noreply@globaltradepayment.co'
   end
+
+  def do_not_archive!
+    @do_not_archive = true
+  end
+
+  def okay_archive!
+    @do_not_archive = false
+  end
+
+  def do_not_archive?
+    true == @do_not_archive
+  end
   private
   def _email_archive
-    @email_archive ||= Itps::EmailArchive.create _archive_params
+    @email_archive ||= Itps::EmailArchive.create! _archive_params
   end
   def _serialized_objects
+    return if do_not_archive?
     _objects_array.map do |object_params|
       _email_archive.serialized_objects.create(object_params)
     end
