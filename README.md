@@ -48,6 +48,7 @@ expected behavior:
 13. Make it so that, if both parties have already agreed, they are just forwarded to the contract
 11. Allows the other person to view the contract if he has the view-key
 12. Make it so that the agreement page also forces login if the user isn't logged in
+9. provide a way for users to request to have their left-over money back (still need way for admins to view it)
 
 Monday February 17
 =
@@ -61,7 +62,6 @@ Live run tests
 2. registration should allow user to input company name
 3. introduce a page before new escrows that ask the user to select what sort of contract
 4. introduce new shipping deal contract
-9. provide a way for users to request to have their left-over money back
 10. contract types should be implemented (international shipping contract, etc.)
 14. find some way to get really long file names to not break the boundary on document show
 17. resolve the double flash error for document rejection and approval
