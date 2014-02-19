@@ -11,10 +11,21 @@ Calendar for Escrow
 >doc tags controller & show page
 >internationalization
 >need way to update memo on step
+Live run tests
+2. registration should allow user to input company name
+3. introduce a page before new escrows that ask the user to select what sort of contract
+4. introduce new shipping deal contract
+10. contract types should be implemented (international shipping contract, etc.)
+14. find some way to get really long file names to not break the boundary on document show
+17. resolve the double flash error for document rejection and approval
 
 (critical)
 >favicon.ico must be generated
 >missing translations
+
+Wednesday February 19
+=
+1. email archives index and show
 
 
 Tuesday February 18
@@ -58,13 +69,7 @@ Monday February 17
 
 Saturday Feb 15
 =
-Live run tests
-2. registration should allow user to input company name
-3. introduce a page before new escrows that ask the user to select what sort of contract
-4. introduce new shipping deal contract
-10. contract types should be implemented (international shipping contract, etc.)
-14. find some way to get really long file names to not break the boundary on document show
-17. resolve the double flash error for document rejection and approval
+
 
 Fixes
 1. escrows / money_transfers path fixed
