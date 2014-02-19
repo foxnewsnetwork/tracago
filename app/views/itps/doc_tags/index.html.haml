@@ -16,3 +16,6 @@
           %li= link_to t(:usage), itps_usage_path
           %li= link_to t(:faq), itps_faq_path
           %li= link_to t(:about), itps_aboutus_path
+        %h4= t(:have_other_questions_or_issues?)
+        %p= t(:please_send_all_other_such_inquiry_to)
+        %p= mail_to 'globaltradepayment@gmail.com'

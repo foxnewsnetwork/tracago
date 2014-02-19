@@ -1,9 +1,6 @@
 %section
   %article#footer-stats
     %dl
-      %dt= t(:active_for)
-      %dd= time_ago_in_words 15.years.ago
-    %dl
       %dt= t(:total_transfers)
       %dd= 299999 + 3 * (DateTime.now - DateTime.parse("June 3, 1999")).to_i
   %ul#footer-links
