@@ -7,11 +7,16 @@
           = t(:step)
           = step.position
         = step.title
-        - if step.pay_step?
-          %span.parantheses= t(:payment_step) 
-    = link_to itps_step_path(step.permalink), method: :delete do
-      %figure
-        %i.destroy
+        - if step.class_name.present?
+          %span.parantheses= t step.class_name
+    - if step.edit_mode?
+      = link_to itps_step_path(step.permalink), method: :delete do
+        %figure
+          %i.destroy
+    - else
+      = link_to '#cannot_delete' do
+        %figure
+          %i.destroy
   %article
     = link_to itps_step_path(step.permalink) do
       %dl

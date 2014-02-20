@@ -23,7 +23,7 @@ class Itps::StepsController < Itps::BaseController
 
   def _destroy_step!
     _escrow
-    @destroy_result = _step.destroy
+    @destroy_result = _step.edit_mode? && _step.destroy
   end
 
   def _destroy_success?

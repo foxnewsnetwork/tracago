@@ -21,6 +21,10 @@ Live run tests
 (critical)
 >favicon.ico must be generated
 >missing translations
+>document#show %h2 document still aligned weird
+>user agreement should be in small box while contract details should be prominently displayed
+>change payment / goods service to seller buyer
+>reverse the order of escrow#show... and provide a legal-text version
 
 Wednesday February 19
 =
@@ -28,6 +32,8 @@ Wednesday February 19
 2. fixed registration now properly redirecting users
 17. resolve the double flash error for document rejection and approval
 3. fixed bug with error documents
+4. bug involving edit-escrow requiring admin mode must be fixed
+5. fixed issue where it was possible to delete steps past edit mode
 
 Tuesday February 18
 =

@@ -23,7 +23,7 @@
           = t(:alter_payment)
 
   #homework
-    %h2= t(:before_you_goto_the_bank)
+    %h2= t(:before_you_go_to_the_bank)
     %p
       In order for us to properly match your payment against the correct contract
       %span.parantheses= link_to @escrow.full_presentation, itps_escrow_path(@escrow.permalink)
@@ -53,7 +53,7 @@
       .bank_account
         %h5 GTPC Account Information
         %dl
-          %dt= t(:pay_to_order_of)
+          %dt= t(:pay_to_the_order_of)
           %dd Global Trade Payment Corporation
           %dt= t(:bank_name)
           %dd= Itps::Parties::BankAccount::BankName

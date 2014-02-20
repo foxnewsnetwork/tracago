@@ -129,7 +129,7 @@ class Itps::Escrow < ActiveRecord::Base
   end
 
   def full_presentation
-    "Contract Id: #{self.class.bullshitify_id id}"
+    "Contract ID: #{self.class.bullshitify_id id}"
   end
 
   def relevant_accounts

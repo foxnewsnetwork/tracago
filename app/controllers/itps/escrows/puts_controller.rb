@@ -13,6 +13,10 @@ class Itps::Escrows::PutsController < Itps::BaseController
     _get_out_of_here!
   end
   private
+  def _correct_accounts
+    _escrow.relevant_accounts
+  end
+
   def _update_escrow!
     @update_result = _escrow.update _escrow_params if _escrow.edit_mode?
   end
