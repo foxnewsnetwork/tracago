@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219010802) do
+ActiveRecord::Schema.define(version: 20140223192020) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 20140219010802) do
     t.datetime "updated_at"
   end
 
+  create_table "itps_contracts", force: true do |t|
+    t.integer  "escrow_id"
+    t.string   "permalink",       null: false
+    t.string   "class_name"
+    t.string   "introduction"
+    t.text     "content_summary"
+    t.datetime "expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_contracts", ["escrow_id"], name: "index_itps_contracts_on_escrow_id", using: :btree
+  add_index "itps_contracts", ["permalink"], name: "index_itps_contracts_on_permalink", unique: true, using: :btree
+
   create_table "itps_documentations", force: true do |t|
     t.string   "permalink",  null: false
     t.string   "title",      null: false
@@ -77,6 +91,29 @@ ActiveRecord::Schema.define(version: 20140219010802) do
 
   add_index "itps_documentations_tags", ["documentation_id"], name: "index_itps_documentations_tags_on_documentation_id", using: :btree
   add_index "itps_documentations_tags", ["tag_id"], name: "index_itps_documentations_tags_on_tag_id", using: :btree
+
+  create_table "itps_drafts", force: true do |t|
+    t.integer  "account_id"
+    t.string   "permalink",  null: false
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_drafts", ["account_id"], name: "index_itps_drafts_on_account_id", using: :btree
+  add_index "itps_drafts", ["permalink"], name: "index_itps_drafts_on_permalink", unique: true, using: :btree
+
+  create_table "itps_drafts_items", force: true do |t|
+    t.integer  "draft_id"
+    t.string   "name"
+    t.string   "unit"
+    t.decimal  "price",      precision: 16, scale: 8
+    t.decimal  "quantity",   precision: 16, scale: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_drafts_items", ["draft_id"], name: "index_itps_drafts_items_on_draft_id", using: :btree
 
   create_table "itps_email_archives", force: true do |t|
     t.string   "mailer_name",   null: false

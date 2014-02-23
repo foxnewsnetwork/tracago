@@ -1,0 +1,66 @@
+@mixin itps-drafts-commodities-edit {
+  .container {
+    padding-bottom: 20px;
+  }
+  dd.input input {
+    @extend .form-control;
+  }
+  .item {
+    padding-bottom: 10px;
+    input {
+      @extend .form-control;
+    }
+    select {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  .name {
+    button {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  .quantity {
+    .input-group-addon {
+      padding: 0px;
+    }
+  }
+  .datetime {
+    select {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  .items, h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .name,
+  .quantity,
+  .price {
+    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .big-fields, 
+  .big-actions,
+  .item-form {
+    @extend .col-lg-8;
+    @extend .col-md-8;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .small-explanation,
+  .item-explanation {
+    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+}

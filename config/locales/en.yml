@@ -25,3 +25,9 @@ en:
     errors:
       messages:
         record_invalid: "%{errors}"
+      models:
+        drafts:
+          attributes:
+            price_terms:
+              blank: 'cannot be blank'
+              nonsensical: 'must satisfy Incoterms standards'

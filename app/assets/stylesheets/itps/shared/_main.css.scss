@@ -24,8 +24,16 @@
 @import 'itps/parties/show';
 @import 'itps/admins/money_transfers/index';
 @import 'itps/accounts/fund_requests/new';
+@import 'itps/buys/show';
+@import 'itps/account_redirects/show';
+@import 'itps/drafts/commodities/edit';
+@import 'itps/drafts/documents/edit';
 @mixin shared-main {
   padding: 0px;
+  i {
+    @extend .fa;
+  }
+  
   #home-index {
     @include itps-home-index;
   }
@@ -135,5 +143,22 @@
   #fund_requests-edit,
   #fund_requests-update {
     @include itps-accounts-fund_requests-new;
+  }
+  #buys-show,
+  #sells-show,
+  #miscellanious-show {
+    @include itps-buys-show;
+  }
+  #account_redirects-show {
+    @include itps-account_redirects-show;
+  }
+  #drafts-commodities-edit,
+  #drafts-commodities-update,
+  #drafts-commodities-items-create {
+    @include itps-drafts-commodities-edit;
+  }
+  #drafts-documents-edit,
+  #drafts-documents-update {
+    @include itps-drafts-documents-edit;
   }
 }

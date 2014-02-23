@@ -1,0 +1,44 @@
+#hero-banner
+  %section
+    %h1= t(:required_documents)
+
+.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:home), itps_path
+      %li= link_to t(:buy), itps_buy_path
+      %li= link_to t(:new_international_purchase_contract), edit_itps_buy_international_path(@draft.permalink)
+      %li= link_to t(:other_party), edit_itps_draft_party_path(@draft.permalink)
+      %li= link_to t(:commodities_and_terms), edit_itps_draft_commodity_path(@draft.permalink)
+      %li.active= t(:required_documents)
+      %li= t(:review)
+      %li= t(:finish)
+  #generic-form
+    = form_for @form_helper, url: itps_draft_document_path(@draft.permalink), method: :put do |f|
+      .row
+        %h2= t(:select_required_documents)
+        %dl.fields.dl-horizontal
+          %dt= f.check_box :preloading_pictures, checked: true
+          %dd= f.label :preloading_pictures, t(:preloading_pictures)
+          %dt= f.check_box :weight_ticket, checked: true
+          %dd= f.label :weight_ticket, t(:weight_ticket)
+          %dt= f.check_box :loading_pictures, checked: true
+          %dd= f.label :loading_pictures, t(:loading_pictures)
+          %dt= f.check_box :bill_of_lading, checked: true
+          %dd= f.label :bill_of_lading, t(:bill_of_lading)
+          %dt= f.check_box :packing_list, checked: true
+          %dd= f.label :packing_list, t(:packing_list)
+          %dt= f.check_box :invoice, checked: true
+          %dd= f.label :invoice, t(:invoice)
+        %aside.explanation
+          = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
+          %p= t(:uncheck_the_documents_you_will_not_need)
+          %p= t(:once_the_seller_has_provided_all_the_checked_documents_the_escrow_funds_will_be_released)
+      .row
+        .actions
+          = button_tag type: :submit do
+            %i.submit
+            = t(:next)
+          = link_to edit_itps_buy_international_path(@draft.permalink), type: :reset do
+            %i.reset
+            = t(:cancel)

@@ -8,6 +8,7 @@
 #  fulfilled_at  :datetime
 #  created_at    :datetime
 #  updated_at    :datetime
+#  memo          :string(255)
 #
 
 class Itps::Accounts::FundRequest < ActiveRecord::Base

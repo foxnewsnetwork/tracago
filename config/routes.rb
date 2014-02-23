@@ -20,6 +20,24 @@ Tracago::Application.routes.draw do
     get '/pricing' => 'home#pricing'
     get '/documentations' => 'doc_tags#index'
 
+    resource :buy, only: [:show], controller: 'buys' do
+      resources :internationals, only: [:edit, :new, :create, :update], controller: 'buys/internationals'
+      resources :domestics, only: [:new, :create], controller: 'buys/domestics'
+    end
+
+    resource :draft, only: [] do
+      resources :parties, only: [:edit, :update], controller: 'drafts/parties'
+      resources :commodities, only: [:edit, :update], controller: 'drafts/commodities' do
+        resources :items, only: [:create], controller: 'drafts/commodities/items'
+      end
+      resources :items, only: [:destroy], controller: 'drafts/items'
+      resources :documents, only: [:edit, :update], controller: 'drafts/documents'
+      resources :reviews, only: [:edit, :update], controller: 'drafts/reviews'
+    end
+
+    resource :account_redirect, only: [:show]
+    resource :sell, only: [:show], controller: 'sells'
+    resource :miscellanious, only: [:show], controller: 'miscellanious'
     resource :admin, only: [] do
       resources :email_archives, only: [:index, :show], controller: 'admins/email_archives'
       resources :fund_requests, only: [:index, :edit, :update], controller: 'admins/fund_requests'
@@ -99,8 +117,6 @@ Tracago::Application.routes.draw do
     resources :accounts, only: [:show] do
       resources :fund_requests, only: [:new, :create], controller: 'accounts/fund_requests'
       resources :escrows, only: [:index, :new, :create], controller: 'accounts/escrows'
-      resources :shipping_contracts, only: [:new, :create], controller: 'accounts/shipping_contracts'
-      resources :general_contracts, only: [:new, :create], controller: 'accounts/general_contracts'
       resources :preferences, only: [:index], controller: 'accounts/preferences'
     end
     devise_scope :users do

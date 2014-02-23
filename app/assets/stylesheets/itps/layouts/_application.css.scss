@@ -7,7 +7,7 @@
 @import 'shared/important';
 @import 'itps/shared/errors';
 @import 'itps/shared/cookiecrumbs';
-
+@import 'itps/shared/generic_form';
 body {
   @include shared-important;
   background: $actual-background-color;
@@ -39,6 +39,9 @@ body {
     &:after {
       content: ")";
     }
+  }
+  #generic-form {
+    @include shared-generic_form;
   }
   #the-flash {
     @include shared-flash;

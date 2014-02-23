@@ -9,6 +9,8 @@
     @extend .col-xs-12;
     list-style: none;
     padding-left: 15px;
-    margin-left: 15px;
+  }
+  li.active {
+    font-weight: bold;
   }
 }

@@ -26,6 +26,26 @@ Live run tests
 >change payment / goods service to seller buyer
 >reverse the order of escrow#show... and provide a legal-text version
 
+Saturday
+=
+Getting stuck on commodities javascript
+
+Friday
+=
+Got to edit and update on commodities and terms (need to test)
+
+Thursday February 20
+=
+New Shipping Contract Workflow
+1. specify buy contract or sell contract
+2. specify contract type (international shipping, local sales, etc.)
+3. specify desired items and other party
+4. specify required documents
+I then need to generate such a contract
+todo: incoporate rgba box shadows
+todo: signup page javascript password strength thing
+todo: implement forgot password thing
+
 Wednesday February 19
 =
 1. email archives index and show

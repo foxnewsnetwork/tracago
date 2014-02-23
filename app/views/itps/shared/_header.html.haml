@@ -2,32 +2,30 @@
 - full_test = lambda { |paths| paths.inject(false) { |mem, path| mem || active_test.call(path) } }
 - activation = lambda { |*paths| full_test.call(paths) ? :active : :inactive }
 
-%nav
-  .logo= link_to company_common_name, itps_path
-  .toggle
-    - if params[:nav].to_s == "show"
-      = link_to append_query_to_path nav: :hide do
-        %figure
-          %i.show-nav
-    - else
-      = link_to append_query_to_path nav: :show do
-        %figure
-          %i.hide-nav
-  %ul{ :class => params[:nav] == "show" ? "shown" : "hidden-to-mobile" }
-    %li{ :class => activation.call(itps_usage_path) }
-      = link_to t(:usage), itps_usage_path
-    %li{ :class => activation.call(itps_faq_path) }
-      = link_to t(:faq), itps_faq_path
-    - if user_signed_in?
-      %li{ :class => activation.call(itps_account_path current_account.permalink)}
-        = link_to t(:me), itps_account_path(current_account.permalink)
-    - else
-      %li{ :class => activation.call(itps_login_path)}
-        = link_to t(:log_in), itps_login_path(back: back_path)
-      %li{ :class => activation.call(itps_signup_path)}
-        = link_to t(:sign_up), itps_signup_path(back: back_path)
-    %li{ :class => activation.call(itps_documentations_path)}
-      = link_to t(:help), itps_documentations_path
-    - if current_account.try(:admin?)
-      %li{ :class => activation.call(itps_admin_path(current_account))}
-        = link_to t(:admin), itps_admin_path(current_account)
+.container
+  %nav.row
+    .logo{ :class => activation.call(itps_path) }
+      = link_to company_common_name, itps_path
+    .toggle
+      - if params[:nav].to_s == "show"
+        = link_to append_query_to_path nav: :hide do
+          %figure
+            %i.fa-bars
+      - else
+        = link_to append_query_to_path nav: :show do
+          %figure
+            %i.fa-bars
+    %ul.navigation{ :class => params[:nav] == "show" ? "shown" : "hidden-to-mobile" }
+      %li.main-nav{ :class => activation.call(itps_buy_path) }
+        = link_to itps_buy_path do
+          = t(:buy)
+          %i.fa-chevron-down
+      %li.main-nav{ :class => activation.call(itps_sell_path) }
+        = link_to itps_sell_path do
+          = t(:sell)
+          %i.fa-chevron-down
+      %li.miscellanious{ :class => activation.call(itps_miscellanious_path) }
+        = link_to itps_miscellanious_path do
+          = t(:other)
+          %i.fa-chevron-down
+    

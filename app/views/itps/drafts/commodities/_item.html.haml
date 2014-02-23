@@ -1,0 +1,41 @@
+- draft ||= item.draft
+- if item.persisted?
+  - opts = { method: :put, url: itps_draft_item_path(item) }
+- else
+  - opts = { method: :post, url: itps_draft_commodity_items_path(draft.permalink) } 
+.item.row
+  .item-form
+    = form_for item, opts do |f|
+      .name.input-group
+        .input-group-btn
+          = button_tag type: :submit do
+            - if item.persisted?
+              %i.fa-edit
+            - else
+              %i.fa-plus
+            = t(:item)
+        = f.text_field :name, placeholder: 'HDPE Milk Jugs'
+      .quantity.input-group
+        = f.number_field :quantity, placeholder: '40000', step: 0.01
+        .input-group-addon
+          = f.select :unit, ['lbs']
+      .price.input-group
+        .input-group-addon $
+        = f.number_field :price, placeholder: 0.075, step: 0.00001
+        - if item.persisted?
+          .input-group-btn
+            = link_to itps_draft_item_path(item), method: :delete, class: 'btn btn-danger' do
+              %i.fa-times
+  .item-explanation
+    - if item.errors.any?
+      = render partial: 'itps/shared/errors', locals: { errors: item.errors }
+    - if item.persisted?
+      %p
+        = t(:click)
+        %i.fa-edit
+        = t(:to_finalize_any_changes_you_make)
+    - else
+      %p
+        = t(:click)
+        %i.fa-plus
+        = t(:to_add_new_item)

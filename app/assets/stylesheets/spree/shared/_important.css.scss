@@ -1,6 +1,7 @@
 // Endeavor to keep this file small!
 @mixin shared-important {
   .field_with_errors {
+    display: inline !important;
     label { 
       color: #641b04 !important;
     }

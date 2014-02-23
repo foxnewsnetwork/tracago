@@ -70,6 +70,9 @@ class Itps::Account < ActiveRecord::Base
     foreign_key: 'email',
     primary_key: 'email'
 
+  has_many :drafts,
+    class_name: 'Itps::Draft'
+    
   has_many :bank_accounts,
     class_name: 'Itps::Parties::BankAccount',
     through: :party

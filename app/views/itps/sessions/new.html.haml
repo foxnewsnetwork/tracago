@@ -17,7 +17,7 @@
           = "You need to be logged in edit, agree to, and manage your contracts."
           = "If you don't have an account, you will need an email address to make one."
         %h4
-          = link_to t(:new_account), itps_signup_path(back: back_path)
+          = link_to t(:sign_up_for_new_account), itps_signup_path(back: params[:back])
     %fieldset
       %article
         = button_tag type: :submit do

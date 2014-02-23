@@ -1,0 +1,9 @@
+@mixin itps-account_redirects-show {
+  .choices {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  i {
+    @extend .fa-2x;
+  }
+}

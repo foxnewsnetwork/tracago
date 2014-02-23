@@ -1,0 +1,35 @@
+#hero-banner
+  %section
+    .small-link-icon
+      = link_to t(:usage), itps_usage_path
+    .small-link-icon
+      = link_to t(:faq), itps_faq_path
+    .small-link-icon
+      = link_to t(:help), itps_documentations_path
+    - if user_signed_in?
+      .small-link-icon
+        = link_to t(:my_account), itps_account_path(current_account.permalink)
+      .small-link-icon
+        = link_to t(:log_out), destroy_user_session_path, method: :delete
+    - else
+      .small-link-icon
+        = link_to t(:log_in), itps_login_path(back: back_path)
+      .small-link-icon
+        = link_to t(:sign_up), itps_signup_path(back: back_path)
+    - if current_account.try(:admin?)
+      .small-link-icon
+        = link_to t(:admin), itps_admin_path(current_account)
+    
+.bg-3
+  .container
+    .row
+      .international.explanation
+        %h3
+          = t(:for_selling_goods_across_long_distances)
+        %p
+          = t(:choose_this_option_if_you_will_be_shipping_overseas_and_will_require_steamship_transport_service)
+      .domestic.explanation
+        %h3
+          = t(:for_domestic_shipping_via_local_trucks)
+        %p
+          = t(:choose_this_option_if_you_do_not_require_overseas_transportation)

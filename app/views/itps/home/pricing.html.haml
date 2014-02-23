@@ -17,11 +17,11 @@
     - in_money = number_with_precision(cost + Itps::MoneyTransfer::Fees / 2 + 12.25, precision: 2, delimiter: ',')
     - out_money = number_with_precision(cost - Itps::MoneyTransfer::Fees / 2 - 12.25, precision: 2, delimiter: ',')
     %ol
-      %li Orange Company drafts a contract to to purchase wood from Aria Company.
-      %li Orange Company agrees to pay $1.00 per pound for 10 containers (400,000 pounds) of wood.
-      %li Aria Company agrees to deliver 4 containers of wood to Venice Port.
+      %li WoodBuyer Company drafts a contract to purchase wood from LogSeller Company.
+      %li WoodBuyer Company agrees to pay $1.00 per pound for 10 containers (400,000 pounds) of wood.
+      %li LogSeller Company agrees to deliver 4 containers of wood to Venice Port.
       %li 
-        Orange Company wires $400,000 +
+        WoodBuyer Company wires $400,000 +
         = "$#{Itps::MoneyTransfer::Fees / 2} +"
         $12.25
         = "= $#{in_money}"

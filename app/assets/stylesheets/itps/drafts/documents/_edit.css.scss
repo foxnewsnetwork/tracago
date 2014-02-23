@@ -1,0 +1,23 @@
+@mixin itps-drafts-documents-edit {
+  .container {
+    padding-bottom: 20px;
+  }
+  input[type=checkbox] {
+    width: 35px;
+    height: 35px;
+  }
+  .fields {
+    dd {
+      padding-top: 10px;
+      margin-left: 60px;
+    }
+    dt {
+      width: 55px;
+      text-align: left;
+    }
+  }
+  #generic-form {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

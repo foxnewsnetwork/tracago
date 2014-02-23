@@ -83,81 +83,78 @@
       background-repeat: no-repeat;
     }
     border-bottom: $standard-border;
-    section {
-      @extend .container;
-      
-      ul {
-        @extend .row;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        list-style: none;
-        li {
-          &.inactive {
-            @extend .hidden-lg;
-            @extend .hidden-md;
-          }
-          .transparent-box, .opaque-box {
-            @extend .col-lg-5;
-            @extend .col-md-8;
-            @include itps-home-index_dual-box-trick;
-            .call-to-action {
-              a {
-                @extend .btn;
-                @extend .btn-success;
-                @extend .btn-block;
-                @extend .btn-lg;
-                font-size: 18px;
-                font-weight: bold;
-              }
-            }
-            .carousel {
-              margin-top: 10px;
-              text-align: center;
-              a {
-                color: $standard-linkcolor;
-                font-size: 16px;
-              }
-              i {
-                @extend .fa;
-              }
-              span.active {
-                i {
-                  @extend .fa-circle;
-                }
-              }
-              span.inactive {
-                i {
-                  @extend .fa-circle-o;
-                }
-              }
-            }
-          }
-          .transparent-box {
-            @extend .visible-lg;
-            @extend .hidden-md;
-            @extend .hidden-sm;
-            @extend .hidden-xs;
-            background-color: $highlight-background;
-            position: relative;
-            right: 470px;
-            opacity: 0.7;
-          }
-          .opaque-box {
-            opacity: 1;
-            @media (max-width: 1200px) {
-              background-color: $highlight-background;
-            }
-          }
-          h1 {
-            margin-top: 20px;
-          }
-          p {
-            font-size: 22px;
-          }
-        }
-      }  
+    .call-to-action {
+      a {
+        @extend .btn;
+        @extend .btn-success;
+        @extend .btn-block;
+        @extend .btn-lg;
+        font-size: 18px;
+        font-weight: bold;
+      }
     }
+    .carousel {
+      margin-top: 10px;
+      text-align: center;
+      a {
+        color: $standard-linkcolor;
+        font-size: 16px;
+      }
+      i {
+        @extend .fa;
+      }
+      span.active {
+        i {
+          @extend .fa-circle;
+        }
+      }
+      span.inactive {
+        i {
+          @extend .fa-circle-o;
+        }
+      }
+    }
+    .transparent-box, .opaque-box {
+      @extend .col-lg-5;
+      @extend .col-md-8;
+      @include itps-home-index_dual-box-trick;
+    }
+    .transparent-box {
+      @extend .visible-lg;
+      @extend .hidden-md;
+      @extend .hidden-sm;
+      @extend .hidden-xs;
+      background-color: $highlight-background;
+      position: relative;
+      right: 487px;
+      opacity: 0.7;
+    }
+    .opaque-box {
+      opacity: 1;
+      @media (max-width: 1200px) {
+        background-color: $highlight-background;
+      }
+    }
+    li {
+      &.inactive {
+        @extend .hidden-lg;
+        @extend .hidden-md;
+      }
+      h1 {
+        margin-top: 20px;
+      }
+      p {
+        font-size: 22px;
+      }
+    }
+    ul.row {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      list-style: none;
+      padding-left: 0px;
+    }  
   }
+  
   #basic-usage-explanation {
     @extend .container;
     ul {

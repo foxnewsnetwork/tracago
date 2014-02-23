@@ -1,0 +1,58 @@
+@mixin itps-buys-show {
+  .link-icon {
+    @extend .col-lg-3;
+    @extend .col-md-3;
+    @extend .col-sm-4;
+    @extend .col-xs-6;
+    text-transform: capitalize;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    a {
+      color: $highlight-textcolor;
+    } 
+    i {
+      @extend .fa-2x;
+    }
+  }
+  .small-link-icon {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-3;
+    @extend .col-xs-4;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    a {
+      color: $highlight-textcolor;
+    } 
+  }
+  .explanation {
+    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+    padding: 20px;
+    background-color: rgba($highlight-background, 0.5);
+    color: $highlight-textcolor;
+  }
+  .domestic {
+    display: none;
+  }
+  .bg-1, .bg-2, .bg-3 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; 
+  }
+  .bg-1 {
+    background-image: image-url('port-ipad.png');
+  }
+  .bg-2 {
+    background-image: image-url('space-satellite.png');
+  }
+  .bg-3 {
+    background-image: image-url('just-flags.png');
+  }
+}

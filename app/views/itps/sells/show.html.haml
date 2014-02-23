@@ -1,0 +1,26 @@
+#hero-banner
+  %section
+    .link-icon{ data: { hover: { show: '.international', hide: '.domestic' } } }
+      = link_to '#international-shipping' do
+        %figure
+          %i.fa-globe
+        = t(:international_sales_contract)
+    .link-icon{ data: { hover: { show: '.domestic', hide: '.international' } } }
+      = link_to '#domestic-transport' do
+        %figure
+          %i.fa-truck
+        = t(:domestic_sales_contract)
+
+.bg-2
+  .container
+    .row
+      .international.explanation
+        %h3
+          = t(:for_selling_goods_across_long_distances)
+        %p
+          = t(:choose_this_option_if_you_will_be_shipping_overseas_and_will_require_steamship_transport_service)
+      .domestic.explanation
+        %h3
+          = t(:for_domestic_shipping_via_local_trucks)
+        %p
+          = t(:choose_this_option_if_you_do_not_require_overseas_transportation)
