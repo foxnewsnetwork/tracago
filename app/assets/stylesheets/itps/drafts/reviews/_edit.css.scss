@@ -1,0 +1,42 @@
+@mixin itps-drafts-reviews-edit {
+  dl.one-third {
+    padding-left: 15px;
+  }
+  .one-third {
+    @extend .col-lg-4;
+    @extend .col-md-4;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  dl.terms {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .items {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .item {
+    padding-left: 15px;
+  }
+  .small {
+    font-size: 14px;
+  }
+  h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .actions {
+    @extend .col-lg-8;
+    @extend .col-md-9;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    padding-bottom: 20px;
+  }
+}

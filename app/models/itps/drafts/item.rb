@@ -26,4 +26,9 @@ class Itps::Drafts::Item < ActiveRecord::Base
   validates :price,
     :quantity,
     numericality: true
+
+  def total_cost
+    return 0 if quantity.blank? || price.blank?
+    quantity * price
+  end
 end

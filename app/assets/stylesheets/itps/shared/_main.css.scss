@@ -28,6 +28,7 @@
 @import 'itps/account_redirects/show';
 @import 'itps/drafts/commodities/edit';
 @import 'itps/drafts/documents/edit';
+@import 'itps/drafts/reviews/edit';
 @mixin shared-main {
   padding: 0px;
   i {
@@ -160,5 +161,8 @@
   #drafts-documents-edit,
   #drafts-documents-update {
     @include itps-drafts-documents-edit;
+  }
+  #drafts-reviews-edit {
+    @include itps-drafts-reviews-edit;
   }
 }

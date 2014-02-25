@@ -28,7 +28,7 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
     :bill_of_lading,
     :packing_list,
     :invoice
-  ]
+  ].freeze
   Fields = PartyFields + SellerFields + CommodityFields + DocumentFields
   attr_reader :draft, :account
   attr_accessor :attributes

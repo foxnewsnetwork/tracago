@@ -9,6 +9,7 @@
         %li= link_to t(:basics), '#basics'
         %li= link_to t(:bank_accounts), '#bank-accounts'
         %li= link_to t(:actions), '#actions'
+        %li= link_to t(:drafts), '#drafts'
         %li
           = link_to t(:contracts), '#contracts'
           %ul
@@ -33,7 +34,8 @@
           = t(:bank_accounts)
           = link_to t(:see_all), itps_party_bank_accounts_path(@account.party.permalink)
           - if @account.bank_accounts.blank?
-            %span.parantheses= t(:you_have_none)
+            %a
+              = t(:you_have_none)
         - bank_accounts = @account.bank_accounts.order('created_at desc').limit(3)
         %dl
           %dt
@@ -43,7 +45,6 @@
             = @account.party.money_balance
         = render partial: 'itps/accounts/bank_account', collection: bank_accounts
       #actions
-        %h3= t(:actions)
         %ul
           %li
             = link_to new_itps_escrow_path do
@@ -64,6 +65,12 @@
               %figure
                 %i.fa-mail-reply
               = t(:return_funds)
+      #drafts
+        %h3
+          = t(:drafts)
+        %ul
+          - @account.drafts.limit(3).each do |draft|
+            %li= link_to draft.short_summary, itps_draft_path(draft.permalink)
       #contracts
         #contracts-active
           %h3

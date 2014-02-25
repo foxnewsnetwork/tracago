@@ -1,0 +1,16 @@
+.item.row
+  %dl.col-lg-4.col-md-4.col-sm-4.col-xs-4
+    %dt= t(:name)
+    %dd= item.name
+  %dl.col-lg-4.col-md-4.col-sm-4.col-xs-4
+    %dt= t(:quantity)
+    %dd
+      = number_with_delimiter item.quantity, delimiter: ','
+      = item.unit
+  %dl.col-lg-4.col-md-4.col-sm-4.col-xs-4
+    %dt= t(:price)
+    %dd
+      %i.fa-dollar
+      = number_with_delimiter item.price, delimiter: ','
+      = '/'
+      = item.unit

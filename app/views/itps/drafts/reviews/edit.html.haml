@@ -1,0 +1,68 @@
+#hero-banner
+  %section
+    %h1= t(:review)
+
+.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:home), itps_path
+      %li= link_to t(:buy), itps_buy_path
+      %li= link_to t(:new_international_purchase_contract), edit_itps_buy_international_path(@draft.permalink)
+      %li= link_to t(:other_party), edit_itps_draft_party_path(@draft.permalink)
+      %li= link_to t(:commodities_and_terms), edit_itps_draft_commodity_path(@draft.permalink)
+      %li= link_to t(:required_documents), edit_itps_draft_document_path(@draft.permalink)
+      %li.active= t(:review)
+      %li= t(:finish)
+  .row
+    %h2.one-third
+      = t :buyer_information
+      %span.parantheses.small= link_to t(:edit), edit_itps_buy_international_path(@draft.permalink)
+    %h2.one-third
+      = t :seller_information
+      %span.parantheses.small= link_to t(:edit), edit_itps_draft_party_path(@draft.permalink)
+    %h2.one-third
+      = t :required_documents
+      %span.parantheses.small= link_to t(:edit), edit_itps_draft_document_path(@draft.permalink)
+  .row
+    %dl.one-third
+      - Itps::Drafts::FormHelper::PartyFields.each do |field|
+        %dt= t field
+        %dd= @form_helper.send(field) || t(:none)
+
+    %dl.one-third
+      - Itps::Drafts::FormHelper::SellerFields.each do |field|
+        %dt= t field
+        %dd= @form_helper.send(field) || t(:none)
+
+    %dl.one-third
+      - Itps::Drafts::FormHelper::DocumentFields.each do |field|
+        %dt= t field
+        %dd
+          - if @form_helper.send(field)
+            %i.fa-check
+            = t(:required)
+          - else
+            %i.fa-times
+            = t(:not_required)
+
+  .row
+    %h2
+      = t :commodity_and_terms
+      %span.parantheses.small= link_to t(:edit), edit_itps_draft_commodity_path(@draft.permalink)
+    %dl.terms
+      %dt= t(:total_cost)
+      %dd
+        %i.fa-dollar
+        = number_with_delimiter @draft.total_cost, delimiter: ','
+      - Itps::Drafts::FormHelper::CommodityFields.each do |field|
+        %dt= t field
+        %dd= @form_helper.send(field) || t(:none)
+  
+    .items= render partial: 'itps/drafts/reviews/item', collection: @form_helper.draft.items
+
+  .row
+    .actions  
+      = form_for :contract, url: itps_draft_contracts_path(@draft.permalink) do
+        = button_tag type: :submit, class: 'btn-lg btn-block' do
+          %i.submit
+          = t(:generate_contract)

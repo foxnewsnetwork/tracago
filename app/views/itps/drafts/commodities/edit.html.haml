@@ -24,6 +24,10 @@
     .row
       %h2= t(:shipment_terms)
       %dl.big-fields
+        %dt= t(:total_amount)
+        %dd
+          $
+          = number_with_delimiter @draft.total_cost, delimiter: ','
         %dt.required= f.label :price_terms, t(:price_terms)
         %dd.input= f.text_field :price_terms, placeholder: 'FAS Los Angeles Port'
         %dt= f.label :latest_shipment_date, t(:latest_shipment_date)
