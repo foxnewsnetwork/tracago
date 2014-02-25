@@ -13,7 +13,7 @@ class Itps::Drafts::ContractsController < Itps::BaseController
   end
 
   def _draft_contract!
-
+    
   end
 
   def _draft

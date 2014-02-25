@@ -26,6 +26,10 @@ Live run tests
 >change payment / goods service to seller buyer
 >reverse the order of escrow#show... and provide a legal-text version
 
+Monday
+=
+1. draft paths are all done; now to implmenet the transfers
+
 Saturday
 =
 Getting stuck on commodities javascript

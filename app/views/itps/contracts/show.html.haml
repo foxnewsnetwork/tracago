@@ -1,0 +1,16 @@
+#hero-banner
+  %section
+    %h1
+      International Purchase Contract
+
+#content-box.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:my_account), itps_account_path(current_account)
+      %li Contract#12313
+
+  .row
+    #table-of-contents
+      = render partial: 'itps/contracts/table_of_contents'
+    #contents
+      
