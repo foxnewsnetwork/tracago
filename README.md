@@ -26,6 +26,14 @@ Live run tests
 >change payment / goods service to seller buyer
 >reverse the order of escrow#show... and provide a legal-text version
 
+Wednesday
+=
+PET - $0.215 FAS Long Beach (this week price)
+
+Tuesday
+=
+1. Now implementing contracts show legal agreement, got to terms of payment - required documents
+
 Monday
 =
 1. draft paths are all done; now to implmenet the transfers

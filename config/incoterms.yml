@@ -1,12 +1,157 @@
-keys:
-  -EXW
-  -FCA
-  -FAS
-  -FOB
-  -CPT
-  -CFR
-  -CIF 
-  -CIP
-  -DAT
-  -DAP
-  -DDP
+Incoterm 2010:
+  -Export customs declaration
+  -Carriage to port of export
+  -Unloading of truck in port of export
+  -Loading on vessel in port of export
+  -Carriage (Sea/Air) to port of import
+  -Insurance
+  -Unloading in port of import
+  -Loading on truck in port of import
+  -Carriage to place of destination
+  -Import customs clearance
+  -Import taxes
+
+
+EXW:
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+
+FCA:
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+FAS:
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+FOB:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+CPT:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+CFR:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+CIF: 
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+CIP:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+DAT:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+  -Buyer
+  -Buyer
+
+DAP:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Buyer
+  -Buyer
+
+DDP:
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller
+  -Seller

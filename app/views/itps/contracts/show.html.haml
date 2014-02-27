@@ -6,11 +6,39 @@
 #content-box.container
   #cookie-crumbs
     %ol
-      %li= link_to t(:my_account), itps_account_path(current_account)
+      %li= link_to t(:my_account), itps_account_path(1)
       %li Contract#12313
 
   .row
+    #contents
+      #actions1.actions.row
+        .action.thumbnail
+          = link_to '#back' do
+            %figure
+              %i.fa-chevron-left
+            = t(:back)
+        .action.thumbnail
+          = link_to '#agreement' do
+            %figure
+              %i.fa-linux
+            = t(:agreement)
+      #foreward
+        = render partial: 'itps/contracts/foreward'
+    
+      #parties
+        = render partial: 'itps/contracts/parties'
+
+      #terms-of-sales
+        = render partial: 'itps/contracts/terms_of_sales'
+
+      #terms-of-payment
+        = render partial: 'itps/contracts/terms_of_payment'
+
+      #terms-of-cancellation
+        = render partial: 'itps/contracts/terms_of_cancellation'
+
     #table-of-contents
       = render partial: 'itps/contracts/table_of_contents'
-    #contents
-      
+
+
+

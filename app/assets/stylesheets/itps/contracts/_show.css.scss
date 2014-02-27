@@ -1,0 +1,60 @@
+@mixin itps-contracts-show {
+  #table-of-contents {
+    @extend .col-lg-3;
+    @extend .col-md-3;
+    @extend .visible-lg;
+    @extend .visible-md;
+  }
+  ul {
+    ul {
+      padding-left: 15px;
+      font-size: 12px;
+    }
+  }
+  #contents {
+    @extend .col-lg-9;
+    @extend .col-md-9;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+    ul {
+      @extend .col-lg-12;
+      @extend .col-md-12;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+      padding-left: 15px;
+      list-style-position: inside;
+    }
+  }
+  .action {
+    @extend .col-lg-2;
+    @extend .col-md-3;
+    @extend .col-sm-4;
+    @extend .col-xs-6;
+    text-align: center;
+    i {
+      @extend .fa-2x;
+    }
+  }
+  h6 {
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 15px;
+  }
+
+  h4, h2, h3, p, dl {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .quarter {
+    @extend .col-lg-3;
+    @extend .col-md-3;
+    @extend .col-sm-3;
+    @extend .col-xs-3;
+  }
+  .black-box {
+    padding: 15px;
+    border: $standard-border;
+  }
+}

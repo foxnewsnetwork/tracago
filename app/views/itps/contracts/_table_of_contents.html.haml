@@ -1,40 +1,53 @@
-%ul
+%ul.nav.nav-stacked
   %li= link_to t(:actions)
+  / Section I
   %li
     = link_to t(:foreward)
-    %ul
+    %ul.nav.nav-stacked
       %li= link_to t(:overview)
-      %li= link_to t(:executive_summary)
-      %li= link_to t(:jurisdiction)
+      %li= link_to t(:appointment_of_escrow_agent)
+      %li= link_to t(:objection)
+      %li= link_to t(:final_distribution)
+  / Section II
   %li
     = link_to t(:parties)
-    %ul
+    %ul.nav.nav-stacked
       %li= link_to t(:seller)
       %li= link_to t(:buyer)
-      %li= link_to t(:escrow_holder)
+  / Section III
   %li
     = link_to t(:terms_of_sales)
-    %ul
-      %li= link_to t(:commodities)
+    %ul.nav.nav-stacked
       %li= link_to t(:price_terms)
+      %li= link_to t(:risk_and_responsibilities)
+  / Section IV
   %li
     = link_to t(:terms_of_payment)
-    %ul
+    %ul.nav.nav-stacked
       %li= link_to t(:required_documents)
-      %li= link_to t(:duration_of_payment)
-      %li= link_to t(:escrow_fees)
+      %li= link_to t(:deductions)
+      %li= link_to t(:additions)
+      %li= link_to t(:assembled_documents_completion)
+  / Section V
   %li
     = link_to t(:terms_of_cancellation)
-    %ul
-      %li= link_to t(:cancellation_conditions)
-      %li= link_to t(:cancellation_fees)
+    %ul.nav.nav-stacked
+      %li= link_to t(:preloading_cancellation)
+      %li= link_to t(:prereturn_cancellation)
+      %li= link_to t(:postreturn_cancellation)
+  / Section VI
   %li
     = link_to t(:breach_of_contract)
-    %ul
+    %ul.nav.nav-stacked
       %li= link_to t(:general_damages)
       %li= link_to t(:consequential_damages)
       %li= link_to t(:reliance_damages)
+  / Section VII
+  %li= link_to t(:fees)
+  / Section VIII
   %li= link_to t(:arbitration)
+  / Section IX
   %li= link_to t(:capacity)
+  / Section X
   %li= link_to t(:mutual_consent)
   %li= link_to t(:actions)

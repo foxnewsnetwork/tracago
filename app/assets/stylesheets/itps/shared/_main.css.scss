@@ -29,6 +29,7 @@
 @import 'itps/drafts/commodities/edit';
 @import 'itps/drafts/documents/edit';
 @import 'itps/drafts/reviews/edit';
+@import 'itps/contracts/show';
 @mixin shared-main {
   padding: 0px;
   i {
@@ -164,5 +165,8 @@
   }
   #drafts-reviews-edit {
     @include itps-drafts-reviews-edit;
+  }
+  #contracts-show {
+    @include itps-contracts-show;
   }
 }
