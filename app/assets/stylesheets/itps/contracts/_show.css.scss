@@ -41,7 +41,7 @@
     padding-left: 15px;
   }
 
-  h4, h2, h3, p, dl {
+  h4, h2, h3, p, dl, .articles {
     @extend .col-lg-12;
     @extend .col-md-12;
     @extend .col-sm-12;

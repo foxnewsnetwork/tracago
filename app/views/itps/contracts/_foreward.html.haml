@@ -1,95 +1,96 @@
-.foreward.row
-  %h2
-    Section I. 
-    = t(:contract_sales_agreement)
-  %p 
-    To establish an escrow fund to facilitate the exchange of good (GOODS) from
-    WoodSales USA Inc. (SELLER) 
-    = link_to '(Section II. Article A. - Seller)'
-    to
-    Lumber Buyer China Corp. (BUYER)
-    = link_to '(Section II. Article B. - Buyer)'
-    based upon the conditions set aside in
-    = link_to 'Section III. Terms of Sales', '#terms-of-sales'
-    and
-    = link_to 'Section IV. Terms of Payment', '#terms-of-payment'
-#overview.row
-  %h3
-    Article A.
-    = t(:overview)
-  %p
-    The BUYER agrees to purchase the following materials (GOODS) from the SELLER
+%h2
+  Section I. 
+  = t(:contract_sales_agreement)
+%p 
+  To establish an escrow fund to facilitate the exchange of good (GOODS) from
+  WoodSales USA Inc. (SELLER) 
+  = link_to '(Section II. Article A. - Seller)'
+  to
+  Lumber Buyer China Corp. (BUYER)
+  = link_to '(Section II. Article B. - Buyer)'
+  based upon the conditions set aside in
+  = link_to 'Section III. Terms of Sales', '#terms-of-sales'
+  and
+  = link_to 'Section IV. Terms of Payment', '#terms-of-payment'
 
-.black-box
+.articles
+  %article#overview.row
+    %h3
+      Article A.
+      = t(:overview)
+    %p
+      The BUYER agrees to purchase the following materials (GOODS) from the SELLER
+
+  .black-box
+    .row
+      %dl
+        %dt= t(:price_terms)
+        %dd FAS Long Beach Port
+        %dt= t(:lastest_shipment_date)
+        %dd= 15.days.from_now.to_date
+
+    .row
+      .quarter
+        %h6= t(:item_name)
+        %p Bananas
+      .quarter
+        %h6= t(:quantity)
+        %p 40,000 lbs
+      .quarter
+        %h6= t(:unit_price)
+        %p $0.25 / lb
+      .quarter
+        %h6= t(:item_cost)
+        %p $10,000
+
+    .row
+      %dl
+        %dt= t(:approximate_cumulative_total)
+        %dd *$10,000
+
   .row
-    %dl
-      %dt= t(:price_terms)
-      %dd FAS Long Beach Port
-      %dt= t(:lastest_shipment_date)
-      %dd= 15.days.from_now.to_date
+    %p 
+      *The SELLER shall receive a total of approximately
+      $10,000.00
+      upon completion of the sale and delivery of the above goods as according to the agreed terms of sales. See
+      = link_to 'Section IV. A. Required Documents'
+      for the document requirements and instructions.
+    %p 
+      The SELLER and BUYER both agree that the exact amount paid to him will depend upon the condition of transport as subject to varying conditions such as differing packing weight. See
+      = link_to 'Section IV. B. Deductions'
+      and
+      = link_to 'Section IV. C. Additions.'
+      And that it is possible the SELLER may receive less than $10,000, or the BUYER may be required to supplement in more funds in addition $10,000
 
-  .row
-    .quarter
-      %h6= t(:item_name)
-      %p Bananas
-    .quarter
-      %h6= t(:quantity)
-      %p 40,000 lbs
-    .quarter
-      %h6= t(:unit_price)
-      %p $0.25 / lb
-    .quarter
-      %h6= t(:item_cost)
-      %p $10,000
+  %article#appointment_of_escrow_agent.row
+    %h3
+      Article B.
+      Appointment of Escrow Agent
+    %p 
+      The Global Trade Payment Service (GTPC) is hereby appointed as the Escrow Agent to hold and dispose of the ESCROW CREDIT, to be delivered to the Escrow Agent before
+      = 7.days.from_now.to_date
+      = link_to '(See payment instructions here).', '#payment_instructions'
+      The transfer of ESCROW CREDIT to the Escrow Agent signals the beginning of the contract and the SELLER should proceed to fulfil the sales and delivery of the GOODS as per the terms of sale. Any fulfillment prior to this funding is strictly at the SELLER's discretion.
 
-  .row
-    %dl
-      %dt= t(:approximate_cumulative_total)
-      %dd *$10,000
+  %article#objection.row
+    %h3
+      Article C.
+      Objection
+    %p
+      The SELLER, BUYER, and GTPC may cancel this CONTRACT at any moment before the distribution of ESCROW CREDIT by GTPC, the Escrow Agent, subject to the conditions, fees, and possible damages set aside in
+      = 'Section V - Terms of Cancellation.'
 
-.row
-  %p 
-    *The SELLER shall receive a total of approximately
-    $10,000.00
-    upon completion of the sale and delivery of the above goods as according to the agreed terms of sales. See
-    = link_to 'Section IV. A. Required Documents'
-    for the document requirements and instructions.
-  %p 
-    The SELLER and BUYER both agree that the exact amount paid to him will depend upon the condition of transport as subject to varying conditions such as differing packing weight. See
-    = link_to 'Section IV. B. Deductions'
-    and
-    = link_to 'Section IV. C. Additions.'
-    And that it is possible the SELLER may receive less than $10,000, or the BUYER may be required to supplement in more funds in addition $10,000
-
-#appointment_of_escrow_agent.row
-  %h3
-    Article B.
-    Appointment of Escrow Agent
-  %p 
-    The Global Trade Payment Service (GTPC) is hereby appointed as the Escrow Agent to hold and dispose of the ESCROW CREDIT, to be delivered to the Escrow Agent before
-    = 7.days.from_now.to_date
-    = link_to '(See payment instructions here).', '#payment_instructions'
-    The transfer of ESCROW CREDIT to the Escrow Agent signals the beginning of the contract and the SELLER should proceed to fulfil the sales and delivery of the GOODS as per the terms of sale. Any fulfillment prior to this funding is strictly at the SELLER's discretion.
-
-#objection.row
-  %h3
-    Article C.
-    Objection
-  %p
-    The SELLER, BUYER, and GTPC may cancel this CONTRACT at any moment before the distribution of ESCROW CREDIT by GTPC, the Escrow Agent, subject to the conditions, fees, and possible damages set aside in
-    = 'Section V - Terms of Cancellation.'
-
-#final_distribution.row
-  %h3
-    Article D.
-    Final Distribution
-  %p
-    Upon fulfillment of the requirements set aside in
-    = link_to 'Section IV Article A - Required Documents'
-    GTPC, as the Escrow Agent, will be obligated to release the ESCROW CREDIT to the SELLER subject to the service fees
-    = link_to '(Section VII - Fees)'
-    and details of payment agreement
-    = link_to '(Section IV - Terms of Payment).'
-    GTPC, as the Escrow Agent, will provide via its web interface, a status report of the status of the ESCROW CREDIT and make available to both BUYER and SELLER digital copies of documents listed in
-    = link_to 'Section IV Article A - Required Documents.'
-    If no objections arise, GTPC will release funds within 24 hours of the closing of escrow as defined in this contract.
+  %article#final_distribution.row
+    %h3
+      Article D.
+      Final Distribution
+    %p
+      Upon fulfillment of the requirements set aside in
+      = link_to 'Section IV Article A - Required Documents'
+      GTPC, as the Escrow Agent, will be obligated to release the ESCROW CREDIT to the SELLER subject to the service fees
+      = link_to '(Section VII - Fees)'
+      and details of payment agreement
+      = link_to '(Section IV - Terms of Payment).'
+      GTPC, as the Escrow Agent, will provide via its web interface, a status report of the status of the ESCROW CREDIT and make available to both BUYER and SELLER digital copies of documents listed in
+      = link_to 'Section IV Article A - Required Documents.'
+      If no objections arise, GTPC will release funds within 24 hours of the closing of escrow as defined in this contract.

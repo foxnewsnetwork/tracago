@@ -22,21 +22,29 @@
             %figure
               %i.fa-linux
             = t(:agreement)
-      #foreward
+      %section#foreward.row
         = render partial: 'itps/contracts/foreward'
-    
-      #parties
+      %section#parties
         = render partial: 'itps/contracts/parties'
-
-      #terms-of-sales
+      %section#terms-of-sales
         = render partial: 'itps/contracts/terms_of_sales'
-
-      #terms-of-payment
+      %section#terms-of-payment
         = render partial: 'itps/contracts/terms_of_payment'
-
-      #terms-of-cancellation
+      %section#terms-of-cancellation
         = render partial: 'itps/contracts/terms_of_cancellation'
-
+      %section#fees
+        = render partial: 'itps/contracts/fees'
+      #actions2.actions.row
+        .action.thumbnail
+          = link_to '#back' do
+            %figure
+              %i.fa-chevron-left
+            = t(:back)
+        .action.thumbnail
+          = link_to '#agreement' do
+            %figure
+              %i.fa-linux
+            = t(:agree_and_sign)
     #table-of-contents
       = render partial: 'itps/contracts/table_of_contents'
 
