@@ -12,8 +12,12 @@ class Itps::Drafts::ContractsController < Itps::BaseController
     [_draft.account]
   end
 
+  def _get_out_of_here!
+    redirect_to itps_contract_path _draft_contract!.permalink
+  end
+
   def _draft_contract!
-    
+    @contract ||= _draft.contracts.create
   end
 
   def _draft

@@ -1,3 +1,4 @@
+- v = view_helper
 .terms.row
   %h2
     Section V.
@@ -13,7 +14,7 @@
     Define the span of time until the SELLER has begun loading any container as the 
     %strong Preloading Time.
   %p
-    During Preaction Time, either BUYER or SELLER may cancel this contract without incurring damages or fees. If the Buyer has already funded the ESCROW FUND, the ESCROW may be left with GTPC for future application to other contracts or returned to the BUYER via standard desposit or wire at the BUYER's request. The BUYER is responsible for any incurred bank-related wire fees.
+    During Preaction Time, either BUYER or SELLER may cancel this contract without incurring damages or fees. If the Buyer has already funded the ESCROW FUND, the ESCROW FUNDS may be left with GTPC for future application to other contracts or returned to the BUYER via standard desposit or wire at the BUYER's request. The BUYER is responsible for any incurred bank-related wire fees.
 
 #prereturn-cancellation.row
   %h3
@@ -43,3 +44,18 @@
     = link_to '(Section VII - Fees)'
     and $125 per container the SELLER has on hand set aside for loading goods for the BUYER as restocking fee and half the cost of retrieving all the containers from terminal.
 
+- if view_helper.days_seller_has_to_load.present?
+  #overdue-cancellation.row
+    %h3
+      Article D.
+      Overdue Cancellation
+    %p 
+      Upon the BUYER fully funding the ESCROW ACCOUNT, the SELLER has
+      %strong
+        = view_helper.days_seller_has_to_load
+        = t(:days)
+      to begin loading the container(s). If after there has been no container activity after
+      %strong
+        = view_helper.days_seller_has_to_load
+        = t(:days)
+      the BUYER reserves the right to cancel this contract with the SELLER at fault.

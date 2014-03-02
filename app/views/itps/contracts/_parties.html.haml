@@ -1,45 +1,36 @@
+- v = view_helper
 .parties.row
   %h2
     Section II.
     Parties
-  %p This is a contract between 3 parties: SELLER, BUYER, and ESCROW AGENT
 
-#seller-party.row
+#seller.row
   %h3
     Article A.
     Seller -
-    = 'WoodSales USA Inc.'
+    = v.seller_company_name
   %dl
+    %dt= t(:company_name)
+    %dd= v.seller_company_name
     %dt= t(:address)
-    %dd 1234 Fake Street, Camarillo CA 93010
+    %dd
+      = v.seller_full_address
     %dt= t(:phone)
-    %dd 555 123 1234
+    %dd= v.seller_phone_number || t(:none)
     %dt= t(:email)
-    %dd wood4u@example.org
-  %p 
-    The following individual(s) represents the Seller
-  %dl
-    %dt= t(:name)
-    %dd Lumbar Jack
-    %dt= t(:position)
-    %dd Director
+    %dd= v.seller_email
 
-#buyer-party.row
+#buyer.row
   %h3
     Article B.
     Buyer -
-    = 'Lumber Buyer China Corp.'
+    = v.buyer_company_name
   %dl
+    %dt= t(:company_name)
+    %dd= v.buyer_company_name
     %dt= t(:address)
-    %dd 66 Lucky Dragon Way, Hong Kong, China
+    %dd= v.buyer_full_address
     %dt= t(:phone)
-    %dd 86 3455 123 1234
+    %dd= v.buyer_phone_number || t(:none)
     %dt= t(:email)
-    %dd lumber2me@example.org
-  %p
-    The following individual(s) represents the Buyer
-  %dl
-    %dt= t(:name)
-    %dd Mu Toe
-    %dt= t(:position)
-    %dd Director of Sales
+    %dd= v.buyer_email

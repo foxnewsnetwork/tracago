@@ -10,6 +10,7 @@
       %li= link_to t(:new_international_purchase_contract), edit_itps_buy_international_path(@draft.permalink)
       %li.active= t(:other_party)
       %li= t(:commodities_and_terms)
+      %li= t(:price_deductions)
       %li= t(:required_documents)
       %li= t(:review)
       %li= t(:finish)
@@ -23,6 +24,8 @@
             %dd.input= f.email_field :seller_email
             %dt.required= f.label :seller_company_name, t(:company_name)
             %dd.input= f.text_field :seller_company_name
+            %dt= f.label :seller_phone_number, t(:phone_number)
+            %dd.input= f.telephone_field :seller_phone_number
             %dt.required= f.label :seller_address1, t(:street_address)
             %dd.input= f.text_field :seller_address1
             %dt= f.label :seller_address2, t(:secondary_address)

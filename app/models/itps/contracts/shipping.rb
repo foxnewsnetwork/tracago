@@ -11,6 +11,7 @@
 #  expires_at      :datetime
 #  created_at      :datetime
 #  updated_at      :datetime
+#  draft_id        :integer
 #
 
 class Itps::Contracts::Shipping < Itps::Contract

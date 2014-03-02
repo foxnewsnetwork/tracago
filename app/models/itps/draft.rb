@@ -19,11 +19,50 @@ class Itps::Draft < ActiveRecord::Base
 
   has_many :items,
     class_name: "Itps::Drafts::Item"
+
+  has_many :punishments,
+    class_name: 'Itps::Drafts::Punishment'
+
+  has_many :unordered_packing_weight_punishments,
+    -> { packing_weights },
+    class_name: 'Itps::Drafts::Punishment'
+
+  has_many :unordered_container_count_punishments,
+    -> { containers },
+    class_name: 'Itps::Drafts::Punishment'
+  
+  has_many :packing_weight_punishments,
+    -> { packing_weights.order('maximum_quantity desc') },
+    class_name: 'Itps::Drafts::Punishment'
+
+  has_many :container_count_punishments,
+    -> { containers.order('maximum_quantity desc') },
+    class_name: 'Itps::Drafts::Punishment'
+
+  has_many :contracts,
+    class_name: 'Itps::Contract'
+
   before_create :_create_permalink
   class << self
     def create_from_hash!(hash)
       create! content: hash.to_yaml
     end
+  end
+
+  def minimum_packing_weight_before_cancel
+    unordered_packing_weight_punishments.order('minimum_quantity asc').limit(1).first.try(:minimum_quantity)
+  end
+
+  def minimum_container_count_before_cancel
+    unordered_container_count_punishments.order('minimum_quantity asc').limit(1).first.try(:minimum_quantity)
+  end
+
+  def minimum_packing_weight_before_punishment
+    packing_weight_punishments.limit(1).first.try(:maximum_quantity)
+  end
+
+  def minimum_container_count_before_punishment
+    container_count_punishments.limit(1).first.try(:maximum_quantity)
   end
 
   def international?
@@ -48,7 +87,7 @@ class Itps::Draft < ActiveRecord::Base
   end
 
   def parsed_hash
-    YAML.load(content).to_hash
+    _fix_dates YAML.load(content).to_hash
   end
 
   def total_cost
@@ -58,6 +97,13 @@ class Itps::Draft < ActiveRecord::Base
   end
 
   private
+  def _fix_dates(hash)
+    keys = hash.keys.map(&:to_s).select do |key|
+      /\(\d+i\)$/ =~ key
+    end
+    hash.access_map!(*keys.map(&:to_sym), &:to_i)
+  end
+
   def _create_permalink
     self.permalink = "#{rand 999999}-#{Faker::Lorem.word}-#{DateTime.now.to_i.to_alphabet}".to_url
   end

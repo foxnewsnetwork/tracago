@@ -1,3 +1,4 @@
+- v = view_helper
 .terms.row
   %h2
     Section IV.
@@ -12,58 +13,86 @@
   %p
     The SELLER is responsible for providing electronic versions of the following documents. Once uploaded to GTPC's web interace, every document becomes electronically available for view and download by both BUYER and SELLER.
 
-.row
-  %h4 
-    Title 1. 
-    Preloading pictures
-  
-  %p
-    The SELLER is responsible for uploading to the GTPC web interface at least one picture of the material to be sold to the BUYER. The picture(s) uploaded should be not have been alter in any way except such as is automatic through standard digital camera practices. 
+- i = 1
+- if 1 == v.preloading_pictures.to_i
+  .row
+    %h4 
+      Title 
+      = i
+      = '.'
+      - i += 1 
+      Preloading pictures
+    
+    %p
+      The SELLER is responsible for uploading to the GTPC web interface at least one picture of the material to be sold to the BUYER. The picture(s) uploaded should be not have been alter in any way except such as is automatic through standard digital camera practices. 
 
-.row
-  %h4 
-    Title 2.
-    Loading pictures
+- if 1 == v.loading_pictures.to_i
+  .row
+    %h4 
+      Title 
+      = i
+      = '.'
+      - i += 1
+      Loading pictures
 
-  %p
-    The SELLER is responsible for uploading to the GTPC web interface a set of pictures for each container loaded in the transport. Each container picture set must contain the following:
+    %p
+      The SELLER is responsible for uploading to the GTPC web interface a set of pictures for each container loaded in the transport. Each container picture set must contain the following:
 
-  %ul
-    %li At least one picture demostrating the container being loaded.
-    %li At least one picture of the fully loaded container with both container doors open.
-    %li At least one picture of the fully loaded container with the door containing the container number closed. The container number must be legible.
-    %li At least one picture of both doors closed with the container seal applied.
-    %li One picture of the container seal such that the seal number is readily legible.
+    %ul
+      %li At least one picture demostrating the container being loaded.
+      %li At least one picture of the fully loaded container with both container doors open.
+      %li At least one picture of the fully loaded container with the door containing the container number closed. The container number must be legible.
+      %li At least one picture of both doors closed with the container seal applied.
+      %li One picture of the container seal such that the seal number is readily legible.
 
-.row
-  %h4
-    Title 3.
-    Packing List
+- if 1 == v.packing_list.to_i
+  .row
+    %h4
+      Title 
+      = i
+      = '.'
+      - i += 1
+      Packing List
 
-  %p
-    The SELLER is responsible for uploading to the GTPC web interface a packing list which describes the content break downs of each container within a shipment such that it conforms to industry standards.
-.row
-  %h4
-    Title 4.
-    Bill of Lading Seaway Bill
+    %p
+      The SELLER is responsible for uploading to the GTPC web interface a packing list which describes the content break downs of each container within a shipment such that it conforms to industry standards.
 
-  %p
-    The SELLER must provide the Bill of Lading Seaway Bill with which the steamship line is able to release goods to the BUYER
-    This is only available for CPT and below.
-.row
-  %h4
-    Title 5.
-    Weight Ticket
+- if 1 == v.bill_of_lading.to_i
+  .row
+    %h4
+      Title 
+      = i
+      = '.'
+      - i += 1
+      Bill of Lading Seaway Bill
 
-  %p
-    The SELLER must provide, for each container within the shipment, a weight ticket published by a certified public scale.
-.row
-  %h4
-    Title 6.
-    Invoice
+    %p
+      The SELLER must provide the Bill of Lading Seaway Bill with which the steamship line is able to release goods to the BUYER
+      This is only available for CPT and below.
 
-  %p
-    The SELLER must provide one invoice based upon the weights designated by weight tickets and any possible alterations to additional price agreements between SELLER and BUYER. Subject to the conditions in Article B, and C of this section, the SELLER will receive payment as according to this invoice.
+- if 1 == v.weight_ticket.to_i
+  .row
+    %h4
+      Title 
+      = i
+      = '.'
+      - i += 1
+      Weight Ticket
+
+    %p
+      The SELLER must provide, for each container within the shipment, a weight ticket published by a certified public scale.
+
+- if 1 == v.invoice.to_i
+  .row
+    %h4
+      Title 
+      = i
+      = '.'
+      - i += 1
+      Invoice
+
+    %p
+      The SELLER must provide one invoice based upon the weights designated by weight tickets and any possible alterations to additional price agreements between SELLER and BUYER. Subject to the conditions in Article B, and C of this section, the SELLER will receive payment as according to this invoice.
 
 #deductions.row
   %h3
@@ -72,52 +101,96 @@
 
   %p 
     Deductions to the total payment due to the SELLER including the full cancellation of this purchase contract may occur subject to the articles in 
-    = link_to 'Section V. Terms of Cancellation.'
+    = link_to 'Section V. Terms of Cancellation.', '#terms-of-cancellation'
     and the following rules.
 
 .row
   %h4
     Title 1.
-    Insufficient Average Container Weight
-
-  %p
-    For the entire shipment containing
-    1
-    container(s)
-    the SELLER agrees to load the containers such that the average packing weight of all the containers is greater than
-    %strong 36,000 lbs
-  %p
-    If the SELLER fails to meet this packing weight criteria, the SELLER must compensate the BUYER according to the following rules:
-
-  %dl
-    %dt For every pound less than 36,000 lbs, but greater than 32,000 lbs
-    %dd The SELLER pays the BUYER $0.01 for each missing pound
-    %dt For every pound less than 32,000 lbs, but greater than 30,000 lbs
-    %dd The SELLER pays the BUYER $0.015 for each missing pound
-    %dt For less than 30,000 lbs
-    %dd The BUYER reserves the right to cancel this contract with the SELLER at fault
-
-.row
-  %h4
-    Title 2.
     Significant Quality Difference
 
   %p
     If there is significant and provable quality difference between the material presented to the BUYER in the preloading pictures and the material loaded to the BUYER, the BUYER is entitled to request a lower price fare from the SELLER as would be deemed reasonable by present market conditions and industry standards. Compliance to the BUYER's request is strictly the SELLER's discretion.
   %p
     If no agreement can be reached, the BUYER reserved the right to cancel this contract with fault split between BUYER and SELLER subject to the fees outlined in
-    = link_to 'Section V. Terms of Cancellation.'
+    = link_to 'Section V. Terms of Cancellation.', '#terms-of-cancellation'
+
+- j = 2
+- if v.punish_weight?
+  .row
+    %h4
+      Title 
+      = j
+      = '.'
+      - j += 1
+      Insufficient Average Container Weight
+
+    %p
+      the SELLER agrees to load the containers of this shipment such that the average packing weight of all the containers is greater than
+      %strong
+        = number_with_delimiter v.minimum_packing_weight_before_punishment, delimiter: ','
+        pounds.
+    %p
+      If the SELLER fails to meet this packing weight criteria, the SELLER must compensate the BUYER according to the following rules:
+
+    %dl
+      - v.packing_weight_punishments.each do |punishment|
+        %dt 
+          For every pound less than
+          = number_with_delimiter punishment.maximum_quantity, delimiter: ','
+          = punishment.quantity_unit
+          but greater than 
+          = number_with_delimiter punishment.minimum_quantity, delimiter: ','
+          = punishment.quantity_unit
+        %dd 
+          The SELLER pays the BUYER $
+          %strong
+            = number_with_delimiter punishment.price_deduction, delimiter: ','
+            per
+            = punishment.price_unit
+          - if 'lb' == punishment.price_unit
+            for each pound less than
+            = number_with_delimiter punishment.maximum_quantity, delimiter: ','
+            = punishment.quantity_unit
+            = '.'
+          - if 'container' == punishment.price_unit
+            for each container in used to load.
+          - if 'shipment' == punishment.price_unit
+            lump sum for this contract.
+
+      %dt 
+        For less than 
+        %strong
+          = number_with_delimiter v.minimum_average_weight, delimiter: ','
+          pounds
+      %dd The BUYER reserves the right to cancel this contract with the SELLER at fault
+
+- if v.punish_containers?
+  .row
+    %h4
+      Title 
+      = j
+      = '.'
+      - j += 1
+      Insufficient Containers Per Booking
+
+    %p
+      the SELLER agrees to load the containers of this shipment such that the average packing weight of all the containers is greater than
+      %strong
+        = number_with_delimiter v.minimum_packing_weight_before_punishment, delimiter: ','
+        pounds.
 
 #additions.row
   %h3
     Article C.
     Additions
 
-  %p 
-    If the SELLER loads the containers such that the total cost of material owed to the SELLER exceeds the
-    %strong $10,000
-    paid into the ESCROW FUND by the BUYER, the BUYER agrees to pay the SELLER the owed difference.
-
+  %p
+    If the actual cost of the shipment calculated as the agreed upon price per unit multiplied by units summed across all the materials in this shipment exceeds the amount
+    %strong
+      $
+      = number_with_delimiter view_helper.total_items_cost, delimiter: ','
+    that the BUYER shall pay into the ESCROW FUND, then the BUYER agrees to compensate the SELLER for the difference.
 
 #assembled-completion.row
   %h3
@@ -125,7 +198,7 @@
     Assembled Documents Completion
   %p
     Upon reception of all
-    6
+    %strong= i
     documents, both parties will be notified via email of the beginning of close of escrow period. During this period, the BUYER will have 24 hours to file for objection through GTPC's web interface to prevent GTPC from releasing funds to the SELLER
-    = link_to '(See Section V. Terms of Cancellation).'
+    = link_to '(See Section V. Terms of Cancellation).', '#terms-of-cancellation'
     If the BUYER does not file for objection through GTPC's web interface within the 24 hours, the Escrow will close and the ESCROW CREDIT in the amount calculated after any additions and deductions, will be paid to the SELLER.

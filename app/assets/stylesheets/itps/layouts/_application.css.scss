@@ -32,6 +32,9 @@ body {
       }
     }
   }
+  .capitalize {
+    text-transform: capitalize;
+  }
   .parantheses {
     &:before {
       content: "(";

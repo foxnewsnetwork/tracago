@@ -30,6 +30,7 @@
 @import 'itps/drafts/documents/edit';
 @import 'itps/drafts/reviews/edit';
 @import 'itps/contracts/show';
+@import 'itps/drafts/punishments/edit';
 @mixin shared-main {
   padding: 0px;
   i {
@@ -168,5 +169,10 @@
   }
   #contracts-show {
     @include itps-contracts-show;
+  }
+  #drafts-punishments-edit,
+  #drafts-punishments-update,
+  #drafts-punishments-deductions-create {
+    @include itps-drafts-punishments-edit;
   }
 }

@@ -2,6 +2,7 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
   PartyFields = [
     :buyer_email, 
     :buyer_company_name,
+    :buyer_phone_number,
     :buyer_address1,
     :buyer_address2,
     :buyer_city,
@@ -11,6 +12,7 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
   SellerFields = [
     :seller_email,
     :seller_company_name,
+    :seller_phone_number,
     :seller_address1,
     :seller_address2,
     :seller_city,
@@ -19,8 +21,13 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
   ].freeze
   CommodityFields = [
     :price_terms,
-    :latest_shipment_date
+    :destination,
+    :days_seller_has_to_load
   ].freeze
+  PunishmentFields = [
+    :minimum_average_weight,
+    :minimum_containers
+  ]
   DocumentFields = [
     :preloading_pictures,
     :weight_ticket,
@@ -29,7 +36,7 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
     :packing_list,
     :invoice
   ].freeze
-  Fields = PartyFields + SellerFields + CommodityFields + DocumentFields
+  Fields = PartyFields + SellerFields + CommodityFields + PunishmentFields + DocumentFields
   attr_reader :draft, :account
   attr_accessor :attributes
   attr_hash_accessor *Fields
@@ -37,15 +44,20 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
   validates_with Itps::Drafts::OtherPartyStageValidator
   validates_with Itps::Drafts::CommodityStageValidator
   
-  delegate :items, to: :draft
+  delegate :items, 
+    :punishments,
+    to: :draft
 
   def draft=(draft)
     self.account = draft.account
     self.attributes = draft.parsed_hash.symbolize_keys.permit(*Fields)
     @draft = draft
   end
-  
 
+  def incoterm_is_one_of?(*terms)
+    terms.any? { |term| price_terms == term }
+  end
+  
   def account=(account)
     self.buyer_company_name = account.party.company_name
     self.buyer_email = account.email
@@ -55,6 +67,11 @@ class Itps::Drafts::FormHelper < Spree::FormHelperBase
   def document_attributes=(hash)
     @attributes = attributes.symbolize_keys.merge hash.symbolize_keys
     _completed! :document
+  end
+
+  def punishment_attributes=(hash)
+    @attributes = attributes.symbolize_keys.merge hash.symbolize_keys
+    _completed! :punishment
   end
 
   def commodity_attributes=(hash)

@@ -1,0 +1,70 @@
+#hero-banner
+  %section
+    %h1= t(:price_deductions)
+
+.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:home), itps_path
+      %li= link_to t(:buy), itps_buy_path
+      %li= link_to t(:new_international_purchase_contract), edit_itps_buy_international_path(@draft.permalink)
+      %li= link_to t(:other_party), edit_itps_draft_party_path(@draft.permalink)
+      %li= link_to t(:commodities_and_terms), edit_itps_draft_commodity_path(@draft.permalink)
+      %li.active= t(:price_deductions)
+      %li= t(:required_documents)
+      %li= t(:review)
+      %li= t(:finish)
+
+
+
+  .row
+    %h2= t(:deduction_conditions)
+    .punishments= render partial: 'itps/drafts/punishments/punishment', collection: @draft.punishments
+  .row
+    - if @form_helper.incoterm_is_one_of? 'DAT', 'DAP', "DDP"
+      %p
+        Nothing to do here since the SELLER is in charge of transportation to port of import.
+    - else
+      .punishments
+        - locals = { draft: @draft, punishment: @punishment || @draft.punishments.new }
+        = render partial: 'itps/drafts/punishments/punishment', locals: locals
+  
+  #generic-form
+    = form_for @form_helper, url: itps_draft_punishment_path(@draft.permalink), method: :put do |f|
+      .row
+        %h2= t(:packing_requirements)
+        %dl.fields
+          %dt
+            = f.label :minimum_average_weight, t(:minimum_average_packing_weight)
+          %dd.input
+            - if @form_helper.incoterm_is_one_of? 'DAT', 'DAP', "DDP"
+              = t(:not_applicable)
+            - else    
+              .input-group
+                = f.number_field :minimum_average_weight, step: 0.0001, value: @draft.minimum_packing_weight_before_cancel
+                .input-group-addon
+                  = t(:pounds)
+          %dt
+            = f.label :minimum_containers, t(:minimum_containers_per_booking)
+          %dd.input
+            - if @form_helper.incoterm_is_one_of? 'DAT', 'DAP', "DDP"
+              = t(:not_applicable)
+            - else
+              .input-group
+                = f.number_field :minimum_containers, step: 1, value: @draft.minimum_container_count_before_cancel
+                .input-group-addon
+                  = t(:containers)
+        %aside.small-explanation
+          = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }
+          %p The minimum average packing weight is the minimum weight averaged across all the containers in this shipment you (the BUYER) will accept before you have the right to cancel this purchase contract without fault.
+          %p The minimum containers per booking is the minimum number of containers per booking you (the BUYER) will accept before you have the right to cancel this purchase contract without fault.
+          - if @form_helper.incoterm_is_one_of? 'DAT', 'DAP', "DDP"
+            %p Under DAT, DAP, and DDP, the seller is responsible for unloading in the port of import, therefore, weight-based deductions from the BUYER is unreasonable.
+      .row
+        .actions
+          = button_tag type: :submit do
+            %i.submit
+            = t(:next)
+          = link_to edit_itps_draft_party_path(@draft.permalink), type: :reset do
+            %i.reset
+            = t(:cancel)

@@ -1,0 +1,72 @@
+@mixin itps-drafts-punishments-edit {
+  .container {
+    padding-bottom: 20px;
+  }
+  .punishments, h2 {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .punishment {
+    padding-bottom: 10px;
+    input, select {
+      @extend .form-control;
+    }
+  }
+  .unpadded {
+    padding: 0px;
+  }
+  .comparison {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+    button {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  .max-quant {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .min-quant {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .quantity-unit {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .price-deduct {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .price-unit {
+    @extend .col-lg-2;
+    @extend .col-md-2;
+    @extend .col-sm-4;
+    @extend .col-xs-4;
+  }
+  .punishment-form {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+  .punishment-explanation {
+    @extend .col-lg-12;
+    @extend .col-md-12;
+    @extend .col-sm-12;
+    @extend .col-xs-12;
+  }
+}

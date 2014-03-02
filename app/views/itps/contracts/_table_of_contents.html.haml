@@ -1,40 +1,41 @@
 %ul.nav.nav-stacked
-  %li= link_to t(:actions)
+  %li= link_to t(:actions), '#actions1'
   / Section I
   %li
-    = link_to t(:foreward)
+    = link_to t(:foreward), '#foreward'
     %ul.nav.nav-stacked
-      %li= link_to t(:overview)
-      %li= link_to t(:appointment_of_escrow_agent)
-      %li= link_to t(:objection)
-      %li= link_to t(:final_distribution)
+      %li= link_to t(:overview), '#overview'
+      %li= link_to t(:appointment_of_escrow_agent), '#appointment-of-escrow-agent'
+      %li= link_to t(:objection), '#objection'
+      %li= link_to t(:final_distribution), '#final-distribution'
   / Section II
   %li
-    = link_to t(:parties)
+    = link_to t(:parties), '#parties'
     %ul.nav.nav-stacked
-      %li= link_to t(:seller)
-      %li= link_to t(:buyer)
+      %li= link_to t(:seller), '#seller'
+      %li= link_to t(:buyer), '#buyer'
   / Section III
   %li
-    = link_to t(:terms_of_sales)
+    = link_to t(:terms_of_sales), '#terms-of-sales'
     %ul.nav.nav-stacked
-      %li= link_to t(:price_terms)
-      %li= link_to t(:risk_and_responsibilities)
+      %li= link_to t(:price_terms), '#price-terms'
+      %li= link_to t(:risk_and_responsibilities), '#risk-and-responisbilities'
   / Section IV
   %li
-    = link_to t(:terms_of_payment)
+    = link_to t(:terms_of_payment), '#terms-of-payment'
     %ul.nav.nav-stacked
-      %li= link_to t(:required_documents)
-      %li= link_to t(:deductions)
-      %li= link_to t(:additions)
-      %li= link_to t(:assembled_documents_completion)
+      %li= link_to t(:required_documents), '#required-documents'
+      %li= link_to t(:deductions), '#deductions'
+      %li= link_to t(:additions), '#additions'
+      %li= link_to t(:assembled_documents_completion), '#assembled-documents-completion'
   / Section V
   %li
-    = link_to t(:terms_of_cancellation)
+    = link_to t(:terms_of_cancellation), '#terms-of-cancellation'
     %ul.nav.nav-stacked
-      %li= link_to t(:preloading_cancellation)
-      %li= link_to t(:prereturn_cancellation)
-      %li= link_to t(:postreturn_cancellation)
+      %li= link_to t(:preloading_cancellation), '#preloading-cancellation'
+      %li= link_to t(:prereturn_cancellation), '#prereturn-cancellation'
+      %li= link_to t(:postreturn_cancellation), '#postreturn-cancellation'
+      %li= link_to t(:overdue_cancellation), '#overdue-cancellation'
   / Section VI
-  %li= link_to t(:fees)
-  %li= link_to t(:actions)
+  %li= link_to t(:fees), '#fees'
+  %li= link_to t(:actions), '#actions2'

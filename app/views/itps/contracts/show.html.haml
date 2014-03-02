@@ -6,14 +6,18 @@
 #content-box.container
   #cookie-crumbs
     %ol
-      %li= link_to t(:my_account), itps_account_path(1)
-      %li Contract#12313
+      %li= link_to t(:my_account), itps_account_path(current_account.permalink)
+      %li= link_to t(:draft_review), edit_itps_draft_review_path(@contract.draft.permalink)
+      %li
+        = t(:contract)
+        = '#'
+        = @contract.bullshit_id
 
   .row
     #contents
       #actions1.actions.row
         .action.thumbnail
-          = link_to '#back' do
+          = link_to edit_itps_draft_review_path(@contract.draft.permalink) do
             %figure
               %i.fa-chevron-left
             = t(:back)
@@ -23,17 +27,17 @@
               %i.fa-linux
             = t(:agreement)
       %section#foreward.row
-        = render partial: 'itps/contracts/foreward'
+        = render partial: 'itps/contracts/foreward', locals: { view_helper: @view_helper }
       %section#parties
-        = render partial: 'itps/contracts/parties'
+        = render partial: 'itps/contracts/parties', locals: { view_helper: @view_helper }
       %section#terms-of-sales
-        = render partial: 'itps/contracts/terms_of_sales'
+        = render partial: 'itps/contracts/terms_of_sales', locals: { view_helper: @view_helper }
       %section#terms-of-payment
-        = render partial: 'itps/contracts/terms_of_payment'
+        = render partial: 'itps/contracts/terms_of_payment', locals: { view_helper: @view_helper }
       %section#terms-of-cancellation
-        = render partial: 'itps/contracts/terms_of_cancellation'
+        = render partial: 'itps/contracts/terms_of_cancellation', locals: { view_helper: @view_helper }
       %section#fees
-        = render partial: 'itps/contracts/fees'
+        = render partial: 'itps/contracts/fees', locals: { view_helper: @view_helper }
       #actions2.actions.row
         .action.thumbnail
           = link_to '#back' do

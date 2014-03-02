@@ -30,7 +30,11 @@ Tracago::Application.routes.draw do
       resources :commodities, only: [:edit, :update], controller: 'drafts/commodities' do
         resources :items, only: [:create], controller: 'drafts/commodities/items'
       end
-      resources :items, only: [:destroy], controller: 'drafts/items'
+      resources :punishments, only: [:edit, :update], controller: 'drafts/punishments' do
+        resources :deductions, only: [:create], controller: 'drafts/punishments/deductions'
+      end
+      resources :items, only: [:destroy, :update], controller: 'drafts/items'
+      resources :deductions, only: [:destroy, :update], controller: 'drafts/deductions'
       resources :documents, only: [:edit, :update], controller: 'drafts/documents'
       resources :reviews, only: [:edit, :update], controller: 'drafts/reviews'
     end

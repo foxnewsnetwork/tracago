@@ -26,6 +26,14 @@ Live run tests
 >change payment / goods service to seller buyer
 >reverse the order of escrow#show... and provide a legal-text version
 
+Friday
+=
+Almost through with punishments, still need to work out all the cases when buyer gives seller booking
+
+Thursday
+=
+1. Finish contract view
+
 Wednesday
 =
 PET - $0.215 FAS Long Beach (this week price)

@@ -10,6 +10,7 @@
       %li= link_to t(:new_international_purchase_contract), edit_itps_buy_international_path(@draft.permalink)
       %li= link_to t(:other_party), edit_itps_draft_party_path(@draft.permalink)
       %li.active= t(:commodities_and_terms)
+      %li= t(:price_deductions)
       %li= t(:required_documents)
       %li= t(:review)
       %li= t(:finish)
@@ -29,9 +30,15 @@
           $
           = number_with_delimiter @draft.total_cost, delimiter: ','
         %dt.required= f.label :price_terms, t(:price_terms)
-        %dd.input= f.text_field :price_terms, placeholder: 'FAS Los Angeles Port'
-        %dt= f.label :latest_shipment_date, t(:latest_shipment_date)
-        %dd.datetime= f.date_select :latest_shipment_date, include_blank: true, start_year: Time.now.year
+        %dd.price-terms.input
+          .input-group
+            .input-group-addon
+              - opts = [@form_helper.price_terms] + Itps::Drafts::International::Incoterms
+              = f.select :price_terms, options_for_select(opts)
+            = f.text_field :destination
+        %dt= f.label :days_seller_has_to_load, t(:days_seller_has_to_load_after_escrow_funding)
+        %dd.input
+          = f.number_field :days_seller_has_to_load, step: 1
         
       %aside.small-explanation
         = render partial: 'itps/shared/errors', locals: { errors: @form_helper.errors }

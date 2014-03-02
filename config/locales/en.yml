@@ -26,8 +26,15 @@ en:
       messages:
         record_invalid: "%{errors}"
       models:
+        itps/drafts/punishment:
+          attributes:
+            quantity_unit:
+              need_unit_of_containers: 'Shipment loads are measured in containers'
+              need_unit_of_weight: 'You need to pick a unit of weight'
         drafts:
           attributes:
+            days_seller_has_to_load:
+              nonsensical: 'requires a reason number of days for loading'
             price_terms:
               blank: 'cannot be blank'
               nonsensical: 'must satisfy Incoterms standards'

@@ -10,6 +10,7 @@
       %li= link_to t(:new_international_purchase_contract), edit_itps_buy_international_path(@draft.permalink)
       %li= link_to t(:other_party), edit_itps_draft_party_path(@draft.permalink)
       %li= link_to t(:commodities_and_terms), edit_itps_draft_commodity_path(@draft.permalink)
+      %li= link_to t(:price_deductions), edit_itps_draft_punishment_path(@draft.permalink)
       %li.active= t(:required_documents)
       %li= t(:review)
       %li= t(:finish)
@@ -24,8 +25,9 @@
           %dd= f.label :weight_ticket, t(:weight_ticket)
           %dt= f.check_box :loading_pictures, checked: true
           %dd= f.label :loading_pictures, t(:loading_pictures)
-          %dt= f.check_box :bill_of_lading, checked: true
-          %dd= f.label :bill_of_lading, t(:bill_of_lading)
+          - if ['CPT', 'CFR', 'CIF', 'CIP'].include? @form_helper.price_terms
+            %dt= f.check_box :bill_of_lading, checked: true
+            %dd= f.label :bill_of_lading, t(:bill_of_lading)
           %dt= f.check_box :packing_list, checked: true
           %dd= f.label :packing_list, t(:packing_list)
           %dt= f.check_box :invoice, checked: true

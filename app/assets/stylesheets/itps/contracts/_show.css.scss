@@ -52,6 +52,9 @@
     @extend .col-md-3;
     @extend .col-sm-3;
     @extend .col-xs-3;
+    p:nth-child(odd) {
+      background-color: white;
+    }
   }
   .black-box {
     padding: 15px;

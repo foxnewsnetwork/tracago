@@ -26,13 +26,18 @@
       padding: 0px;
     }
   }
-  .datetime {
+  .datetime, .price-terms {
     select {
       padding-left: 10px;
       padding-right: 10px;
       padding-top: 5px;
       padding-bottom: 5px;
     }
+  }
+  .price-terms {
+    .input-group-addon {
+      padding: 0px;
+    } 
   }
   .items, h2 {
     @extend .col-lg-12;

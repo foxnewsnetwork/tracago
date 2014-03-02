@@ -1,0 +1,58 @@
+- draft ||= punishment.draft
+- if punishment.persisted?
+  - opts = { method: :put, url: itps_draft_deduction_path(punishment) }
+- else
+  - opts = { method: :post, url: itps_draft_punishment_deductions_path(draft.permalink) } 
+.punishment.row
+  .punishment-form
+    = form_for punishment, opts do |f|
+      .comparison.input-group
+        .input-group-btn
+          = button_tag type: :submit do
+            - if punishment.persisted?
+              %i.fa-edit
+            - else
+              %i.fa-plus
+            = t(:condition)
+        = f.select :comparison_type, Itps::Drafts::Punishment::ComparisonTypes
+    
+      .max-quant.input-group
+        .input-group-addon
+          = t(:between)
+        = f.number_field :maximum_quantity, step: 0.001, placeholder: 38000
+
+      .min-quant.input-group
+        .input-group-addon
+          = t(:and)
+        = f.number_field :minimum_quantity, step: 0.001, placeholder: 36000
+
+      .quantity-unit.input-group
+        = f.select :quantity_unit, ['lbs', 'containers']
+        .input-group-addon
+          = t(:deduct)
+
+      .price-deduct.input-group
+        .input-group-addon
+          %i.fa-dollar
+        = f.number_field :price_deduction, step: 0.00001, placeholder: 0.01
+
+      .price-unit.input-group
+        .input-group-addon
+          = t(:per)
+        = f.select :price_unit, ['lb', 'container', 'booking']
+        - if punishment.persisted?
+          .input-group-btn
+            = link_to itps_draft_deduction_path(punishment), method: :delete, class: 'btn btn-danger' do
+              %i.fa-times
+
+  .punishment-explanation
+    - if punishment.errors.any?
+      = render partial: 'itps/shared/errors', locals: { errors: punishment.errors }
+    %p.col-lg-12.col-md-12.col-sm-12.col-xs-12
+      = t(:click)
+      - if punishment.persisted?
+        %i.fa-edit
+        = t(:to_finalize_any_changes_you_make)
+      - else
+        %i.fa-plus
+        = t(:to_add_new_deduction_detail)

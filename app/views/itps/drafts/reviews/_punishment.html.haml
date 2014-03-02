@@ -1,0 +1,23 @@
+.punishment.row
+  .col-lg-6.col-md-6.col-sm-6.col-xs-6 
+    %p
+      = t(:when)
+      %strong= punishment.comparison_type
+      = t(:is_less_than)
+      %strong
+        = number_with_delimiter punishment.maximum_quantity, delimiter: ','
+        = punishment.quantity_unit
+      = t(:but_greater_than)
+      %strong
+        = number_with_delimiter punishment.minimum_quantity, delimiter: ','
+        = punishment.quantity_unit
+
+  .col-lg-6.col-md-6.col-sm-6.col-xs-6 
+    %p
+      = t(:then)
+      %strong
+        %i.fa-dollar
+        = number_with_delimiter punishment.price_deduction, delimiter: ','
+        = t(:per)
+        = punishment.price_unit
+      = t(:will_be_deduct_from_payment)

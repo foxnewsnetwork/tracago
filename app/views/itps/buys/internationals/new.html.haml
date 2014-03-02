@@ -23,6 +23,8 @@
             %dd= current_account.email
             %dt.required= f.label :buyer_company_name, t(:my_company_name)
             %dd.input= f.text_field :buyer_company_name
+            %dt= f.label :buyer_phone_number, t(:my_phone_number)
+            %dd.input= f.telephone_field :buyer_phone_number
             %dt.required= f.label :buyer_address1, t(:street_address)
             %dd.input= f.text_field :buyer_address1
             %dt= f.label :buyer_address2, t(:secondary_address)

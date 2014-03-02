@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224185616) do
+ActiveRecord::Schema.define(version: 20140228183736) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -66,8 +66,10 @@ ActiveRecord::Schema.define(version: 20140224185616) do
     t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "draft_id"
   end
 
+  add_index "itps_contracts", ["draft_id"], name: "index_itps_contracts_on_draft_id", using: :btree
   add_index "itps_contracts", ["escrow_id"], name: "index_itps_contracts_on_escrow_id", using: :btree
   add_index "itps_contracts", ["permalink"], name: "index_itps_contracts_on_permalink", unique: true, using: :btree
 
@@ -116,6 +118,21 @@ ActiveRecord::Schema.define(version: 20140224185616) do
   end
 
   add_index "itps_drafts_items", ["draft_id"], name: "index_itps_drafts_items_on_draft_id", using: :btree
+
+  create_table "itps_drafts_punishments", force: true do |t|
+    t.integer  "draft_id"
+    t.decimal  "minimum_quantity", precision: 16, scale: 6
+    t.decimal  "maximum_quantity", precision: 16, scale: 6
+    t.string   "comparison_type"
+    t.string   "quantity_unit"
+    t.decimal  "price_deduction",  precision: 16, scale: 8
+    t.string   "price_unit"
+    t.string   "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itps_drafts_punishments", ["draft_id"], name: "index_itps_drafts_punishments_on_draft_id", using: :btree
 
   create_table "itps_email_archives", force: true do |t|
     t.string   "mailer_name",   null: false
