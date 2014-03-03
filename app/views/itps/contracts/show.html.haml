@@ -22,7 +22,7 @@
               %i.fa-chevron-left
             = t(:back)
         .action.thumbnail
-          = link_to '#agreement' do
+          = link_to new_itps_contract_agreement_path(@contract.bullshit_id) do
             %figure
               %i.fa-linux
             = t(:agreement)
@@ -45,7 +45,7 @@
               %i.fa-chevron-left
             = t(:back)
         .action.thumbnail
-          = link_to '#agreement' do
+          = link_to new_itps_contract_agreement_path(@contract.bullshit_id) do
             %figure
               %i.fa-linux
             = t(:agree_and_sign)

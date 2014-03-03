@@ -41,7 +41,9 @@ Tracago::Application.routes.draw do
     resources :drafts, only: [:show] do
       resources :contracts, only: [:create], controller: 'drafts/contracts'
     end
-    resources :contracts, only: [:show]
+    resources :contracts, only: [:show] do
+      resources :agreements, only: [:new, :create], controller: 'contracts/agreements'
+    end
 
     resource :account_redirect, only: [:show]
     resource :sell, only: [:show], controller: 'sells'

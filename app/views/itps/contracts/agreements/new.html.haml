@@ -1,0 +1,31 @@
+#hero-banner
+  %section
+    %h1= t(:contract_agreement)
+
+#content-box.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:my_account), itps_account_path(current_account.permalink)
+      %li= link_to t(:draft_review), edit_itps_draft_review_path(@contract.draft.permalink)
+      %li
+        = link_to itps_contract_path(@contract.bullshit_id) do
+          = t(:contract)
+          = '#'
+          = @contract.bullshit_id
+      %li= t(:contract_agreement)
+  .row
+    %textarea.tos-text.col-lg-10.col-md-10.col-sm-10.col-xs-10{ readonly: 'readonly' }
+      = render partial: 'itps/contracts/agreements/terms'
+    %h4.col-lg-12.col-md-12.col-sm-12.col-xs-12.upcase by agreeing and clicking submit, you acknowledge you have read and understood both the contract on the previous page as well as the GTPC terms of service agreement.
+  .row
+    .actions.col-lg-6.col-md-6.col-sm-12.col-xs-12
+      = form_for :agreements, url: itps_contract_agreements_path(@contract.permalink) do |f|
+        %fieldset
+          = f.check_box :agree
+          = f.label :agree, t(:agree_to_terms_of_usage)
+        %fieldset
+          = button_tag type: :submit do
+            %i.submit
+            = t(:commit_to_contract)
+            &
+            = t(:inform_other_party)

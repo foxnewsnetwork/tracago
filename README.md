@@ -26,6 +26,11 @@ Live run tests
 >change payment / goods service to seller buyer
 >reverse the order of escrow#show... and provide a legal-text version
 
+Sunday
+=
+1. Got through the entirety of the contract (might need to edit for grammar though)
+2. Now need to get tos agreement thing retouched up and have it generate the escrow product then we should be good to go
+
 Friday
 =
 Almost through with punishments, still need to work out all the cases when buyer gives seller booking

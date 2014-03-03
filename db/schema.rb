@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228183736) do
+ActiveRecord::Schema.define(version: 20140303022744) do
 
   create_table "itps_accounts", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140228183736) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "draft_id"
+    t.string   "checksum"
   end
 
   add_index "itps_contracts", ["draft_id"], name: "index_itps_contracts_on_draft_id", using: :btree

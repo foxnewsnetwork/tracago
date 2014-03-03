@@ -1,6 +1,10 @@
 module ApplicationHelper
   def markdown_loadup(key)
-    BlueCloth.new(File.read Rails.root.join("config","#{key}.markdown")).to_html.html_safe
+    BlueCloth.new(textfile_loadup key).to_html.html_safe
+  end
+
+  def textfile_loadup(key)
+    File.read Rails.root.join("config","#{key}.markdown")
   end
 
   def company_legal_name

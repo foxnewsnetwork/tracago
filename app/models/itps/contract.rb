@@ -12,6 +12,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  draft_id        :integer
+#  checksum        :string(255)
 #
 
 class Itps::Contract < ActiveRecord::Base
@@ -42,8 +43,20 @@ class Itps::Contract < ActiveRecord::Base
     end
 
     def find_by_bullshit_id!(bullshit_id)
-      find bullshit_id_to_id permalink_or_bs_id
+      find bullshit_id_to_id bullshit_id
     end
+  end
+
+  def locked?
+    checksum.present? && escrow.present?
+  end
+
+  def already_agreed?(account)
+    locked? && escrow.already_agreed?(account.party)
+  end
+
+  def update_content_summary_and_generate_checksum(content_summary)
+    update content_summary: content_summary, checksum: _generate_checksum(content_summary)
   end
 
   def downcast
@@ -56,6 +69,10 @@ class Itps::Contract < ActiveRecord::Base
   end
 
   private
+  def _generate_checksum(text)
+    Digest::SHA256.new.hexdigest text.to_s
+  end
+
   def _child_class
     Itps::Contracts.const_get class_name.to_s.camelcase
   end

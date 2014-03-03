@@ -12,6 +12,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  draft_id        :integer
+#  checksum        :string(255)
 #
 
 class Itps::Contracts::Shipping < Itps::Contract
