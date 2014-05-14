@@ -40,7 +40,7 @@ class Itps::Escrows::Steps::StepFormHelper < Spree::FormHelperBase
   end
 
   def _payment_step?
-    Itps::Escrows::Step::AllTypes.include? step_type
+    Itps::Escrows::Step::AllTypes.include?(step_type) && step_type != 'load_step'
   end
 
   def _document_params

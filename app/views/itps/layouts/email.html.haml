@@ -1,0 +1,16 @@
+%table.application
+  %thead.header
+    %tr
+      %td.logo
+        GTPC
+  %tbody.body
+    = yield
+  %tfoot.footer
+    %tr
+      %td.explanation
+        You are receiving this email because 
+        = @attributes[:to]
+        is signed up to receive notifications from GTPC. Like our service but don't want to receive as many e-mails? 
+        = link_to 'Manage your e-mail subscriptions here.', '#manage-preferences' 
+        Or, you may 
+        = link_to 'unsubscribe.', '#unsubscribe'

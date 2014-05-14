@@ -1,0 +1,19 @@
+%tr.dear-whoever
+  %td
+    Dear
+    = @attributes[:seller_company_name] || t(:no_name_given)
+%tr.explanation-message
+  %td
+    You are receiving this email because representatives from
+    %strong= @attributes[:buyer_company_name] || t(:no_name_given)
+    wishes to engage in an escrow sales contract with you.
+%tr.explanation-message
+  %td
+    The contract is reproduced below and can
+    = link_to 'also be found here.', itps_secret_key_contract_path('somekey', @attributes[:contract].bullshit_id)
+    Please review the full contract and 
+    = link_to 'e-sign it on our site', itps_secret_key_agreement_path('somekey', @attributes[:contract].bullshit_id)
+    when you are satisfied with it.
+%tr.contract-details
+  %td
+    = @attributes[:contract].content_summary.html_safe

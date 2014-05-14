@@ -44,6 +44,7 @@ Tracago::Application.routes.draw do
     resources :contracts, only: [:show] do
       resources :agreements, only: [:new, :create], controller: 'contracts/agreements'
     end
+    resources :locked_contracts, only: [:show]
 
     resource :account_redirect, only: [:show]
     resource :sell, only: [:show], controller: 'sells'
@@ -75,6 +76,8 @@ Tracago::Application.routes.draw do
       resources :relationships, only: [:destroy], controller: 'admins/relationships'
     end
     resources :secret_keys, only: [] do
+      resources :contracts, only: [:show, :create], controller: 'secret_keys/contracts'
+      resources :agreements, only: [:show], controller: 'secret_keys/agreements'
       resources :escrows, only: [:show], controller: 'secret_keys/escrows' do
         resources :sessions, only: [:new, :create], controller: 'secret_keys/escrows/sessions'
         resources :registrations, only: [:new, :create], controller: 'secret_keys/escrows/registrations'

@@ -26,18 +26,7 @@
             %figure
               %i.fa-linux
             = t(:agreement)
-      %section#foreward.row
-        = render partial: 'itps/contracts/foreward', locals: { view_helper: @view_helper }
-      %section#parties
-        = render partial: 'itps/contracts/parties', locals: { view_helper: @view_helper }
-      %section#terms-of-sales
-        = render partial: 'itps/contracts/terms_of_sales', locals: { view_helper: @view_helper }
-      %section#terms-of-payment
-        = render partial: 'itps/contracts/terms_of_payment', locals: { view_helper: @view_helper }
-      %section#terms-of-cancellation
-        = render partial: 'itps/contracts/terms_of_cancellation', locals: { view_helper: @view_helper }
-      %section#fees
-        = render partial: 'itps/contracts/fees', locals: { view_helper: @view_helper }
+      = render partial: 'itps/contracts/contract_core', locals: { view_helper: @view_helper }
       #actions2.actions.row
         .action.thumbnail
           = link_to '#back' do

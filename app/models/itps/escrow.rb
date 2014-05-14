@@ -37,6 +37,8 @@ class Itps::Escrow < ActiveRecord::Base
     -> { outbound },
     through: :money_transfers_escrows,
     class_name: 'Itps::MoneyTransfer'
+  has_one :contract,
+    class_name: 'Itps::Contract'
   belongs_to :payment_party,
     class_name: 'Itps::Party'
   belongs_to :service_party,
@@ -129,7 +131,7 @@ class Itps::Escrow < ActiveRecord::Base
   end
 
   def full_presentation
-    "Contract ID: #{self.class.bullshitify_id id}"
+    "Contract ID: #{contract.bullshit_id || self.class.bullshitify_id(id)}"
   end
 
   def relevant_accounts

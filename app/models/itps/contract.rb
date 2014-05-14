@@ -47,6 +47,15 @@ class Itps::Contract < ActiveRecord::Base
     end
   end
 
+  def secret_key
+    return escrow.service_party_agree_key if escrow.payment_party_agreed?
+    return escrow.payment_party_agree_key if escrow.service_party_agreed?
+  end
+
+  def seller_email
+    draft.parsed_hash[:seller_email]
+  end
+
   def locked?
     checksum.present? && escrow.present?
   end
@@ -66,6 +75,10 @@ class Itps::Contract < ActiveRecord::Base
 
   def bullshit_id
     self.class.id_to_bullshit_id id
+  end
+
+  def generate_checksum!
+    update checksum: _generate_checksum(content_summary)
   end
 
   private

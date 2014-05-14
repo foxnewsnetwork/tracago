@@ -14,6 +14,7 @@
 
 class Itps::Draft < ActiveRecord::Base
   self.table_name = 'itps_drafts'
+  EscrowFee = 70.0
   belongs_to :account,
     class_name: 'Itps::Account'
 
@@ -94,6 +95,10 @@ class Itps::Draft < ActiveRecord::Base
     items.inject(0) do |cost, item|
       cost + item.total_cost
     end
+  end
+
+  def total_cost_plus_escrow_fee
+    total_cost + EscrowFee
   end
 
   private

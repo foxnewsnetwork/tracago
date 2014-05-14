@@ -168,7 +168,9 @@
   #drafts-reviews-edit {
     @include itps-drafts-reviews-edit;
   }
-  #contracts-show {
+  #contracts-show,
+  #locked_contracts-show,
+  #secret_keys-contracts-show {
     @include itps-contracts-show;
   }
   #drafts-punishments-edit,

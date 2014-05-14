@@ -22,127 +22,105 @@
     &.error {
       background-color: $danger-color;
     }
-    section {
-      @extend .container;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      h1 {
-        @extend .row;
-        text-transform: uppercase;
-        margin-left: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        font-weight: bold;
-        .colon {
-          text-transform: none;
-          font-weight: normal;
-          &:after {
-            content: ":";
-          }
-        }
+  }
+  #basic-information,
+  #payment-information,
+  #actions,
+  #steps-to-completion,
+  #warning-messages {
+    @extend .row;
+    padding-left: 0px;
+    .dash:after {
+      content: '-';
+    }
+    h2 {
+      @extend .col-lg-12;
+      border-bottom: $standard-border;
+    }
+  }
+  #warning-messages {
+    @extend .jumbotron;
+    h5 {
+      @extend .col-lg-12;
+      font-size: 20px;
+      span.label {
+        @extend .label-warning;
       }
+    }
+  }
+  #payment-information {
+    dl,.big-info-button {
+      @extend .col-lg-4;
+      @extend .col-md-6;
+      @extend .col-sm-6;
+      @extend .col-xs-12;
+    }
+    .big-info-button {
+      a {
+        @extend .btn-lg;
+        @extend .btn-info;
+        @extend .btn-block;
+      }
+    }
+    i {
+      @extend .fa;
+      @extend .fa-dollar;
+      &.info {
+        @extend .fa-info-circle;
+      }
+    }
+  }
+  #basic-information {
+    dl {
+      @extend .col-lg-4;
+      @extend .col-md-4;
+      @extend .col-sm-12;
+      @extend .col-xs-12;
+    }
+  }
+  #actions {
+    i {
+      @extend .fa;
+      @extend .fa-2x;
+      &.mark-ready {
+        @extend .fa-lock;
+      }
+      &.add-step {
+        @extend .fa-plus-circle;
+      }
+
+      &.destroy-escrow {
+        @extend .fa-times;
+      }
+      &.copy {
+        @extend .fa-copy;
+      }
+      &.edit {
+        @extend .fa-edit;
+      }
+      &.login {
+        @extend .fa-user;
+      }
+    }
+    a {
+      @extend .thumbnail;
+      text-align: center;
+      font-size: 16px;
+    }
+    li {
+      @extend .col-lg-2;
+      @extend .col-md-3;
+      @extend .col-sm-6;
+      @extend .col-xs-12;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0px;
     }
   }
   #content-box {
     @extend .container;
     margin-bottom: 20px;
-    #basic-information,
-    #payment-information,
-    #actions,
-    #steps-to-completion,
-    #warning-messages {
-      @extend .row;
-      padding-left: 0px;
-      .dash:after {
-        content: '-';
-      }
-      h2 {
-        @extend .col-lg-12;
-        border-bottom: $standard-border;
-      }
-    }
-    #warning-messages {
-      @extend .jumbotron;
-      h5 {
-        @extend .col-lg-12;
-        font-size: 20px;
-        span.label {
-          @extend .label-warning;
-        }
-      }
-    }
-    #payment-information {
-      dl,.big-info-button {
-        @extend .col-lg-4;
-        @extend .col-md-6;
-        @extend .col-sm-6;
-        @extend .col-xs-12;
-      }
-      .big-info-button {
-        a {
-          @extend .btn-lg;
-          @extend .btn-info;
-          @extend .btn-block;
-        }
-      }
-      i {
-        @extend .fa;
-        @extend .fa-dollar;
-        &.info {
-          @extend .fa-info-circle;
-        }
-      }
-    }
-    #basic-information {
-      dl {
-        @extend .col-lg-4;
-        @extend .col-md-4;
-        @extend .col-sm-12;
-        @extend .col-xs-12;
-      }
-    }
-    #actions {
-      ul {
-        list-style: none;
-        padding-left: 0px;
-        li {
-          @extend .col-lg-2;
-          @extend .col-md-3;
-          @extend .col-sm-6;
-          @extend .col-xs-12;
-          a {
-            @extend .thumbnail;
-            text-align: center;
-            font-size: 16px;
-            figure {
-              i {
-                @extend .fa;
-                @extend .fa-2x;
-                &.mark-ready {
-                  @extend .fa-lock;
-                }
-                &.add-step {
-                  @extend .fa-plus-circle;
-                }
-
-                &.destroy-escrow {
-                  @extend .fa-times;
-                }
-                &.copy {
-                  @extend .fa-copy;
-                }
-                &.edit {
-                  @extend .fa-edit;
-                }
-                &.login {
-                  @extend .fa-user;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
     #steps-to-completion {
       h6 {
         @extend .col-lg-12;

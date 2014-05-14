@@ -5,6 +5,16 @@
       = t @escrow.status
 
 #content-box
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:my_account), itps_account_path(current_account.permalink)
+      %li
+        = link_to itps_locked_contract_path(@escrow.contract.bullshit_id) do
+          = t(:contract)
+          = '#'
+          = @escrow.contract.bullshit_id
+      %li= t(:escrow_helper)
+
   - unless user_signed_in?
     #warning-messages
       %h5
@@ -126,6 +136,11 @@
             %figure
               %i.login
             = t(:login)
+      %li
+        = link_to itps_locked_contract_path(@escrow.contract.bullshit_id) do
+          %figure
+            %i.fa-chevron-left
+          = t(:contract_view)
       %li
         = link_to new_itps_escrow_escrow_path(@escrow.permalink) do
           %figure

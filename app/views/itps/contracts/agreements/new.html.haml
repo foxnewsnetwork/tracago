@@ -19,7 +19,11 @@
     %h4.col-lg-12.col-md-12.col-sm-12.col-xs-12.upcase by agreeing and clicking submit, you acknowledge you have read and understood both the contract on the previous page as well as the GTPC terms of service agreement.
   .row
     .actions.col-lg-6.col-md-6.col-sm-12.col-xs-12
+      - contract_core = capture do 
+        - render partial: 'itps/contracts/contract_core', locals: { view_helper: @view_helper }
       = form_for :agreements, url: itps_contract_agreements_path(@contract.permalink) do |f|
+        .hidden{ style: 'display: none;' }
+          = f.text_area :contract_text, value: contract_core.html_safe
         %fieldset
           = f.check_box :agree
           = f.label :agree, t(:agree_to_terms_of_usage)

@@ -1,0 +1,40 @@
+#hero-banner
+  %section
+    %h1
+      International Purchase Contract
+
+#content-box.container
+  .row
+    #contents
+      .row
+        %h2
+          = link_to '#bottom' do
+            %i.fa-chevron-down
+            = t(:bottom)
+      = @contract.content_summary.html_safe
+      
+      .row
+        .col-lg-10.col-md-10.col-sm-10.col-xs-10
+          %textarea.tos-text{ readonly: 'readonly', style: 'width: 100%; height: 300px;' }
+            = render partial: 'itps/contracts/agreements/terms'
+        %h4.col-lg-12.col-md-12.col-sm-12.col-xs-12.upcase by agreeing and clicking submit, you acknowledge you have read and understood both the contract on the previous page as well as the GTPC terms of service agreement.
+
+      .row
+        #bottom.actions.col-lg-6.col-md-6.col-sm-12.col-xs-12
+          = form_for :contracts, url: itps_secret_key_contracts_path(@contract.secret_key) do |f|
+            %fieldset
+              = f.check_box :agree
+              = f.label :agree, t(:agree_to_terms_of_usage)
+            %fieldset
+              = button_tag type: :submit do
+                %i.submit
+                = t(:commit_to_contract)
+                &
+                = t(:inform_other_party)
+          %p
+      
+    #table-of-contents
+      = render partial: 'itps/contracts/table_of_contents'
+
+
+

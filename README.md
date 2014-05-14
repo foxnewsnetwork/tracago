@@ -26,6 +26,38 @@ Live run tests
 >change payment / goods service to seller buyer
 >reverse the order of escrow#show... and provide a legal-text version
 
+# Notes to posterity:
+# form_helpers = interactos
+# view_helpers = presenters
+
+Thursday
+=
+Got the whole contract escrow thing working
+
+Wednesday
+=
+Nothing
+
+Tuesday
+=
+Nothing
+
+Monday
+=
+Nothing
+
+Wednesday
+=
+Nothing
+
+Tuesday
+=
+Nothing
+
+Monday
+=
+Nothing
+
 Sunday
 =
 1. Got through the entirety of the contract (might need to edit for grammar though)

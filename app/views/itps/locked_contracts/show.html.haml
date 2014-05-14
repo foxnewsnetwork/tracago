@@ -1,0 +1,35 @@
+#hero-banner
+  %section
+    %h1
+      International Purchase Contract
+
+#content-box.container
+  #cookie-crumbs
+    %ol
+      %li= link_to t(:my_account), itps_account_path(current_account.permalink)
+      %li
+        = t(:contract)
+        = '#'
+        = @contract.bullshit_id
+      %li= link_to t(:escrow_helper), itps_escrow_path(@contract.escrow.permalink)
+
+  .row
+    #contents
+      #actions1.actions.row
+        .action.thumbnail
+          = link_to itps_escrow_path(@contract.escrow.permalink) do
+            %figure
+              %i.fa-chevron-right
+            = t(:escrow_status)
+      = @contract.content_summary.html_safe
+      #actions2.actions.row
+        .action.thumbnail
+          = link_to itps_escrow_path(@contract.escrow.permalink) do
+            %figure
+              %i.fa-chevron-right
+            = t(:escrow_status)
+    #table-of-contents
+      = render partial: 'itps/contracts/table_of_contents'
+
+
+

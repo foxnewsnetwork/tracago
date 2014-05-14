@@ -17,23 +17,9 @@
 #
 
 class Itps::Escrows::Step < ActiveRecord::Base
-  AllTypes = ['payin_step', 'payout_step'].freeze
+  AllTypes = ['payin_step', 'payout_step', 'load_step'].freeze
 
   class AbandonedFeature < StandardError; end
-  class << self
-    def swap_positions(stepa, stepb)
-      raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
-      _move_stepb_into_stepa stepa, stepb
-      _move_stepb_into_stepa stepb, stepa
-    end
-
-    private
-    def _move_stepb_into_stepa(stepa, stepb)
-      raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
-      stepb.update previous_step: stepa.previous_step
-      stepa.next_step.update previous_step: stepb if stepa.next_step.present?
-    end
-  end
   belongs_to :escrow,
     class_name: 'Itps::Escrow'
   belongs_to :previous_step,
@@ -94,23 +80,6 @@ class Itps::Escrows::Step < ActiveRecord::Base
 
   def full_presentation
     "Step #{position} -- #{title}"
-  end
-
-  def swap_down!
-    raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
-    swap_position_with! next_step if next_step.present?
-  end
-
-  def swap_up!
-    raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
-    swap_position_with! previous_step if previous_step.present?
-  end
-
-  def swap_position_with!(step)
-    raise AbandonedFeature, "Abandoned this feature on Jan 10, 2014"
-    p = position
-    update(position: step.position) && step.update(position: p)
-    self.class.swap_positions(stepa, stepb)
   end
 
   alias_method :all_documents, :documents
